@@ -1,0 +1,138 @@
+# ==============================
+# OS / IDE / tooling
+# ==============================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.iml
+.idea/
+.vscode/
+.history/
+.fleet/
+
+# ==============================
+# Package managers / build
+# ==============================
+/node_modules/
+npm-debug.log*
+yarn-error.log
+pnpm-debug.log
+/.pnp*
+.pnp.*
+/dist/
+/build/
+
+# ==============================
+# Env & secrets
+# ==============================
+.env
+.env.*
+!.env.example
+.direnv/
+.envrc
+
+# ==============================
+# Bitrix: runtime, кэши, бэкапы
+# ==============================
+*.log
+/robots.txt
+# ==============================
+# Uploads (медиа и 1С-обмен)
+# ==============================
+/upload/**
+!/upload/.gitkeep
+
+# ==============================
+# Конфиги с паролями (НЕ хранить в репо)
+# ==============================
+/bitrix/.settings.php
+/bitrix/.access.php
+/bitrix/.settings_extra.php
+/bitrix/.settings_prod.php
+/bitrix/php_interface/dbconn.php
+/bitrix/activity_limit.php
+/bitrix/bitrix.php
+/bitrix/coupon_activation.php
+/bitrix/footer.php
+/bitrix/header.php
+/bitrix/index.php
+/bitrix/license_key.php
+/bitrix/routing_index.php
+/bitrix/ss.php
+/bitrix/spread.php
+/local/php_interface/dbconn.php
+
+# ==============================
+# Игнорируем всё из /bitrix (ядро/маркет)
+# но выборочно разрешаем то, что хотим версионировать
+# ==============================
+/bitrix/activities/
+/bitrix/admin/
+/bitrix/backup/
+/bitrix/blocks/
+/bitrix/cache/
+/bitrix/catalog_export/
+/bitrix/css/
+/bitrix/fonts/
+/bitrix/gadgets/
+/bitrix/html_pages/
+/bitrix/images/
+/bitrix/js/
+/bitrix/legal/
+/bitrix/managed_cache/
+/bitrix/modules/
+/bitrix/otp/
+/bitrix/panel/
+/bitrix/services/
+/bitrix/sounds/
+/bitrix/stack_cache/
+/bitrix/themes/
+/bitrix/tmp/
+/bitrix/tools/
+/bitrix/updates/
+/bitrix/wizards/
+
+# --- Храним шаблон Аспро (часто кастомизируется)
+!/bitrix/templates/aspro_optimus
+!/bitrix/templates/aspro_optimus/**
+
+# --- Храним компоненты Аспро (если правите шаблоны компонентов)
+!/bitrix/components/aspro
+!/bitrix/components/aspro/**
+ !/bitrix/modules/aspro.optimus*/
+# !/bitrix/wizards/aspro/**
+
+# ==============================
+# /local: проектный код
+# ==============================
+/local/cache/
+/local/html_pages/
+/local/backup/
+/local/tmp/
+/local/php_interface/cache/
+/local/vendor/   # если используете composer в /local
+
+# ==============================
+# Бэкапы/дампы
+# ==============================
+*.sql
+*.sql.gz
+*.tar
+*.tar.gz
+*.zip
+*.7z
+
+# ==============================
+# Прочие полезные исключения
+# ==============================
+/.ssh/
+*.bak
+*.orig
+*.rej
+*.png
+*.gif
+*.JPEG
+*.jpg
+*.JPG
+*.webp

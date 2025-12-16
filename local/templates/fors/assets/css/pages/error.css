@@ -1,0 +1,105 @@
+/* Error page */
+.error-hero {
+  background-color: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  height: 100%;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .error-hero {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.error-hero__inner {
+  display: grid;
+  gap: clamp(2rem, 1.5rem + 2vw, 4rem);
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
+
+.error-hero__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: clamp(10rem, 7rem + 10vw, 16rem);
+  aspect-ratio: 315 / 316;
+}
+
+.error-hero__icon img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+.error-hero__content {
+  max-width: 40rem;
+  display: grid;
+  gap: clamp(1rem, 0.9rem + 0.4vw, 1.5rem);
+}
+
+.error-hero__title {
+  margin: 0;
+  color: var(--black, var(--color-text));
+  font-size: clamp(2rem, 1rem + 6vw, 8rem);
+  font-style: normal;
+  font-weight: 300;
+  line-height: 120%;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
+.error-hero__subtitle {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.1rem + 1vw, 1.75rem);
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.error-hero__text {
+  margin: 0;
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.error-hero__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.error-hero__link:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.error-hero__link:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+.error-hero__link-icon {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .error-hero__inner {
+    grid-template-columns: clamp(10rem, 18vw, 16rem) minmax(0, clamp(20rem, 45vw, 36rem));
+    justify-content: center;
+    text-align: left;
+    justify-items: start;
+  }
+}

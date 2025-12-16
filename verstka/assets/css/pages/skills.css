@@ -1,0 +1,26 @@
+/* Skills Page */
+
+.skills {
+  background-color: var(--color-bg);
+}
+
+.skills__title {
+  margin-bottom: clamp(1.5rem, 1rem + 1.5vw, 2.5rem);
+}
+
+.skills__container {
+  max-width: var(--container-max, 1440px);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 0.5rem + 2vw, 3.75rem);
+}
+
+.skills__description {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary, #4a4a4a);
+  font-size: clamp(0.9375rem, 0.875rem + 0.2vw, 1.0625rem);
+}
+
+.skills__description:last-child {
+  margin-bottom: 0;
+}

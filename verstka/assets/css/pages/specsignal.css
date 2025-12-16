@@ -1,0 +1,544 @@
+/* Specsignal */
+
+.specsignal {
+  background-color: var(--color-bg);
+  padding-top: clamp(2.5rem, 2rem + 1.5vw, 4rem);
+}
+
+.specsignal__container {
+  display: grid;
+  gap: clamp(2rem, 1.5rem + 1.2vw, 3rem);
+}
+
+.specsignal__aside {
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-pill-bg) 100%);
+  border-radius: clamp(1.2rem, 1rem + 0.8vw, 1.75rem);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.08);
+  padding: clamp(1.5rem, 1.2rem + 1vw, 2.5rem);
+  display: grid;
+  gap: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
+}
+
+.specsignal-aside__title {
+  margin: 0;
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.35rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.specsignal-aside__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: clamp(0.75rem, 0.6rem + 0.4vw, 1.1rem);
+}
+
+.specsignal-aside__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(2.75rem, 2.5rem + 0.8vw, 3.5rem);
+  border-radius: clamp(1.1rem, 0.9rem + 0.4vw, 1.4rem);
+  background-color: rgba(242, 213, 2, 0.12);
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  padding-inline: clamp(1.5rem, 1.2rem + 0.6vw, 2rem);
+}
+
+.specsignal-aside__link:hover,
+.specsignal-aside__link:focus-visible {
+  background-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.specsignal-aside__link:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 3px;
+}
+
+.specsignal-aside__link--primary {
+  background-color: var(--color-accent);
+  font-weight: 600;
+}
+
+.specsignal__content {
+  display: grid;
+  gap: clamp(2rem, 1.6rem + 1vw, 3rem);
+}
+
+.specsignal__title {
+  margin: 0;
+  font-size: clamp(2.125rem, 1.8rem + 1.4vw, 3.25rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.specsignal__lead {
+  margin: 0;
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  line-height: 1.7;
+  color: rgba(26, 26, 26, 0.75);
+}
+
+.specsignal-section {
+  display: grid;
+  gap: clamp(1rem, 0.8rem + 0.6vw, 1.5rem);
+}
+
+.specsignal-section__title {
+  margin: 0;
+  font-size: clamp(1.35rem, 1.2rem + 0.8vw, 1.9rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.specsignal-section__title--center {
+  text-align: center;
+}
+
+.specsignal-list {
+  margin: 0;
+  padding-left: clamp(1.2rem, 1rem + 1vw, 2rem);
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
+  line-height: 1.65;
+  color: rgba(26, 26, 26, 0.82);
+  display: grid;
+  gap: clamp(0.75rem, 0.6rem + 0.3vw, 1rem);
+}
+
+.specsignal-note {
+  margin: 0;
+  font-size: clamp(0.95rem, 0.9rem + 0.1vw, 1.02rem);
+  line-height: 1.6;
+  color: rgba(26, 26, 26, 0.6);
+}
+
+.specsignal-pricing {
+  background-color: #ffffff;
+  padding-top: 0;
+}
+
+.specsignal-table-wrapper {
+  margin-top: clamp(1.5rem, 1.2rem + 1vw, 2.5rem);
+  border-radius: clamp(1.2rem, 1rem + 1vw, 1.8rem);
+  box-shadow: 0 26px 64px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.specsignal-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+.specsignal-table thead th {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  padding: clamp(1rem, 0.9rem + 0.6vw, 1.5rem) clamp(1.25rem, 1rem + 1vw, 2.5rem);
+  text-align: left;
+  background-color: rgba(242, 213, 2, 0.1);
+}
+
+.specsignal-table tbody td,
+.specsignal-table tbody th {
+  padding: clamp(1rem, 0.95rem + 0.6vw, 1.75rem) clamp(1.25rem, 1rem + 1vw, 2.5rem);
+  border-top: 1px solid rgba(26, 26, 26, 0.08);
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  color: rgba(26, 26, 26, 0.75);
+}
+
+.specsignal-table tbody th {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.specsignal-course {
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.specsignal-course__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: clamp(2.25rem, 2rem + 0.8vw, 2.75rem);
+  block-size: clamp(2.25rem, 2rem + 0.8vw, 2.75rem);
+  border-radius: 10px;
+  background-color: var(--color-accent);
+}
+
+.specsignal-course__icon img {
+  display: block;
+}
+
+.specsignal-consult {
+  background: linear-gradient(135deg, #292929 0%, #3f3f3f 100%);
+  color: #ffffff;
+}
+
+.specsignal-consult__container {
+  display: flex;
+  justify-content: center;
+}
+
+.specsignal-consult__content {
+  width: min(960px, 100%);
+  display: grid;
+  gap: clamp(1.2rem, 1rem + 0.6vw, 1.75rem);
+}
+
+.specsignal-consult__title {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.specsignal-consult__subtitle {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.specsignal-form {
+  display: grid;
+  gap: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
+}
+
+.specsignal-form__fields {
+  display: grid;
+  gap: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
+}
+
+.specsignal-form__field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.specsignal-form__label {
+  font-size: clamp(0.95rem, 0.9rem + 0.1vw, 1.02rem);
+  font-weight: 500;
+}
+
+.specsignal-form__input {
+  inline-size: 100%;
+  min-height: clamp(2.75rem, 2.5rem + 0.8vw, 3.25rem);
+  border-radius: clamp(0.75rem, 0.65rem + 0.4vw, 1.1rem);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 0 clamp(1rem, 0.8rem + 0.6vw, 1.8rem);
+  font: inherit;
+}
+
+.specsignal-form__input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.specsignal-form__input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.specsignal-form__submit {
+  justify-self: center;
+  padding: clamp(0.9rem, 0.8rem + 0.4vw, 1.2rem) clamp(2.5rem, 2rem + 1.2vw, 3.2rem);
+  border-radius: var(--radius-action);
+  border: none;
+  background-color: var(--color-accent);
+  font-weight: 600;
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.specsignal-form__submit:hover,
+.specsignal-form__submit:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.3);
+}
+
+.specsignal-form__submit:focus-visible {
+  outline: 2px solid rgba(26, 26, 26, 0.9);
+  outline-offset: 3px;
+}
+
+.specsignal-tiers__header {
+  text-align: center;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.specsignal-tiers__subtitle {
+  margin: 0;
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  color: rgba(26, 26, 26, 0.65);
+}
+
+.specsignal-tiers__grid {
+  margin-top: clamp(2rem, 1.8rem + 1vw, 3rem);
+  display: grid;
+  gap: clamp(1.5rem, 1.2rem + 1vw, 2.5rem);
+}
+
+.specsignal-tier {
+  display: grid;
+  gap: clamp(1rem, 0.8rem + 0.6vw, 1.5rem);
+  padding: clamp(1.75rem, 1.5rem + 1vw, 2.75rem);
+  border-radius: clamp(1.3rem, 1.1rem + 0.8vw, 2rem);
+  background-color: #ffffff;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+}
+
+.specsignal-tier__header {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+}
+
+.specsignal-tier__badge {
+  margin: 0;
+  inline-size: clamp(3.25rem, 3rem + 0.8vw, 3.75rem);
+  block-size: clamp(3.25rem, 3rem + 0.8vw, 3.75rem);
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-size: clamp(1.6rem, 1.4rem + 0.8vw, 2rem);
+  font-weight: 700;
+  background-color: var(--color-accent);
+  color: #1a1a1a;
+}
+
+.specsignal-tier__title {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  text-transform: uppercase;
+}
+
+.specsignal-tier__text {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
+  line-height: 1.6;
+  color: rgba(26, 26, 26, 0.75);
+}
+
+.specsignal-tier__meta {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.specsignal-tier__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+}
+
+.specsignal-tier__row dt {
+  font-weight: 600;
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.specsignal-tier__row dd {
+  margin: 0;
+  color: rgba(26, 26, 26, 0.85);
+  text-align: right;
+}
+
+.specsignal-tier__price {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+  font-weight: 700;
+}
+
+.specsignal-tier__cta {
+  justify-self: start;
+  padding: clamp(0.75rem, 0.7rem + 0.3vw, 1rem) clamp(2rem, 1.7rem + 0.8vw, 2.8rem);
+  border-radius: var(--radius-action);
+  border: none;
+  background-color: var(--color-accent);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.05rem);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.specsignal-tier__cta:hover,
+.specsignal-tier__cta:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+}
+
+.specsignal-tier__cta:focus-visible {
+  outline: 2px solid rgba(26, 26, 26, 0.9);
+  outline-offset: 3px;
+}
+
+.specsignal-tiers__pager {
+  margin-top: clamp(1.5rem, 1.2rem + 1vw, 2.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+}
+
+.specsignal-tiers__arrow {
+  inline-size: clamp(2.5rem, 2.2rem + 0.6vw, 2.9rem);
+  block-size: clamp(2.5rem, 2.2rem + 0.6vw, 2.9rem);
+  border-radius: 999px;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  background-color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(26, 26, 26, 0.65);
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.specsignal-tiers__arrow:hover,
+.specsignal-tiers__arrow:focus-visible {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+  transform: translateY(-2px);
+}
+
+.specsignal-tiers__arrow:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.specsignal-tiers__pages {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.specsignal-tiers__current {
+  font-weight: 700;
+}
+
+.specsignal-tiers__divider {
+  color: rgba(26, 26, 26, 0.45);
+}
+
+.specsignal-tiers__total {
+  color: rgba(26, 26, 26, 0.6);
+}
+
+@media (min-width: 768px) {
+  .specsignal__container {
+    grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .specsignal-form__fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .specsignal-tiers__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .specsignal-tier:last-child {
+    grid-column: 1 / -1;
+    max-width: min(560px, 100%);
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .specsignal-tiers__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .specsignal-tier:last-child {
+    grid-column: auto;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+/* Mobile table - визуально скрываем заголовки, вертикальная раскладка ячеек */
+.specsignal-table thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+.specsignal-table tbody tr {
+  display: grid;
+  gap: 0.75rem;
+  padding: clamp(1rem, 0.9rem + 0.4vw, 1.5rem);
+  border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+}
+
+.specsignal-table tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.specsignal-table tbody td,
+.specsignal-table tbody th {
+  padding: 0;
+  border: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.specsignal-table tbody td::before {
+  content: attr(data-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(26, 26, 26, 0.7);
+  font-size: 0.85rem;
+}
+
+/* Desktop table - восстанавливаем обычный вид */
+@media (min-width: 640px) {
+  .specsignal-table thead {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    clip: auto;
+    clip-path: none;
+    overflow: visible;
+  }
+
+  .specsignal-table tbody tr {
+    display: table-row;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .specsignal-table tbody td,
+  .specsignal-table tbody th {
+    display: table-cell;
+    padding: clamp(1rem, 0.95rem + 0.6vw, 1.75rem) clamp(1.25rem, 1rem + 1vw, 2.5rem);
+    border-top: 1px solid rgba(26, 26, 26, 0.08);
+  }
+
+  .specsignal-table tbody td::before {
+    content: none;
+  }
+}

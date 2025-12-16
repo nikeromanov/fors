@@ -1,0 +1,117 @@
+.why-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+@media (min-width: 640px) {
+  .why-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .why-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .why-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.why-list__item {
+  display: flex;
+  border-radius: var(--radius-pill, 1.25rem);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.why-list__item--image {
+  aspect-ratio: 1;
+}
+
+.why-list__item:hover {
+  transform: translateY(-0.25rem);
+}
+
+.why-list__item--image {
+  padding: 0;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
+}
+
+.why-list__item--image:hover {
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.12);
+}
+
+.why-list__item--text {
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  padding: clamp(1.5rem, 2vw, 2rem);
+  border: 0.125rem solid var(--color-border);
+  background: transparent;
+  align-items: flex-start;
+  color: inherit;
+}
+
+.why-list__figure {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-list__figure picture {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.why-list__img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  display: block;
+  color: inherit;
+}
+
+.why-list__content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.why-list__title {
+  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 400;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.why-list__description {
+  margin: 0;
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  font-weight: 400;
+  line-height: 140%;
+  color: inherit;
+}
+
+/* Dark theme: белые/прозрачные карточки становятся #1a1a1a */
+.theme-dark .why-list__item--text {
+  background: #1a1a1a;
+  color: #ffffff;
+}

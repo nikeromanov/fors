@@ -1,0 +1,554 @@
+/* Autodrome page */
+.autodrome {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4rem, 3rem + 1vw, 5rem);
+}
+.autodrome-intro__inner {
+  display: grid;
+  gap: clamp(2rem, 1.5rem + 1.5vw, 3rem);
+}
+
+.autodrome-intro__heading {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  max-width: min(52rem, 100%);
+  margin-inline: auto;
+}
+.autodrome-banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+.autodrome-intro__content {
+  display: grid;
+  gap: clamp(1.5rem, 1.25rem + 1vw, 2.5rem);
+}
+
+.autodrome-intro__card {
+  background-color: var(--color-surface-elevated);
+  border-radius: 1.75rem;
+  padding: clamp(1.75rem, 1.3rem + 1.5vw, 2.75rem);
+  box-shadow: var(--shadow-elevated);
+  display: grid;
+  gap: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+  align-self: stretch;
+  align-content: start;
+}
+
+.autodrome-intro__text {
+  display: grid;
+  gap: clamp(0.75rem, 0.6rem + 0.6vw, 1.25rem);
+}
+
+.autodrome-intro__title {
+  margin: 0;
+  font-size: clamp(2.75rem, 2.1rem + 2.2vw, 3.75rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.autodrome-intro__description {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.autodrome-intro__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+}
+
+.autodrome-intro__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(0.75rem, 0.6rem + 0.5vw, 1.25rem);
+  align-items: start;
+}
+
+.autodrome-intro__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: clamp(3rem, 2.5rem + 1vw, 3.5rem);
+  aspect-ratio: 1 / 1;
+  border-radius: 1rem;
+  background-color: rgba(242, 213, 2, 0.18);
+}
+
+.autodrome-intro__icon img {
+  inline-size: clamp(1.5rem, 1.25rem + 0.5vw, 2rem);
+  block-size: auto;
+}
+
+.autodrome-intro__item-content {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.autodrome-intro__item-label {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.autodrome-intro__address {
+  margin: 0;
+  font-style: normal;
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.autodrome-intro__hint {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--color-text-subtle);
+  font-size: 0.95rem;
+}
+
+.autodrome-intro__media {
+  margin: 0;
+  border-radius: 1.75rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-elevated);
+  background-color: var(--color-surface);
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  max-width: min(600px, 100%);
+}
+
+.autodrome-intro__media picture,
+.autodrome-intro__media img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .autodrome-intro__content {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .autodrome-exercises__list {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+.autodrome-features__inner {
+  display: grid;
+  gap: clamp(2.5rem, 2rem + 1.5vw, 3.5rem);
+}
+
+.autodrome-features__header {
+  text-align: center;
+}
+
+.autodrome-features__title {
+  margin: 0;
+  font-size: clamp(2.25rem, 1.9rem + 1.2vw, 3rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.autodrome-features__content {
+  display: grid;
+  gap: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+}
+
+.autodrome-features__text {
+  margin: 0;
+  padding: clamp(1.5rem, 1.2rem + 0.8vw, 2.25rem);
+  border-radius: 1.5rem;
+  background-color: var(--color-surface-elevated);
+  box-shadow: var(--shadow-elevated);
+  display: grid;
+  gap: 1rem;
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.autodrome-exercises {
+  display: grid;
+  gap: clamp(1.5rem, 1.2rem + 0.8vw, 2rem);
+}
+
+.autodrome-exercises__title {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.autodrome-exercises__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: clamp(1rem, 0.9rem + 0.6vw, 1.75rem);
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  max-width: min(960px, 100%);
+  margin-inline: auto;
+}
+
+.autodrome-exercise {
+  display: grid;
+  gap: clamp(0.75rem, 0.6rem + 0.6vw, 1.25rem);
+  padding: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+  border-radius: 1.5rem;
+  background-color: var(--color-surface);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  align-content: center;
+  justify-items: center;
+  min-height: clamp(12rem, 10.5rem + 1.5vw, 13.5rem);
+}
+
+.autodrome-exercise__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: clamp(3.75rem, 3.2rem + 0.8vw, 4.5rem);
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  background: rgba(242, 213, 2, 0.2);
+  box-shadow: inset 0 0 0 2px rgba(242, 213, 2, 0.45);
+}
+
+.autodrome-exercise__icon img {
+  inline-size: clamp(2.25rem, 2rem + 0.6vw, 2.75rem);
+  block-size: auto;
+}
+
+.autodrome-exercise__label {
+  font-weight: 600;
+  font-size: clamp(0.98rem, 0.92rem + 0.25vw, 1.1rem);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--color-text);
+}
+
+.autodrome-benefits__inner {
+  display: grid;
+  gap: clamp(2rem, 1.6rem + 1.5vw, 3rem);
+}
+
+.autodrome-benefits__title {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 3rem);
+  font-weight: 300;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.autodrome-benefits__grid {
+  display: grid;
+  gap: clamp(1rem, 0.9rem + 0.6vw, 1.75rem);
+}
+
+.autodrome-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 1.2rem + 1vw, 3rem);
+}
+
+.autodrome-benefits__title {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.autodrome-benefits__why--item:nth-child(2) {
+  background: var(--color-static-dark);
+  color: var(--color-static-dark-text);
+}
+
+.autodrome-benefits__why--item:nth-child(5) {
+  background: var(--color-accent);
+  color: var(--color-static-light-dark);
+}
+
+.autodrome-benefits__why--item:nth-child(4) {
+  background: var(--color-static-dark);
+  color: var(--color-static-dark-text);
+}
+
+/* Grid positioning only on large screens */
+@media (min-width: 1200px) {
+  .why-list:has(.autodrome-benefits__why--item) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .autodrome-benefits__why--item:nth-child(1) {
+    grid-column: span 2;
+    grid-row: 1;
+    aspect-ratio: 2 / 1;
+  }
+
+  .autodrome-benefits__why--item:nth-child(2) {
+    grid-column: 4;
+    grid-row: 1;
+  }
+
+  .autodrome-benefits__why--item:nth-child(3) {
+    grid-row: 2;
+  }
+
+  .autodrome-benefits__why--item:nth-child(4) {
+    grid-row: 2;
+  }
+
+  .autodrome-benefits__why--item:nth-child(5) {
+    grid-row: 2;
+    grid-column: span 2;
+    aspect-ratio: 2 / 1;
+  }
+}
+
+.autodrome-benefit__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: clamp(3rem, 2.6rem + 0.8vw, 3.5rem);
+  aspect-ratio: 1 / 1;
+  border-radius: 1rem;
+  background-color: rgba(242, 213, 2, 0.18);
+}
+
+.autodrome-benefit__icon img {
+  inline-size: clamp(1.85rem, 1.6rem + 0.5vw, 2.25rem);
+  block-size: auto;
+}
+
+.autodrome-benefit__heading {
+  margin: 0;
+  font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.autodrome-benefit__description {
+  margin: 0;
+  font-size: clamp(0.98rem, 0.95rem + 0.15vw, 1.08rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.autodrome-benefit--contrast {
+  background-color: var(--color-card-contrast);
+  color: var(--color-card-contrast-text);
+}
+
+.autodrome-benefit--contrast .autodrome-benefit__description {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.autodrome-benefit--muted {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: none;
+}
+
+.autodrome-benefit--accent {
+  background-color: var(--color-accent);
+  color: var(--color-card-accent-text);
+}
+
+.autodrome-benefit--accent .autodrome-benefit__description {
+  color: rgba(26, 26, 26, 0.8);
+}
+
+.autodrome-benefit--photo {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.autodrome-benefit--photo picture,
+.autodrome-benefit--photo img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.autodrome-signup {
+  padding-block: clamp(3rem, 2.5rem + 2vw, 4.5rem);
+}
+
+.autodrome-signup__inner {
+  background: radial-gradient(115% 115% at 110% 10%, rgba(242, 213, 2, 0.15), transparent),
+    linear-gradient(135deg, #262626 0%, #1a1a1a 60%, #111111 100%);
+  border-radius: 2rem;
+  padding: clamp(2rem, 1.6rem + 1.5vw, 3rem);
+  display: grid;
+  gap: clamp(2rem, 1.5rem + 1vw, 2.75rem);
+  color: #ffffff;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.35);
+}
+
+.autodrome-signup__content {
+  display: grid;
+  gap: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+}
+
+.autodrome-signup__title {
+  margin: 0;
+  font-size: clamp(2rem, 1.6rem + 1.8vw, 2.8rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.autodrome-signup__description {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.autodrome-signup__form {
+  display: grid;
+  gap: clamp(1.5rem, 1.2rem + 0.8vw, 2rem);
+}
+
+.autodrome-signup__fields {
+  display: grid;
+  gap: clamp(1rem, 0.8rem + 0.4vw, 1.25rem);
+}
+
+.autodrome-signup__field {
+  position: relative;
+}
+
+.autodrome-signup__input {
+  inline-size: 100%;
+  border-radius: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  padding: 1.1rem clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  font-size: 1rem;
+  line-height: 1.4;
+  background: #ffffff;
+  color: var(--color-text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.autodrome-signup__input::placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.autodrome-signup__input:focus-visible {
+  outline: none;
+  border-color: var(--color-footer-accent);
+  box-shadow: 0 12px 32px rgba(242, 213, 2, 0.35);
+}
+
+.autodrome-signup__notice {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.68);
+  text-align: center;
+}
+
+.autodrome-signup__submit {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(0.9rem, 0.8rem + 0.3vw, 1rem) clamp(2.75rem, 2.2rem + 1vw, 3.5rem);
+  border: none;
+  border-radius: var(--radius-action);
+  background-color: var(--color-footer-accent);
+  background-image: url("../bg/button.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: clamp(1.05rem, 1rem + 0.2vw, 1.2rem);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  justify-self: center;
+  min-inline-size: clamp(14rem, 12rem + 4vw, 18rem);
+}
+
+.autodrome-signup__submit:hover,
+.autodrome-signup__submit:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(242, 213, 2, 0.35);
+}
+
+.autodrome-signup__submit:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  .autodrome-features__content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .autodrome-exercises__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .autodrome-gallery__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .autodrome-gallery__item--main {
+    grid-column: 2 / 3;
+  }
+
+  .autodrome-benefits__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .autodrome-signup__fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .autodrome-exercises__list {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .autodrome-benefits__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .autodrome-benefit--light {
+    grid-column: span 2;
+  }
+
+  .autodrome-benefit--contrast {
+    grid-column: span 2;
+  }
+
+  .autodrome-benefit--photo {
+    grid-column: span 2;
+  }
+}

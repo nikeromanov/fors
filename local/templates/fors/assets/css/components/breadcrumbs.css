@@ -1,0 +1,58 @@
+/* Breadcrumbs */
+
+.breadcrumbs {
+  padding-block: clamp(0.75rem, 0.65rem + 0.5vw, 1rem);
+  padding-inline: clamp(1.5rem, 5vw, 2.5rem);
+  background: var(--color-bg);
+}
+
+.breadcrumbs__inner {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: clamp(0.8125rem, 0.78rem + 0.1vw, 0.875rem);
+  font-weight: 300;
+  color: var(--color-text-secondary);
+}
+
+.breadcrumbs__item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.5rem, 0.45rem + 0.1vw, 0.65rem);
+}
+
+.breadcrumbs__link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: inherit;
+}
+
+.breadcrumbs__link:hover,
+.breadcrumbs__link:focus-visible {
+  color: var(--color-text);
+  outline: none;
+}
+
+.breadcrumbs__separator {
+  display: inline-block;
+  width: clamp(1.25rem, 1rem + 0.5vw, 1.75rem);
+  height: clamp(0.5rem, 0.45rem + 0.2vw, 0.65rem);
+  color: inherit;
+  background-color: currentColor;
+  mask: url("../../icons/breadcrumb-arrow.svg") center/contain no-repeat;
+  -webkit-mask: url("../../icons/breadcrumb-arrow.svg") center/contain no-repeat;
+}
+
+.breadcrumbs__current {
+  font-weight: inherit;
+  color: var(--color-text-muted);
+}

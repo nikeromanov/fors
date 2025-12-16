@@ -1,0 +1,20 @@
+.primary-nav {
+  justify-self: center;
+}
+.primary-nav__list {
+  display: flex;
+  gap: var(--gap-nav);
+  align-items: center;
+  list-style: none;
+}
+.primary-nav__link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+.primary-nav__link:hover,
+.primary-nav__link:focus-visible {
+  color: var(--color-menu-text-hover);
+  transform: translateY(-1px);
+}

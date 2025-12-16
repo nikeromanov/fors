@@ -1,0 +1,209 @@
+.ui-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2.5rem, 5vw, 3.5rem);
+  height: clamp(2.5rem, 5vw, 3.5rem);
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.ui-icon_small {
+  width: clamp(0.5rem, 3vw, 1.5rem);
+  height: clamp(0.5rem, 3vw, 1.5rem);
+}
+
+/* Icons for Advantages Section */
+.ui-icon[data-icon="race"] {
+  mask-image: url("../../icons/advantages/race.svg");
+}
+
+.ui-icon[data-icon="driver"] {
+  mask-image: url("../../icons/advantages/driver.svg");
+}
+
+.ui-icon[data-icon="monitor"] {
+  mask-image: url("../../icons/advantages/monitor.svg");
+}
+
+.ui-icon[data-icon="doc"] {
+  mask-image: url("../../icons/advantages/doc.svg");
+}
+
+.ui-icon[data-icon="network"] {
+  mask-image: url("../../icons/advantages/network.svg");
+}
+
+.ui-icon[data-icon="cloud"] {
+  mask-image: url("../../icons/advantages/cloud.svg");
+}
+
+.ui-icon[data-icon="learn"] {
+  mask-image: url("../../icons/advantages/learn.svg");
+}
+
+.ui-icon[data-icon="cars"] {
+  mask-image: url("../../icons/advantages/cars.svg");
+}
+
+.ui-icon[data-icon="pad"] {
+  mask-image: url("../../icons/advantages/pad.svg");
+}
+
+.ui-icon[data-icon="hands"] {
+  mask-image: url("../../icons/advantages/hands.svg");
+}
+
+.ui-icon[data-icon="test"] {
+  mask-image: url("../../icons/advantages/test.svg");
+}
+
+.ui-icon[data-icon="wallet"] {
+  mask-image: url("../../icons/advantages/wallet.svg");
+}
+.ui-icon[data-icon="fast"] {
+  mask-image: url("../../icons/advantages/fast.svg");
+}
+
+.ui-icon[data-icon="student"] {
+  mask-image: url("../../icons/advantages/student.svg");
+}
+
+.ui-icon[data-icon="leaves"] {
+  mask-image: url("../../icons/advantages/leaves.svg");
+}
+
+.ui-icon[data-icon="party"] {
+  mask-image: url("../../icons/advantages/party.svg");
+}
+
+.ui-icon[data-icon="gift"] {
+  mask-image: url("../../icons/advantages/gift.svg");
+}
+.ui-icon[data-icon="friends"] {
+  mask-image: url("../../icons/advantages/friends.svg");
+}
+
+/* Icons for table */
+
+.ui-icon[data-icon="moto-table"] {
+  mask-image: url("../../icons/courses/moto-table.svg");
+}
+.ui-icon[data-icon="car-table"] {
+  mask-image: url("../../icons/courses/car-table.svg");
+}
+.ui-icon[data-icon="truck-table"] {
+  mask-image: url("../../icons/courses/truck-table.svg");
+}
+.ui-icon[data-icon="bus-table"] {
+  mask-image: url("../../icons/courses/bus-table.svg");
+}
+.ui-icon[data-icon="quad-table"] {
+  mask-image: url("../../icons/courses/quad-table.svg");
+}
+.ui-icon[data-icon="scooter-table"] {
+  mask-image: url("../../icons/courses/scooter-table.svg");
+}
+
+/* Icons for AUTODROME */
+
+.ui-icon[data-icon="parking"] {
+  mask-image: url("../../icons/autodrome/parking.svg");
+}
+.ui-icon[data-icon="estocade"] {
+  mask-image: url("../../icons/autodrome/estocade.svg");
+}
+.ui-icon[data-icon="garage"] {
+  mask-image: url("../../icons/autodrome/garage.svg");
+}
+.ui-icon[data-icon="turn"] {
+  mask-image: url("../../icons/autodrome/turn.svg");
+}
+.ui-icon[data-icon="snake"] {
+  mask-image: url("../../icons/autodrome/snake.svg");
+}
+
+/* arrows */
+
+.ui-icon[data-icon="up-arrow"] {
+  mask-image: url("../../icons/arrows/up_arrow.svg");
+}
+.ui-icon[data-icon="down-arrow"] {
+  mask-image: url("../../icons/arrows/down_arrow.svg");
+}
+.ui-icon[data-icon="right-arrow"] {
+  mask-image: url("../../icons/arrows/right_arrow.svg");
+}
+.ui-icon[data-icon="left-arrow"] {
+  mask-image: url("../../icons/arrows/left_arrow.svg");
+}
+
+/* checkbox */
+.ui-icon[data-icon="checkbox"] {
+  mask-image: url("../../icons/check.svg");
+}
+
+/* social */
+.ui-icon[data-icon="vk"] {
+  mask-image: url("../../icons/social/vk.svg");
+}
+.ui-icon[data-icon="whatsapp"] {
+  mask-image: url("../../icons/social/whatsapp.svg");
+}
+.ui-icon[data-icon="telegram"] {
+  mask-image: url("../../icons/social/tg.svg");
+}
+.ui-icon[data-icon="tiktok"] {
+  mask-image: url("../../icons/social/tiktok.svg");
+}
+
+/* contacts */
+.ui-icon[data-icon="map-pin"] {
+  mask-image: url("../../icons/map.svg");
+}
+.ui-icon[data-icon="info"] {
+  mask-image: url("../../icons/contacts/info.svg");
+}
+.ui-icon[data-icon="mail"] {
+  mask-image: url("../../icons/contacts/mail.svg");
+}
+.ui-icon[data-icon="office"] {
+  mask-image: url("../../icons/contacts/office.svg");
+}
+.ui-icon[data-icon="phone"] {
+  mask-image: url("../../icons/contacts/phone.svg");
+}
+.ui-icon[data-icon="social"] {
+  mask-image: url("../../icons/contacts/social.svg");
+}
+.ui-icon[data-icon="time"] {
+  mask-image: url("../../icons/contacts/time.svg");
+}
+
+/* instructors */
+.ui-icon[data-icon="star"] {
+  mask-image: url("../../icons/star.svg");
+}
+.ui-icon[data-icon="rews"] {
+  mask-image: url("../../icons/rews.svg");
+}
+.ui-icon[data-icon="download"] {
+  mask-image: url("../../icons/download.svg");
+}
+
+/* category */
+.ui-icon[data-icon="teacher"] {
+  mask-image: url("../../icons/category/teacher.svg");
+}
+.ui-icon[data-icon="catcar"] {
+  mask-image: url("../../icons/category/catcar.svg");
+}
+.ui-icon[data-icon="gai"] {
+  mask-image: url("../../icons/category/gai.svg");
+}
+.ui-icon[data-icon="blank"] {
+  mask-image: url("../../icons/category/blank.svg");
+}

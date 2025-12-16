@@ -1,0 +1,101 @@
+.news-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-header-bg);
+  border-radius: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.news-card:has(.news-card__link:hover) {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.news-card__wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+  gap: clamp(0.75rem, 0.6rem + 0.4vw, 1rem);
+  flex: 1;
+}
+
+.news-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(0.5rem, 0.25rem + 0.5vw, 1rem);
+  color: var(--color-text-secondary, #999);
+  font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+  font-weight: 300;
+  flex-wrap: wrap;
+}
+
+.news-card__type {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.news-card__date {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.news-card__title {
+  margin: 0;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.news-card__link {
+  color: var(--color-text, #1a1a1a);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.news-card__link:hover {
+  color: var(--color-accent, #f2d502);
+}
+
+.news-card__description {
+  margin: 0;
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.063rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary, #666);
+}
+
+.news-card__media {
+  margin: 0;
+  width: 100%;
+  height: clamp(140px, 20vw + 60px, 271px);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.news-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover .news-card__image {
+  transform: scale(1.05);
+}
+
+/* Dark theme */
+
+.theme-dark .news-card__link {
+  color: var(--color-text);
+}
+
+.theme-dark .news-card__description,
+.theme-dark .news-card__header {
+  color: var(--color-text-secondary);
+}

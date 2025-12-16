@@ -1,0 +1,54 @@
+.badge-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+  gap: clamp(0.75rem, 0.5rem + 0.5vw, 1.5rem);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.badge-list__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(0.5rem, 0.4rem + 0.3vw, 1rem);
+  gap: clamp(0.5rem, 0.4rem + 0.3vw, 1rem);
+}
+
+.badge-list__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(4rem, 3.5rem + 2vw, 6.25rem);
+  height: clamp(4rem, 3.5rem + 2vw, 6.25rem);
+  border-radius: var(--radius-pill);
+  background-color: var(--yellow);
+}
+
+.badge-list__badge {
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 3rem);
+  font-weight: 700;
+}
+
+.badge-list__description {
+  margin: 0;
+  font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1.125rem);
+  font-weight: 500;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .badge-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Dark theme: текст/иконки в бейдже тёмные на желтом фоне */
+.theme-dark .badge-list__badge {
+  color: #1a1a1a;
+}
+
+.theme-dark .badge-list__container .ui-icon {
+  color: #1a1a1a;
+}

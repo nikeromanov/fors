@@ -1,0 +1,95 @@
+.price-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(1.75rem, 2vw, 2.5rem);
+  min-width: 0;
+  width: 26.69rem;
+  max-width: 100%;
+  height: auto;
+  min-height: 37.81rem;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  background: var(--white, rgba(255, 255, 255, 1));
+  padding: clamp(1.25rem, 3vw, 1.9rem);
+  color: var(--color-static-text);
+}
+
+@media (max-width: 768px) {
+  .price-card {
+    width: 100%;
+    min-height: auto;
+  }
+}
+
+.price-card__header {
+  display: grid;
+  gap: clamp(1rem, 3vw, 1.9rem);
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+.price-card__category {
+  border-radius: var(--radius-pill);
+  background-color: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(4rem, 10vw, 6.25rem);
+  height: clamp(4rem, 10vw, 6.25rem);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 600;
+  line-height: 120%;
+  text-transform: uppercase;
+  padding-bottom: 8px;
+}
+.price-card__title {
+  font-size: clamp(0.9rem, 1.5vw, 1.56rem);
+  font-weight: 400;
+  line-height: 120%;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.price-card__description {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 300;
+  line-height: 120%;
+  text-align: left;
+  min-height: 1.8rem;
+}
+
+.price-card__info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 4vw, 2.9rem);
+}
+
+.price-card__info-title {
+  font-weight: 300;
+  text-align: left;
+  margin: 0;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+}
+
+.price-card__info-value {
+  font-weight: 400;
+  text-align: left;
+  margin: 0;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+}
+
+.price-card__price {
+  font-size: clamp(1.5rem, 3vw, 3.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Кнопка внутри карточки */
+.price-card .btn {
+  --btn-padding-y: clamp(0.6rem, 1.2vw, 1.25rem);
+  --btn-padding-x: clamp(1rem, 2vw, 3.5rem);
+  --btn-font-size: clamp(0.75rem, 1vw, 1.25rem);
+  white-space: nowrap;
+}

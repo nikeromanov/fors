@@ -1,0 +1,107 @@
+.reviews-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: clamp(12rem, 10rem + 5vw, 15rem);
+  box-sizing: border-box;
+  padding: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
+  border: 0.06rem solid rgba(242, 213, 2, 1);
+  border-radius: var(--radius-pill);
+  background: rgba(60, 60, 60, 1);
+  gap: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+}
+
+/* Шахматный порядок для 1 колонки (mobile) — просто чередование */
+.reviews-card:nth-child(even) {
+  background: var(--yellow);
+  .reviews-card__author,
+  .reviews-card__review-text {
+    color: rgba(0, 0, 0, 1);
+  }
+}
+
+/* Шахматный порядок для 2 колонок (640px+) */
+@media (min-width: 640px) {
+  /* Сброс — все тёмные по умолчанию */
+  .reviews-card:nth-child(even) {
+    background: rgba(60, 60, 60, 1);
+    .reviews-card__author,
+    .reviews-card__review-text {
+      color: var(--white, rgba(255, 255, 255, 1));
+    }
+  }
+  /* Шахматка: 2, 3, 6, 7, 10, 11... (4n+2, 4n+3) */
+  .reviews-card:nth-child(4n + 2),
+  .reviews-card:nth-child(4n + 3) {
+    background: var(--yellow);
+    .reviews-card__author,
+    .reviews-card__review-text {
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+}
+
+/* Шахматный порядок для 3 колонок (992px+) */
+@media (min-width: 992px) {
+  /* Сброс */
+  .reviews-card:nth-child(4n + 2),
+  .reviews-card:nth-child(4n + 3) {
+    background: rgba(60, 60, 60, 1);
+    .reviews-card__author,
+    .reviews-card__review-text {
+      color: var(--white, rgba(255, 255, 255, 1));
+    }
+  }
+  /* Шахматка для 3 колонок (нечётное число) — просто чётные элементы */
+  .reviews-card:nth-child(even) {
+    background: var(--yellow);
+    .reviews-card__author,
+    .reviews-card__review-text {
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+}
+
+/* Шахматный порядок для 4 колонок (1200px+) */
+@media (min-width: 1200px) {
+  /* Сброс — все тёмные */
+  .reviews-card:nth-child(even) {
+    background: rgba(60, 60, 60, 1);
+    .reviews-card__author,
+    .reviews-card__review-text {
+      color: var(--white, rgba(255, 255, 255, 1));
+    }
+  }
+  /* Шахматка для 4 колонок: 2, 4, 5, 7, 10, 12, 13, 15... (8n+2, 8n+4, 8n+5, 8n+7) */
+  .reviews-card:nth-child(8n + 2),
+  .reviews-card:nth-child(8n + 4),
+  .reviews-card:nth-child(8n + 5),
+  .reviews-card:nth-child(8n + 7) {
+    background: var(--yellow);
+    .reviews-card__author,
+    .reviews-card__review-text {
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+}
+
+.reviews-card__author {
+  color: var(--white, rgba(255, 255, 255, 1));
+  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.25rem);
+  font-weight: 400;
+}
+
+.reviews-card__date {
+  color: var(--gray, rgba(153, 153, 153, 1));
+  font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+  font-weight: 300;
+}
+
+.reviews-card__review-text {
+  color: var(--white, rgba(255, 255, 255, 1));
+  font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+  font-weight: 300;
+  text-align: center;
+  margin: 0;
+}

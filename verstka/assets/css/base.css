@@ -1,0 +1,281 @@
+/* Base, variables, utilities */
+:root {
+  /* Colors */
+  --color-bg: #ffffff;
+  --color-body-bg: #ffffff;
+  --color-wrapper-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-white: #ffffff;
+  --color-accent: #f2d502;
+  --color-accent-hover: #f2d60233;
+  --color-footer-bg: #3c3c3c;
+  --color-header-bg: #ffffff;
+  --color-menu-text-hover: #ff383c;
+  --color-card-bg-dark: #3c3c3c;
+  --color-card-bg-yellow: #f2d502;
+  --color-card-text-dark: #1a1a1a;
+  --color-card-text-light: #ffffff;
+  --color-static-text: #1a1a1a;
+  --color-static-text-white: #ffffff;
+  --color-static-bg: #ffffff;
+  --color-footer-text: #ffffff;
+  --color-footer-accent: #f2d502;
+  --color-error: #f24b4b;
+  --yellow: #f2d502;
+  --color-pill-bg: #fffbd2;
+  --color-pill-border: #f2d502;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f7f7f7;
+  --color-surface-elevated: #ffffff;
+  --color-border: rgba(26, 26, 26, 0.08);
+  --color-text-muted: rgba(26, 26, 26, 0.82);
+  --color-text-gray: #999999;
+  --color-text-primary: rgba(26, 26, 26, 1);
+  --color-text-secondary: rgba(26, 26, 26, 0.72);
+  --color-text-subtle: rgba(26, 26, 26, 0.6);
+  --color-text-faint: rgba(26, 26, 26, 0.45);
+  --shadow-elevated: 0 22px 48px rgba(0, 0, 0, 0.08);
+  --black: #1a1a1a;
+  --color-card-contrast: #3c3c3c;
+  --color-card-contrast-text: #ffffff;
+  --color-card-accent-text: #1a1a1a;
+  --color-tabs-bg: #f2f2f2;
+  --color-tabs-text: #1a1a1a;
+  --color-tabs-button-active: #1a1a1a;
+
+  /* Static colors (не меняются при смене темы) */
+  --color-static-dark: #3c3c3c;
+  --color-static-dark-text: #ffffff;
+  --color-static-light: #ffffff;
+  --color-static-light-dark: #1a1a1a;
+
+  /* teme toggle */
+  --color-toggle-bg-light: #fffbd2;
+  --color-toggle-border-light: #f2d502;
+  --color-toggle-bg-dark: #1c5e8d;
+  --color-toggle-border-dark: #00b2ff;
+
+  /* Border radius */
+  --radius-pill: 20px;
+  --radius-action: 14px;
+
+  /* Layout */
+  --container-max: 1440px;
+  --gap-nav: 30px;
+  --gap-actions: clamp(12px, 3vw, 24px);
+  --header-h: 74px;
+
+  /* Typography */
+  --font: "Geologica", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-size-h1: clamp(1.75rem, 1.3rem + 1.6vw, 3.25rem);
+  --font-size-h2: clamp(1.5rem, 1.15rem + 1.3vw, 2.75rem);
+  --font-size-h3: clamp(1.125rem, 1rem + 0.5vw, 1.75rem);
+  --font-size-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --font-size-small: clamp(0.875rem, 0.85rem + 0.1vw, 1rem);
+
+  /* Hero section */
+  --color-hero-bg: #f2d502;
+  --color-hero-text: #1a1a1a;
+  --color-hero-cta: #f2404f;
+  --color-hero-cta-accent: #ff6670;
+  --color-hero-card-bg: #ffffff;
+  --shadow-hero-card: 0 24px 48px rgba(17, 17, 17, 0.16);
+
+  /* Buttons */
+  --btn-primary-bg: #f2404f;
+  --btn-primary-hover: #ff6670;
+  --btn-secondary-bg: #f2d502;
+  --btn-secondary-hover: #ffd700;
+  --btn-padding-y: 1rem;
+  --btn-padding-x: 2.5rem;
+  --btn-font-size: 1.125rem;
+  --btn-border-radius: var(--radius-action);
+  --btn-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* box shadows */
+
+  --shadow-md: 6px 6px 10px 3px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 3px 3px 3px 3px rgba(0, 0, 0, 0.075);
+
+  --hero-bg: url("../../img/car_n.webp");
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  color: var(--color-text);
+  background-color: var(--color-body-bg);
+  font: 400 16px/1.4 var(--font);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body.is-menu-open {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-size: var(--font-size-h1);
+  font-weight: 400;
+  line-height: 120%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+}
+
+main {
+  flex: 1 0 auto;
+  width: 1440px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--color-bg);
+}
+
+.u-container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: clamp(0rem, -0.5rem + 2vw, 1.25rem);
+}
+
+.u-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.u-text-center {
+  text-align: center;
+}
+
+.page-section {
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  box-sizing: border-box;
+  max-width: var(--container-max);
+  background-color: var(--color-bg);
+}
+
+.page-section__flex {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 4vw, 1.5rem);
+}
+.page-section__title {
+  text-align: center;
+  font-size: var(--font-size-h1);
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.section-title--center {
+  text-align: center;
+}
+
+/* Плавный переход при смене темы */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* DARK THEME */
+.theme-dark {
+  /* Основные цвета */
+  --color-bg: #252525;
+  --color-body-bg: #0f0f0f;
+  --color-wrapper-bg: #3c3c3c;
+  --color-text: #f5f5f5;
+  --color-text-white: #f5f5f5;
+  --black: #f5f5f5;
+  --color-tabs-bg: #3c3c3c;
+  --color-tabs-text: #fff;
+
+  /* Поверхности */
+  --color-surface: #181818;
+  --color-surface-alt: #141414;
+  --color-surface-elevated: #202020;
+  --color-border: rgba(255, 255, 255, 0.16);
+
+  /* Текст */
+  --color-text-muted: rgba(245, 245, 245, 0.9);
+  --color-text-gray: #888888;
+  --color-text-primary: rgba(245, 245, 245, 1);
+  --color-text-secondary: rgba(245, 245, 245, 0.72);
+  --color-text-subtle: rgba(245, 245, 245, 0.55);
+  --color-text-faint: rgba(245, 245, 245, 0.4);
+
+  /* Акценты (жёлтый остаётся, но немного ярче для тёмного фона) */
+  --color-accent: #f5d800;
+  --color-accent-hover: rgba(245, 216, 0, 0.25);
+  --yellow: #f5d800;
+
+  /* Pill/badge */
+  --color-pill-bg: rgba(245, 216, 0, 0.15);
+  --color-pill-border: #f5d800;
+
+  /* Header/Footer */
+  --color-header-bg: #1a1a1a;
+  --color-footer-text: #f5f5f5;
+  --color-footer-accent: #f5d800;
+
+  /* Карточки */
+  --color-card-bg-dark: #2a2a2a;
+  --color-card-bg-yellow: #f5d800;
+  --color-card-text-dark: #f5f5f5;
+  --color-card-text-light: #f5f5f5;
+  --color-card-contrast: #252525;
+  --color-card-contrast-text: #f5f5f5;
+  --color-card-accent-text: #1a1a1a;
+
+  /* Hero section */
+  --color-hero-bg: #f5d800;
+  --color-hero-text: #1a1a1a;
+  --color-hero-cta: #f2404f;
+  --color-hero-cta-accent: #ff6670;
+  --color-hero-card-bg: #252525;
+  --shadow-hero-card: 0 24px 48px rgba(0, 0, 0, 0.4);
+
+  /* Кнопки */
+  --btn-primary-bg: #f2404f;
+  --btn-primary-hover: #ff6670;
+  --btn-secondary-bg: #f5d800;
+  --btn-secondary-hover: #ffe033;
+
+  /* Тени */
+  --shadow-elevated: 0 24px 60px rgba(0, 0, 0, 0.65);
+  --shadow-md: 6px 6px 10px 3px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+
+  /* Toggle */
+  --color-toggle-bg-light: #fffbd2;
+  --color-toggle-border-light: #f5d800;
+
+  --hero-bg: url("../../img/car_d.webp");
+}

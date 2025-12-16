@@ -1,0 +1,134 @@
+.container {
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+.home-hero__lead span{
+	font-weight: 700;
+    font-size: clamp(1.25rem, 1rem + 1.5vw, 1.8rem);
+    color: var(--color-hero-text);
+}
+.content_block h1, .content_block h2, .content_block h3, .content_block h4, .content_block p, .content_block ul, .content_block ol {
+    margin: revert !important;
+    margin-top: 0px !important;
+}
+section#consult_form {
+    padding: 0px;
+    background: none;
+}
+.form-error-message {
+    color: red;
+}
+.footer__legal a {
+    color: inherit;
+}
+.answer_form {
+    color: #fff;
+}
+.detail_content {
+    display: block !important;
+}
+.detail_content img {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+}
+.detail_content ol, .detail_content ul {
+    margin: 0;
+    padding: 0 0 0 clamp(1.1rem, 0.9rem + 1.5vw, 2.5rem);
+    list-style: decimal;
+    display: grid;
+    gap: clamp(1rem, 0.85rem + 0.7vw, 1.6rem);
+    color: var(--color-text-secondary);
+}
+
+.detail_content ol ul,  .detail_content ol ol, .detail_content ul ul,  .detail_content ul ol{
+    margin: 0;
+    padding-left: clamp(1.2rem, 1rem + 0.6vw, 1.8rem);
+    list-style: disc;
+    display: grid;
+    gap: clamp(0.5rem, 0.45rem + 0.3vw, 0.75rem);
+    color: var(--color-text-secondary);
+}
+.detail_content ul li,  .detail_content ol li{
+    display: grid;
+    gap: clamp(0.75rem, 0.6rem + 0.3vw, 1rem);
+}
+.detail_content ul li li, .detail_content ol li li{
+    margin: 0;
+	display:list-item;
+}
+body .detail_content li > p {
+    margin-bottom: 0px !important;
+}
+a.price-card__title {
+    color: inherit;
+    text-decoration: none;
+}
+.category__content ul {
+    list-style: disc;
+    padding: 0;
+    padding-left: 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
+    margin-bottom: 20px;
+}
+.category__content ul li {
+	display: revert;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+    line-height: 1.5;
+    color: var(--color-text);
+}
+h3.cars-gallery__car-name {
+    margin: 0 !important;
+}
+
+.detail_content.category__content ol,
+.detail_content.category__content ul {
+    display: block;           
+    gap: unset;               
+    list-style-position: outside;
+}
+
+.detail_content.category__content ol {
+    list-style-type: decimal;
+}
+
+.detail_content.category__content ul {
+    list-style-type: disc;
+}
+
+.detail_content.category__content ol li,
+.detail_content.category__content ul li {
+    display: list-item;  
+    gap: unset;           
+    margin-bottom: clamp(1rem, 0.85rem + 0.7vw, 1.6rem);
+	color: rgb(26 26 26);
+}
+
+.detail_content.category__content ol li:last-child,
+.detail_content.category__content ul li:last-child {
+    margin-bottom: 0;
+}
+.detail_content.category__content .detail_images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 0.8rem + 1vw, 2rem);
+    margin: clamp(1.5rem, 1.2rem + 1vw, 2.5rem) 0;
+}
+
+.detail_content.category__content .detail_images img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.5rem; 
+}
+.detail_images img {
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+}

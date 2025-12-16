@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Галлерея";
+$arDirProperties = Array(
+
+);
+?>

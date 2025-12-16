@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Instructor Detail Page
+   ========================================================================== */
+
+.instructor-detail {
+  max-width: var(--container-max, 1440px);
+  margin: 0 auto;
+  padding: clamp(1rem, 0.5rem + 2vw, 3.75rem);
+}
+
+.instructor-detail__header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 1rem + 2vw, 5rem);
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .instructor-detail__header {
+    grid-template-columns: minmax(280px, 400px) 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .instructor-detail__header {
+    grid-template-columns: 538px 1fr;
+  }
+}
+
+/* Photo Column */
+.instructor-detail__photo {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .instructor-detail__photo {
+    position: sticky;
+    top: 2rem;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+.instructor-detail__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-pill, 2rem);
+  object-fit: cover;
+  aspect-ratio: 538 / 650;
+}
+
+.instructor-detail__cta {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 0.75rem + 0.5vw, 1.25rem) clamp(1.5rem, 1rem + 1vw, 2rem);
+  background: var(--yellow, #f2d502);
+  color: var(--text-dark, #1a1a1a);
+  border: none;
+  border-radius: var(--radius-pill, 2rem);
+  font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.instructor-detail__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.instructor-detail__cta:active {
+  transform: translateY(0);
+}
+
+.instructor-detail__cta:focus-visible {
+  outline: 2px solid var(--text-dark, #1a1a1a);
+  outline-offset: 2px;
+}
+
+/* Info Column */
+.instructor-detail__info {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 1rem + 1vw, 2rem);
+}
+
+.instructor-detail__title {
+  font-size: clamp(1.75rem, 1.25rem + 2vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .instructor-detail__title {
+    text-align: left;
+  }
+}
+
+.instructor-detail__content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
+}
+
+.instructor-detail__content p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--text-secondary, #666);
+  font-size: clamp(0.9375rem, 0.875rem + 0.2vw, 1.0625rem);
+}
+
+/* Specs Section */
+.instructor-detail__specs {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+.instructor-detail__specs-title {
+  font-size: clamp(1.25rem, 1rem + 0.5vw, 1.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0 0 clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
+}
+
+.instructor-detail__specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 0.25rem + 0.5vw, 1rem);
+  margin: 0;
+}
+
+.instructor-detail__spec {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);
+  border-bottom: none;
+}
+
+@media (min-width: 480px) {
+  .instructor-detail__spec {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.5rem, 0.25rem + 0.5vw, 1rem);
+  }
+}
+
+.instructor-detail__spec:last-child {
+  border-bottom: none;
+}
+
+.instructor-detail__spec-label {
+  font-weight: 600;
+  color: var(--text-primary, #1a1a1a);
+  margin: 0;
+  font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+}
+
+.instructor-detail__spec-value {
+  font-weight: 600;
+  color: var(--text-secondary, #666);
+  margin: 0;
+  text-align: left;
+  font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+}
+
+@media (min-width: 480px) {
+  .instructor-detail__spec-value {
+    text-align: right;
+    font-weight: 400;
+  }
+}
+
+/* ==========================================================================
+   Reviews Section
+   ========================================================================== */
+
+.reviews-section {
+  max-width: 100%;
+  margin-inline: auto;
+  padding: clamp(1rem, 0.5rem + 1vw, 2rem);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.reviews-section__title {
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 clamp(1.5rem, 1rem + 1.5vw, 3rem);
+}
+
+.reviews-slider {
+  margin-bottom: clamp(1rem, 0.75rem + 0.5vw, 2rem);
+  width: 100%;
+  overflow: hidden;
+}
+
+.reviews-slider .swiper-wrapper {
+  padding: clamp(0.5rem, 0.25rem + 0.5vw, 1rem) 0 clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
+}
+
+.reviews-slider .swiper-slide {
+  height: auto;
+  min-height: clamp(280px, 50vw, 372px);
+  box-sizing: border-box;
+}
+
+/* Review Cards - используем существующий класс reviews-card */
+.reviews-slider .reviews-card {
+  width: 100%;
+  height: 100%;
+  min-height: clamp(280px, 50vw, 372px);
+}
+
+/* Чередование желтого фона через одну карточку */
+.reviews-slider .swiper-slide:nth-child(even) .reviews-card {
+  background: var(--yellow);
+}
+
+.reviews-slider .swiper-slide:nth-child(even) .reviews-card .reviews-card__author,
+.reviews-slider .swiper-slide:nth-child(even) .reviews-card .reviews-card__review-text {
+  color: var(--color-static-light-dark);
+}
+
+/* ==========================================================================
+   Dark Theme
+   ========================================================================== */
+
+.theme-dark .instructor-detail__content p {
+  color: var(--color-text-secondary);
+}
+
+.theme-dark .instructor-detail__spec-label {
+  color: var(--color-text);
+}
+
+.theme-dark .instructor-detail__spec-value {
+  color: var(--color-text-secondary);
+}

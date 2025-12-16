@@ -1,0 +1,37 @@
+.article-pagination {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+  padding-top: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+  border-top: 0.06rem solid var(--yellow);
+}
+
+.article-pagination__button {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.35rem, 0.25rem + 0.25vw, 0.5rem);
+  font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.article-pagination__button:hover,
+.article-pagination__button:focus {
+  color: var(--yellow);
+}
+
+.article-pagination__button:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+}
+
+.article-pagination__icon {
+  width: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
+  height: clamp(1rem, 0.75rem + 0.5vw, 1.5rem);
+  color: var(--yellow);
+  flex-shrink: 0;
+}

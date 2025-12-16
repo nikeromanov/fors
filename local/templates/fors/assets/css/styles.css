@@ -1,0 +1,84 @@
+/**
+ * Главный файл стилей проекта Форсаж
+ * Все стили организованы в модули для удобства поддержки
+ */
+
+/* Main CSS orchestrator */
+@import "base.css";
+
+/* UI-Kit */
+@import "ui-kit/buttons.css";
+@import "ui-kit/price-card.css";
+@import "ui-kit/fast-banner.css";
+@import "ui-kit/social-banner.css";
+@import "ui-kit/reviews-card.css";
+@import "ui-kit/profit-banner.css";
+@import "ui-kit/remote-banner.css";
+@import "ui-kit/split-banner.css";
+@import "ui-kit/pagination.css";
+@import "ui-kit/icons.css";
+@import "ui-kit/table.css";
+@import "ui-kit/why-list.css";
+@import "ui-kit/badge-list.css";
+
+/* Components */
+@import "components/header.css";
+@import "components/primary-nav.css";
+@import "components/tabs.css";
+@import "components/mobile-menu.css";
+@import "components/home-hero.css";
+@import "components/school.css";
+@import "components/docs.css";
+@import "components/advantages.css";
+@import "components/steps.css";
+@import "components/form-consult.css";
+@import "components/categories.css";
+@import "components/breadcrumbs.css";
+@import "components/consult-form.css";
+@import "components/news-card.css";
+@import "components/news-and-discount.css";
+@import "components/office-map.css";
+@import "components/faq-accordion.css";
+@import "components/about-highlights.css";
+@import "components/footer.css";
+@import "components/article-pagination.css";
+@import "components/slider-pagination.css";
+@import "components/gallery-slider.css";
+@import "components/also.css";
+
+/* Страницы */
+@import "pages/index.css";
+@import "pages/fast-courses.css";
+@import "pages/about.css";
+@import "pages/faq.css";
+@import "pages/gallery.css";
+@import "pages/news.css";
+@import "pages/news-element.css";
+@import "pages/article-element.css";
+@import "pages/specsignal.css";
+@import "pages/skills.css";
+@import "pages/schedule.css";
+@import "pages/price.css";
+@import "pages/contacts.css";
+@import "pages/search.css";
+@import "pages/autodrome.css";
+@import "pages/error.css";
+@import "pages/reviews.css";
+@import "pages/video.css";
+@import "pages/driving.css";
+@import "pages/gifts.css";
+@import "pages/cars.css";
+@import "pages/exams.css";
+@import "pages/online.css";
+@import "pages/payment.css";
+@import "pages/license.css";
+@import "pages/policy.css";
+@import "pages/discount.css";
+@import "pages/instructors.css";
+@import "pages/instructor-detail.css";
+@import "pages/info.css";
+@import "pages/category.css";
+
+/* vendor styles */
+@import "vendor/swiper-bundle.min.css";
+@import "vendor/fancybox.css";

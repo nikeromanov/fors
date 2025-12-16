@@ -1,0 +1,135 @@
+/* Info Documents Page */
+
+.info-documents {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2rem, 1.5rem + 1.5vw, 3rem);
+}
+
+.info-documents__title {
+  margin: 0;
+  font-size: clamp(1.5rem, 1rem + 2vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Info Grid */
+
+.info-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: grid;
+  gap: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .info-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .info-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(2rem, 1.8rem + 1vw, 2.5rem);
+  }
+}
+
+/* Info Card */
+
+.info-card {
+  background-color: transparent;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+}
+
+.info-card__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 1rem;
+}
+
+.info-card__image {
+  width: 100%;
+  max-width: 227px;
+  height: auto;
+  aspect-ratio: 227 / 300;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.info-card__link:hover .info-card__image {
+  transform: scale(1.05);
+}
+
+.info-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  width: 100%;
+}
+
+.info-card__title {
+  margin: 0;
+  font-size: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.info-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  max-width: 227px;
+}
+
+.info-card__size {
+  font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.85rem);
+  color: #999;
+  font-weight: 400;
+}
+
+.info-card__download {
+  font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.85rem);
+  color: var(--color-text, #333);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+.info-card__download:hover {
+  color: var(--yellow, #f2d502);
+  text-decoration: underline;
+}
+.info-card__icon {
+  height: 1rem;
+}

@@ -1,0 +1,291 @@
+.cars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 0.8rem + 0.5vw, 2rem);
+}
+
+.cars__intro {
+  max-width: 54rem;
+  text-align: center;
+}
+
+.cars-gallery {
+  padding: 0 clamp(1rem, 0.5rem + 2vw, 3.75rem) clamp(1.5rem, 1rem + 1vw, 3.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 0.8rem + 0.5vw, 2rem);
+  align-items: center;
+  background: var(--color-bg);
+}
+
+.cars-gallery__title {
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.56rem);
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cars-gallery__icon {
+  color: var(--color-accent, #f2d502);
+}
+
+.cars-gallery__list {
+  width: 100%;
+  max-width: 1440px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 0.8rem + 0.5vw, 2rem);
+}
+
+@media (min-width: 900px) {
+  .cars-gallery__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cars-gallery__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+}
+
+.cars-gallery__card {
+  position: relative;
+
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.cars-gallery__card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.cars-gallery__image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  margin: 0;
+}
+
+.cars-gallery__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Sliding Form */
+.cars-gallery__form {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: var(--color-accent, #f2d502);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(calc(100% - 4rem));
+  z-index: 1;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.cars-gallery__form[data-expanded="true"] {
+  transform: translateY(0);
+}
+
+.cars-gallery__form-toggle {
+  width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(0.5rem, 0.4rem + 0.3vw, 1rem) clamp(0.75rem, 0.6rem + 0.4vw, 1.5rem);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cars-gallery__form-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.cars-gallery__car-name {
+  margin: 0;
+  font-size: clamp(0.9rem, 0.8rem + 0.4vw, 1.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text, #1a1a1a);
+  text-align: left;
+}
+
+.cars-gallery__toggle-icon {
+  width: clamp(1rem, 0.9rem + 0.3vw, 1.5rem);
+  height: clamp(1rem, 0.9rem + 0.3vw, 1.5rem);
+  flex-shrink: 0;
+  color: var(--color-text, #1a1a1a);
+  transition: transform 0.3s ease;
+}
+
+.cars-gallery__form[data-expanded="true"] .cars-gallery__toggle-icon {
+  transform: rotate(180deg);
+}
+
+.cars-gallery__form-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0 clamp(0.75rem, 0.6rem + 0.4vw, 2rem) clamp(0.5rem, 0.4rem + 0.3vw, 1rem);
+}
+
+.cars-gallery__specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+  gap: 0.25rem;
+}
+
+.cars-gallery__spec-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.25rem;
+  align-items: center;
+  font-size: clamp(0.8rem, 0.75rem + 0.2vw, 0.9375rem);
+}
+
+.cars-gallery__spec-item dt {
+  font-weight: 400;
+  color: var(--color-text, #1a1a1a);
+}
+
+.cars-gallery__spec-item dd {
+  font-weight: 600;
+  color: var(--color-text, #1a1a1a);
+  margin: 0;
+}
+
+.cars-gallery__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0.8rem 0;
+}
+
+.cars-gallery__contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cars-gallery__form-label {
+  font-size: clamp(0.8rem, 0.75rem + 0.2vw, 0.9375rem);
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-text, #1a1a1a);
+  line-height: 1.4;
+}
+
+.cars-gallery__input {
+  width: 100%;
+  padding: clamp(0.75rem, 0.6rem + 0.3vw, 1rem) clamp(1rem, 0.8rem + 0.4vw, 1.5rem);
+  border: none;
+  border-radius: 0.5rem;
+  font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
+  background: #fff;
+  color: var(--color-text, #1a1a1a);
+  transition: box-shadow 0.2s ease;
+}
+
+.cars-gallery__input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.cars-gallery__input::placeholder {
+  color: rgba(26, 26, 26, 0.5);
+}
+
+.cars-gallery__privacy {
+  font-size: 0.75rem;
+  color: rgba(26, 26, 26, 0.7);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.cars-gallery__contact-form .btn {
+  width: 100%;
+  background: #ff4444;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  text-transform: none;
+  padding: clamp(0.75rem, 0.6rem + 0.3vw, 1rem) clamp(1rem, 0.8rem + 0.4vw, 2rem);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.cars-gallery__contact-form .btn:hover {
+  background: #ff2222;
+  transform: translateY(-2px);
+}
+
+.cars-gallery__contact-form .btn:active {
+  transform: translateY(0);
+}
+
+/* Mobile - скрываем спеки, оставляем название и форму */
+@media (max-width: 640px) {
+  .cars-gallery__specs,
+  .cars-gallery__divider,
+  .cars-gallery__form-label {
+    display: none;
+  }
+
+  .cars-gallery__form {
+    transform: translateY(calc(100% - 2rem));
+  }
+}
+
+/* Между 640 и 850 - одна карточка в ряд, форма чуть выше */
+@media (min-width: 641px) and (max-width: 899px) {
+  .cars-gallery__form {
+    transform: translateY(calc(100% - 2.5rem));
+  }
+}
+
+/* Responsive - 2 колонки с 900px */
+@media (min-width: 900px) {
+  .cars-gallery__form {
+    transform: translateY(calc(100% - 2.5rem));
+  }
+}
+
+/* Responsive - на больших экранах форма чуть выше */
+@media (min-width: 1200px) {
+  .cars-gallery__form {
+    transform: translateY(calc(100% - 3rem));
+  }
+}
+/* Dark theme - текст на жёлтой форме остаётся тёмным */
+.theme-dark .cars-gallery__form {
+  color: #1a1a1a;
+}
+
+.theme-dark .cars-gallery__car-name,
+.theme-dark .cars-gallery__toggle-icon,
+.theme-dark .cars-gallery__spec-item dt,
+.theme-dark .cars-gallery__spec-item dd,
+.theme-dark .cars-gallery__form-label,
+.theme-dark .cars-gallery__privacy {
+  color: #1a1a1a;
+}

@@ -1,0 +1,97 @@
+.remote-banner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  overflow: hidden;
+  background: var(--color-wrapper-bg);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-xl, 0 24px 48px rgba(0, 0, 0, 0.12));
+  align-items: stretch;
+}
+
+@media (min-width: 992px) {
+  .remote-banner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  }
+}
+
+.remote-banner__content {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1rem, 1.8vw, 2rem);
+  padding: clamp(1.5rem, 2vw, 3rem);
+}
+
+.remote-banner__item {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 0.6rem + 0.4vw, 1rem);
+  font-size: clamp(0.875rem, 0.8rem + 0.4vw, 1.25rem);
+  line-height: 1.4;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+.remote-banner__item-icon {
+  display: inline-block;
+  width: clamp(1.75rem, 1.5rem + 0.5vw, 2.25rem);
+  height: clamp(1.75rem, 1.5rem + 0.5vw, 2.25rem);
+  flex-shrink: 0;
+  background-color: var(--color-accent, #f2d502);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.remote-banner__item-icon--hat {
+  mask-image: url(../../icons/hat.svg);
+  -webkit-mask-image: url(../../icons/hat.svg);
+}
+
+.remote-banner__item-icon--refresh {
+  mask-image: url(../../icons/refresh.svg);
+  -webkit-mask-image: url(../../icons/refresh.svg);
+}
+
+.remote-banner__item-icon--online {
+  mask-image: url(../../icons/online.svg);
+  -webkit-mask-image: url(../../icons/online.svg);
+}
+
+.remote-banner__item-icon--percent {
+  mask-image: url(../../icons/percent.svg);
+  -webkit-mask-image: url(../../icons/percent.svg);
+}
+
+.remote-banner__item-icon--teacher {
+  mask-image: url(../../icons/teacher.svg);
+  -webkit-mask-image: url(../../icons/teacher.svg);
+}
+
+.remote-banner__image-wrapper {
+  margin: 0;
+  border-radius: clamp(1.5rem, 3vw, var(--radius-pill));
+  overflow: hidden;
+  display: flex;
+}
+
+.remote-banner__image-wrapper picture {
+  display: block;
+  width: 100%;
+}
+
+.remote-banner__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}

@@ -1,0 +1,81 @@
+/* Навигация с прогресс-баром */
+.slider__navigation {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider__progress-bar {
+  width: 100%;
+  max-width: 500px;
+  height: 3px;
+  background: var(--color-border);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider__progress-line {
+  height: 100%;
+  background: var(--color-accent, #f2d502);
+  width: 0%;
+  transition: width 0.4s ease;
+  border-radius: 2px;
+}
+
+.slider__page-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.slider__page-counter {
+  font-size: 1.4rem;
+  font-weight: 500;
+  min-width: 60px;
+  text-align: center;
+  color: var(--color-text, #000);
+}
+
+.slider__page-divider {
+  color: var(--color-text-gray);
+}
+
+.slider__nav-btn {
+  background: transparent;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  color: var(--yellow);
+}
+
+.slider__nav-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  color: var(--color-accent-hover);
+}
+
+.slider__nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: var(--color-text-gray);
+}
+
+.slider__nav-btn.swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.slider__nav-icon,
+.categories__nav-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+}

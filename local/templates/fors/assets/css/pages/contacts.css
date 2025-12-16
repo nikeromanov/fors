@@ -1,0 +1,195 @@
+/* Contacts */
+
+.contacts {
+  background-color: var(--color-surface);
+}
+
+.contacts__container {
+  display: grid;
+  gap: clamp(3rem, 2.2rem + 2vw, 4rem);
+}
+
+.contacts__header {
+  text-align: center;
+}
+
+.contacts__title {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.4rem + 1.5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contacts__icon {
+  color: var(--yellow);
+}
+
+.contacts__grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  column-gap: clamp(2rem, 1.5rem + 1vw, 2.75rem);
+  row-gap: clamp(2.5rem, 2rem + 1.5vw, 3.5rem);
+}
+
+.contacts-card {
+  display: grid;
+  grid-template-columns: minmax(32px, max-content) minmax(0, 1fr);
+  column-gap: clamp(1rem, 0.85rem + 0.4vw, 1.5rem);
+  align-items: flex-start;
+}
+
+.contacts-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: clamp(2rem, 1.8rem + 0.4vw, 2.5rem);
+  block-size: clamp(2rem, 1.8rem + 0.4vw, 2.5rem);
+  color: var(--color-accent);
+}
+
+.contacts-card__icon img {
+  display: block;
+  inline-size: clamp(1.5rem, 1.4rem + 0.2vw, 1.75rem);
+  block-size: auto;
+}
+
+.contacts-card__body {
+  display: grid;
+  gap: clamp(0.35rem, 0.3rem + 0.2vw, 0.6rem);
+  align-content: flex-start;
+}
+
+.contacts-card__label {
+  margin: 0;
+  font-size: clamp(0.875rem, 0.82rem + 0.2vw, 0.95rem);
+  font-weight: 500;
+  color: var(--color-text-subtle);
+}
+
+.contacts-card__value {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.contacts-card__value--address {
+  font-style: normal;
+}
+
+.contacts-card__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.contacts-card__link:hover,
+.contacts-card__link:focus-visible {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: auto;
+  outline: none;
+}
+
+.contacts-card__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: clamp(0.35rem, 0.3rem + 0.2vw, 0.55rem);
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  color: var(--color-text);
+}
+
+.contacts-card__list-item {
+  display: flex;
+  gap: clamp(0.75rem, 0.6rem + 0.3vw, 1rem);
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.contacts-card__day {
+  min-inline-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.contacts-card__list--legal li {
+  line-height: 1.4;
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+}
+
+.contacts-social {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 0.6rem + 0.3vw, 1.25rem);
+}
+
+.contacts-social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: clamp(2rem, 1.8rem + 0.3vw, 2.25rem);
+  block-size: clamp(2rem, 1.8rem + 0.3vw, 2.25rem);
+  border-radius: 999px;
+  transition: transform 0.2s ease;
+}
+
+.contacts-social__link:hover {
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.contacts-social__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.contacts-social__icon {
+  inline-size: clamp(1.25rem, 1.15rem + 0.25vw, 1.5rem);
+  color: var(--color-text);
+}
+
+.contacts-map {
+  background-color: var(--color-surface);
+  padding-top: clamp(2.5rem, 2rem + 1vw, 3rem);
+}
+
+.contacts-map iframe {
+  display: block;
+  width: 100%;
+  height: clamp(300px, 40vw + 100px, 523px);
+  border: 0;
+  border-radius: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
+}
+
+.contacts-map__figure {
+  margin: 0;
+}
+
+.contacts-map__canvas {
+  border-radius: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  background-color: var(--color-surface-elevated);
+  overflow: hidden;
+}
+
+.contacts-map__canvas picture {
+  display: block;
+}
+
+.contacts-map__image {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}

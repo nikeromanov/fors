@@ -1,0 +1,232 @@
+/* Intro Section */
+.exams__intro {
+  text-align: center;
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 4rem);
+}
+
+.exams__title {
+  font-size: clamp(1.75rem, 1.4rem + 1.5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
+  color: var(--color-text, #1a1a1a);
+}
+
+.exams__description {
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.375rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary, #4a4a4a);
+  max-width: 62rem;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Content Section */
+.exams__content {
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 4rem);
+}
+
+.exams__section-title {
+  font-size: clamp(1.25rem, 1rem + 1.2vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
+  color: var(--color-text, #1a1a1a);
+  text-align: center;
+}
+
+.exams__text {
+  font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+  line-height: 1.7;
+  color: var(--color-text-secondary, #4a4a4a);
+  margin-bottom: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.exams__stage-badge {
+  display: flex;
+  max-width: 10rem;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.375rem, 0.3rem + 0.3vw, 0.5rem) clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+  border-radius: 30rem;
+  margin-bottom: clamp(0.75rem, 0.5rem + 0.5vw, 1rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--yellow);
+}
+
+.exams__stage-badge:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.exams__stage-icon {
+  font-size: clamp(1.25rem, 1rem + 0.6vw, 2rem);
+  line-height: 1;
+}
+
+.exams__stage-name {
+  font-size: clamp(1.125rem, 0.9rem + 0.5vw, 1.5rem);
+}
+
+/* Detail Cards */
+.exams__details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 0.8rem + 0.8vw, 2rem);
+  margin: clamp(1.5rem, 1rem + 1.5vw, 3rem) 0;
+}
+
+@media (min-width: 768px) {
+  .exams__details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.exams__detail-card {
+  padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+  background: var(--color-surface);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.exams__detail-card--theory {
+  color: var(--color-text);
+  border: 0.06rem solid var(--gray, rgba(153, 153, 153, 1));
+}
+
+.exams__detail-card--practice {
+  background: var(--color-footer-bg);
+  color: var(--color-text-white);
+}
+
+.exams__detail-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.exams__detail-text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: inherit;
+  margin: 0;
+}
+
+/* Figure */
+.exams__figure {
+  margin: clamp(1.5rem, 1rem + 1.5vw, 3rem) 0;
+  border-radius: clamp(0.75rem, 0.5rem + 0.5vw, 1.5rem);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.exams__figure-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Why Section */
+.exams__why {
+  margin-top: clamp(2.5rem, 2rem + 2vw, 5rem);
+}
+
+/* Override why-list grid for exams */
+.exams__why .why-list {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .exams__why .why-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .exams__why .why-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Ряд 1: [квадрат] [пусто] [span 2] */
+  .exams__why--item:nth-child(1) {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .exams__why--item:nth-child(2) {
+    grid-row: 1;
+    grid-column: 3 / span 2;
+    aspect-ratio: 2 / 1;
+  }
+
+  /* Ряд 2: [span 2] [квадрат] [квадрат] */
+  .exams__why--item:nth-child(3) {
+    grid-row: 2;
+    grid-column: 1 / span 2;
+    aspect-ratio: 2 / 1;
+  }
+
+  .exams__why--item:nth-child(4) {
+    grid-row: 2;
+    grid-column: 3;
+  }
+
+  .exams__why--item:nth-child(5) {
+    grid-row: 2;
+    grid-column: 4;
+  }
+}
+
+@media (max-width: 1199px) {
+  .exams__why--item {
+    aspect-ratio: auto;
+  }
+}
+
+.exams__why--item:nth-child(1) {
+  background: var(--color-static-dark);
+  color: var(--color-static-dark-text);
+}
+
+.exams__why--item:nth-child(3) {
+  background: var(--color-accent);
+  color: var(--color-static-light-dark);
+}
+
+.exams__why--item:nth-child(4) {
+  background: var(--color-static-dark);
+  color: var(--color-static-dark-text);
+}
+
+/* Advantages List */
+
+/* Responsive - Page padding */
+.exams {
+  padding: clamp(1rem, 0.5rem + 1.5vw, 2rem) clamp(1rem, 0.5rem + 1vw, 1.5rem);
+}
+
+@media (min-width: 992px) {
+  .exams {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* Dark Theme */
+.theme-dark .exams__detail-card--theory {
+  background: var(--color-static-light);
+  color: var(--color-static-light-dark);
+}
+
+.theme-dark .exams__stage-badge {
+  color: var(--color-static-light-dark);
+}
+
+.theme-dark .exams__highlight {
+  background: rgba(242, 213, 2, 0.15);
+}
