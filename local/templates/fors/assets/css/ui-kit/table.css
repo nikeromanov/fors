@@ -44,7 +44,6 @@
   text-align: left;
   border-bottom: 1px solid var(--color-border);
   font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
-  white-space: nowrap;
 }
 
 .ui-table thead th {

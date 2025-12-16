@@ -1,5 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("description", "Ищете хорошую автошколу в Воронеже? Читайте о критериях правильного выбора в нашей статье.");
+$APPLICATION->SetPageProperty("keywords", "Статьи");
+$APPLICATION->SetPageProperty("title", "Как правильно выбрать автошколу в Воронеже - Форсаж ");
 $APPLICATION->SetTitle("Статьи");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:news", 

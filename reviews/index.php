@@ -1,5 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("description", "Читайте отзывы бывших учеников и автолюбителей о занятиях и инструкторах автошколы \"Форсаж\" в Воронеже.");
+$APPLICATION->SetPageProperty("keywords", "Отзывы");
+$APPLICATION->SetPageProperty("title", "Отзывы автолюбителей об обучении в автошколе \"Форсаж\" в Воронеже ");
 $APPLICATION->SetTitle("Отзывы");
 global $filterP;
 $filterP["PROPERTY_VIDEO"]=false;

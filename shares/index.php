@@ -1,5 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("description", "Обучение в автошколе Воронежа со скидкой: последние акции и скидочные предложения для учеников школы на сайте Форсаж.");
+$APPLICATION->SetPageProperty("keywords", "Скидки");
+$APPLICATION->SetPageProperty("title", "Скидки на обучение в автошколе в Воронеже: акции и скидочные предложения для учеников школы Форсаж");
 $APPLICATION->SetTitle("Скидки");
 ?>
 
