@@ -26,6 +26,38 @@
   padding: 1rem !important;
 }
 
+.categories__slider--nudge {
+  overflow: visible;
+}
+
+@media (max-width: 767px) {
+  .categories__slider--nudge:not(.is-hint-hidden) .swiper-slide-active .price-card {
+    animation: categories-card-nudge 1.6s ease-in-out 1;
+    animation-fill-mode: both;
+  }
+}
+
+@keyframes categories-card-nudge {
+  0% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(12px);
+  }
+  30% {
+    transform: translateX(0);
+  }
+  55% {
+    transform: translateX(12px);
+  }
+  70% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 /* Добавляем отступы для видимости тени */
 .categories__slider .splide__track {
   padding: 1rem 0 1.5rem;
