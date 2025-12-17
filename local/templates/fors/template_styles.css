@@ -132,3 +132,21 @@ h3.cars-gallery__car-name {
     aspect-ratio: 3 / 2;
     object-fit: cover;
 }
+.price-tabs .tabs__item:last-child {
+    margin-right: auto;
+}
+.price_content h1, .price_content h2.price_content h3, .price_content h4 {
+    margin: 0;
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 2rem);
+    font-weight: 400;
+    text-align: left;
+    text-transform: uppercase;
+    margin-bottom: 20px !important;
+}
+.price_content {
+    margin: 0;
+    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.25rem);
+    font-weight: 400;
+    text-align: left;
+    margin-bottom: 10px;
+}
