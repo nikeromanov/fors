@@ -65,7 +65,17 @@ function forsSendLastModifiedHeader()
         return;
     }
 
+    if (!class_exists('CHTTP') || !is_object($APPLICATION) || !method_exists($APPLICATION, 'GetPageProperty')) {
+        return;
+    }
+
     if (defined('ADMIN_SECTION') && ADMIN_SECTION === true) {
+        return;
+    }
+
+    $request = \Bitrix\Main\Context::getCurrent()->getRequest();
+
+    if (!$request || !in_array($request->getRequestMethod(), ['GET', 'HEAD'], true)) {
         return;
     }
 
@@ -84,7 +94,10 @@ function forsSendLastModifiedHeader()
     $paths = [];
 
     $curPage = $APPLICATION->GetCurPage(true);
-    $paths[] = $documentRoot . $curPage;
+
+    if ($curPage) {
+        $paths[] = $documentRoot . $curPage;
+    }
 
     if (defined('SITE_TEMPLATE_PATH')) {
         $paths[] = $documentRoot . SITE_TEMPLATE_PATH . '/header.php';
@@ -105,7 +118,7 @@ function forsSendLastModifiedHeader()
         }
     }
 
-    if ($lastModified > 0) {
+    if ($lastModified > 0 && !headers_sent()) {
         CHTTP::SetLastModified($lastModified);
     }
 }
