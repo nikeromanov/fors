@@ -4,7 +4,7 @@ global $settings;
 
 if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
 }else{ ?>
-<? if (!CSite::InDir('/shares/')&&!($dir != "/articles/"&&CSite::InDir('/articles/'))&&!CSite::InDir('/category/')) { ?></div>
+<? if (!CSite::InDir('/shares/')&&!($dir != "/articles/"&&CSite::InDir('/articles/'))&&!CSite::InDir('/category/')&&!($dir != "/instructors/"&&CSite::InDir('/instructors/'))&&!($dir != "/news/"&&CSite::InDir('/news/'))) { ?></div>
 </section><?}?>
 </main>
 <?}?>

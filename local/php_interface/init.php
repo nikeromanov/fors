@@ -2,6 +2,8 @@
 define("SETTINGS_IBLOCK_ID","1");
 define("CATALOG_IBLOCK_ID","2");
 
+include_once __DIR__ . '/vendor/autoload.php';
+
 function getSettings($iblockId = 0,$id = 0){
 	CModule::IncludeModule("iblock");
 	if($iblockId==0){

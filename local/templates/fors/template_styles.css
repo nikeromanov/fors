@@ -150,3 +150,19 @@ h3.cars-gallery__car-name {
     text-align: left;
     margin-bottom: 10px;
 }
+.double_text {
+    column-count: 2;
+    column-gap: 4%;
+	    font-size: clamp(0.9375rem, 0.875rem + 0.2vw, 1.0625rem);
+    line-height: 1.6;
+    color: var(--color-text-secondary, #4a4a4a);
+    margin: 0;
+}
+iframe {
+    max-width: 100%;
+}
+@media (max-width: 768px) {
+	.double_text {
+		column-count: 1;
+	}
+}
