@@ -32,7 +32,7 @@
 
 @media (max-width: 767px) {
   .categories__slider--nudge:not(.is-hint-hidden) .swiper-slide-active .price-card {
-    animation: categories-card-nudge 2.4s cubic-bezier(0.45, 0.05, 0.25, 1) 1;
+    animation: categories-card-nudge 3.6s ease-in-out 1;
     animation-fill-mode: both;
   }
 }
@@ -41,19 +41,19 @@
   0% {
     transform: translateX(0);
   }
-  10% {
+  15% {
     transform: translateX(0);
   }
-  25% {
-    transform: translateX(16px);
+  32% {
+    transform: translateX(24px);
   }
-  42% {
+  48% {
     transform: translateX(0);
   }
-  60% {
-    transform: translateX(16px);
+  66% {
+    transform: translateX(24px);
   }
-  78% {
+  84% {
     transform: translateX(0);
   }
   100% {
