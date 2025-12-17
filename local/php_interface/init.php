@@ -119,6 +119,12 @@ function forsSendLastModifiedHeader()
     }
 
     if ($lastModified > 0 && !headers_sent()) {
-        //CHTTP::SetLastModified($lastModified);
+        if (is_callable(['CHTTP', 'SetLastModified'])) {
+            CHTTP::SetLastModified($lastModified);
+        } else {
+            $headerValue = gmdate('D, d M Y H:i:s', $lastModified) . ' GMT';
+
+            header('Last-Modified: ' . $headerValue);
+        }
     }
 }
