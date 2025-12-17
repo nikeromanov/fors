@@ -119,6 +119,6 @@ function forsSendLastModifiedHeader()
     }
 
     if ($lastModified > 0 && !headers_sent()) {
-        CHTTP::SetLastModified($lastModified);
+        //CHTTP::SetLastModified($lastModified);
     }
 }

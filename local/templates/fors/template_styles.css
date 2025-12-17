@@ -165,4 +165,7 @@ iframe {
 	.double_text {
 		column-count: 1;
 	}
+	.consult-form__fields >div {
+		flex: initial;
+	}
 }
