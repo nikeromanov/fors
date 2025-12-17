@@ -54,11 +54,7 @@ $settingsPage = getSettings(3);
   </p><?}?>
 
   <!-- bx:categories-slider -->
-  <div class="swiper categories__slider" aria-label="Категории обучения">
-    <div class="categories__swipe-hint" aria-hidden="true">
-      <span class="categories__swipe-icon" aria-hidden="true"></span>
-      <span class="categories__swipe-text">Свайпните</span>
-    </div>
+  <div class="swiper categories__slider categories__slider--nudge" aria-label="Категории обучения">
     <div class="swiper-wrapper">
                 <?
                 foreach ($arResult['SECTIONS'] as $arSection)
