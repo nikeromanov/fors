@@ -40,7 +40,16 @@ $properties = $settingsPage["PROPERTIES"];
 				  </dd>
 				  <dt class="home-hero__timer-label">Секунд</dt>
 				</div>
-			  </dl>
+                          </dl>
+                          <?if(!empty($settings["PHONE"]["VALUE"])) {?>
+                            <a
+                              class="home-hero__phone footer__contacts-link"
+                              href="tel:<?=str_replace(["-"," ",")","(","_"],"",$settings["PHONE"]["VALUE"]);?>"
+                            >
+                              <span aria-hidden="true" class="home-hero__phone-icon" data-icon="phone"></span>
+                              <?=$settings["PHONE"]["VALUE"];?>
+                            </a>
+                          <?}?>
 			  <a class="btn btn--primary btn--large btn--block" data-fancybox data-service="Записаться на курс" href="#consult_form">Записаться на курс</a>
 			 <?if(!empty($settings["AKC_LEFT"]["VALUE"])){?> <div class="home-hero__badge">
 				<span class="home-hero__badge-label">осталось</span>
