@@ -55,9 +55,13 @@ $settingsPage = getSettings(3);
 
   <!-- bx:categories-slider -->
   <div class="swiper categories__slider" aria-label="Категории обучения">
+    <div class="categories__swipe-hint" aria-hidden="true">
+      <span class="categories__swipe-icon" aria-hidden="true"></span>
+      <span class="categories__swipe-text">Свайпните</span>
+    </div>
     <div class="swiper-wrapper">
-		<?
-		foreach ($arResult['SECTIONS'] as $arSection)
+                <?
+                foreach ($arResult['SECTIONS'] as $arSection)
 			{
 				$this->AddEditAction($arSection['ID'], $arSection['EDIT_LINK'], $strSectionEdit);
 				$this->AddDeleteAction($arSection['ID'], $arSection['DELETE_LINK'], $strSectionDelete, $arSectionDeleteParams);?>
