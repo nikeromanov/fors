@@ -118,7 +118,35 @@ function forsSendLastModifiedHeader()
         }
     }
 
-    if ($lastModified > 0 && !headers_sent()) {
-        //CHTTP::SetLastModified($lastModified);
+    if ($lastModified <= 0 || headers_sent()) {
+        return;
+    }
+
+    $headerValue = gmdate('D, d M Y H:i:s', $lastModified) . ' GMT';
+    $ifModifiedSinceHeader = trim((string)$request->getHeader('If-Modified-Since'));
+    $ifModifiedSince = $ifModifiedSinceHeader !== '' ? strtotime($ifModifiedSinceHeader) : false;
+
+    if ($ifModifiedSince !== false && $ifModifiedSince >= $lastModified) {
+        if (is_callable(['CHTTP', 'SetStatus'])) {
+            CHTTP::SetStatus('304 Not Modified');
+        } elseif (function_exists('http_response_code')) {
+            http_response_code(304);
+        } elseif (isset($_SERVER['SERVER_PROTOCOL'])) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
+        }
+
+        header('Last-Modified: ' . $headerValue);
+
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+
+        \Bitrix\Main\Application::getInstance()->end();
+    }
+
+    if (is_callable(['CHTTP', 'SetLastModified'])) {
+        CHTTP::SetLastModified($lastModified);
+    } else {
+        header('Last-Modified: ' . $headerValue);
     }
 }
