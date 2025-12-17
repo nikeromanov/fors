@@ -30,35 +30,43 @@ $this->setFrameMode(true);
 		</div>
 	  </div>
 
-	  <div class="category__media">
-		<?if($section["UF_VIDEO"]){?>
-			<a href="<?=$section["UF_VIDEO"];?>" data-fancybox class="category__video-link">
-			  <figure class="category__video">
-				<img
-				  src="<?=CFile::GetPath($section["PICTURE"]);?>"
-				  alt=""
-				  class="category__video-thumbnail"
-				  width="670"
-				  height="443"
-				  loading="eager"
-				/>
-				<div class="category__play-button">
-				  <svg
-					class="category__play-icon"
-					width="80"
-					height="80"
-					viewBox="0 0 80 80"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				  >
-					<circle cx="40" cy="40" r="40" fill="#F2D502" />
-					<path d="M32 25L55 40L32 55V25Z" fill="#1A1A1A" />
-				  </svg>
-				</div>
-			  </figure>
-			</a>
-		<?}?>
-	  </div>
+          <div class="category__media">
+                <?if(!empty($section["PICTURE"])){
+                        $pictureSrc = CFile::GetPath($section["PICTURE"]);
+                        $hasVideo = !empty($section["UF_VIDEO"]);
+                        if($hasVideo){?>
+                                <a href="<?=$section["UF_VIDEO"];?>" data-fancybox class="category__video-link">
+                        <?}?>
+                        <figure class="category__video">
+                                <img
+                                  src="<?=$pictureSrc;?>"
+                                  alt=""
+                                  class="category__video-thumbnail"
+                                  width="670"
+                                  height="443"
+                                  loading="eager"
+                                />
+                                <?if($hasVideo){?>
+                                <div class="category__play-button">
+                                  <svg
+                                        class="category__play-icon"
+                                        width="80"
+                                        height="80"
+                                        viewBox="0 0 80 80"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                        <circle cx="40" cy="40" r="40" fill="#F2D502" />
+                                        <path d="M32 25L55 40L32 55V25Z" fill="#1A1A1A" />
+                                  </svg>
+                                </div>
+                                <?}?>
+                        </figure>
+                        <?if($hasVideo){?>
+                                </a>
+                        <?}
+                }?>
+          </div>
 	</div>
   </section>
       <?$APPLICATION->IncludeComponent(
