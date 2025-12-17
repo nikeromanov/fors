@@ -54,3 +54,58 @@ function splitByParentheses(string $s): array
 
     return ['text' => $s, 'inside' => null];
 }
+
+AddEventHandler('main', 'OnEpilog', 'forsSendLastModifiedHeader');
+
+function forsSendLastModifiedHeader()
+{
+    global $APPLICATION;
+
+    if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
+        return;
+    }
+
+    if (defined('ADMIN_SECTION') && ADMIN_SECTION === true) {
+        return;
+    }
+
+    $lastModified = 0;
+    $pageProperty = trim((string)$APPLICATION->GetPageProperty('last_modified'));
+
+    if ($pageProperty !== '') {
+        $timestamp = MakeTimeStamp($pageProperty);
+
+        if ($timestamp) {
+            $lastModified = $timestamp;
+        }
+    }
+
+    $documentRoot = rtrim($_SERVER['DOCUMENT_ROOT'], '/');
+    $paths = [];
+
+    $curPage = $APPLICATION->GetCurPage(true);
+    $paths[] = $documentRoot . $curPage;
+
+    if (defined('SITE_TEMPLATE_PATH')) {
+        $paths[] = $documentRoot . SITE_TEMPLATE_PATH . '/header.php';
+        $paths[] = $documentRoot . SITE_TEMPLATE_PATH . '/footer.php';
+    }
+
+    if (defined('TEMPLATE_PAGE') && TEMPLATE_PAGE != '') {
+        $paths[] = $documentRoot . SITE_TEMPLATE_PATH . '/template_blocks/' . TEMPLATE_PAGE . '.php';
+    }
+
+    foreach ($paths as $path) {
+        if (is_file($path)) {
+            $mtime = filemtime($path);
+
+            if ($mtime && $mtime > $lastModified) {
+                $lastModified = $mtime;
+            }
+        }
+    }
+
+    if ($lastModified > 0) {
+        CHTTP::SetLastModified($lastModified);
+    }
+}
