@@ -112,6 +112,33 @@
   box-shadow: var(--shadow-hero-card);
 }
 
+.home-hero__phone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-hero-text);
+  background-color: var(--color-bg);
+  border-radius: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
+  box-shadow: var(--shadow-hero-card);
+  text-decoration: none;
+}
+
+.home-hero__phone-icon {
+  display: inline-flex;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  background-color: currentColor;
+  mask-image: url(../../icons/phone.svg);
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+}
+
 .home-hero__offer-title {
   margin: 0;
   font-size: clamp(0.75rem, 0.65rem + 0.5vw, 1rem);
