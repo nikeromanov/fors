@@ -678,6 +678,12 @@
       const totalPages = document.querySelector('.categories__page-total');
       const prevBtn = document.querySelector('.categories__nav-btn--prev');
       const nextBtn = document.querySelector('.categories__nav-btn--next');
+      const swipeHint = categoriesSlider.querySelector('.categories__swipe-hint');
+
+      const hideSwipeHint = () => {
+        if (!swipeHint) return;
+        swipeHint.classList.add('is-hidden');
+      };
 
       const swiper = new Swiper(categoriesSlider, {
         slidesPerView: 3,
@@ -729,6 +735,11 @@
         swiper.on('init', updateNavigation);
         updateNavigation();
       }
+
+      swiper.on('touchStart', hideSwipeHint);
+      swiper.on('slideChange', hideSwipeHint);
+      prevBtn?.addEventListener('click', hideSwipeHint);
+      nextBtn?.addEventListener('click', hideSwipeHint);
     }
 
     // Инициализация слайдера инструкторов
