@@ -14,36 +14,43 @@ $this->setFrameMode(true);
 
 ?>
 <?if(!empty($arResult["ITEMS"])){
+  $sectionIds = array_keys($arResult["SECTIONS"]);
+  $firstSectionId = reset($sectionIds);
 ?>
 <h2 class="u-visually-hidden" id="price-categories-title">Категории курсов и стоимость обучения</h2>
 
 <div class="price-tabs js-price-tabs" data-price-tabs>
   <ul class="tabs" role="tablist">
-	<?foreach($arResult["SECTIONS"] as $kid=>$sect){?>
+        <?foreach($arResult["SECTIONS"] as $kid=>$sect){
+          $isActive = ($kid === $firstSectionId);
+        ?>
     <li class="tabs__item" role="presentation">
       <button
         class="tabs__button js-price-tab"
         role="tab"
-        aria-selected="true"
+        aria-selected="<?=$isActive ? 'true' : 'false';?>"
         aria-controls="price-tab-<?=$kid;?>"
         id="price-tab-<?=$kid;?>-trigger"
-        tabindex="0"
+        tabindex="<?=$isActive ? '0' : '-1';?>"
         data-price-tab="price-tab-<?=$kid;?>"
       >
         <?=$sect;?>
       </button>
     </li>
-	<?}?>
+        <?}?>
   </ul>
 
   <div class="price-tabs__panels">
-  <?foreach($arResult["SECTIONS"] as $kid=>$sect){?>
+  <?foreach($arResult["SECTIONS"] as $kid=>$sect){
+    $isActive = ($kid === $firstSectionId);
+  ?>
   <?if(!empty($arResult["ITEMS_SECT"][$kid])){?>
     <div
       class="price-tabs__panel js-price-panel"
       role="tabpanel"
       id="price-tab-<?=$kid?>"
       aria-labelledby="price-tab-<?=$kid?>-trigger"
+      <?if(!$isActive){?>hidden<?}?>
     >
       <div class="ui-table-wrapper category__table-desktop"><table class="ui-table">
         <caption class="u-visually-hidden"><?=$sect;?></caption>
