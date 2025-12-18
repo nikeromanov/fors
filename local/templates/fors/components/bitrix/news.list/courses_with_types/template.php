@@ -45,7 +45,7 @@ $this->setFrameMode(true);
       id="price-tab-<?=$kid?>"
       aria-labelledby="price-tab-<?=$kid?>-trigger"
     >
-      <div class="ui-table-wrapper"><table class="ui-table">
+      <div class="ui-table-wrapper price__table-desktop"><table class="ui-table">
         <caption class="u-visually-hidden"><?=$sect;?></caption>
         <thead>
           <tr>
@@ -74,6 +74,38 @@ $this->setFrameMode(true);
           
         </tbody>
       </table></div>
+
+      <div class="price__table-mobile" role="list">
+                        <?foreach($arResult["ITEMS_SECT"][$kid] as $item){?>
+        <article class="price-card" role="listitem">
+          <div class="price-card__header">
+            <div class="price-card__course">
+              <div class="ui-table__icon-container">
+                                        <?if(!empty($item["PROPERTIES"]["ICO"]["VALUE"])){?>
+                                                <span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="<?=$item["PROPERTIES"]["ICO"]["VALUE_XML_ID"];?>"></span>
+                                        <?}?>
+              </div>
+              <span class="price-card__title"><?=$item["NAME"];?></span>
+            </div>
+            <span class="price-card__price"><?=CurrencyFormat($item["PROPERTIES"]["PRICE"]["VALUE"],"RUB");?></span>
+          </div>
+
+                        <?if(!empty($item["PROPERTIES"]["DRIVING_TIME"]["VALUE"])) {?>
+          <div class="price-card__row">
+            <span class="price-card__label">Вождение</span>
+            <span class="price-card__value"><?=implode(" ",$item["PROPERTIES"]["DRIVING_TIME"]["VALUE"]);?></span>
+          </div>
+                        <?}?>
+
+                        <?if(!empty($item["PROPERTIES"]["READ_DRIVE"]["VALUE"])) {?>
+          <div class="price-card__row">
+            <span class="price-card__label">Теория</span>
+            <span class="price-card__value"><?=$item["PROPERTIES"]["READ_DRIVE"]["VALUE"];?></span>
+          </div>
+                        <?}?>
+        </article>
+                        <?}?>
+      </div>
     </div>
   <?}?>
   <?}?>

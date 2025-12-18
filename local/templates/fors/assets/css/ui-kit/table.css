@@ -81,11 +81,13 @@
   color: #1a1a1a;
 }
 
-.category__table-mobile {
+.category__table-mobile,
+.price__table-mobile {
   display: none;
 }
 
-.category-card {
+.category-card,
+.price-card {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -95,32 +97,37 @@
   box-shadow: var(--shadow-md);
 }
 
-.category-card__header {
+.category-card__header,
+.price-card__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
 }
 
-.category-card__course {
+.category-card__course,
+.price-card__course {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-.category-card__title {
+.category-card__title,
+.price-card__title {
   font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
   font-weight: 600;
   line-height: 120%;
 }
 
-.category-card__price {
+.category-card__price,
+.price-card__price {
   font-weight: 700;
   font-size: clamp(1rem, 0.95rem + 0.4vw, 1.25rem);
   white-space: nowrap;
 }
 
-.category-card__row {
+.category-card__row,
+.price-card__row {
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
@@ -128,21 +135,25 @@
   color: var(--color-text-secondary);
 }
 
-.category-card__label {
+.category-card__label,
+.price-card__label {
   font-weight: 600;
   color: var(--color-text-primary);
 }
 
-.category-card__value {
+.category-card__value,
+.price-card__value {
   text-align: right;
 }
 
 @media (max-width: 768px) {
-  .category__table-desktop {
+  .category__table-desktop,
+  .price__table-desktop {
     display: none;
   }
 
-  .category__table-mobile {
+  .category__table-mobile,
+  .price__table-mobile {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
