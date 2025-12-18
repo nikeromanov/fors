@@ -16,7 +16,7 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"Расписание занятий", 
-		"/schedule/", 
+		"/calendar/", 
 		Array(), 
 		Array(), 
 		"" 
@@ -37,7 +37,14 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"Онлайн обучение", 
-		"/online/", 
+		"/online-traning/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Политика конфиденциальности", 
+		"/policy/", 
 		Array(), 
 		Array(), 
 		"" 

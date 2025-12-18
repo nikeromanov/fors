@@ -28,7 +28,7 @@
   width: clamp(2rem, 5vw, 2.81rem);
   height: clamp(2rem, 5vw, 2.81rem);
   background-color: var(--yellow);
-  border-radius: var(--radius-action);
+  border-radius: 12px;
   flex-shrink: 0;
 }
 
