@@ -12,8 +12,8 @@
 }
 
 .ui-icon_small {
-  width: clamp(0.5rem, 3vw, 1.5rem);
-  height: clamp(0.5rem, 3vw, 1.5rem);
+  width: clamp(0.5rem, 5vw, 1.5rem);
+  height: clamp(0.5rem, 5vw, 1.5rem);
 }
 
 /* Icons for Advantages Section */
