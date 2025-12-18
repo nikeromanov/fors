@@ -97,6 +97,10 @@
   box-shadow: var(--shadow-md);
 }
 
+.price-tabs__panel .price__table-mobile .price-card {
+  box-shadow: var(--shadow-md);
+}
+
 .category-card__header,
 .price-card__header {
   display: flex;
