@@ -23,7 +23,7 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"Оплата госпошлины", 
-		"/duties-payment/", 
+		"/text-page/", 
 		Array(), 
 		Array(), 
 		"" 
