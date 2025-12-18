@@ -80,3 +80,85 @@
   filter: none;
   color: #1a1a1a;
 }
+
+.category__table-mobile,
+.price__table-mobile {
+  display: none;
+}
+
+.category-card,
+.price-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.125rem 1.25rem;
+  background: #fff;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+}
+
+.category-card__header,
+.price-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.category-card__course,
+.price-card__course {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.category-card__title,
+.price-card__title {
+  font-size: clamp(1rem, 0.95rem + 0.5vw, 1.5rem);
+  font-weight: 700;
+  line-height: 120%;
+}
+
+.category-card__price,
+.price-card__price {
+  font-weight: 700;
+  font-size: clamp(1.125rem, 1rem + 0.45vw, 1.35rem);
+  white-space: nowrap;
+}
+
+.category-card__row,
+.price-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+  font-size: clamp(0.9375rem, 0.85rem + 0.3vw, 1.05rem);
+  color: var(--color-text-secondary);
+}
+
+.category-card__label,
+.price-card__label {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.category-card__value,
+.price-card__value {
+  text-align: right;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .category__table-desktop,
+  .price__table-desktop {
+    display: none;
+  }
+
+  .category__table-mobile,
+  .price__table-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
