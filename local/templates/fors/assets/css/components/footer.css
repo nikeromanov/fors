@@ -125,8 +125,8 @@
 }
 
 .footer__contacts-link {
-  color: inherit;
   text-decoration: none;
+  color: var(--color-text);
 }
 
 .footer__contacts-link:hover,
