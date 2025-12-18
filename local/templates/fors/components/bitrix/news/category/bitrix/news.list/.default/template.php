@@ -265,7 +265,7 @@ $this->setFrameMode(true);
       <section class="page-section page-section__flex category__table container" aria-labelledby="category-table-title">
         <h2 id="category-table-title" class="u-visually-hidden">Таблица цен</h2>
 
-        <div class="ui-table-wrapper">
+        <div class="ui-table-wrapper category__table-desktop">
         <table class="ui-table">
           <thead>
             <tr>
@@ -276,13 +276,13 @@ $this->setFrameMode(true);
             </tr>
           </thead>
           <tbody>
-			<?foreach($arResult["ITEMS"] as $item){?>
+                        <?foreach($arResult["ITEMS"] as $item){?>
             <tr>
               <th scope="row" class="ui-table__cell">
                 <div class="ui-table__icon-container">
-					<?if(!empty($item["PROPERTIES"]["ICO"]["VALUE"])){?>
-						<span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="<?=$item["PROPERTIES"]["ICO"]["VALUE_XML_ID"];?>"></span>
-					<?}?>
+                                        <?if(!empty($item["PROPERTIES"]["ICO"]["VALUE"])){?>
+                                                <span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="<?=$item["PROPERTIES"]["ICO"]["VALUE_XML_ID"];?>"></span>
+                                        <?}?>
                 </div>
                 <span class="ui-table__text"><?=$item["NAME"];?></span>
               </th>
@@ -290,10 +290,42 @@ $this->setFrameMode(true);
               <td><?if(!empty($item["PROPERTIES"]["DRIVING_TIME"]["VALUE"])){?><?=implode(" ",$item["PROPERTIES"]["DRIVING_TIME"]["VALUE"]);?><?}?></td>
               <td><?=$item["PROPERTIES"]["READ_DRIVE"]["VALUE"];?></td>
             </tr>
-			<?}?>
-           
+                        <?}?>
+
           </tbody>
         </table>
+        </div>
+
+        <div class="category__table-mobile" role="list">
+                        <?foreach($arResult["ITEMS"] as $item){?>
+          <article class="category-card" role="listitem">
+            <div class="category-card__header">
+              <div class="category-card__course">
+                <div class="ui-table__icon-container">
+                                        <?if(!empty($item["PROPERTIES"]["ICO"]["VALUE"])){?>
+                                                <span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="<?=$item["PROPERTIES"]["ICO"]["VALUE_XML_ID"];?>"></span>
+                                        <?}?>
+                </div>
+                <span class="category-card__title"><?=$item["NAME"];?></span>
+              </div>
+              <span class="category-card__price"><?=CurrencyFormat($item["PROPERTIES"]["PRICE"]["VALUE"],"RUB");?></span>
+            </div>
+
+                        <?if(!empty($item["PROPERTIES"]["DRIVING_TIME"]["VALUE"])) {?>
+            <div class="category-card__row">
+              <span class="category-card__label">Вождение</span>
+              <span class="category-card__value"><?=implode(" ",$item["PROPERTIES"]["DRIVING_TIME"]["VALUE"]);?></span>
+            </div>
+                        <?}?>
+
+                        <?if(!empty($item["PROPERTIES"]["READ_DRIVE"]["VALUE"])) {?>
+            <div class="category-card__row">
+              <span class="category-card__label">Теория</span>
+              <span class="category-card__value"><?=$item["PROPERTIES"]["READ_DRIVE"]["VALUE"];?></span>
+            </div>
+                        <?}?>
+          </article>
+                        <?}?>
         </div>
       </section>
 	  <?}?>
