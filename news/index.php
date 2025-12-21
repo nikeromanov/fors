@@ -1,6 +1,9 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Title");
+$APPLICATION->SetPageProperty("description", "Читайте последние новости автошколы Форсаж в Воронеже: все актуальные данные на сегодня на сайте.");
+$APPLICATION->SetPageProperty("keywords", "Форсаж");
+$APPLICATION->SetPageProperty("title", "Новости автошколы Форсаж в Воронеже: актуальные сведения на сегодня на сайте ");
+$APPLICATION->SetTitle("Новости автошколы Форсаж в Воронеже: актуальные сведения на сегодня на сайте");
 ?>
 
 <?$APPLICATION->IncludeComponent(

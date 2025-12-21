@@ -126,7 +126,7 @@
 
 .footer__contacts-link {
   text-decoration: none;
-  color: var(--color-text);
+  color: var(--color-text-white);
 }
 
 .footer__contacts-link:hover,

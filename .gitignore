@@ -136,3 +136,4 @@ pnpm-debug.log
 *.jpg
 *.JPG
 *.webp
+*.xml

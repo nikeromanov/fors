@@ -43,7 +43,7 @@ $properties = $settingsPage["PROPERTIES"];
                           </dl>
                           <?if(!empty($settings["PHONE"]["VALUE"])) {?>
                             <a
-                              class="home-hero__phone footer__contacts-link"
+                              class="home-hero__phone"
                               href="tel:<?=str_replace(["-"," ",")","(","_"],"",$settings["PHONE"]["VALUE"]);?>"
                             >
                               <span aria-hidden="true" class="home-hero__phone-icon" data-icon="phone"></span>
