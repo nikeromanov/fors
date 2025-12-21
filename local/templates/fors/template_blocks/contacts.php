@@ -108,6 +108,10 @@ $settingsPage = $set["PROPERTIES"];
         </ul>
       </section>
 
-      <?if(!empty($settingsPage["TIME"]["~VALUE"])){?><section class="contacts-map page-section container" aria-labelledby="contacts-map-title">
-        <?=$settingsPage["MAP"]["~VALUE"];?>
+<?if(!empty($settingsPage["TIME"]["~VALUE"])){?><section class="contacts-map page-section container" aria-labelledby="contacts-map-title">
+        <figure class="contacts-map__figure">
+          <div class="contacts-map__canvas">
+            <?=$settingsPage["MAP"]["~VALUE"];?>
+          </div>
+        </figure>
       </section><?}?>
