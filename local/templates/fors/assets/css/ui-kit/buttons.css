@@ -174,7 +174,10 @@
   user-select: none;
   position: relative;
   overflow: hidden;
-  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-btn:focus-visible {
@@ -197,6 +200,8 @@
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .social-btn--telegram {
@@ -237,7 +242,7 @@
 .social-btn--telegram:hover,
 .social-btn--telegram:focus-visible {
   box-shadow: 0 6px 18px rgba(34, 158, 217, 0.35);
-  transform: translateY(-2px);
+  transform: translateY(-0.25rem);
 }
 
 .social-btn--telegram .social-btn__icon {
@@ -284,7 +289,7 @@
 .social-btn--whatsapp:hover,
 .social-btn--whatsapp:focus-visible {
   box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
-  transform: translateY(-2px);
+  transform: translateY(-0.25rem);
 }
 
 .social-btn--whatsapp .social-btn__icon {
@@ -327,7 +332,7 @@
 .social-btn--vk:hover,
 .social-btn--vk:focus-visible {
   box-shadow: 0 6px 18px rgba(0, 119, 255, 0.35);
-  transform: translateY(-2px);
+  transform: translateY(-0.25rem);
 }
 
 .social-btn--vk .social-btn__icon {
@@ -337,6 +342,8 @@
 .social-btn > * {
   position: relative;
   z-index: 1;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* Old social buttons (deprecated, use .social-btn instead)
