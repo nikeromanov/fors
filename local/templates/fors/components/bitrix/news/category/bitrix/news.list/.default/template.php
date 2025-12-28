@@ -26,7 +26,7 @@ $this->setFrameMode(true);
 
 		<div class="category__price-block">
 		  <?if(!empty($arResult["PRICES"][$section["ID"]])){?><span class="category__price">от <?=CurrencyFormat($arResult["PRICES"][$section["ID"]],"RUB");?></span><?}?>
-		  <a href="#" class="btn btn--secondary btn--large">Записаться на курс</a>
+		  <a  class="btn btn--secondary btn--large" href="#consult_form" data-fancybox="" data-service="<?=$section["NAME"];?>">Записаться на курс</a>
 		</div>
 	  </div>
 

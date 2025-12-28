@@ -1,7 +1,7 @@
 /* Contacts */
 
 .contacts {
-  background-color: var(--color-surface);
+
 }
 
 .contacts__container {
@@ -162,7 +162,6 @@
 }
 
 .contacts-map {
-  background-color: var(--color-surface);
   padding-top: clamp(2.5rem, 2rem + 1vw, 3rem);
 }
 

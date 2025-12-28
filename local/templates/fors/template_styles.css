@@ -196,6 +196,9 @@ h3.cars-gallery__car-name {
 iframe {
     max-width: 100%;
 }
+.theme-dark .home-hero__phone {
+    color: #fff;
+}
 @media (max-width: 768px) {
 	.double_text {
 		column-count: 1;

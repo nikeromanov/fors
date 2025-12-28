@@ -4,6 +4,26 @@ define("CATALOG_IBLOCK_ID","2");
 
 include_once __DIR__ . '/vendor/autoload.php';
 
+
+if (!function_exists('CurrencyFormat')) {
+
+    function CurrencyFormat($sum, $currency = 'RUB', $useTemplate = true): string
+    {
+       
+        if (is_string($sum)) {
+            $sum = str_replace(["\xC2\xA0", ' '], '', $sum); // nbsp + пробел
+            $sum = str_replace(',', '.', $sum);
+        }
+        $num = (float)$sum;
+
+       
+        $isInt = abs($num - round($num)) < 0.0000001;
+        $decimals = $isInt ? 0 : 2;
+
+        return number_format($num, $decimals, '.', ' ') . ' ₽';
+    }
+}
+
 function getSettings($iblockId = 0,$id = 0){
 	CModule::IncludeModule("iblock");
 	if($iblockId==0){
