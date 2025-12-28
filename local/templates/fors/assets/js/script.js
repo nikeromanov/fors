@@ -78,19 +78,37 @@ $(document).ready(function(){
 						contentType: false,
 					}).done(function( answ ){
 						var data = JSON.parse(answ);
-						if(data.result=="success"){
-							$(form).find('.answer_form').html("");$(form).find('.answer_form').append(data.message);
+                                                if(data.result=="success"){
+                                                        var formContainer = $(form).closest('.consult-form');
+                                                        var successBlock = formContainer.find('.consult-form__success');
+
+                                                        $(form).find('.answer_form').html("");
+
+                                                        if(formContainer.length>0 && successBlock.length>0){
+                                                                formContainer.addClass('consult-form--success');
+                                                                successBlock.addClass('is-visible');
+                                                                successBlock.attr('aria-hidden','false');
+
+                                                                setTimeout(function(){
+                                                                        successBlock.removeClass('is-visible');
+                                                                        successBlock.attr('aria-hidden','true');
+                                                                        formContainer.removeClass('consult-form--success');
+                                                                },3000);
+                                                        }else{
+                                                                $(form).find('.answer_form').append(data.message);
+                                                        }
+
                                                         $(form).find('input[type="text"]').val('');
                                                         $(form).find('input[type="tel"]').val('');
                                                         $(form).find('input[type="email"]').val('');
                                                         $(form).find('input[type="checkbox"]').prop('checked', false);
                                                         $(form).find('textarea').val('');
-							
-							
-						}else{
-							$(form).find('.answer_form').html("");
-							$(form).find('.answer_form').append(data.message);
-						}
+
+
+                                                }else{
+                                                        $(form).find('.answer_form').html("");
+                                                        $(form).find('.answer_form').append(data.message);
+                                                }
 
 						
 					}).fail(function() {
