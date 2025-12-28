@@ -111,6 +111,9 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
     <p class="consult-form__subtitle">В течение 10 минут с вами свяжется наш специалист.</p>
     <div class="consult-form__success" aria-hidden="true">
       <p class="consult-form__title consult-form__success-message">Спасибо, ваша заявка отправлена!</p>
+      <p class="consult-form__success-countdown" aria-live="polite">
+        Окно закроется через <span class="consult-form__success-countdown-value">3</span> секунды
+      </p>
     </div>
 
     <!-- bx:form-consult -->
