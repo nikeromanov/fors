@@ -76,10 +76,15 @@ $settingsPage = $set["PROPERTIES"];
                   </a>
                 </li><?}?>
                  <?if($settings["VK"]["VALUE"]){?><li class="contacts-social__item">
-                  <a class="contacts-social__link" href="<?=$settings["VK"]["VALUE"];?>" target="_blank" rel="noopener">
+                 <a class="contacts-social__link" href="<?=$settings["VK"]["VALUE"];?>" target="_blank" rel="noopener">
                     <span class="ui-icon ui-icon_small contacts-social__icon" aria-hidden="true" data-icon="vk"></span>
                   </a>
-				 </li><?}?>
+                                 </li><?}?>
+                <?if($settings["MAX"]["VALUE"]){?><li class="contacts-social__item">
+                  <a class="contacts-social__link" href="<?=$settings["MAX"]["VALUE"];?>" target="_blank" rel="noopener">
+                    <span class="ui-icon ui-icon_small contacts-social__icon" aria-hidden="true" data-icon="max"></span>
+                  </a>
+                </li><?}?>
                  <?if($settings["TELEGRAM"]["VALUE"]){?><li class="contacts-social__item">
                   <a class="contacts-social__link" href="<?=$settings["TELEGRAM"]["VALUE"];?>" target="_blank" rel="noopener">
                     <span

@@ -137,14 +137,21 @@ global $settings;
 				</a>
 			  </li>
 			<?}?>
-		<?if($settings["VK"]["VALUE"]){?>
+                <?if($settings["VK"]["VALUE"]){?>
           <li>
             <a class="site-menu__social-link" href="<?=$settings["VK"]["VALUE"];?>" target="_blank" rel="noopener">
               <span class="ui-icon ui-icon_small site-menu__social-icon" aria-hidden="true" data-icon="vk"></span>
             </a>
           </li>
-		<?}?>
-		<?if($settings["TELEGRAM"]["VALUE"]){?>
+                <?}?>
+                <?if($settings["MAX"]["VALUE"]){?>
+          <li>
+            <a class="site-menu__social-link" href="<?=$settings["MAX"]["VALUE"];?>" target="_blank" rel="noopener">
+              <span class="ui-icon ui-icon_small site-menu__social-icon" aria-hidden="true" data-icon="max"></span>
+            </a>
+          </li>
+                <?}?>
+                <?if($settings["TELEGRAM"]["VALUE"]){?>
           <li>
             <a class="site-menu__social-link" href="<?=$settings["TELEGRAM"]["VALUE"];?>" target="_blank" rel="noopener">
               <span class="ui-icon ui-icon_small site-menu__social-icon" aria-hidden="true" data-icon="telegram"></span>
