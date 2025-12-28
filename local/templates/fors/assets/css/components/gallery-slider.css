@@ -83,7 +83,5 @@
     padding-inline: clamp(1rem, 0.5rem + 2vw, 1.5rem);
   }
 
-  .slider__navigation {
-    display: none;
-  }
+
 }

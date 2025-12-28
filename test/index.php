@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Title");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
-	"courses", 
+	"gifts", 
 	[
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -30,8 +30,8 @@ $APPLICATION->SetTitle("Title");
 		],
 		"FILTER_NAME" => "",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
-		"IBLOCK_ID" => "5",
-		"IBLOCK_TYPE" => "content",
+		"IBLOCK_ID" => "40",
+		"IBLOCK_TYPE" => "data",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
 		"INCLUDE_SUBSECTIONS" => "Y",
 		"MESSAGE_404" => "",
@@ -47,12 +47,12 @@ $APPLICATION->SetTitle("Title");
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => [
-			0 => "PRICE",
-			1 => "PRICE_AUTO",
-			2 => "DRIVING_TIME",
-			3 => "READ_DRIVE",
-			4 => "TYPE_DRIVING",
-			5 => "ICO",
+			0 => "RPICE",
+			1 => "",
+			2 => "",
+			3 => "",
+			4 => "",
+			5 => "",
 			6 => "",
 		],
 		"SET_BROWSER_TITLE" => "N",
@@ -62,12 +62,12 @@ $APPLICATION->SetTitle("Title");
 		"SET_STATUS_404" => "N",
 		"SET_TITLE" => "N",
 		"SHOW_404" => "N",
-		"SORT_BY1" => "ACTIVE_FROM",
+		"SORT_BY1" => "SORT",
 		"SORT_BY2" => "SORT",
-		"SORT_ORDER1" => "DESC",
+		"SORT_ORDER1" => "ASC",
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N",
-		"COMPONENT_TEMPLATE" => "preims"
+		"COMPONENT_TEMPLATE" => "preims_nash_shkoly"
 	],
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

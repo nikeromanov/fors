@@ -2,6 +2,8 @@
 define("SETTINGS_IBLOCK_ID","1");
 define("CATALOG_IBLOCK_ID","2");
 
+include_once __DIR__ . '/vendor/autoload.php';
+
 function getSettings($iblockId = 0,$id = 0){
 	CModule::IncludeModule("iblock");
 	if($iblockId==0){
@@ -51,4 +53,100 @@ function splitByParentheses(string $s): array
     }
 
     return ['text' => $s, 'inside' => null];
+}
+
+AddEventHandler('main', 'OnEpilog', 'forsSendLastModifiedHeader');
+
+function forsSendLastModifiedHeader()
+{
+    global $APPLICATION;
+
+    if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
+        return;
+    }
+
+    if (!class_exists('CHTTP') || !is_object($APPLICATION) || !method_exists($APPLICATION, 'GetPageProperty')) {
+        return;
+    }
+
+    if (defined('ADMIN_SECTION') && ADMIN_SECTION === true) {
+        return;
+    }
+
+    $request = \Bitrix\Main\Context::getCurrent()->getRequest();
+
+    if (!$request || !in_array($request->getRequestMethod(), ['GET', 'HEAD'], true)) {
+        return;
+    }
+
+    $lastModified = 0;
+    $pageProperty = trim((string)$APPLICATION->GetPageProperty('last_modified'));
+
+    if ($pageProperty !== '') {
+        $timestamp = MakeTimeStamp($pageProperty);
+
+        if ($timestamp) {
+            $lastModified = $timestamp;
+        }
+    }
+
+    $documentRoot = rtrim($_SERVER['DOCUMENT_ROOT'], '/');
+    $paths = [];
+
+    $curPage = $APPLICATION->GetCurPage(true);
+
+    if ($curPage) {
+        $paths[] = $documentRoot . $curPage;
+    }
+
+    if (defined('SITE_TEMPLATE_PATH')) {
+        $paths[] = $documentRoot . SITE_TEMPLATE_PATH . '/header.php';
+        $paths[] = $documentRoot . SITE_TEMPLATE_PATH . '/footer.php';
+    }
+
+    if (defined('TEMPLATE_PAGE') && TEMPLATE_PAGE != '') {
+        $paths[] = $documentRoot . SITE_TEMPLATE_PATH . '/template_blocks/' . TEMPLATE_PAGE . '.php';
+    }
+
+    foreach ($paths as $path) {
+        if (is_file($path)) {
+            $mtime = filemtime($path);
+
+            if ($mtime && $mtime > $lastModified) {
+                $lastModified = $mtime;
+            }
+        }
+    }
+
+    if ($lastModified <= 0 || headers_sent()) {
+        return;
+    }
+
+    $headerValue = gmdate('D, d M Y H:i:s', $lastModified) . ' GMT';
+    $ifModifiedSinceHeader = trim((string)$request->getHeader('If-Modified-Since'));
+    $ifModifiedSince = $ifModifiedSinceHeader !== '' ? strtotime($ifModifiedSinceHeader) : false;
+
+    if ($ifModifiedSince !== false && $ifModifiedSince >= $lastModified) {
+        if (is_callable(['CHTTP', 'SetStatus'])) {
+            CHTTP::SetStatus('304 Not Modified');
+        } elseif (function_exists('http_response_code')) {
+            http_response_code(304);
+        } elseif (isset($_SERVER['SERVER_PROTOCOL'])) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
+        }
+
+        header('Last-Modified: ' . $headerValue);
+
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+
+        \Bitrix\Main\Application::getInstance()->end();
+    }
+
+    if (is_callable(['CHTTP', 'SetLastModified'])) {
+        CHTTP::SetLastModified($lastModified);
+    } else {
+        header('Last-Modified: ' . $headerValue);
+    }
 }

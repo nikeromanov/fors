@@ -4,7 +4,7 @@ global $settings;
 
 if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
 }else{ ?>
-<? if (!CSite::InDir('/shares/')&&!($dir != "/articles/"&&CSite::InDir('/articles/'))&&!CSite::InDir('/category/')) { ?></div>
+<? if (!CSite::InDir('/shares/')&&!($dir != "/articles/"&&CSite::InDir('/articles/'))&&!CSite::InDir('/category/')&&!($dir != "/instructors/"&&CSite::InDir('/instructors/'))&&!($dir != "/news/"&&CSite::InDir('/news/'))) { ?></div>
 </section><?}?>
 </main>
 <?}?>
@@ -109,6 +109,12 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
   <div class="consult-form">
     <h2 class="consult-form__title" id="consult-title">Получи консультацию прямо сейчас!</h2>
     <p class="consult-form__subtitle">В течение 10 минут с вами свяжется наш специалист.</p>
+    <div class="consult-form__success" aria-hidden="true">
+      <p class="consult-form__title consult-form__success-message">Спасибо, ваша заявка отправлена!</p>
+      <p class="consult-form__success-countdown" aria-live="polite">
+        Окно закроется через <span class="consult-form__success-countdown-value">3</span> секунды
+      </p>
+    </div>
 
     <!-- bx:form-consult -->
     <form class="consult-form__form standart_form" action="#" method="post" >
@@ -143,7 +149,10 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
         </div>
       </div>
 
-      <p class="consult-form__notice">Отправляя заявку вы соглашаетесь на обработку персональных данных.</p>
+      <label class="consult-form__notice">
+        <input class="consult-form__checkbox" type="checkbox" name="policy" value="Y" required />
+        <span>Соглашаюсь с <a href="/policy/" target="_blank" rel="noopener">политикой обработки персональных данных</a></span>
+      </label>
 
       <button class="btn btn--secondary btn--large" type="submit">Оставить заявку</button>
     </form>

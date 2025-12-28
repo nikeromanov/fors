@@ -46,12 +46,15 @@ $(document).ready(function(){
 	$('.phone,[name="phone"]').inputmask("+7 (999) 999-99-99",{clearMaskOnLostFocus: true,clearIncomplete: true, showMaskOnHover:false });
 	$(".standart_form").each(function(){
 		$(this).validate({
-			rules:{
-					email:{
-						email:true
-					}
-				},
-			submitHandler: function( form ){
+                        rules:{
+                                        email:{
+                                                email:true
+                                        },
+                                        policy:{
+                                                required:true
+                                        }
+                                },
+                        submitHandler: function( form ){
 				if( $( form ).valid() ){
 					var dataf = new FormData();
 
@@ -75,18 +78,84 @@ $(document).ready(function(){
 						contentType: false,
 					}).done(function( answ ){
 						var data = JSON.parse(answ);
-						if(data.result=="success"){
-							$(form).find('.answer_form').html("");$(form).find('.answer_form').append(data.message);
-							$(form).find('input[type="text"]').val('');
-							$(form).find('input[type="tel"]').val('');
-							$(form).find('input[type="email"]').val('');
-							$(form).find('textarea').val('');
-							
-							
-						}else{
-							$(form).find('.answer_form').html("");
-							$(form).find('.answer_form').append(data.message);
-						}
+                                                if(data.result=="success"){
+                                                        var formContainer = $(form).closest('.consult-form');
+                                                        var successBlock = formContainer.find('.consult-form__success');
+                                                        var countdownValue = successBlock.find('.consult-form__success-countdown-value');
+
+                                                        var previousTimeout = formContainer.data('successHideTimeout');
+                                                        var previousInterval = formContainer.data('successCountdownInterval');
+
+                                                        if(previousTimeout){
+                                                                clearTimeout(previousTimeout);
+                                                        }
+
+                                                        if(previousInterval){
+                                                                clearInterval(previousInterval);
+                                                        }
+
+                                                        $(form).find('.answer_form').html("");
+
+                                                        if(formContainer.length>0 && successBlock.length>0){
+                                                                var countdownSeconds = 3;
+
+                                                                formContainer.addClass('consult-form--success');
+                                                                successBlock.addClass('is-visible');
+                                                                successBlock.attr('aria-hidden','false');
+
+                                                                if(countdownValue.length>0){
+                                                                        countdownValue.text(countdownSeconds);
+
+                                                                        var countdownInterval = setInterval(function(){
+                                                                                countdownSeconds -= 1;
+
+                                                                                if(countdownSeconds >= 0){
+                                                                                        countdownValue.text(countdownSeconds);
+                                                                                }
+
+                                                                                if(countdownSeconds <= 0){
+                                                                                        clearInterval(countdownInterval);
+                                                                                }
+                                                                        },1000);
+
+                                                                        formContainer.data('successCountdownInterval', countdownInterval);
+                                                                }
+
+                                                                var successHideTimeout = setTimeout(function(){
+                                                                        if(countdownValue.length>0){
+                                                                                countdownValue.text('0');
+                                                                        }
+
+                                                                        var savedInterval = formContainer.data('successCountdownInterval');
+
+                                                                        if(savedInterval){
+                                                                                clearInterval(savedInterval);
+                                                                        }
+
+                                                                        successBlock.removeClass('is-visible');
+                                                                        successBlock.attr('aria-hidden','true');
+                                                                        formContainer.removeClass('consult-form--success');
+
+                                                                        formContainer.removeData('successHideTimeout');
+                                                                        formContainer.removeData('successCountdownInterval');
+                                                                },3000);
+
+                                                                formContainer.data('successHideTimeout', successHideTimeout);
+                                                        }else{
+                                                                $(form).find('.answer_form').append(data.message);
+                                                        }
+
+                                                        $(form).find('input[type="text"]').val('');
+                                                        $(form).find('input[type="tel"]').val('');
+                                                        $(form).find('input[type="email"]').val('');
+                                                        $(form).find('input[type="checkbox"]').prop('checked', false);
+                                                        $(form).find('textarea').val('');
+
+
+                                                }else{
+                                                        $(form).find('.answer_form').html("");
+                                                        $(form).find('.answer_form').append(data.message);
+                                                }
 
 						
 					}).fail(function() {

@@ -16,12 +16,12 @@ $arUrlRewrite=array (
     'PATH' => '/bitrix/services/ymarket/index.php',
     'SORT' => 100,
   ),
-  6 => 
+  10 => 
   array (
-    'CONDITION' => '#^/category/#',
+    'CONDITION' => '#^/instructors/#',
     'RULE' => '',
     'ID' => 'bitrix:news',
-    'PATH' => '/category/index.php',
+    'PATH' => '/instructors/index.php',
     'SORT' => 100,
   ),
   8 => 
@@ -32,7 +32,15 @@ $arUrlRewrite=array (
     'PATH' => '/articles/index.php',
     'SORT' => 100,
   ),
-  7 => 
+  13 => 
+  array (
+    'CONDITION' => '#^/category/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/category/index.php',
+    'SORT' => 100,
+  ),
+  15 => 
   array (
     'CONDITION' => '#^/gallery/#',
     'RULE' => '',
@@ -54,6 +62,22 @@ $arUrlRewrite=array (
     'RULE' => '',
     'ID' => NULL,
     'PATH' => '/bitrix/services/rest/index.php',
+    'SORT' => 100,
+  ),
+  14 => 
+  array (
+    'CONDITION' => '#^/news/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/news/index.php',
+    'SORT' => 100,
+  ),
+  12 => 
+  array (
+    'CONDITION' => '#^/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/content/index.php',
     'SORT' => 100,
   ),
 );

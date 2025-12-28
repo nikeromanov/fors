@@ -222,6 +222,10 @@
   line-height: 1.4;
 }
 
+.cars-gallery__privacy a {
+  color: var(--color-text);
+}
+
 .cars-gallery__contact-form .btn {
   width: 100%;
   background: #ff4444;
@@ -245,6 +249,10 @@
 
 /* Mobile - скрываем спеки, оставляем название и форму */
 @media (max-width: 640px) {
+  .cars-gallery__card {
+    overflow: visible;
+  }
+
   .cars-gallery__specs,
   .cars-gallery__divider,
   .cars-gallery__form-label {
@@ -252,7 +260,19 @@
   }
 
   .cars-gallery__form {
-    transform: translateY(calc(100% - 2rem));
+    position: relative;
+    top: auto;
+    bottom: auto;
+    transform: none;
+  }
+}
+
+@media (min-width: 641px) {
+  .cars-gallery__form {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    transform: translateY(calc(100% - 4rem));
   }
 }
 

@@ -1,5 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("description", "Галерея");
+$APPLICATION->SetPageProperty("keywords", "Галерея");
+$APPLICATION->SetPageProperty("title", "Фотогалерея автошколы в Воронеже: фото вождения, администраторов и классов на сайте школы Форсаж ");
 $APPLICATION->SetTitle("Галлерея");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
@@ -16,7 +19,7 @@ $APPLICATION->SetTitle("Галлерея");
 		"CACHE_FILTER" => "N",
 		"CACHE_GROUPS" => "Y",
 		"CACHE_TIME" => "36000000",
-		"CACHE_TYPE" => "A",
+		"CACHE_TYPE" => "N",
 		"CHECK_DATES" => "Y",
 		"DETAIL_ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"DETAIL_DISPLAY_BOTTOM_PAGER" => "N",

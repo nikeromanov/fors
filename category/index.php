@@ -1,6 +1,9 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Кастомный тайтл");
+$APPLICATION->SetPageProperty("description", "Записывайтесь в автошколу Воронежа по привлекательной цене - обучение на автокурсах с инструктором: учеба на водительские права по доступной стоимости - курсы вождения в школе \"Форсаж\" в Врн.");
+$APPLICATION->SetPageProperty("keywords", "Категория и цены");
+$APPLICATION->SetPageProperty("title", "Цены на курсы вождения в автошколе Воронежа - обучение на автокурсах с инструктором: учеба на права по оптимальной стоимости в школе \"Форсаж\" в Врн ");
+$APPLICATION->SetTitle("Цены на курсы в автошколе");
 ?>
 
 <?$APPLICATION->IncludeComponent(

@@ -1,3 +1,38 @@
+@font-face{
+	font-family: 'Geologica';
+	src: url(assets/fonts/Geologica-Light.ttf) format("truetype");
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face{
+	font-family: 'Geologica';
+	src: url(assets/fonts/Geologica-Regular.ttf) format("truetype");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face{
+	font-family: 'Geologica';
+	src: url(assets/fonts/Geologica-Medium.ttf) format("truetype");
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face{
+	font-family: 'Geologica';
+	src: url(assets/fonts/Geologica-SemiBold.ttf) format("truetype");
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face{
+	font-family: 'Geologica';
+	src: url(assets/fonts/Geologica-Bold.ttf) format("truetype");
+	font-weight: 700;
+	font-style: normal;
+}
+
 .container {
     padding: clamp(1.5rem, 5vw, 2.5rem);
     width: 100%;
@@ -105,10 +140,10 @@ h3.cars-gallery__car-name {
 
 .detail_content.category__content ol li,
 .detail_content.category__content ul li {
-    display: list-item;  
-    gap: unset;           
+    display: list-item;
+    gap: unset;
     margin-bottom: clamp(1rem, 0.85rem + 0.7vw, 1.6rem);
-	color: rgb(26 26 26);
+    color: var(--color-text);
 }
 
 .detail_content.category__content ol li:last-child,
@@ -131,4 +166,41 @@ h3.cars-gallery__car-name {
 .detail_images img {
     aspect-ratio: 3 / 2;
     object-fit: cover;
+}
+.price-tabs .tabs__item:last-child {
+    margin-right: auto;
+}
+.price_content h1, .price_content h2.price_content h3, .price_content h4 {
+    margin: 0;
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 2rem);
+    font-weight: 400;
+    text-align: left;
+    text-transform: uppercase;
+    margin-bottom: 20px !important;
+}
+.price_content {
+    margin: 0;
+    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.25rem);
+    font-weight: 400;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.double_text {
+    column-count: 2;
+    column-gap: 4%;
+	    font-size: clamp(0.9375rem, 0.875rem + 0.2vw, 1.0625rem);
+    line-height: 1.6;
+    color: var(--color-text-secondary, #4a4a4a);
+    margin: 0;
+}
+iframe {
+    max-width: 100%;
+}
+@media (max-width: 768px) {
+	.double_text {
+		column-count: 1;
+	}
+	.consult-form__fields >div {
+		flex: initial;
+	}
 }
