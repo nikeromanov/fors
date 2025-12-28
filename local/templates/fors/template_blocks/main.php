@@ -166,7 +166,7 @@ $properties = $settingsPage["PROPERTIES"];
 			</ul>
 		<?}?>
 		
-		<?if(!empty($settings["VK"]["VALUE"])||!empty($settings["WA"]["VALUE"])||!empty($settings["TELEGRAM"]["VALUE"])){?>
+		<?if(!empty($settings["VK"]["VALUE"])||!empty($settings["MAX"]["VALUE"])||!empty($settings["TELEGRAM"]["VALUE"])){?>
 		<div class="social-banner">
 		  <?if(!empty($properties["SOC_TITLE"]["VALUE"])){?><h5 class="social-banner__title"><?=$properties["SOC_TITLE"]["VALUE"];?></h5><?}?>
 		  <div class="social-banner__buttons">
@@ -174,7 +174,7 @@ $properties = $settingsPage["PROPERTIES"];
 			  <span class="social-btn__icon" aria-hidden="true"></span>
 			  Связаться в TG
 			</a><?}?>
-                        <?if(!empty($settings["WA"]["VALUE"])){?><a href="<?=$settings["WA"]["VALUE"];?>" target="_blank" class="social-btn social-btn--max">
+                        <?if(!empty($settings["MAX"]["VALUE"])){?><a href="<?=$settings["MAX"]["VALUE"];?>" target="_blank" class="social-btn social-btn--max">
                           <span class="social-btn__icon" aria-hidden="true"></span>
                           Связаться в MAX
                         </a><?}?>
