@@ -92,17 +92,8 @@ pnpm-debug.log
 /bitrix/tools/
 /bitrix/updates/
 /bitrix/wizards/
-
-# --- Храним шаблон Аспро (часто кастомизируется)
-!/bitrix/templates/aspro_optimus
-!/bitrix/templates/aspro_optimus/**
-
-# --- Храним компоненты Аспро (если правите шаблоны компонентов)
-!/bitrix/components/aspro
-!/bitrix/components/aspro/**
- !/bitrix/modules/aspro.optimus*/
-# !/bitrix/wizards/aspro/**
-
+/bitrix/components/
+/bitrix/templates/
 # ==============================
 # /local: проектный код
 # ==============================
