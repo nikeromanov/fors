@@ -32,24 +32,22 @@ if($_REQUEST["action"]="addform"&&$_REQUEST["phone"]){
 	$PROP=array();
         $PROP["PHONE"] = $_REQUEST["phone"];
         $PROP["NAME"] = $_REQUEST["name"];
-        $PROP["EMAIL"] = $_REQUEST["email"];
         $PROP["URL"] = $_REQUEST["url"];
-        if(!empty($_REQUEST["policy"])){
+
+        $policyAccepted = !empty($_REQUEST["policy"]);
+
+        if($policyAccepted){
                 $PROP["POLICY"] = "Y";
         }
         if($_REQUEST["service"]){
                 $nameForm = $_REQUEST["service"];
         }
-	if (!empty($_FILES['file']['tmp_name'])) {
-		$PROP["FILE"] = $_FILES['file'];
-	}
-	$arLoadProductArray = Array(
-	  "IBLOCK_SECTION_ID" => false,         
-	  "IBLOCK_ID"      => 12,
-	  "PROPERTY_VALUES"=> $PROP,
-	  "NAME"=>$nameForm,
-	  "DETAIL_TEXT"=>$_REQUEST["message"]
-	);
+        $arLoadProductArray = Array(
+          "IBLOCK_SECTION_ID" => false,
+          "IBLOCK_ID"      => 12,
+          "PROPERTY_VALUES"=> $PROP,
+          "NAME"=>$nameForm
+        );
 	if($PRODUCT_ID = $el->Add($arLoadProductArray)){
 		$externalData = [
                     [
@@ -118,8 +116,10 @@ if($_REQUEST["action"]="addform"&&$_REQUEST["phone"]){
 //        )
                         ->setRequestId($externalLead['external_id']);
 						
-						if($_COOKIE["utm_source"]||$_COOKIE["utm_medium"]||$_COOKIE["utm_campaign"]||$_COOKIE["utm_content"]||$_COOKIE["utm_term"]){
-							$leadCustomFieldsValues = new CustomFieldsValuesCollection();
+                        $canTransferTrackingData = $policyAccepted;
+
+                                                if($canTransferTrackingData && ($_COOKIE["utm_source"]||$_COOKIE["utm_medium"]||$_COOKIE["utm_campaign"]||$_COOKIE["utm_content"]||$_COOKIE["utm_term"])){
+                                                        $leadCustomFieldsValues = new CustomFieldsValuesCollection();
 							
 							$lead->setCustomFieldsValues($leadCustomFieldsValues);
 							
@@ -173,15 +173,21 @@ if($_REQUEST["action"]="addform"&&$_REQUEST["phone"]){
 						}
 				
                     if ($externalLead['is_new']) {
-                        $lead->setMetadata(
-                            (new FormsMetadata())
+                        $formsMetadata = (new FormsMetadata())
                                 ->setFormId('my_best_form')
                                 ->setFormName('Обратная связь')
                                 ->setFormPage('Форма на сайте')
-                                ->setFormSentAt(mktime(date('h'), date('i'), date('s'), date('m'), date('d'), date('Y')))
-                                ->setReferer($_SERVER["HTTP_REFERER"])
-                                ->setIp($_SERVER["REMOTE_ADDR"])
-                        );
+                                ->setFormSentAt(mktime(date('h'), date('i'), date('s'), date('m'), date('d'), date('Y')));
+
+                                                if($canTransferTrackingData && !empty($_SERVER["HTTP_REFERER"])){
+                                                        $formsMetadata->setReferer($_SERVER["HTTP_REFERER"]);
+                                                }
+
+                                                if($canTransferTrackingData && !empty($_SERVER["REMOTE_ADDR"])){
+                                                        $formsMetadata->setIp($_SERVER["REMOTE_ADDR"]);
+                                                }
+
+                        $lead->setMetadata($formsMetadata);
                     }
 
                     $leadsCollection->add($lead);

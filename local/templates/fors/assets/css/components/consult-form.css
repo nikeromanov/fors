@@ -12,6 +12,26 @@
   gap: clamp(1.5rem, 1rem + 1vw, 2.5rem);
 }
 
+.consult-form__success {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(60, 60, 60, 1);
+  padding: clamp(2.5rem, 2rem + 1.5vw, 4rem);
+  text-align: center;
+  z-index: 2;
+}
+
+.consult-form__success.is-visible {
+  display: flex;
+}
+
+.consult-form--success > *:not(.consult-form__success) {
+  visibility: hidden;
+}
+
 .consult-form::before,
 .consult-form::after {
   content: "";
@@ -46,6 +66,21 @@
   color: var(--white, rgba(255, 255, 255, 1));
   text-align: center;
   max-width: 53.44rem;
+}
+
+.consult-form__success-message {
+  font-size: var(--font-size-h1);
+  font-weight: 400;
+  line-height: 120%;
+  margin: 0;
+}
+
+.consult-form__success-countdown {
+  color: var(--white, rgba(255, 255, 255, 1));
+  font-size: var(--font-size-small);
+  font-weight: 300;
+  line-height: 120%;
+  margin: 0.75rem 0 0;
 }
 
 .consult-form__subtitle {
@@ -102,7 +137,7 @@
   font-size: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
   line-height: 1.4;
   background: var(--color-white, #ffffff);
-  color: var(--color-text);
+  color: var(--color-static-light-dark, #1a1a1a);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
@@ -128,5 +163,5 @@
 }
 
 .consult-form__notice a {
-  color: var(--color-text);
+  color: var(--color-text-white, #ffffff);
 }
