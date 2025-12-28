@@ -174,10 +174,10 @@ $properties = $settingsPage["PROPERTIES"];
 			  <span class="social-btn__icon" aria-hidden="true"></span>
 			  Связаться в TG
 			</a><?}?>
-			<?if(!empty($settings["WA"]["VALUE"])){?><a href="<?=$settings["WA"]["VALUE"];?>" target="_blank" class="social-btn social-btn--whatsapp">
-			  <span class="social-btn__icon" aria-hidden="true"></span>
-			  Связаться в WA
-			</a><?}?>
+                        <?if(!empty($settings["WA"]["VALUE"])){?><a href="<?=$settings["WA"]["VALUE"];?>" target="_blank" class="social-btn social-btn--max">
+                          <span class="social-btn__icon" aria-hidden="true"></span>
+                          Связаться в MAX
+                        </a><?}?>
 			<?if(!empty($settings["VK"]["VALUE"])){?><a href="<?=$settings["VK"]["VALUE"];?>" target="_blank" class="social-btn social-btn--vk">
 			  <span class="social-btn__icon" aria-hidden="true"></span>
 			  Связаться в VK
