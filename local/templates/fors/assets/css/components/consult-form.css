@@ -126,3 +126,7 @@
   text-align: center;
   margin: 0;
 }
+
+.consult-form__notice a {
+  color: var(--color-text);
+}

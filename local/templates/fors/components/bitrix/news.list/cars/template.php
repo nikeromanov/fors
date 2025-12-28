@@ -75,10 +75,11 @@ $this->setFrameMode(true);
 			  autocomplete="tel"
 			  required
 			/>
-			<span class="cars-gallery__privacy">
-			  Отправляя заявку вы соглашаетесь на обработку персональных данных
-			</span>
-			<button class="btn btn--primary btn--large" type="submit">Практиковать на <?=$item["NAME"];?></button>
+                        <label class="cars-gallery__privacy">
+                          <input class="cars-gallery__privacy-checkbox" type="checkbox" name="policy" value="Y" required />
+                          <span>Соглашаюсь с <a href="/policy/" target="_blank" rel="noopener">политикой обработки персональных данных</a></span>
+                        </label>
+                        <button class="btn btn--primary btn--large" type="submit">Практиковать на <?=$item["NAME"];?></button>
 		  </form>
 		</div>
 	  </div>

@@ -222,6 +222,10 @@
   line-height: 1.4;
 }
 
+.cars-gallery__privacy a {
+  color: var(--color-text);
+}
+
 .cars-gallery__contact-form .btn {
   width: 100%;
   background: #ff4444;
