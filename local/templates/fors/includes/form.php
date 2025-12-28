@@ -2,6 +2,9 @@
   <div class="consult-form">
     <h2 class="consult-form__title" id="consult-title">Получи консультацию прямо сейчас!</h2>
     <p class="consult-form__subtitle">В течение 10 минут с вами свяжется наш специалист.</p>
+    <div class="consult-form__success" aria-hidden="true">
+      <p class="consult-form__title consult-form__success-message">Спасибо, ваша заявка отправлена!</p>
+    </div>
 
     <!-- bx:form-consult -->
     <form class="consult-form__form standart_form" action="#" method="post" >
