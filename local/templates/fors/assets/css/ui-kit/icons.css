@@ -159,6 +159,9 @@
 .ui-icon[data-icon="tiktok"] {
   mask-image: url("../../icons/social/tiktok.svg");
 }
+.ui-icon[data-icon="max"] {
+  mask-image: url("../../icons/max_white.svg");
+}
 
 /* contacts */
 .ui-icon[data-icon="map-pin"] {
