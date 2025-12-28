@@ -174,7 +174,9 @@
   user-select: none;
   position: relative;
   overflow: hidden;
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
   will-change: transform, box-shadow;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -242,7 +244,7 @@
 .social-btn--telegram:hover,
 .social-btn--telegram:focus-visible {
   box-shadow: 0 6px 18px rgba(34, 158, 217, 0.35);
-  transform: translateY(-0.25rem);
+  transform: translate3d(0, -0.25rem, 0);
 }
 
 .social-btn--telegram .social-btn__icon {
@@ -289,7 +291,7 @@
 .social-btn--whatsapp:hover,
 .social-btn--whatsapp:focus-visible {
   box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
-  transform: translateY(-0.25rem);
+  transform: translate3d(0, -0.25rem, 0);
 }
 
 .social-btn--whatsapp .social-btn__icon {
@@ -332,7 +334,7 @@
 .social-btn--vk:hover,
 .social-btn--vk:focus-visible {
   box-shadow: 0 6px 18px rgba(0, 119, 255, 0.35);
-  transform: translateY(-0.25rem);
+  transform: translate3d(0, -0.25rem, 0);
 }
 
 .social-btn--vk .social-btn__icon {
