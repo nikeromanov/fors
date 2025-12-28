@@ -30,13 +30,16 @@ if($_REQUEST["action"]="addform"&&$_REQUEST["phone"]){
 	$nameForm = "Записаться на курс";
 	$el = new CIBlockElement;
 	$PROP=array();
-	$PROP["PHONE"] = $_REQUEST["phone"];
-	$PROP["NAME"] = $_REQUEST["name"];
-	$PROP["EMAIL"] = $_REQUEST["email"];
-	$PROP["URL"] = $_REQUEST["url"];
-	if($_REQUEST["service"]){
-		$nameForm = $_REQUEST["service"];
-	}
+        $PROP["PHONE"] = $_REQUEST["phone"];
+        $PROP["NAME"] = $_REQUEST["name"];
+        $PROP["EMAIL"] = $_REQUEST["email"];
+        $PROP["URL"] = $_REQUEST["url"];
+        if(!empty($_REQUEST["policy"])){
+                $PROP["POLICY"] = "Y";
+        }
+        if($_REQUEST["service"]){
+                $nameForm = $_REQUEST["service"];
+        }
 	if (!empty($_FILES['file']['tmp_name'])) {
 		$PROP["FILE"] = $_FILES['file'];
 	}

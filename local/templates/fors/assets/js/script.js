@@ -46,12 +46,15 @@ $(document).ready(function(){
 	$('.phone,[name="phone"]').inputmask("+7 (999) 999-99-99",{clearMaskOnLostFocus: true,clearIncomplete: true, showMaskOnHover:false });
 	$(".standart_form").each(function(){
 		$(this).validate({
-			rules:{
-					email:{
-						email:true
-					}
-				},
-			submitHandler: function( form ){
+                        rules:{
+                                        email:{
+                                                email:true
+                                        },
+                                        policy:{
+                                                required:true
+                                        }
+                                },
+                        submitHandler: function( form ){
 				if( $( form ).valid() ){
 					var dataf = new FormData();
 
@@ -77,10 +80,11 @@ $(document).ready(function(){
 						var data = JSON.parse(answ);
 						if(data.result=="success"){
 							$(form).find('.answer_form').html("");$(form).find('.answer_form').append(data.message);
-							$(form).find('input[type="text"]').val('');
-							$(form).find('input[type="tel"]').val('');
-							$(form).find('input[type="email"]').val('');
-							$(form).find('textarea').val('');
+                                                        $(form).find('input[type="text"]').val('');
+                                                        $(form).find('input[type="tel"]').val('');
+                                                        $(form).find('input[type="email"]').val('');
+                                                        $(form).find('input[type="checkbox"]').prop('checked', false);
+                                                        $(form).find('textarea').val('');
 							
 							
 						}else{
