@@ -36,7 +36,11 @@
         </div>
       </div>
 
-      <p class="consult-form__notice">Отправляя заявку вы соглашаетесь на обработку персональных данных.</p>
+
+      <label class="consult-form__notice">
+        <input class="consult-form__checkbox" type="checkbox" name="policy" value="Y" required />
+        <span>Соглашаюсь с <a href="/policy/" target="_blank" rel="noopener">политикой обработки персональных данных</a></span>
+      </label>
 
       <button class="btn btn--secondary btn--large" type="submit">Оставить заявку</button>
     </form>
