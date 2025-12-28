@@ -298,6 +298,49 @@
   mask-image: url(../../icons/social/whatsapp.svg);
 }
 
+.social-btn--max {
+  background: linear-gradient(
+    45deg,
+    #40c0fc 0%,
+    #2a7afa 35%,
+    #3f49e9 65%,
+    #8339de 100%
+  );
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(64, 192, 252, 0.25);
+}
+
+.social-btn--max::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    #40c0fc 0%,
+    #2a7afa 35%,
+    #3f49e9 65%,
+    #8339de 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.social-btn--max:hover::before,
+.social-btn--max:focus-visible::before {
+  opacity: 1;
+}
+
+.social-btn--max:hover,
+.social-btn--max:focus-visible {
+  box-shadow: 0 6px 18px rgba(64, 192, 252, 0.35);
+  transform: translate3d(0, -0.25rem, 0);
+}
+
+.social-btn--max .social-btn__icon {
+  mask-image: url(../../icons/max_white.svg);
+}
+
 .social-btn--vk {
   background: linear-gradient(
     90deg,
