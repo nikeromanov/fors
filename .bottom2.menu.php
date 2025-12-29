@@ -8,13 +8,6 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Филиалы", 
-		"/branches/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
 		"Акции", 
 		"/shares/", 
 		Array(), 
