@@ -156,12 +156,14 @@ $(document).ready(function(){
                                                                 var isCategoryAService = normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1;
                                                                 var isCategoryBService = normalizedServiceValue.indexOf('категория в') !== -1 || normalizedServiceValue.indexOf('категории в') !== -1;
                                                                 var isCategoryCService = normalizedServiceValue.indexOf('категория с') !== -1 || normalizedServiceValue.indexOf('категории с') !== -1;
+                                                                var isCategoryDService = normalizedServiceValue.indexOf('категория д') !== -1 || normalizedServiceValue.indexOf('категории д') !== -1;
 
                                                                 var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
                                                                 var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
                                                                 var isCategoryAPage = normalizedLocationPath === '/category/kategoriya-a-a1/';
                                                                 var isCategoryBPage = normalizedLocationPath === '/category/kategoriya-v-v1/';
                                                                 var isCategoryCPage = normalizedLocationPath === '/category/kategoriya-c-s1/';
+                                                                var isCategoryDPage = normalizedLocationPath === '/kategoriya-d-d1/';
 
                                                                 if(typeof ym === 'function'){
                                                                         var isConsultForm = $(form).hasClass('consult-form__form');
@@ -172,6 +174,8 @@ $(document).ready(function(){
                                                                                 ym(11787892, 'reachGoal', 'form_B');
                                                                         }else if(isCategoryCService || isCategoryCPage){
                                                                                 ym(11787892, 'reachGoal', 'form_C');
+                                                                        }else if(isCategoryDService || isCategoryDPage){
+                                                                                ym(11787892, 'reachGoal', 'form_D');
                                                                         }else if(isConsultForm){
                                                                                 ym(11787892, 'reachGoal', 'form_general');
                                                                         }
