@@ -152,47 +152,65 @@ $(document).ready(function(){
                                                                 $(form).find('textarea').val('');
 
                                                                 var formServiceValue = ($(form).find('[name="service"]').val() || '').toString().trim();
-                                                                var normalizedServiceValue = formServiceValue
-                                                                        .toLowerCase()
-                                                                        .replace(/a/g, 'а')
-                                                                        .replace(/b/g, 'в')
-                                                                        .replace(/c/g, 'с')
-                                                                        .replace(/e/g, 'е')
-                                                                        .replace(/m/g, 'м');
-                                                                var isCategoryAService = normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1;
-                                                                var isCategoryBService = normalizedServiceValue.indexOf('категория в') !== -1 || normalizedServiceValue.indexOf('категории в') !== -1;
-                                                                var isCategoryCService = normalizedServiceValue.indexOf('категория с') !== -1 || normalizedServiceValue.indexOf('категории с') !== -1;
-                                                                var isCategoryDService = normalizedServiceValue.indexOf('категория д') !== -1 || normalizedServiceValue.indexOf('категории д') !== -1;
-                                                                var isCategoryEService = normalizedServiceValue.indexOf('категория е') !== -1 || normalizedServiceValue.indexOf('категории е') !== -1;
-                                                                var isCategoryMService = normalizedServiceValue.indexOf('категория м') !== -1 || normalizedServiceValue.indexOf('категории м') !== -1;
+        var normalizedServiceValue = formServiceValue
+                .toLowerCase()
+                .replace(/a/g, 'а')
+                .replace(/b/g, 'в')
+                .replace(/c/g, 'с')
+                .replace(/d/g, 'д')
+                .replace(/e/g, 'е')
+                .replace(/k/g, 'к')
+                .replace(/m/g, 'м')
+                .replace(/n/g, 'н')
+                .replace(/o/g, 'о')
+                .replace(/p/g, 'р')
+                .replace(/v/g, 'в');
+        var isCategoryAService = normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1;
+        var isCategoryBService = normalizedServiceValue.indexOf('категория в') !== -1 || normalizedServiceValue.indexOf('категории в') !== -1;
+        var isCategoryCService = normalizedServiceValue.indexOf('категория с') !== -1 || normalizedServiceValue.indexOf('категории с') !== -1;
+        var isCategoryDService = normalizedServiceValue.indexOf('категория д') !== -1 || normalizedServiceValue.indexOf('категории д') !== -1;
+        var isCategoryEService = normalizedServiceValue.indexOf('категория е') !== -1 || normalizedServiceValue.indexOf('категории е') !== -1;
+        var isCategoryMService = normalizedServiceValue.indexOf('категория м') !== -1 || normalizedServiceValue.indexOf('категории м') !== -1;
+        var isCategoryKvadroService = normalizedServiceValue.indexOf('квадроцик') !== -1 || normalizedServiceValue.indexOf('квадрацик') !== -1;
+        var isCategoryBCService = normalizedServiceValue.indexOf('переобучение с в на с') !== -1;
+        var isCategoryCDService = normalizedServiceValue.indexOf('переобучение с в на д') !== -1 || normalizedServiceValue.indexOf('переобучение с с на д') !== -1;
 
-                                                                var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
-                                                                var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
-                                                                var isCategoryAPage = normalizedLocationPath === '/category/kategoriya-a-a1/';
-                                                                var isCategoryBPage = normalizedLocationPath === '/category/kategoriya-v-v1/';
-                                                                var isCategoryCPage = normalizedLocationPath === '/category/kategoriya-c-s1/';
-                                                                var isCategoryDPage = normalizedLocationPath === '/kategoriya-d-d1/';
-                                                                var isCategoryEPage = normalizedLocationPath === '/category/kategoriya-e/';
-                                                                var isCategoryMPage = normalizedLocationPath === '/category/kategoriya-m/';
+        var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
+        var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
+        var isCategoryAPage = normalizedLocationPath === '/category/kategoriya-a-a1/';
+        var isCategoryBPage = normalizedLocationPath === '/category/kategoriya-v-v1/';
+        var isCategoryCPage = normalizedLocationPath === '/category/kategoriya-c-s1/';
+        var isCategoryDPage = normalizedLocationPath === '/kategoriya-d-d1/';
+        var isCategoryEPage = normalizedLocationPath === '/category/kategoriya-e/';
+        var isCategoryMPage = normalizedLocationPath === '/category/kategoriya-m/';
+        var isCategoryKvadroPage = normalizedLocationPath === '/category/kategoriya-kvadrotsikly/';
+        var isCategoryBCPage = normalizedLocationPath === '/category/pereobuchenie-s-v-na-s/';
+        var isCategoryCDPage = normalizedLocationPath === '/category/pereobuchenie-s-v-na-d-s-s-na-d/';
 
-                                                                if(typeof ym === 'function'){
-                                                                        var isConsultForm = $(form).hasClass('consult-form__form');
+        if(typeof ym === 'function'){
+                var isConsultForm = $(form).hasClass('consult-form__form');
 
-                                                                        if(isCategoryAService || isCategoryAPage){
-                                                                                ym(11787892, 'reachGoal', 'form_A');
-                                                                        }else if(isCategoryBService || isCategoryBPage){
-                                                                                ym(11787892, 'reachGoal', 'form_B');
-                                                                        }else if(isCategoryCService || isCategoryCPage){
-                                                                                ym(11787892, 'reachGoal', 'form_C');
-                                                                        }else if(isCategoryDService || isCategoryDPage){
-                                                                                ym(11787892, 'reachGoal', 'form_D');
-                                                                        }else if(isCategoryEService || isCategoryEPage){
-                                                                                ym(11787892, 'reachGoal', 'form_E');
-                                                                        }else if(isCategoryMService || isCategoryMPage){
-                                                                                ym(11787892, 'reachGoal', 'form_M');
-                                                                        }else if(isConsultForm){
-                                                                                ym(11787892, 'reachGoal', 'form_general');
-                                                                        }
+                if(isCategoryAService || isCategoryAPage){
+                        ym(11787892, 'reachGoal', 'form_A');
+                }else if(isCategoryBCService || isCategoryBCPage){
+                        ym(11787892, 'reachGoal', 'form_BC');
+                }else if(isCategoryCDService || isCategoryCDPage){
+                        ym(11787892, 'reachGoal', 'form_CD');
+                }else if(isCategoryBService || isCategoryBPage){
+                        ym(11787892, 'reachGoal', 'form_B');
+                }else if(isCategoryCService || isCategoryCPage){
+                        ym(11787892, 'reachGoal', 'form_C');
+                }else if(isCategoryDService || isCategoryDPage){
+                        ym(11787892, 'reachGoal', 'form_D');
+                }else if(isCategoryEService || isCategoryEPage){
+                        ym(11787892, 'reachGoal', 'form_E');
+                }else if(isCategoryMService || isCategoryMPage){
+                        ym(11787892, 'reachGoal', 'form_M');
+                }else if(isCategoryKvadroService || isCategoryKvadroPage){
+                        ym(11787892, 'reachGoal', 'form_kvadro');
+                }else if(isConsultForm){
+                        ym(11787892, 'reachGoal', 'form_general');
+                }
 
                                                                         if($(form).hasClass('cars-gallery__contact-form')){
                                                                                 ym(11787892, 'reachGoal', 'form_car');
