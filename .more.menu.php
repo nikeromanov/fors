@@ -22,13 +22,6 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Классы", 
-		"/ofisy-i-klassy/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
 		"Госпошлина", 
 		"/text-page/", 
 		Array(), 
@@ -43,11 +36,11 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Водительское удостверение бесплатно", 
-		"/concurses/", 
+		"Акции", 
+		"/shares/", 
 		Array(), 
 		Array(), 
 		"" 
-	),
+	)
 );
 ?>
