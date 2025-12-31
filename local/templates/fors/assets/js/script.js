@@ -152,18 +152,22 @@ $(document).ready(function(){
                                                                 $(form).find('textarea').val('');
 
                                                                 var formServiceValue = ($(form).find('[name="service"]').val() || '').toString().trim();
-                                                                var normalizedServiceValue = formServiceValue.toLowerCase().replace(/a/g, 'а');
+                                                                var normalizedServiceValue = formServiceValue.toLowerCase().replace(/a/g, 'а').replace(/b/g, 'в');
                                                                 var isCategoryAService = normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1;
+                                                                var isCategoryBService = normalizedServiceValue.indexOf('категория в') !== -1 || normalizedServiceValue.indexOf('категории в') !== -1;
 
                                                                 var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
                                                                 var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
                                                                 var isCategoryAPage = normalizedLocationPath === '/category/kategoriya-a-a1/';
+                                                                var isCategoryBPage = normalizedLocationPath === '/category/kategoriya-v-v1/';
 
                                                                 if(typeof ym === 'function'){
                                                                         var isConsultForm = $(form).hasClass('consult-form__form');
 
                                                                         if(isCategoryAService || isCategoryAPage){
                                                                                 ym(11787892, 'reachGoal', 'form_A');
+                                                                        }else if(isCategoryBService || isCategoryBPage){
+                                                                                ym(11787892, 'reachGoal', 'form_B');
                                                                         }else if(isConsultForm){
                                                                                 ym(11787892, 'reachGoal', 'form_general');
                                                                         }
