@@ -151,8 +151,14 @@ $(document).ready(function(){
                                                         $(form).find('input[type="checkbox"]').prop('checked', false);
                                                         $(form).find('textarea').val('');
 
-                                                        if($(form).hasClass('cars-gallery__contact-form') && typeof ym === 'function'){
-                                                                ym(11787892, 'reachGoal', 'form_car');
+                                                        if(typeof ym === 'function'){
+                                                                if($(form).hasClass('cars-gallery__contact-form')){
+                                                                        ym(11787892, 'reachGoal', 'form_car');
+                                                                }
+
+                                                                if(window.location && (window.location.pathname === '/online-traning/' || window.location.pathname === '/online-traning')){
+                                                                        ym(11787892, 'reachGoal', 'online_ok');
+                                                                }
                                                         }
 
 
