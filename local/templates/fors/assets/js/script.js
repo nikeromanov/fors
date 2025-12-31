@@ -151,6 +151,14 @@ $(document).ready(function(){
                                                                 $(form).find('input[type="checkbox"]').prop('checked', false);
                                                                 $(form).find('textarea').val('');
 
+                                                                var formServiceValue = ($(form).find('[name="service"]').val() || '').toString().trim();
+                                                                var normalizedServiceValue = formServiceValue.toLowerCase().replace(/a/g, 'а');
+                                                                var isCategoryAService = normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1;
+
+                                                                var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
+                                                                var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
+                                                                var isCategoryAPage = normalizedLocationPath === '/category/kategoriya-a-a1/';
+
                                                                 if(typeof ym === 'function'){
                                                                         if($(form).hasClass('consult-form__form')){
                                                                                 ym(11787892, 'reachGoal', 'form_general');
@@ -163,17 +171,11 @@ $(document).ready(function(){
                                                                         if(window.location && (window.location.pathname === '/online-traning/' || window.location.pathname === '/online-traning')){
                                                                                 ym(11787892, 'reachGoal', 'online_ok');
                                                                         }
-                                                                }
 
-                                                        if(typeof ym === 'function'){
-                                                                if($(form).hasClass('cars-gallery__contact-form')){
-                                                                        ym(11787892, 'reachGoal', 'form_car');
+                                                                        if(isCategoryAService || isCategoryAPage){
+                                                                                ym(11787892, 'reachGoal', 'form_A');
+                                                                        }
                                                                 }
-
-                                                                if(window.location && (window.location.pathname === '/online-traning/' || window.location.pathname === '/online-traning')){
-                                                                        ym(11787892, 'reachGoal', 'online_ok');
-                                                                }
-                                                        }
 
 
                                                 }else{
