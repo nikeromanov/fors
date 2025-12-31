@@ -160,7 +160,11 @@ $(document).ready(function(){
                                                                 var isCategoryAPage = normalizedLocationPath === '/category/kategoriya-a-a1/';
 
                                                                 if(typeof ym === 'function'){
-                                                                        if($(form).hasClass('consult-form__form')){
+                                                                        var isConsultForm = $(form).hasClass('consult-form__form');
+
+                                                                        if(isCategoryAService || isCategoryAPage){
+                                                                                ym(11787892, 'reachGoal', 'form_A');
+                                                                        }else if(isConsultForm){
                                                                                 ym(11787892, 'reachGoal', 'form_general');
                                                                         }
 
@@ -170,10 +174,6 @@ $(document).ready(function(){
 
                                                                         if(window.location && (window.location.pathname === '/online-traning/' || window.location.pathname === '/online-traning')){
                                                                                 ym(11787892, 'reachGoal', 'online_ok');
-                                                                        }
-
-                                                                        if(isCategoryAService || isCategoryAPage){
-                                                                                ym(11787892, 'reachGoal', 'form_A');
                                                                         }
                                                                 }
 
