@@ -223,6 +223,8 @@ $(document).ready(function(){
                                                                         if(window.location && (window.location.pathname === '/online-traning/' || window.location.pathname === '/online-traning')){
                                                                                 ym(11787892, 'reachGoal', 'online_ok');
                                                                         }
+
+                                                                        ym(11787892, 'reachGoal', 'all_form');
                                                                 }
 
 
