@@ -145,11 +145,25 @@ $(document).ready(function(){
                                                                 $(form).find('.answer_form').append(data.message);
                                                         }
 
-                                                        $(form).find('input[type="text"]').val('');
-                                                        $(form).find('input[type="tel"]').val('');
-                                                        $(form).find('input[type="email"]').val('');
-                                                        $(form).find('input[type="checkbox"]').prop('checked', false);
-                                                        $(form).find('textarea').val('');
+                                                                $(form).find('input[type="text"]').val('');
+                                                                $(form).find('input[type="tel"]').val('');
+                                                                $(form).find('input[type="email"]').val('');
+                                                                $(form).find('input[type="checkbox"]').prop('checked', false);
+                                                                $(form).find('textarea').val('');
+
+                                                                if(typeof ym === 'function'){
+                                                                        if($(form).hasClass('consult-form__form')){
+                                                                                ym(11787892, 'reachGoal', 'form_general');
+                                                                        }
+
+                                                                        if($(form).hasClass('cars-gallery__contact-form')){
+                                                                                ym(11787892, 'reachGoal', 'form_car');
+                                                                        }
+
+                                                                        if(window.location && (window.location.pathname === '/online-traning/' || window.location.pathname === '/online-traning')){
+                                                                                ym(11787892, 'reachGoal', 'online_ok');
+                                                                        }
+                                                                }
 
                                                         if(typeof ym === 'function'){
                                                                 if($(form).hasClass('cars-gallery__contact-form')){
