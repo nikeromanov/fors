@@ -70,13 +70,13 @@ $(document).ready(function(){
 							}
 						});
 					}
-					$.ajax({
-						type: "POST",
-						url: "/local/ajax/actions.php",
-						data: dataf,
-						processData: false,
-						contentType: false,
-					}).done(function( answ ){
+                                        $.ajax({
+                                                type: "POST",
+                                                url: "/local/ajax/actions.php",
+                                                data: dataf,
+                                                processData: false,
+                                                contentType: false,
+                                        }).done(function( answ ){
 						var data = JSON.parse(answ);
                                                 if(data.result=="success"){
                                                         var formContainer = $(form).closest('.consult-form');
@@ -150,6 +150,10 @@ $(document).ready(function(){
                                                         $(form).find('input[type="email"]').val('');
                                                         $(form).find('input[type="checkbox"]').prop('checked', false);
                                                         $(form).find('textarea').val('');
+
+                                                        if($(form).hasClass('cars-gallery__contact-form') && typeof ym === 'function'){
+                                                                ym(11787892, 'reachGoal', 'form_car');
+                                                        }
 
 
                                                 }else{
