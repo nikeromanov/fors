@@ -70,13 +70,13 @@ $(document).ready(function(){
 							}
 						});
 					}
-					$.ajax({
-						type: "POST",
-						url: "/local/ajax/actions.php",
-						data: dataf,
-						processData: false,
-						contentType: false,
-					}).done(function( answ ){
+                                        $.ajax({
+                                                type: "POST",
+                                                url: "/local/ajax/actions.php",
+                                                data: dataf,
+                                                processData: false,
+                                                contentType: false,
+                                        }).done(function( answ ){
 						var data = JSON.parse(answ);
                                                 if(data.result=="success"){
                                                         var formContainer = $(form).closest('.consult-form');
@@ -145,11 +145,41 @@ $(document).ready(function(){
                                                                 $(form).find('.answer_form').append(data.message);
                                                         }
 
-                                                        $(form).find('input[type="text"]').val('');
-                                                        $(form).find('input[type="tel"]').val('');
-                                                        $(form).find('input[type="email"]').val('');
-                                                        $(form).find('input[type="checkbox"]').prop('checked', false);
-                                                        $(form).find('textarea').val('');
+                                                                $(form).find('input[type="text"]').val('');
+                                                                $(form).find('input[type="tel"]').val('');
+                                                                $(form).find('input[type="email"]').val('');
+                                                                $(form).find('input[type="checkbox"]').prop('checked', false);
+                                                                $(form).find('textarea').val('');
+
+                                                                var formServiceValue = ($(form).find('[name="service"]').val() || '').toString().trim();
+                                                                var normalizedServiceValue = formServiceValue.toLowerCase().replace(/a/g, 'а').replace(/b/g, 'в');
+                                                                var isCategoryAService = normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1;
+                                                                var isCategoryBService = normalizedServiceValue.indexOf('категория в') !== -1 || normalizedServiceValue.indexOf('категории в') !== -1;
+
+                                                                var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
+                                                                var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
+                                                                var isCategoryAPage = normalizedLocationPath === '/category/kategoriya-a-a1/';
+                                                                var isCategoryBPage = normalizedLocationPath === '/category/kategoriya-v-v1/';
+
+                                                                if(typeof ym === 'function'){
+                                                                        var isConsultForm = $(form).hasClass('consult-form__form');
+
+                                                                        if(isCategoryAService || isCategoryAPage){
+                                                                                ym(11787892, 'reachGoal', 'form_A');
+                                                                        }else if(isCategoryBService || isCategoryBPage){
+                                                                                ym(11787892, 'reachGoal', 'form_B');
+                                                                        }else if(isConsultForm){
+                                                                                ym(11787892, 'reachGoal', 'form_general');
+                                                                        }
+
+                                                                        if($(form).hasClass('cars-gallery__contact-form')){
+                                                                                ym(11787892, 'reachGoal', 'form_car');
+                                                                        }
+
+                                                                        if(window.location && (window.location.pathname === '/online-traning/' || window.location.pathname === '/online-traning')){
+                                                                                ym(11787892, 'reachGoal', 'online_ok');
+                                                                        }
+                                                                }
 
 
                                                 }else{
