@@ -174,6 +174,7 @@ $(document).ready(function(){
         var isCategoryKvadroService = normalizedServiceValue.indexOf('квадроцик') !== -1 || normalizedServiceValue.indexOf('квадрацик') !== -1;
         var isCategoryBCService = normalizedServiceValue.indexOf('переобучение с в на с') !== -1;
         var isCategoryCDService = normalizedServiceValue.indexOf('переобучение с в на д') !== -1 || normalizedServiceValue.indexOf('переобучение с с на д') !== -1;
+        var isGiftCertificateService = normalizedServiceValue.indexOf('подарочн') !== -1;
 
         var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
         var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
@@ -186,12 +187,15 @@ $(document).ready(function(){
         var isCategoryKvadroPage = normalizedLocationPath === '/category/kategoriya-kvadrotsikly/';
         var isCategoryBCPage = normalizedLocationPath === '/category/pereobuchenie-s-v-na-s/';
         var isCategoryCDPage = normalizedLocationPath === '/category/pereobuchenie-s-v-na-d-s-s-na-d/';
+        var isGiftsPage = normalizedLocationPath === '/gifts/';
 
         if(typeof ym === 'function'){
                 var isConsultForm = $(form).hasClass('consult-form__form');
 
                 if(isCategoryAService || isCategoryAPage){
                         ym(11787892, 'reachGoal', 'form_A');
+                }else if(isGiftCertificateService || isGiftsPage){
+                        ym(11787892, 'reachGoal', 'form_sert');
                 }else if(isCategoryBCService || isCategoryBCPage){
                         ym(11787892, 'reachGoal', 'form_BC');
                 }else if(isCategoryCDService || isCategoryCDPage){
