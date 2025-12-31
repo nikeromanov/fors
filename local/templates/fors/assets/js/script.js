@@ -152,14 +152,16 @@ $(document).ready(function(){
                                                                 $(form).find('textarea').val('');
 
                                                                 var formServiceValue = ($(form).find('[name="service"]').val() || '').toString().trim();
-                                                                var normalizedServiceValue = formServiceValue.toLowerCase().replace(/a/g, 'а').replace(/b/g, 'в');
+                                                                var normalizedServiceValue = formServiceValue.toLowerCase().replace(/a/g, 'а').replace(/b/g, 'в').replace(/c/g, 'с');
                                                                 var isCategoryAService = normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1;
                                                                 var isCategoryBService = normalizedServiceValue.indexOf('категория в') !== -1 || normalizedServiceValue.indexOf('категории в') !== -1;
+                                                                var isCategoryCService = normalizedServiceValue.indexOf('категория с') !== -1 || normalizedServiceValue.indexOf('категории с') !== -1;
 
                                                                 var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
                                                                 var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
                                                                 var isCategoryAPage = normalizedLocationPath === '/category/kategoriya-a-a1/';
                                                                 var isCategoryBPage = normalizedLocationPath === '/category/kategoriya-v-v1/';
+                                                                var isCategoryCPage = normalizedLocationPath === '/category/kategoriya-c-s1/';
 
                                                                 if(typeof ym === 'function'){
                                                                         var isConsultForm = $(form).hasClass('consult-form__form');
@@ -168,6 +170,8 @@ $(document).ready(function(){
                                                                                 ym(11787892, 'reachGoal', 'form_A');
                                                                         }else if(isCategoryBService || isCategoryBPage){
                                                                                 ym(11787892, 'reachGoal', 'form_B');
+                                                                        }else if(isCategoryCService || isCategoryCPage){
+                                                                                ym(11787892, 'reachGoal', 'form_C');
                                                                         }else if(isConsultForm){
                                                                                 ym(11787892, 'reachGoal', 'form_general');
                                                                         }
