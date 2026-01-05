@@ -64,7 +64,20 @@ $settingsPage = getSettings(3);
 		<div class="swiper-slide categories__slide">
 			<div class="price-card">
 			  <div class="price-card__header">
-				<span class="price-card__category"><?=$arSection["UF_LETTER"];?></span>
+                                <?
+                                $sectionIconSrc = '';
+
+                                if (!empty($arSection['UF_SECTION_ICON'])) {
+                                        $sectionIconSrc = CFile::GetPath($arSection['UF_SECTION_ICON']);
+                                }
+                                ?>
+                                <?if($sectionIconSrc){?>
+                                        <span class="price-card__category" aria-hidden="true">
+                                                <img class="price-card__category-icon" src="<?=$sectionIconSrc;?>" alt="<?=$arSection["UF_LETTER"]; ?>">
+                                        </span>
+                                <?} else {?>
+                                        <span class="price-card__category"><?=$arSection["UF_LETTER"];?></span>
+                                <?}?>
 				<a href="<?=$arSection["SECTION_PAGE_URL"];?>" class="price-card__title"><?=$arSection["UF_NAME"];?></a>
 			  </div>
 			  <div class="price-card__description">
