@@ -147,14 +147,15 @@ $settingsPageCur = getSettings(26);
 		],
 		"SECTION_ID" => "",
 		"SECTION_URL" => "",
-		"SECTION_USER_FIELDS" => [
-			0 => "UF_NAME",
-			1 => "UF_LETTER",
-			2 => "UF_ANONCE",
-			3 => "UF_SROK",
-			4 => "UF_FORMAT",
-			5 => "",
-		],
+                "SECTION_USER_FIELDS" => [
+                        0 => "UF_NAME",
+                        1 => "UF_LETTER",
+                        2 => "UF_ANONCE",
+                        3 => "UF_SROK",
+                        4 => "UF_FORMAT",
+                        5 => "UF_SECTION_ICON",
+                        6 => "",
+                ],
 		"SHOW_PARENT_NAME" => "Y",
 		"TOP_DEPTH" => "2",
 		"VIEW_MODE" => "LINE"
