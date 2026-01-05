@@ -36,6 +36,7 @@
 .price-tabs .tabs__item {
   flex: 0 1 auto;
   height: auto;
+  min-width: 0;
 }
 
 .price-tabs .tabs__button {
@@ -43,6 +44,8 @@
   padding: 0.5rem clamp(0.75rem, 2vw, 1.25rem);
   font-size: clamp(0.75rem, 1.5vw, 1rem);
   border-radius: 0.75rem;
+  white-space: normal;
+  word-break: break-word;
 }
 
 @media (max-width: 768px) {

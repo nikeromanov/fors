@@ -81,6 +81,19 @@
   color: #1a1a1a;
 }
 
+.theme-dark .category-card,
+.theme-dark .price-card {
+  background: var(--color-surface-elevated);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
+}
+
+.theme-dark .category-card__price,
+.theme-dark .price-card__price {
+  color: var(--color-text);
+}
+
 .category__table-mobile,
 .price__table-mobile {
   display: none;
