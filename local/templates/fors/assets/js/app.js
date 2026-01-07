@@ -486,6 +486,10 @@
             } else if (center) {
               mapInstance.setCenter(center, 14);
             }
+
+            if (mapInstance?.container) {
+              mapInstance.container.fitToViewport();
+            }
           });
         });
       };
@@ -520,6 +524,12 @@
         const districtId = nextId.replace('district-', '');
         const points = getMapPoints(districtId);
         renderMap(points);
+
+        if (mapInstance?.container) {
+          requestAnimationFrame(() => {
+            mapInstance.container.fitToViewport();
+          });
+        }
 
         activeId = nextId;
         if (focus) {
