@@ -421,22 +421,45 @@
         }
       };
 
+      let ymapsReady = false;
+      let ymapsWaiters = [];
+      let ymapsTimer = null;
+
+      const flushYmapsWaiters = () => {
+        ymapsReady = true;
+        const callbacks = ymapsWaiters.slice();
+        ymapsWaiters = [];
+        callbacks.forEach((fn) => fn());
+      };
+
       const waitForYmaps = (callback) => {
         if (!mapContainer) return;
-        if (window.ymaps && typeof window.ymaps.ready === 'function') {
-          window.ymaps.ready(callback);
+        if (ymapsReady) {
+          callback();
           return;
         }
+        if (window.ymaps && typeof window.ymaps.ready === 'function') {
+          window.ymaps.ready(flushYmapsWaiters);
+          ymapsWaiters.push(callback);
+          return;
+        }
+
+        ymapsWaiters.push(callback);
+        if (ymapsTimer) return;
+
         let attempts = 0;
-        const timer = setInterval(() => {
+        ymapsTimer = setInterval(() => {
           attempts += 1;
           if (window.ymaps && typeof window.ymaps.ready === 'function') {
-            clearInterval(timer);
-            window.ymaps.ready(callback);
-          } else if (attempts > 50) {
-            clearInterval(timer);
+            clearInterval(ymapsTimer);
+            ymapsTimer = null;
+            window.ymaps.ready(flushYmapsWaiters);
+          } else if (attempts > 300) {
+            clearInterval(ymapsTimer);
+            ymapsTimer = null;
+            ymapsWaiters = [];
           }
-        }, 100);
+        }, 200);
       };
 
       const renderMap = (points) => {
