@@ -373,9 +373,10 @@
       let mapInstance = null;
       let mapCollection = null;
       let markerSizePromise = null;
-      let mapFallbackUsed = false;
+      let mapFallbackMode = false;
       let mapFallbackTimer = null;
       const markerIcon = mapContainer ? mapContainer.dataset.markerIcon : null;
+      const hasApiKey = mapContainer ? mapContainer.dataset.hasApiKey === '1' : false;
       const iframeTemplate = (src) =>
         `<iframe class="office-map__map-iframe" src="${src}" width="100%" height="100%" frameborder="0"></iframe>`;
 
@@ -422,7 +423,7 @@
       };
 
       const waitForYmaps = (callback) => {
-        if (!mapContainer) return;
+        if (!mapContainer || !hasApiKey) return;
         if (window.ymaps && typeof window.ymaps.ready === 'function') {
           window.ymaps.ready(callback);
           return;
@@ -439,8 +440,8 @@
         }, 100);
       };
 
-      const renderMap = (points) => {
-        if (!mapContainer || mapFallbackUsed) return;
+      const renderMap = (points, districtId) => {
+        if (!mapContainer || mapFallbackMode) return;
         if (!points.length) {
           if (mapCollection) {
             mapCollection.removeAll();
@@ -448,53 +449,58 @@
           return;
         }
         waitForYmaps(() => {
-          loadMarkerSize().then((markerSize) => {
-            const [iconWidth, iconHeight] = markerSize;
-            const center = points[0].coords;
+          loadMarkerSize()
+            .then((markerSize) => {
+              const [iconWidth, iconHeight] = markerSize;
+              const center = points[0].coords;
 
-            if (!mapInstance) {
-              mapInstance = new window.ymaps.Map(mapContainer, {
-                center,
-                zoom: 13,
-                controls: ['zoomControl'],
-              });
-              mapInstance.behaviors.disable('scrollZoom');
-              mapCollection = new window.ymaps.GeoObjectCollection();
-              mapInstance.geoObjects.add(mapCollection);
-            }
-
-            if (mapCollection) {
-              mapCollection.removeAll();
-            }
-
-            points.forEach((point) => {
-              const balloonContent = [point.title, point.subtitle].filter(Boolean).join('<br>');
-              const placemark = new window.ymaps.Placemark(
-                point.coords,
-                balloonContent ? { balloonContent } : {},
-                {
-                  iconLayout: markerIcon ? 'default#image' : 'default#placemark',
-                  iconImageHref: markerIcon || undefined,
-                  iconImageSize: markerIcon ? [iconWidth, iconHeight] : undefined,
-                  iconImageOffset: markerIcon ? [-iconWidth / 2, -iconHeight] : undefined,
-                },
-              );
-              mapCollection.add(placemark);
-            });
-
-            if (points.length > 1) {
-              const bounds = window.ymaps.util.bounds.fromPoints(points.map((point) => point.coords));
-              if (bounds) {
-                mapInstance.setBounds(bounds, { checkZoomRange: true, zoomMargin: 40 });
+              if (!mapInstance) {
+                mapInstance = new window.ymaps.Map(mapContainer, {
+                  center,
+                  zoom: 13,
+                  controls: ['zoomControl'],
+                });
+                mapInstance.behaviors.disable('scrollZoom');
+                mapCollection = new window.ymaps.GeoObjectCollection();
+                mapInstance.geoObjects.add(mapCollection);
               }
-            } else if (center) {
-              mapInstance.setCenter(center, 14);
-            }
 
-            if (mapInstance?.container) {
-              mapInstance.container.fitToViewport();
-            }
-          });
+              if (mapCollection) {
+                mapCollection.removeAll();
+              }
+
+              points.forEach((point) => {
+                const balloonContent = [point.title, point.subtitle].filter(Boolean).join('<br>');
+                const placemark = new window.ymaps.Placemark(
+                  point.coords,
+                  balloonContent ? { balloonContent } : {},
+                  {
+                    iconLayout: markerIcon ? 'default#image' : 'default#placemark',
+                    iconImageHref: markerIcon || undefined,
+                    iconImageSize: markerIcon ? [iconWidth, iconHeight] : undefined,
+                    iconImageOffset: markerIcon ? [-iconWidth / 2, -iconHeight] : undefined,
+                  },
+                );
+                mapCollection.add(placemark);
+              });
+
+              if (points.length > 1) {
+                const bounds = window.ymaps.util.bounds.fromPoints(points.map((point) => point.coords));
+                if (bounds) {
+                  mapInstance.setBounds(bounds, { checkZoomRange: true, zoomMargin: 40 });
+                }
+              } else if (center) {
+                mapInstance.setCenter(center, 14);
+              }
+
+              if (mapInstance && mapInstance.container) {
+                mapInstance.container.fitToViewport();
+              }
+            })
+            .catch((error) => {
+              console.warn('Ошибка инициализации карты', error);
+              useIframeFallback(districtId);
+            });
         });
       };
 
@@ -502,12 +508,24 @@
         if (!mapContainer) return;
         const fallbackSrc = mapContainer.getAttribute(`data-map-src-${districtId}`);
         if (!fallbackSrc) return;
-        mapFallbackUsed = true;
+        mapFallbackMode = true;
+        const existingIframe = mapContainer.querySelector('iframe');
+        if (existingIframe) {
+          existingIframe.setAttribute('src', fallbackSrc);
+          return;
+        }
         mapContainer.innerHTML = iframeTemplate(fallbackSrc);
       };
 
       const scheduleFallback = (districtId) => {
-        if (mapFallbackUsed) return;
+        if (!hasApiKey) {
+          useIframeFallback(districtId);
+          return;
+        }
+        if (mapFallbackMode) {
+          useIframeFallback(districtId);
+          return;
+        }
         if (mapFallbackTimer) {
           clearTimeout(mapFallbackTimer);
         }
@@ -552,8 +570,8 @@
         try {
           const points = getMapPoints(districtId);
           requestAnimationFrame(() => {
-            renderMap(points);
-            if (mapInstance?.container) {
+            renderMap(points, districtId);
+            if (mapInstance && mapInstance.container) {
               mapInstance.container.fitToViewport();
             }
           });
