@@ -15,7 +15,25 @@ use Bitrix\Main\Web\Json;
 $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){?>
-<?Asset::getInstance()->addJs('https://api-maps.yandex.ru/2.1/?lang=ru_RU');?>
+<?
+global $settings;
+$yandexApiKey = '';
+$apiKeyCandidates = [
+	$settings["YANDEX_MAPS_KEY"]["VALUE"] ?? '',
+	$settings["YANDEX_API_KEY"]["VALUE"] ?? '',
+	$settings["MAPS_API_KEY"]["VALUE"] ?? '',
+];
+foreach($apiKeyCandidates as $candidate){
+	$candidate = trim((string)$candidate);
+	if($candidate !== ''){
+		$yandexApiKey = $candidate;
+		break;
+	}
+}
+if($yandexApiKey !== ''){
+	Asset::getInstance()->addJs('https://api-maps.yandex.ru/2.1/?apikey=' . urlencode($yandexApiKey) . '&lang=ru_RU');
+}
+?>
 <?$markerIcon = SITE_TEMPLATE_PATH . '/assets/icons/marker.png';?>
 
 <section class="page-section container" aria-labelledby="map-title">
@@ -77,6 +95,7 @@ $this->setFrameMode(true);
       <div
         class="office-map__map js-district-map"
         data-marker-icon="<?=$markerIcon;?>"
+        data-has-api-key="<?=$yandexApiKey !== '' ? '1' : '0';?>"
 		<?foreach($arResult["ITEMS"] as $item){
 			$mapPoints = [];
 			if(!empty($item["PROPERTIES"]["AUTOS"]["VALUE"])){
@@ -92,6 +111,9 @@ $this->setFrameMode(true);
 			}
 			if(!empty($mapPoints)){?>
 				data-map-<?=$item["ID"];?>="<?=htmlspecialcharsbx(Json::encode(['points' => $mapPoints]));?>"
+			<?}?>
+			<?if(!empty($item["PROPERTIES"]["MAP"]["VALUE"])){?>
+				data-map-src-<?=$item["ID"];?>="<?=htmlspecialcharsbx($item["PROPERTIES"]["MAP"]["VALUE"]);?>"
 			<?}?>
 		<?}?>
       ></div>
