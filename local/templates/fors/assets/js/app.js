@@ -508,13 +508,20 @@
         if (!mapContainer) return;
         const fallbackSrc = mapContainer.getAttribute(`data-map-src-${districtId}`);
         if (!fallbackSrc) return;
+        let fallbackUrl = fallbackSrc;
+        if (fallbackSrc.includes('<iframe')) {
+          const srcMatch = fallbackSrc.match(/src\s*=\s*["']([^"']+)["']/i);
+          if (srcMatch && srcMatch[1]) {
+            fallbackUrl = srcMatch[1];
+          }
+        }
         mapFallbackMode = true;
         const existingIframe = mapContainer.querySelector('iframe');
         if (existingIframe) {
-          existingIframe.setAttribute('src', fallbackSrc);
+          existingIframe.setAttribute('src', fallbackUrl);
           return;
         }
-        mapContainer.innerHTML = iframeTemplate(fallbackSrc);
+        mapContainer.innerHTML = iframeTemplate(fallbackUrl);
       };
 
       const scheduleFallback = (districtId) => {
