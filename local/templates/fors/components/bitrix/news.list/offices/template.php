@@ -93,6 +93,9 @@ $this->setFrameMode(true);
 			if(!empty($mapPoints)){?>
 				data-map-<?=$item["ID"];?>="<?=htmlspecialcharsbx(Json::encode(['points' => $mapPoints]));?>"
 			<?}?>
+			<?if(!empty($item["PROPERTIES"]["MAP"]["VALUE"])){?>
+				data-map-src-<?=$item["ID"];?>="<?=htmlspecialcharsbx($item["PROPERTIES"]["MAP"]["VALUE"]);?>"
+			<?}?>
 		<?}?>
       ></div>
     </div>

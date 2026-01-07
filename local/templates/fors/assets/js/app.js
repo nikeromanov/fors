@@ -373,7 +373,11 @@
       let mapInstance = null;
       let mapCollection = null;
       let markerSizePromise = null;
-      const markerIcon = mapContainer?.dataset.markerIcon;
+      let mapFallbackUsed = false;
+      let mapFallbackTimer = null;
+      const markerIcon = mapContainer ? mapContainer.dataset.markerIcon : null;
+      const iframeTemplate = (src) =>
+        `<iframe class="office-map__map-iframe" src="${src}" width="100%" height="100%" frameborder="0"></iframe>`;
 
       const loadMarkerSize = () => {
         if (!markerIcon) {
@@ -436,7 +440,7 @@
       };
 
       const renderMap = (points) => {
-        if (!mapContainer) return;
+        if (!mapContainer || mapFallbackUsed) return;
         if (!points.length) {
           if (mapCollection) {
             mapCollection.removeAll();
@@ -494,6 +498,26 @@
         });
       };
 
+      const useIframeFallback = (districtId) => {
+        if (!mapContainer) return;
+        const fallbackSrc = mapContainer.getAttribute(`data-map-src-${districtId}`);
+        if (!fallbackSrc) return;
+        mapFallbackUsed = true;
+        mapContainer.innerHTML = iframeTemplate(fallbackSrc);
+      };
+
+      const scheduleFallback = (districtId) => {
+        if (mapFallbackUsed) return;
+        if (mapFallbackTimer) {
+          clearTimeout(mapFallbackTimer);
+        }
+        mapFallbackTimer = setTimeout(() => {
+          if (!window.ymaps || typeof window.ymaps.ready !== 'function') {
+            useIframeFallback(districtId);
+          }
+        }, 2500);
+      };
+
       function setActive(nextId, { focus = false } = {}) {
         if (!nextId) return;
         const trigger = triggers.find((btn) => btn.dataset.districtTab === nextId);
@@ -524,13 +548,19 @@
 
         // Обновление карты
         const districtId = nextId.replace('district-', '');
-        const points = getMapPoints(districtId);
-        requestAnimationFrame(() => {
-          renderMap(points);
-          if (mapInstance?.container) {
-            mapInstance.container.fitToViewport();
-          }
-        });
+        scheduleFallback(districtId);
+        try {
+          const points = getMapPoints(districtId);
+          requestAnimationFrame(() => {
+            renderMap(points);
+            if (mapInstance?.container) {
+              mapInstance.container.fitToViewport();
+            }
+          });
+        } catch (error) {
+          console.warn('Ошибка инициализации карты', error);
+          useIframeFallback(districtId);
+        }
 
         activeId = nextId;
         if (focus) {
