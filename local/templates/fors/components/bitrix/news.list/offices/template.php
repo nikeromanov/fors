@@ -10,9 +10,13 @@
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
+use Bitrix\Main\Page\Asset;
+use Bitrix\Main\Web\Json;
 $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){?>
+<?Asset::getInstance()->addJs('https://api-maps.yandex.ru/2.1/?lang=ru_RU');?>
+<?$markerIcon = SITE_TEMPLATE_PATH . '/assets/icons/marker.png';?>
 
 <section class="page-section container" aria-labelledby="map-title">
   <h2 class="page-section__title u-visually-hidden" id="map-title">Наши офисы и автодромы в Воронеже</h2>
@@ -68,18 +72,27 @@ $this->setFrameMode(true);
 	  <?}?>
      
 
-      <iframe
+      <div
         class="office-map__map js-district-map"
-        src="https://yandex.ru/map-widget/v1/?um=constructor%3A0de65d926cb4ed7ff8610dc96b0f710b5b72b28944cdaf3426e1fe0588420c1d&amp;source=constructor"
-        width="619"
-        height="658"
-        frameborder="0"
-		<?foreach($arResult["ITEMS"] as $item){?>
-			<?if($item["PROPERTIES"]["MAP"]["VALUE"]){?>
-				data-map-<?=$item["ID"];?>="<?=$item["PROPERTIES"]["MAP"]["VALUE"];?>"
+        data-marker-icon="<?=$markerIcon;?>"
+		<?foreach($arResult["ITEMS"] as $item){
+			$mapPoints = [];
+			if(!empty($item["PROPERTIES"]["AUTOS"]["VALUE"])){
+				foreach($item["PROPERTIES"]["AUTOS"]["VALUE"] as $elem){
+					if(!empty($elem["coords"])){
+						$mapPoints[] = [
+							'coords' => $elem["coords"],
+							'title' => $elem["title"],
+							'subtitle' => $elem["subtitle"],
+						];
+					}
+				}
+			}
+			if(!empty($mapPoints)){?>
+				data-map-<?=$item["ID"];?>="<?=htmlspecialcharsbx(Json::encode(['points' => $mapPoints]));?>"
 			<?}?>
 		<?}?>
-      ></iframe>
+      ></div>
     </div>
   </div>
 </section>
