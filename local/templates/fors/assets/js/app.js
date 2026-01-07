@@ -562,6 +562,8 @@
           }
         });
 
+        syncMapHeight(panel);
+
         // Обновление карты
         const districtId = nextId.replace('district-', '');
         scheduleFallback(districtId);
