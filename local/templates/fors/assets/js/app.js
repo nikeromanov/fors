@@ -164,7 +164,9 @@
       menu.addEventListener('keydown', trapFocus);
       const focusable = getFocusable();
       const focusTarget = focusable[0] || panel;
-      focusTarget?.focus({ preventScroll: true });
+      if (focusTarget) {
+        focusTarget.focus({ preventScroll: true });
+      }
     }
 
     function closeMenu() {
@@ -273,10 +275,11 @@
         }
       });
 
+      const selectedTrigger = triggers.find((btn) => btn.getAttribute('aria-selected') === 'true');
       let activeId =
-        triggers.find((btn) => btn.getAttribute('aria-selected') === 'true')?.dataset.priceTab ||
-        panels[0]?.id ||
-        triggers[0]?.dataset.priceTab;
+        (selectedTrigger && selectedTrigger.dataset.priceTab) ||
+        (panels[0] && panels[0].id) ||
+        (triggers[0] && triggers[0].dataset.priceTab);
 
       function setActive(nextId, { focus = false } = {}) {
         if (!nextId) return;
@@ -365,15 +368,16 @@
         }
       });
 
+      const selectedTrigger = triggers.find((btn) => btn.getAttribute('aria-selected') === 'true');
       let activeId =
-        triggers.find((btn) => btn.getAttribute('aria-selected') === 'true')?.dataset.districtTab ||
-        panels[0]?.id ||
-        triggers[0]?.dataset.districtTab;
+        (selectedTrigger && selectedTrigger.dataset.districtTab) ||
+        (panels[0] && panels[0].id) ||
+        (triggers[0] && triggers[0].dataset.districtTab);
 
       let mapInstance = null;
       let mapCollection = null;
       let markerSizePromise = null;
-      const markerIcon = mapContainer?.dataset.markerIcon;
+      const markerIcon = mapContainer ? mapContainer.dataset.markerIcon : null;
 
       const loadMarkerSize = () => {
         if (!markerIcon) {
@@ -403,12 +407,12 @@
         if (!raw) return [];
         try {
           const payload = JSON.parse(raw);
-          const points = Array.isArray(payload?.points) ? payload.points : [];
+          const points = payload && Array.isArray(payload.points) ? payload.points : [];
           return points
             .map((point) => ({
-              title: point?.title || '',
-              subtitle: point?.subtitle || '',
-              coords: parseCoords(point?.coords || ''),
+              title: (point && point.title) || '',
+              subtitle: (point && point.subtitle) || '',
+              coords: parseCoords((point && point.coords) || ''),
             }))
             .filter((point) => point.coords);
         } catch (error) {
@@ -581,10 +585,11 @@
         }
       });
 
+      const selectedTrigger = triggers.find((btn) => btn.getAttribute('aria-selected') === 'true');
       let activeId =
-        triggers.find((btn) => btn.getAttribute('aria-selected') === 'true')?.dataset.reviewsTab ||
-        panels[0]?.id ||
-        triggers[0]?.dataset.reviewsTab;
+        (selectedTrigger && selectedTrigger.dataset.reviewsTab) ||
+        (panels[0] && panels[0].id) ||
+        (triggers[0] && triggers[0].dataset.reviewsTab);
 
       function setActive(nextId, { focus = false } = {}) {
         if (!nextId) return;
@@ -687,10 +692,11 @@
         }
       });
 
+      const selectedTrigger = triggers.find((btn) => btn.getAttribute('aria-selected') === 'true');
       let activeId =
-        triggers.find((btn) => btn.getAttribute('aria-selected') === 'true')?.dataset.scheduleTab ||
-        panels[0]?.id ||
-        triggers[0]?.dataset.scheduleTab;
+        (selectedTrigger && selectedTrigger.dataset.scheduleTab) ||
+        (panels[0] && panels[0].id) ||
+        (triggers[0] && triggers[0].dataset.scheduleTab);
 
       function setActive(nextId, { focus = false } = {}) {
         if (!nextId) return;
@@ -851,8 +857,12 @@
 
       swiper.on('touchStart', hideSwipeHint);
       swiper.on('slideChange', hideSwipeHint);
-      prevBtn?.addEventListener('click', hideSwipeHint);
-      nextBtn?.addEventListener('click', hideSwipeHint);
+      if (prevBtn) {
+        prevBtn.addEventListener('click', hideSwipeHint);
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', hideSwipeHint);
+      }
     }
 
     // Инициализация слайдера инструкторов
