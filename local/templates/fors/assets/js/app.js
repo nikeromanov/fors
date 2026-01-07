@@ -520,6 +520,8 @@
           }
         });
 
+        syncMapHeight(panel);
+
         // Обновление карты
         const districtId = nextId.replace('district-', '');
         const points = getMapPoints(districtId);
