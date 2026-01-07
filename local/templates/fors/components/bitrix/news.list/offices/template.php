@@ -58,8 +58,10 @@ $this->setFrameMode(true);
 			<ul class="office-map__locations">
 				<?foreach($item["PROPERTIES"]["AUTOS"]["VALUE"] as $elem){?>
 				  <li class="office-map__locations-item">
-					<img src="<?=SITE_TEMPLATE_PATH;?>/assets/icons/map.svg" alt="" class="office-map__icon" aria-hidden="true" />
-					<?=$elem["title"];?>
+					<span class="office-map__locations-title">
+					  <img src="<?=SITE_TEMPLATE_PATH;?>/assets/icons/map.svg" alt="" class="office-map__icon" aria-hidden="true" />
+					  <?=$elem["title"];?>
+					</span>
 					<span class="office-map__locations-description"><?=$elem["subtitle"];?></span>
 					<button class="btn btn--secondary btn--small js-build-route" data-coords="<?=$elem["coords"];?>">
 					  Построить маршрут
