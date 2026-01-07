@@ -116,12 +116,6 @@
   text-transform: uppercase;
 }
 
-.office-map__locations-title {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
 .office-map__locations-description {
   display: block;
   font-size: clamp(0.875rem, 1.4vw, 1.25rem);
