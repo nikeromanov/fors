@@ -10,9 +10,31 @@
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
+use Bitrix\Main\Page\Asset;
+use Bitrix\Main\Web\Json;
 $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){?>
+<?
+global $settings;
+$yandexApiKey = '';
+$apiKeyCandidates = [
+	$settings["YANDEX_MAPS_KEY"]["VALUE"] ?? '',
+	$settings["YANDEX_API_KEY"]["VALUE"] ?? '',
+	$settings["MAPS_API_KEY"]["VALUE"] ?? '',
+];
+foreach($apiKeyCandidates as $candidate){
+	$candidate = trim((string)$candidate);
+	if($candidate !== ''){
+		$yandexApiKey = $candidate;
+		break;
+	}
+}
+if($yandexApiKey !== ''){
+	Asset::getInstance()->addJs('https://api-maps.yandex.ru/2.1/?apikey=' . urlencode($yandexApiKey) . '&lang=ru_RU');
+}
+?>
+<?$markerIcon = SITE_TEMPLATE_PATH . '/assets/icons/marker.png';?>
 
 <section class="page-section container" aria-labelledby="map-title">
   <h2 class="page-section__title u-visually-hidden" id="map-title">Наши офисы и автодромы в Воронеже</h2>
@@ -54,8 +76,10 @@ $this->setFrameMode(true);
 			<ul class="office-map__locations">
 				<?foreach($item["PROPERTIES"]["AUTOS"]["VALUE"] as $elem){?>
 				  <li class="office-map__locations-item">
-					<img src="<?=SITE_TEMPLATE_PATH;?>/assets/icons/map.svg" alt="" class="office-map__icon" aria-hidden="true" />
-					<?=$elem["title"];?>
+					<span class="office-map__locations-title">
+					  <img src="<?=SITE_TEMPLATE_PATH;?>/assets/icons/map.svg" alt="" class="office-map__icon" aria-hidden="true" />
+					  <?=$elem["title"];?>
+					</span>
 					<span class="office-map__locations-description"><?=$elem["subtitle"];?></span>
 					<button class="btn btn--secondary btn--small js-build-route" data-coords="<?=$elem["coords"];?>">
 					  Построить маршрут
@@ -68,18 +92,31 @@ $this->setFrameMode(true);
 	  <?}?>
      
 
-      <iframe
+      <div
         class="office-map__map js-district-map"
-        src="https://yandex.ru/map-widget/v1/?um=constructor%3A0de65d926cb4ed7ff8610dc96b0f710b5b72b28944cdaf3426e1fe0588420c1d&amp;source=constructor"
-        width="619"
-        height="658"
-        frameborder="0"
-		<?foreach($arResult["ITEMS"] as $item){?>
-			<?if($item["PROPERTIES"]["MAP"]["VALUE"]){?>
-				data-map-<?=$item["ID"];?>="<?=$item["PROPERTIES"]["MAP"]["VALUE"];?>"
+        data-marker-icon="<?=$markerIcon;?>"
+        data-has-api-key="<?=$yandexApiKey !== '' ? '1' : '0';?>"
+		<?foreach($arResult["ITEMS"] as $item){
+			$mapPoints = [];
+			if(!empty($item["PROPERTIES"]["AUTOS"]["VALUE"])){
+				foreach($item["PROPERTIES"]["AUTOS"]["VALUE"] as $elem){
+					if(!empty($elem["coords"])){
+						$mapPoints[] = [
+							'coords' => $elem["coords"],
+							'title' => $elem["title"],
+							'subtitle' => $elem["subtitle"],
+						];
+					}
+				}
+			}
+			if(!empty($mapPoints)){?>
+				data-map-<?=$item["ID"];?>="<?=htmlspecialcharsbx(Json::encode(['points' => $mapPoints]));?>"
+			<?}?>
+			<?if(!empty($item["PROPERTIES"]["MAP"]["VALUE"])){?>
+				data-map-src-<?=$item["ID"];?>="<?=htmlspecialcharsbx($item["PROPERTIES"]["MAP"]["VALUE"]);?>"
 			<?}?>
 		<?}?>
-      ></iframe>
+      ></div>
     </div>
   </div>
 </section>
