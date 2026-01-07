@@ -494,14 +494,6 @@
         });
       };
 
-      const syncMapHeight = (panel) => {
-        if (!mapContainer || !panel) return;
-        const panelHeight = panel.getBoundingClientRect().height;
-        if (panelHeight > 0) {
-          mapContainer.style.minHeight = `${Math.round(panelHeight)}px`;
-        }
-      };
-
       function setActive(nextId, { focus = false } = {}) {
         if (!nextId) return;
         const trigger = triggers.find((btn) => btn.dataset.districtTab === nextId);
@@ -533,14 +525,12 @@
         // Обновление карты
         const districtId = nextId.replace('district-', '');
         const points = getMapPoints(districtId);
-        renderMap(points);
-
-        if (mapInstance?.container) {
-          requestAnimationFrame(() => {
-            syncMapHeight(panel);
+        requestAnimationFrame(() => {
+          renderMap(points);
+          if (mapInstance?.container) {
             mapInstance.container.fitToViewport();
-          });
-        }
+          }
+        });
 
         activeId = nextId;
         if (focus) {
