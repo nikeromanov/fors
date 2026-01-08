@@ -359,6 +359,10 @@
       const triggers = Array.from(group.querySelectorAll('[data-district-tab]'));
       const panels = Array.from(group.querySelectorAll('.js-district-panel'));
       const mapContainer = group.querySelector('.js-district-map');
+      let markersOverlay = null;
+      let activeMapSrc = '';
+      let activeCoords = [];
+      let resizeRequestId = null;
       if (triggers.length === 0 || panels.length === 0) return;
 
       const panelMap = new Map();
@@ -379,8 +383,35 @@
         return mapContainer.getAttribute(`data-map-${districtId}`) || '';
       };
 
+      const getCoordsList = (districtId) => {
+        if (!mapContainer) return [];
+        const raw = mapContainer.getAttribute(`data-coords-${districtId}`) || '';
+        if (!raw) return [];
+        let parsed = [];
+        try {
+          parsed = JSON.parse(raw);
+        } catch (error) {
+          return [];
+        }
+        return parsed
+          .map((coords) => {
+            if (!coords) return null;
+            const parts = coords.split(',').map((item) => parseFloat(item.trim()));
+            if (parts.length < 2 || parts.some((value) => Number.isNaN(value))) return null;
+            return [parts[0], parts[1]];
+          })
+          .filter(Boolean);
+      };
+
+      const destroyYandexMap = () => {
+        if (markersOverlay) {
+          markersOverlay.innerHTML = '';
+        }
+      };
+
       const renderMap = (mapSrc) => {
         if (!mapContainer) return;
+        destroyYandexMap();
         if (!mapSrc) {
           mapContainer.innerHTML = '';
           return;
@@ -391,6 +422,88 @@
         iframe.setAttribute('allowfullscreen', '');
         mapContainer.innerHTML = '';
         mapContainer.appendChild(iframe);
+      };
+
+      const parseMapParams = (mapSrc) => {
+        if (!mapSrc) return null;
+        let url;
+        try {
+          url = new URL(mapSrc, window.location.origin);
+        } catch (error) {
+          return null;
+        }
+        const ll = url.searchParams.get('ll');
+        const zoomValue = url.searchParams.get('z');
+        if (!ll || !zoomValue) return null;
+        const [lon, lat] = ll.split(',').map((value) => parseFloat(value.trim()));
+        const zoom = parseInt(zoomValue, 10);
+        if ([lat, lon].some((value) => Number.isNaN(value)) || Number.isNaN(zoom)) return null;
+        return { center: [lat, lon], zoom };
+      };
+
+      const projectPoint = ([lat, lon], zoom) => {
+        const sin = Math.sin((lat * Math.PI) / 180);
+        const scale = 256 * Math.pow(2, zoom);
+        const x = ((lon + 180) / 360) * scale;
+        const y = (0.5 - Math.log((1 + sin) / (1 - sin)) / (4 * Math.PI)) * scale;
+        return { x, y };
+      };
+
+      const noteContainerPosition = () => {
+        if (!mapContainer) return;
+        const computed = window.getComputedStyle(mapContainer);
+        if (computed.position === 'static') {
+          mapContainer.style.position = 'relative';
+        }
+      };
+
+      const ensureMarkersOverlay = () => {
+        if (!mapContainer) return null;
+        if (!markersOverlay) {
+          markersOverlay = document.createElement('div');
+          markersOverlay.className = 'office-map__markers';
+          markersOverlay.style.position = 'absolute';
+          markersOverlay.style.inset = '0';
+          markersOverlay.style.pointerEvents = 'none';
+          markersOverlay.style.zIndex = '2';
+        }
+        if (!mapContainer.contains(markersOverlay)) {
+          mapContainer.appendChild(markersOverlay);
+        }
+        noteContainerPosition();
+        return markersOverlay;
+      };
+
+      const renderMarkers = (mapSrc, coordsList) => {
+        if (!mapContainer) return;
+        const overlay = ensureMarkersOverlay();
+        if (!overlay) return;
+        overlay.innerHTML = '';
+        if (!mapSrc || coordsList.length === 0) return;
+        const mapParams = parseMapParams(mapSrc);
+        if (!mapParams) return;
+        const { center, zoom } = mapParams;
+        const rect = mapContainer.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+        const centerPoint = projectPoint(center, zoom);
+        const markerIcon = mapContainer.getAttribute('data-marker-icon') || '';
+        if (!markerIcon) return;
+        const markerSize = 24;
+        coordsList.forEach((coords) => {
+          const point = projectPoint(coords, zoom);
+          const left = Math.round(point.x - centerPoint.x + rect.width / 2 - markerSize / 2);
+          const top = Math.round(point.y - centerPoint.y + rect.height / 2 - markerSize);
+          const marker = document.createElement('img');
+          marker.src = markerIcon;
+          marker.alt = '';
+          marker.setAttribute('aria-hidden', 'true');
+          marker.style.position = 'absolute';
+          marker.style.width = `${markerSize}px`;
+          marker.style.height = `${markerSize}px`;
+          marker.style.left = `${left}px`;
+          marker.style.top = `${top}px`;
+          overlay.appendChild(marker);
+        });
       };
 
       function setActive(nextId, { focus = false } = {}) {
@@ -422,7 +535,11 @@
         // Обновление карты
         const districtId = nextId.replace('district-', '');
         const mapSrc = getMapSrc(districtId);
+        const coordsList = getCoordsList(districtId);
         renderMap(mapSrc);
+        activeMapSrc = mapSrc;
+        activeCoords = coordsList;
+        renderMarkers(mapSrc, coordsList);
 
         activeId = nextId;
         if (focus) {
@@ -431,6 +548,13 @@
       }
 
       setActive(activeId);
+      window.addEventListener('resize', () => {
+        if (!activeMapSrc || activeCoords.length === 0) return;
+        if (resizeRequestId) {
+          cancelAnimationFrame(resizeRequestId);
+        }
+        resizeRequestId = requestAnimationFrame(() => renderMarkers(activeMapSrc, activeCoords));
+      });
 
       function handleKeydown(event, current) {
         const { key } = event;
