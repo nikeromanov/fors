@@ -385,7 +385,7 @@
         return mapContainer.getAttribute('data-map-default') || '';
       };
 
-      const getCoordsList = (districtId) => {
+      function getCoordsList(districtId) {
         if (!mapContainer) return [];
         const raw = mapContainer.getAttribute(`data-coords-${districtId}`) || '';
         if (!raw) return [];
@@ -409,39 +409,7 @@
             };
           })
           .filter(Boolean);
-      };
-
-      const destroyYandexMap = () => {
-        if (markersOverlay) {
-          markersOverlay.innerHTML = '';
-        }
-      };
-
-      const getCoordsList = (districtId) => {
-        if (!mapContainer) return [];
-        const raw = mapContainer.getAttribute(`data-coords-${districtId}`) || '';
-        if (!raw) return [];
-        let parsed = [];
-        try {
-          parsed = JSON.parse(raw);
-        } catch (error) {
-          return [];
-        }
-        return parsed
-          .map((item) => {
-            if (!item) return null;
-            const rawCoords = typeof item === 'string' ? item : item.coords;
-            if (!rawCoords) return null;
-            const parts = rawCoords.split(',').map((value) => parseFloat(String(value).trim()));
-            if (parts.length < 2 || parts.some((value) => Number.isNaN(value))) return null;
-            return {
-              coords: [parts[0], parts[1]],
-              title: typeof item === 'object' && item !== null ? item.title || '' : '',
-              subtitle: typeof item === 'object' && item !== null ? item.subtitle || '' : '',
-            };
-          })
-          .filter(Boolean);
-      };
+      }
 
       const destroyYandexMap = () => {
         if (markersOverlay) {
