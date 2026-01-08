@@ -403,6 +403,12 @@
           .filter(Boolean);
       };
 
+      const destroyYandexMap = () => {
+        if (markersOverlay) {
+          markersOverlay.innerHTML = '';
+        }
+      };
+
       const renderMap = (mapSrc) => {
         if (!mapContainer) return;
         destroyYandexMap();
