@@ -1,4 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+use Bitrix\Main\Page\Asset;
+use Bitrix\Main\Web\Json;
 /** @var array $arParams */
 /** @var array $arResult */
 /** @global CMain $APPLICATION */
@@ -15,18 +17,34 @@ $this->setFrameMode(true);
 <?if(!empty($arResult["ITEMS"])){?>
 <?
 $defaultMapSrc = '';
+$districtCoords = [];
+$hasCoords = false;
 foreach($arResult["ITEMS"] as $item){
 	$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
 	$mapRaw = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
 	$mapRaw = trim((string)$mapRaw);
-	if($mapRaw !== ''){
+	if($mapRaw !== '' && $defaultMapSrc === ''){
 		if(stripos($mapRaw, '<iframe') !== false && preg_match('/src=["\']([^"\']+)["\']/', $mapRaw, $matches)){
 			$mapRaw = $matches[1];
 		}
 		$defaultMapSrc = $mapRaw;
-		break;
 	}
+	$autos = $item["PROPERTIES"]["AUTOS"]["VALUE"] ?? [];
+	$coordsList = [];
+	foreach($autos as $auto){
+		$coords = trim((string)($auto["coords"] ?? ''));
+		if($coords !== ''){
+			$coordsList[] = $coords;
+			$hasCoords = true;
+		}
+	}
+	$districtCoords[$item["ID"]] = $coordsList;
 }
+
+if($hasCoords){
+	Asset::getInstance()->addJs('https://api-maps.yandex.ru/2.1/?lang=ru_RU');
+}
+$markerIcon = SITE_TEMPLATE_PATH.'/assets/icons/marker.png';
 ?>
 
 <section class="page-section container" aria-labelledby="map-title">
@@ -85,16 +103,18 @@ foreach($arResult["ITEMS"] as $item){
 
       <div
         class="office-map__map js-district-map"
+		data-marker-icon="<?=htmlspecialcharsbx($markerIcon);?>"
 		<?foreach($arResult["ITEMS"] as $item){
 			$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
 			$mapRaw = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
 			$mapRaw = trim((string)$mapRaw);
-			if($mapRaw !== ''){
-				if(stripos($mapRaw, '<iframe') !== false && preg_match('/src=["\']([^"\']+)["\']/', $mapRaw, $matches)){
-					$mapRaw = $matches[1];
-				}?>
+			if($mapRaw !== '' && stripos($mapRaw, '<iframe') !== false && preg_match('/src=["\']([^"\']+)["\']/', $mapRaw, $matches)){
+				$mapRaw = $matches[1];
+			}
+			if($mapRaw !== ''){?>
 				data-map-<?=$item["ID"];?>="<?=htmlspecialcharsbx($mapRaw);?>"
 			<?}?>
+			data-coords-<?=$item["ID"];?>="<?=htmlspecialcharsbx(Json::encode($districtCoords[$item["ID"]] ?? []));?>"
 		<?}?>
       ><?if(!empty($defaultMapSrc)){?>
 		  <iframe src="<?=htmlspecialcharsbx($defaultMapSrc);?>" loading="lazy" allowfullscreen></iframe>
