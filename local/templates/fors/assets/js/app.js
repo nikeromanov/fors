@@ -405,6 +405,7 @@
 
       const renderMap = (mapSrc) => {
         if (!mapContainer) return;
+        destroyYandexMap();
         if (!mapSrc) {
           mapContainer.innerHTML = '';
           return;
