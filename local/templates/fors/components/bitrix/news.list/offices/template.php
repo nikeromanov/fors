@@ -10,13 +10,20 @@
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
-use Bitrix\Main\Page\Asset;
-use Bitrix\Main\Web\Json;
 $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){?>
-<?Asset::getInstance()->addJs('https://api-maps.yandex.ru/2.1/?lang=ru_RU');?>
-<?$markerIcon = SITE_TEMPLATE_PATH . '/assets/icons/marker.png';?>
+<?
+$defaultMapHtml = '';
+foreach($arResult["ITEMS"] as $item){
+	$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
+	$mapHtml = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
+	if(!empty($mapHtml)){
+		$defaultMapHtml = $mapHtml;
+		break;
+	}
+}
+?>
 
 <section class="page-section container" aria-labelledby="map-title">
   <h2 class="page-section__title u-visually-hidden" id="map-title">Наши офисы и автодромы в Воронеже</h2>
@@ -74,25 +81,14 @@ $this->setFrameMode(true);
 
       <div
         class="office-map__map js-district-map"
-        data-marker-icon="<?=$markerIcon;?>"
 		<?foreach($arResult["ITEMS"] as $item){
-			$mapPoints = [];
-			if(!empty($item["PROPERTIES"]["AUTOS"]["VALUE"])){
-				foreach($item["PROPERTIES"]["AUTOS"]["VALUE"] as $elem){
-					if(!empty($elem["coords"])){
-						$mapPoints[] = [
-							'coords' => $elem["coords"],
-							'title' => $elem["title"],
-							'subtitle' => $elem["subtitle"],
-						];
-					}
-				}
-			}
-			if(!empty($mapPoints)){?>
-				data-map-<?=$item["ID"];?>="<?=htmlspecialcharsbx(Json::encode(['points' => $mapPoints]));?>"
+			$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
+			$mapHtml = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
+			if(!empty($mapHtml)){?>
+				data-map-<?=$item["ID"];?>="<?=htmlspecialcharsbx($mapHtml);?>"
 			<?}?>
 		<?}?>
-      ></div>
+      ><?if(!empty($defaultMapHtml)){?><?=$defaultMapHtml;?><?}?></div>
     </div>
   </div>
 </section>
