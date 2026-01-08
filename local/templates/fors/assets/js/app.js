@@ -359,6 +359,8 @@
       const triggers = Array.from(group.querySelectorAll('[data-district-tab]'));
       const panels = Array.from(group.querySelectorAll('.js-district-panel'));
       const mapContainer = group.querySelector('.js-district-map');
+      let mapInstance = null;
+      let mapReadyPromise = null;
       if (triggers.length === 0 || panels.length === 0) return;
 
       const panelMap = new Map();
@@ -379,8 +381,48 @@
         return mapContainer.getAttribute(`data-map-${districtId}`) || '';
       };
 
+      const getCoordsList = (districtId) => {
+        if (!mapContainer) return [];
+        const raw = mapContainer.getAttribute(`data-coords-${districtId}`) || '';
+        if (!raw) return [];
+        let parsed = [];
+        try {
+          parsed = JSON.parse(raw);
+        } catch (error) {
+          return [];
+        }
+        return parsed
+          .map((coords) => {
+            if (!coords) return null;
+            const parts = coords.split(',').map((item) => parseFloat(item.trim()));
+            if (parts.length < 2 || parts.some((value) => Number.isNaN(value))) return null;
+            return [parts[0], parts[1]];
+          })
+          .filter(Boolean);
+      };
+
+      const ensureYandexReady = () => {
+        if (!window.ymaps || typeof window.ymaps.ready !== 'function') {
+          return Promise.resolve(false);
+        }
+        if (!mapReadyPromise) {
+          mapReadyPromise = new Promise((resolve) => {
+            window.ymaps.ready(() => resolve(true));
+          });
+        }
+        return mapReadyPromise;
+      };
+
+      const destroyYandexMap = () => {
+        if (mapInstance) {
+          mapInstance.destroy();
+          mapInstance = null;
+        }
+      };
+
       const renderMap = (mapSrc) => {
         if (!mapContainer) return;
+        destroyYandexMap();
         if (!mapSrc) {
           mapContainer.innerHTML = '';
           return;
@@ -391,6 +433,58 @@
         iframe.setAttribute('allowfullscreen', '');
         mapContainer.innerHTML = '';
         mapContainer.appendChild(iframe);
+      };
+
+      const renderYandexMap = (coordsList) => {
+        if (!mapContainer || coordsList.length === 0) return false;
+        if (!window.ymaps || typeof window.ymaps.ready !== 'function') return false;
+        const markerIcon = mapContainer.getAttribute('data-marker-icon') || '';
+        const markerSize = [24, 24];
+        const markerOffset = [-markerSize[0] / 2, -markerSize[1]];
+        ensureYandexReady().then((ready) => {
+          if (!ready || coordsList.length === 0) return;
+          mapContainer.innerHTML = '';
+          if (!mapInstance) {
+            mapInstance = new window.ymaps.Map(
+              mapContainer,
+              {
+                center: coordsList[0],
+                zoom: 14,
+                controls: [],
+              },
+              {
+                suppressMapOpenBlock: true,
+              },
+            );
+          } else {
+            mapInstance.geoObjects.removeAll();
+            mapInstance.setCenter(coordsList[0]);
+          }
+
+          coordsList.forEach((coords) => {
+            const placemark = new window.ymaps.Placemark(
+              coords,
+              {},
+              {
+                iconLayout: markerIcon ? 'default#image' : 'default#placemark',
+                iconImageHref: markerIcon,
+                iconImageSize: markerSize,
+                iconImageOffset: markerOffset,
+              },
+            );
+            mapInstance.geoObjects.add(placemark);
+          });
+
+          if (coordsList.length > 1) {
+            const bounds = mapInstance.geoObjects.getBounds();
+            if (bounds) {
+              mapInstance.setBounds(bounds, { checkZoomRange: true, zoomMargin: 20 });
+            }
+          } else {
+            mapInstance.setZoom(15);
+          }
+        });
+        return true;
       };
 
       function setActive(nextId, { focus = false } = {}) {
@@ -422,7 +516,10 @@
         // Обновление карты
         const districtId = nextId.replace('district-', '');
         const mapSrc = getMapSrc(districtId);
-        renderMap(mapSrc);
+        const coordsList = getCoordsList(districtId);
+        if (!renderYandexMap(coordsList)) {
+          renderMap(mapSrc);
+        }
 
         activeId = nextId;
         if (focus) {
