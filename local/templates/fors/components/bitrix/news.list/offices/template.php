@@ -29,12 +29,16 @@ foreach($arResult["ITEMS"] as $item){
 	}
 	$autos = $item["PROPERTIES"]["AUTOS"]["VALUE"] ?? [];
 	$coordsList = [];
-		foreach($autos as $auto){
-			$coords = trim((string)($auto["coords"] ?? ''));
-			if($coords !== ''){
-				$coordsList[] = $coords;
-			}
+	foreach($autos as $auto){
+		$coords = trim((string)($auto["coords"] ?? ''));
+		if($coords !== ''){
+			$coordsList[] = [
+				"coords" => $coords,
+				"title" => (string)($auto["title"] ?? ''),
+				"subtitle" => (string)($auto["subtitle"] ?? ''),
+			];
 		}
+	}
 	$districtCoords[$item["ID"]] = $coordsList;
 }
 $markerIcon = SITE_TEMPLATE_PATH.'/assets/icons/marker.png';

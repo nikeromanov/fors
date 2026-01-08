@@ -394,11 +394,17 @@
           return [];
         }
         return parsed
-          .map((coords) => {
-            if (!coords) return null;
-            const parts = coords.split(',').map((item) => parseFloat(item.trim()));
+          .map((item) => {
+            if (!item) return null;
+            const rawCoords = typeof item === 'string' ? item : item.coords;
+            if (!rawCoords) return null;
+            const parts = rawCoords.split(',').map((value) => parseFloat(String(value).trim()));
             if (parts.length < 2 || parts.some((value) => Number.isNaN(value))) return null;
-            return [parts[0], parts[1]];
+            return {
+              coords: [parts[0], parts[1]],
+              title: typeof item === 'object' && item !== null ? item.title || '' : '',
+              subtitle: typeof item === 'object' && item !== null ? item.subtitle || '' : '',
+            };
           })
           .filter(Boolean);
       };
@@ -457,6 +463,18 @@
         }
       };
 
+      const lockMapInteractions = () => {
+        if (!mapContainer || mapContainer.dataset.zoomLocked === 'true') return;
+        mapContainer.dataset.zoomLocked = 'true';
+        const prevent = (event) => event.preventDefault();
+        mapContainer.addEventListener('wheel', prevent, { passive: false });
+        mapContainer.addEventListener('dblclick', prevent);
+        mapContainer.addEventListener('gesturestart', prevent);
+        mapContainer.addEventListener('gesturechange', prevent);
+        mapContainer.addEventListener('gestureend', prevent);
+        mapContainer.addEventListener('touchmove', prevent, { passive: false });
+      };
+
       const ensureMarkersOverlay = () => {
         if (!mapContainer) return null;
         if (!markersOverlay) {
@@ -471,6 +489,7 @@
           mapContainer.appendChild(markersOverlay);
         }
         noteContainerPosition();
+        lockMapInteractions();
         return markersOverlay;
       };
 
@@ -489,19 +508,65 @@
         const markerIcon = mapContainer.getAttribute('data-marker-icon') || '';
         if (!markerIcon) return;
         const markerSize = 24;
-        coordsList.forEach((coords) => {
-          const point = projectPoint(coords, zoom);
+        const hideTooltips = () => {
+          overlay.querySelectorAll('[data-tooltip]').forEach((tooltip) => {
+            tooltip.style.display = 'none';
+          });
+        };
+        if (mapContainer && mapContainer.dataset.tooltipBound !== 'true') {
+          mapContainer.dataset.tooltipBound = 'true';
+          mapContainer.addEventListener('click', () => hideTooltips());
+        }
+        coordsList.forEach((item) => {
+          const point = projectPoint(item.coords, zoom);
           const left = Math.round(point.x - centerPoint.x + rect.width / 2 - markerSize / 2);
           const top = Math.round(point.y - centerPoint.y + rect.height / 2 - markerSize);
-          const marker = document.createElement('img');
-          marker.src = markerIcon;
-          marker.alt = '';
-          marker.setAttribute('aria-hidden', 'true');
+          const marker = document.createElement('button');
+          marker.type = 'button';
+          marker.className = 'office-map__marker';
+          const tooltipText = [item.title, item.subtitle].filter(Boolean).join(' — ');
+          marker.title = tooltipText;
           marker.style.position = 'absolute';
-          marker.style.width = `${markerSize}px`;
-          marker.style.height = `${markerSize}px`;
           marker.style.left = `${left}px`;
           marker.style.top = `${top}px`;
+          marker.style.width = `${markerSize}px`;
+          marker.style.height = `${markerSize}px`;
+          marker.style.padding = '0';
+          marker.style.border = '0';
+          marker.style.background = 'transparent';
+          marker.style.pointerEvents = 'auto';
+          const markerImage = document.createElement('img');
+          markerImage.src = markerIcon;
+          markerImage.alt = '';
+          markerImage.setAttribute('aria-hidden', 'true');
+          markerImage.style.display = 'block';
+          markerImage.style.width = '100%';
+          markerImage.style.height = '100%';
+          marker.appendChild(markerImage);
+          if (tooltipText) {
+            const tooltip = document.createElement('span');
+            tooltip.textContent = tooltipText;
+            tooltip.dataset.tooltip = 'true';
+            tooltip.style.position = 'absolute';
+            tooltip.style.bottom = '100%';
+            tooltip.style.left = '50%';
+            tooltip.style.transform = 'translate(-50%, -8px)';
+            tooltip.style.background = '#ffffff';
+            tooltip.style.color = '#000000';
+            tooltip.style.borderRadius = '6px';
+            tooltip.style.padding = '6px 10px';
+            tooltip.style.whiteSpace = 'nowrap';
+            tooltip.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            tooltip.style.display = 'none';
+            tooltip.style.pointerEvents = 'none';
+            marker.appendChild(tooltip);
+            marker.addEventListener('click', (event) => {
+              event.stopPropagation();
+              const isVisible = tooltip.style.display === 'block';
+              hideTooltips();
+              tooltip.style.display = isVisible ? 'none' : 'block';
+            });
+          }
           overlay.appendChild(marker);
         });
       };
