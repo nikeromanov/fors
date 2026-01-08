@@ -475,6 +475,22 @@
         mapContainer.addEventListener('touchmove', prevent, { passive: false });
       };
 
+      const ensureMapBlocker = () => {
+        if (!mapContainer) return null;
+        if (!mapContainer.dataset.blockerReady) {
+          const blocker = document.createElement('div');
+          blocker.className = 'office-map__blocker';
+          blocker.style.position = 'absolute';
+          blocker.style.inset = '0';
+          blocker.style.zIndex = '1';
+          blocker.style.background = 'transparent';
+          blocker.style.pointerEvents = 'auto';
+          mapContainer.appendChild(blocker);
+          mapContainer.dataset.blockerReady = 'true';
+        }
+        return mapContainer.querySelector('.office-map__blocker');
+      };
+
       const ensureMarkersOverlay = () => {
         if (!mapContainer) return null;
         if (!markersOverlay) {
@@ -490,6 +506,7 @@
         }
         noteContainerPosition();
         lockMapInteractions();
+        ensureMapBlocker();
         return markersOverlay;
       };
 
