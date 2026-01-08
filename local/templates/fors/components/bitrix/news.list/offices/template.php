@@ -101,6 +101,7 @@ $markerIcon = SITE_TEMPLATE_PATH.'/assets/icons/marker.png';
       <div
         class="office-map__map js-district-map"
 		data-marker-icon="<?=htmlspecialcharsbx($markerIcon);?>"
+		data-map-default="<?=htmlspecialcharsbx($defaultMapSrc);?>"
 		<?foreach($arResult["ITEMS"] as $item){
 			$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
 			$mapRaw = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;

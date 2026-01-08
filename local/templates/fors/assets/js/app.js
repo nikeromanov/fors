@@ -380,7 +380,41 @@
 
       const getMapSrc = (districtId) => {
         if (!mapContainer) return '';
-        return mapContainer.getAttribute(`data-map-${districtId}`) || '';
+        const specific = mapContainer.getAttribute(`data-map-${districtId}`) || '';
+        if (specific) return specific;
+        return mapContainer.getAttribute('data-map-default') || '';
+      };
+
+      const getCoordsList = (districtId) => {
+        if (!mapContainer) return [];
+        const raw = mapContainer.getAttribute(`data-coords-${districtId}`) || '';
+        if (!raw) return [];
+        let parsed = [];
+        try {
+          parsed = JSON.parse(raw);
+        } catch (error) {
+          return [];
+        }
+        return parsed
+          .map((item) => {
+            if (!item) return null;
+            const rawCoords = typeof item === 'string' ? item : item.coords;
+            if (!rawCoords) return null;
+            const parts = rawCoords.split(',').map((value) => parseFloat(String(value).trim()));
+            if (parts.length < 2 || parts.some((value) => Number.isNaN(value))) return null;
+            return {
+              coords: [parts[0], parts[1]],
+              title: typeof item === 'object' && item !== null ? item.title || '' : '',
+              subtitle: typeof item === 'object' && item !== null ? item.subtitle || '' : '',
+            };
+          })
+          .filter(Boolean);
+      };
+
+      const destroyYandexMap = () => {
+        if (markersOverlay) {
+          markersOverlay.innerHTML = '';
+        }
       };
 
       const getCoordsList = (districtId) => {
@@ -477,8 +511,9 @@
 
       const ensureMapBlocker = () => {
         if (!mapContainer) return null;
-        if (!mapContainer.dataset.blockerReady) {
-          const blocker = document.createElement('div');
+        let blocker = mapContainer.querySelector('.office-map__blocker');
+        if (!blocker) {
+          blocker = document.createElement('div');
           blocker.className = 'office-map__blocker';
           blocker.style.position = 'absolute';
           blocker.style.inset = '0';
@@ -488,7 +523,7 @@
           mapContainer.appendChild(blocker);
           mapContainer.dataset.blockerReady = 'true';
         }
-        return mapContainer.querySelector('.office-map__blocker');
+        return blocker;
       };
 
       const ensureMarkersOverlay = () => {
