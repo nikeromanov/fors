@@ -374,147 +374,23 @@
         (panels[0] && panels[0].id) ||
         (triggers[0] && triggers[0].dataset.districtTab);
 
-      let mapInstance = null;
-      let mapCollection = null;
-      let markerSizePromise = null;
-      const markerIcon = mapContainer ? mapContainer.dataset.markerIcon : null;
-
-      const loadMarkerSize = () => {
-        if (!markerIcon) {
-          return Promise.resolve([40, 40]);
-        }
-        if (!markerSizePromise) {
-          markerSizePromise = new Promise((resolve) => {
-            const image = new Image();
-            image.onload = () => resolve([image.naturalWidth || 40, image.naturalHeight || 40]);
-            image.onerror = () => resolve([40, 40]);
-            image.src = markerIcon;
-          });
-        }
-        return markerSizePromise;
+      const getMapSrc = (districtId) => {
+        if (!mapContainer) return '';
+        return mapContainer.getAttribute(`data-map-${districtId}`) || '';
       };
 
-      const parseCoords = (value) => {
-        if (!value || typeof value !== 'string') return null;
-        const parts = value.split(',').map((chunk) => Number(chunk.trim()));
-        if (parts.length < 2 || parts.some((num) => Number.isNaN(num))) return null;
-        return [parts[0], parts[1]];
-      };
-
-      const getMapPoints = (districtId) => {
-        if (!mapContainer) return [];
-        const raw = mapContainer.getAttribute(`data-map-${districtId}`);
-        if (!raw) return [];
-        try {
-          const payload = JSON.parse(raw);
-          const points = payload && Array.isArray(payload.points) ? payload.points : [];
-          return points
-            .map((point) => ({
-              title: (point && point.title) || '',
-              subtitle: (point && point.subtitle) || '',
-              coords: parseCoords((point && point.coords) || ''),
-            }))
-            .filter((point) => point.coords);
-        } catch (error) {
-          console.warn('Не удалось разобрать данные карты', error);
-          return [];
-        }
-      };
-
-      let ymapsReady = false;
-      let ymapsWaiters = [];
-      let ymapsTimer = null;
-
-      const flushYmapsWaiters = () => {
-        ymapsReady = true;
-        const callbacks = ymapsWaiters.slice();
-        ymapsWaiters = [];
-        callbacks.forEach((fn) => fn());
-      };
-
-      const waitForYmaps = (callback) => {
+      const renderMap = (mapSrc) => {
         if (!mapContainer) return;
-        if (ymapsReady) {
-          callback();
+        if (!mapSrc) {
+          mapContainer.innerHTML = '';
           return;
         }
-        if (window.ymaps && typeof window.ymaps.ready === 'function') {
-          window.ymaps.ready(flushYmapsWaiters);
-          ymapsWaiters.push(callback);
-          return;
-        }
-
-        ymapsWaiters.push(callback);
-        if (ymapsTimer) return;
-
-        let attempts = 0;
-        ymapsTimer = setInterval(() => {
-          attempts += 1;
-          if (window.ymaps && typeof window.ymaps.ready === 'function') {
-            clearInterval(ymapsTimer);
-            ymapsTimer = null;
-            window.ymaps.ready(flushYmapsWaiters);
-          } else if (attempts > 300) {
-            clearInterval(ymapsTimer);
-            ymapsTimer = null;
-            ymapsWaiters = [];
-          }
-        }, 200);
-      };
-
-      const renderMap = (points) => {
-        if (!mapContainer) return;
-        if (!points.length) {
-          if (mapCollection) {
-            mapCollection.removeAll();
-          }
-          return;
-        }
-        waitForYmaps(() => {
-          loadMarkerSize().then((markerSize) => {
-            const [iconWidth, iconHeight] = markerSize;
-            const center = points[0].coords;
-
-            if (!mapInstance) {
-              mapInstance = new window.ymaps.Map(mapContainer, {
-                center,
-                zoom: 13,
-                controls: ['zoomControl'],
-              });
-              mapInstance.behaviors.disable('scrollZoom');
-              mapCollection = new window.ymaps.GeoObjectCollection();
-              mapInstance.geoObjects.add(mapCollection);
-            }
-
-            if (mapCollection) {
-              mapCollection.removeAll();
-            }
-
-            points.forEach((point) => {
-              const balloonContent = [point.title, point.subtitle].filter(Boolean).join('<br>');
-              const placemark = new window.ymaps.Placemark(
-                point.coords,
-                balloonContent ? { balloonContent } : {},
-                {
-                  iconLayout: markerIcon ? 'default#image' : 'default#placemark',
-                  iconImageHref: markerIcon || undefined,
-                  iconImageSize: markerIcon ? [iconWidth, iconHeight] : undefined,
-                  iconImageOffset: markerIcon ? [-iconWidth / 2, -iconHeight] : undefined,
-                },
-              );
-              mapCollection.add(placemark);
-            });
-
-            if (points.length > 1) {
-              const bounds = window.ymaps.util.bounds.fromPoints(points.map((point) => point.coords));
-              if (bounds) {
-                mapInstance.setBounds(bounds, { checkZoomRange: true, zoomMargin: 40 });
-              }
-            } else if (center) {
-              mapInstance.setCenter(center, 14);
-            }
-          });
-        });
+        const iframe = document.createElement('iframe');
+        iframe.src = mapSrc;
+        iframe.loading = 'lazy';
+        iframe.setAttribute('allowfullscreen', '');
+        mapContainer.innerHTML = '';
+        mapContainer.appendChild(iframe);
       };
 
       function setActive(nextId, { focus = false } = {}) {
@@ -545,8 +421,8 @@
 
         // Обновление карты
         const districtId = nextId.replace('district-', '');
-        const points = getMapPoints(districtId);
-        renderMap(points);
+        const mapSrc = getMapSrc(districtId);
+        renderMap(mapSrc);
 
         activeId = nextId;
         if (focus) {
