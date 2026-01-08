@@ -1,5 +1,4 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-use Bitrix\Main\Page\Asset;
 use Bitrix\Main\Web\Json;
 /** @var array $arParams */
 /** @var array $arResult */
@@ -18,7 +17,6 @@ $this->setFrameMode(true);
 <?
 $defaultMapSrc = '';
 $districtCoords = [];
-$hasCoords = false;
 foreach($arResult["ITEMS"] as $item){
 	$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
 	$mapRaw = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
@@ -31,18 +29,13 @@ foreach($arResult["ITEMS"] as $item){
 	}
 	$autos = $item["PROPERTIES"]["AUTOS"]["VALUE"] ?? [];
 	$coordsList = [];
-	foreach($autos as $auto){
-		$coords = trim((string)($auto["coords"] ?? ''));
-		if($coords !== ''){
-			$coordsList[] = $coords;
-			$hasCoords = true;
+		foreach($autos as $auto){
+			$coords = trim((string)($auto["coords"] ?? ''));
+			if($coords !== ''){
+				$coordsList[] = $coords;
+			}
 		}
-	}
 	$districtCoords[$item["ID"]] = $coordsList;
-}
-
-if($hasCoords){
-	Asset::getInstance()->addJs('https://api-maps.yandex.ru/2.1/?lang=ru_RU');
 }
 $markerIcon = SITE_TEMPLATE_PATH.'/assets/icons/marker.png';
 ?>

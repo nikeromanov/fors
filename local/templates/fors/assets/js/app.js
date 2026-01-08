@@ -359,8 +359,10 @@
       const triggers = Array.from(group.querySelectorAll('[data-district-tab]'));
       const panels = Array.from(group.querySelectorAll('.js-district-panel'));
       const mapContainer = group.querySelector('.js-district-map');
-      let mapInstance = null;
-      let mapReadyPromise = null;
+      let markersOverlay = null;
+      let activeMapSrc = '';
+      let activeCoords = [];
+      let resizeRequestId = null;
       if (triggers.length === 0 || panels.length === 0) return;
 
       const panelMap = new Map();
@@ -401,25 +403,6 @@
           .filter(Boolean);
       };
 
-      const ensureYandexReady = () => {
-        if (!window.ymaps || typeof window.ymaps.ready !== 'function') {
-          return Promise.resolve(false);
-        }
-        if (!mapReadyPromise) {
-          mapReadyPromise = new Promise((resolve) => {
-            window.ymaps.ready(() => resolve(true));
-          });
-        }
-        return mapReadyPromise;
-      };
-
-      const destroyYandexMap = () => {
-        if (mapInstance) {
-          mapInstance.destroy();
-          mapInstance = null;
-        }
-      };
-
       const renderMap = (mapSrc) => {
         if (!mapContainer) return;
         destroyYandexMap();
@@ -435,56 +418,86 @@
         mapContainer.appendChild(iframe);
       };
 
-      const renderYandexMap = (coordsList) => {
-        if (!mapContainer || coordsList.length === 0) return false;
-        if (!window.ymaps || typeof window.ymaps.ready !== 'function') return false;
+      const parseMapParams = (mapSrc) => {
+        if (!mapSrc) return null;
+        let url;
+        try {
+          url = new URL(mapSrc, window.location.origin);
+        } catch (error) {
+          return null;
+        }
+        const ll = url.searchParams.get('ll');
+        const zoomValue = url.searchParams.get('z');
+        if (!ll || !zoomValue) return null;
+        const [lon, lat] = ll.split(',').map((value) => parseFloat(value.trim()));
+        const zoom = parseInt(zoomValue, 10);
+        if ([lat, lon].some((value) => Number.isNaN(value)) || Number.isNaN(zoom)) return null;
+        return { center: [lat, lon], zoom };
+      };
+
+      const projectPoint = ([lat, lon], zoom) => {
+        const sin = Math.sin((lat * Math.PI) / 180);
+        const scale = 256 * Math.pow(2, zoom);
+        const x = ((lon + 180) / 360) * scale;
+        const y = (0.5 - Math.log((1 + sin) / (1 - sin)) / (4 * Math.PI)) * scale;
+        return { x, y };
+      };
+
+      const noteContainerPosition = () => {
+        if (!mapContainer) return;
+        const computed = window.getComputedStyle(mapContainer);
+        if (computed.position === 'static') {
+          mapContainer.style.position = 'relative';
+        }
+      };
+
+      const ensureMarkersOverlay = () => {
+        if (!mapContainer) return null;
+        if (!markersOverlay) {
+          markersOverlay = document.createElement('div');
+          markersOverlay.className = 'office-map__markers';
+          markersOverlay.style.position = 'absolute';
+          markersOverlay.style.inset = '0';
+          markersOverlay.style.pointerEvents = 'none';
+          markersOverlay.style.zIndex = '2';
+        }
+        if (!mapContainer.contains(markersOverlay)) {
+          mapContainer.appendChild(markersOverlay);
+        }
+        noteContainerPosition();
+        return markersOverlay;
+      };
+
+      const renderMarkers = (mapSrc, coordsList) => {
+        if (!mapContainer) return;
+        const overlay = ensureMarkersOverlay();
+        if (!overlay) return;
+        overlay.innerHTML = '';
+        if (!mapSrc || coordsList.length === 0) return;
+        const mapParams = parseMapParams(mapSrc);
+        if (!mapParams) return;
+        const { center, zoom } = mapParams;
+        const rect = mapContainer.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+        const centerPoint = projectPoint(center, zoom);
         const markerIcon = mapContainer.getAttribute('data-marker-icon') || '';
-        const markerSize = [24, 24];
-        const markerOffset = [-markerSize[0] / 2, -markerSize[1]];
-        ensureYandexReady().then((ready) => {
-          if (!ready || coordsList.length === 0) return;
-          mapContainer.innerHTML = '';
-          if (!mapInstance) {
-            mapInstance = new window.ymaps.Map(
-              mapContainer,
-              {
-                center: coordsList[0],
-                zoom: 14,
-                controls: [],
-              },
-              {
-                suppressMapOpenBlock: true,
-              },
-            );
-          } else {
-            mapInstance.geoObjects.removeAll();
-            mapInstance.setCenter(coordsList[0]);
-          }
-
-          coordsList.forEach((coords) => {
-            const placemark = new window.ymaps.Placemark(
-              coords,
-              {},
-              {
-                iconLayout: markerIcon ? 'default#image' : 'default#placemark',
-                iconImageHref: markerIcon,
-                iconImageSize: markerSize,
-                iconImageOffset: markerOffset,
-              },
-            );
-            mapInstance.geoObjects.add(placemark);
-          });
-
-          if (coordsList.length > 1) {
-            const bounds = mapInstance.geoObjects.getBounds();
-            if (bounds) {
-              mapInstance.setBounds(bounds, { checkZoomRange: true, zoomMargin: 20 });
-            }
-          } else {
-            mapInstance.setZoom(15);
-          }
+        if (!markerIcon) return;
+        const markerSize = 24;
+        coordsList.forEach((coords) => {
+          const point = projectPoint(coords, zoom);
+          const left = Math.round(point.x - centerPoint.x + rect.width / 2 - markerSize / 2);
+          const top = Math.round(point.y - centerPoint.y + rect.height / 2 - markerSize);
+          const marker = document.createElement('img');
+          marker.src = markerIcon;
+          marker.alt = '';
+          marker.setAttribute('aria-hidden', 'true');
+          marker.style.position = 'absolute';
+          marker.style.width = `${markerSize}px`;
+          marker.style.height = `${markerSize}px`;
+          marker.style.left = `${left}px`;
+          marker.style.top = `${top}px`;
+          overlay.appendChild(marker);
         });
-        return true;
       };
 
       function setActive(nextId, { focus = false } = {}) {
@@ -517,9 +530,10 @@
         const districtId = nextId.replace('district-', '');
         const mapSrc = getMapSrc(districtId);
         const coordsList = getCoordsList(districtId);
-        if (!renderYandexMap(coordsList)) {
-          renderMap(mapSrc);
-        }
+        renderMap(mapSrc);
+        activeMapSrc = mapSrc;
+        activeCoords = coordsList;
+        renderMarkers(mapSrc, coordsList);
 
         activeId = nextId;
         if (focus) {
@@ -528,6 +542,13 @@
       }
 
       setActive(activeId);
+      window.addEventListener('resize', () => {
+        if (!activeMapSrc || activeCoords.length === 0) return;
+        if (resizeRequestId) {
+          cancelAnimationFrame(resizeRequestId);
+        }
+        resizeRequestId = requestAnimationFrame(() => renderMarkers(activeMapSrc, activeCoords));
+      });
 
       function handleKeydown(event, current) {
         const { key } = event;
