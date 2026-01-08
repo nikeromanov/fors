@@ -374,14 +374,23 @@
         (panels[0] && panels[0].id) ||
         (triggers[0] && triggers[0].dataset.districtTab);
 
-      const getMapHtml = (districtId) => {
+      const getMapSrc = (districtId) => {
         if (!mapContainer) return '';
         return mapContainer.getAttribute(`data-map-${districtId}`) || '';
       };
 
-      const renderMap = (mapHtml) => {
+      const renderMap = (mapSrc) => {
         if (!mapContainer) return;
-        mapContainer.innerHTML = mapHtml || '';
+        if (!mapSrc) {
+          mapContainer.innerHTML = '';
+          return;
+        }
+        const iframe = document.createElement('iframe');
+        iframe.src = mapSrc;
+        iframe.loading = 'lazy';
+        iframe.setAttribute('allowfullscreen', '');
+        mapContainer.innerHTML = '';
+        mapContainer.appendChild(iframe);
       };
 
       function setActive(nextId, { focus = false } = {}) {
@@ -412,8 +421,8 @@
 
         // Обновление карты
         const districtId = nextId.replace('district-', '');
-        const mapHtml = getMapHtml(districtId);
-        renderMap(mapHtml);
+        const mapSrc = getMapSrc(districtId);
+        renderMap(mapSrc);
 
         activeId = nextId;
         if (focus) {

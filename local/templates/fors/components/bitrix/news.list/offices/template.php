@@ -14,12 +14,16 @@ $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){?>
 <?
-$defaultMapHtml = '';
+$defaultMapSrc = '';
 foreach($arResult["ITEMS"] as $item){
 	$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
-	$mapHtml = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
-	if(!empty($mapHtml)){
-		$defaultMapHtml = $mapHtml;
+	$mapRaw = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
+	$mapRaw = trim((string)$mapRaw);
+	if($mapRaw !== ''){
+		if(stripos($mapRaw, '<iframe') !== false && preg_match('/src=["\']([^"\']+)["\']/', $mapRaw, $matches)){
+			$mapRaw = $matches[1];
+		}
+		$defaultMapSrc = $mapRaw;
 		break;
 	}
 }
@@ -83,12 +87,18 @@ foreach($arResult["ITEMS"] as $item){
         class="office-map__map js-district-map"
 		<?foreach($arResult["ITEMS"] as $item){
 			$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
-			$mapHtml = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
-			if(!empty($mapHtml)){?>
-				data-map-<?=$item["ID"];?>="<?=htmlspecialcharsbx($mapHtml);?>"
+			$mapRaw = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
+			$mapRaw = trim((string)$mapRaw);
+			if($mapRaw !== ''){
+				if(stripos($mapRaw, '<iframe') !== false && preg_match('/src=["\']([^"\']+)["\']/', $mapRaw, $matches)){
+					$mapRaw = $matches[1];
+				}?>
+				data-map-<?=$item["ID"];?>="<?=htmlspecialcharsbx($mapRaw);?>"
 			<?}?>
 		<?}?>
-      ><?if(!empty($defaultMapHtml)){?><?=$defaultMapHtml;?><?}?></div>
+      ><?if(!empty($defaultMapSrc)){?>
+		  <iframe src="<?=htmlspecialcharsbx($defaultMapSrc);?>" loading="lazy" allowfullscreen></iframe>
+		<?}?></div>
     </div>
   </div>
 </section>
