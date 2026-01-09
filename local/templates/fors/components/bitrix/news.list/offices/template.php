@@ -1,4 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+use Bitrix\Main\Web\Json;
 /** @var array $arParams */
 /** @var array $arResult */
 /** @global CMain $APPLICATION */
@@ -13,6 +14,35 @@
 $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){?>
+<?
+$defaultMapSrc = '';
+$districtCoords = [];
+foreach($arResult["ITEMS"] as $item){
+	$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
+	$mapRaw = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
+	$mapRaw = trim((string)$mapRaw);
+	if($mapRaw !== '' && $defaultMapSrc === ''){
+		if(stripos($mapRaw, '<iframe') !== false && preg_match('/src=["\']([^"\']+)["\']/', $mapRaw, $matches)){
+			$mapRaw = $matches[1];
+		}
+		$defaultMapSrc = $mapRaw;
+	}
+	$autos = $item["PROPERTIES"]["AUTOS"]["VALUE"] ?? [];
+	$coordsList = [];
+	foreach($autos as $auto){
+		$coords = trim((string)($auto["coords"] ?? ''));
+		if($coords !== ''){
+			$coordsList[] = [
+				"coords" => $coords,
+				"title" => (string)($auto["title"] ?? ''),
+				"subtitle" => (string)($auto["subtitle"] ?? ''),
+			];
+		}
+	}
+	$districtCoords[$item["ID"]] = $coordsList;
+}
+$markerIcon = SITE_TEMPLATE_PATH.'/assets/icons/marker.png';
+?>
 
 <section class="page-section container" aria-labelledby="map-title">
   <h2 class="page-section__title u-visually-hidden" id="map-title">Наши офисы и автодромы в Воронеже</h2>
@@ -68,18 +98,25 @@ $this->setFrameMode(true);
 	  <?}?>
      
 
-      <iframe
+      <div
         class="office-map__map js-district-map"
-        src="https://yandex.ru/map-widget/v1/?um=constructor%3A0de65d926cb4ed7ff8610dc96b0f710b5b72b28944cdaf3426e1fe0588420c1d&amp;source=constructor"
-        width="619"
-        height="658"
-        frameborder="0"
-		<?foreach($arResult["ITEMS"] as $item){?>
-			<?if($item["PROPERTIES"]["MAP"]["VALUE"]){?>
-				data-map-<?=$item["ID"];?>="<?=$item["PROPERTIES"]["MAP"]["VALUE"];?>"
+		data-marker-icon="<?=htmlspecialcharsbx($markerIcon);?>"
+		data-map-default="<?=htmlspecialcharsbx($defaultMapSrc);?>"
+		<?foreach($arResult["ITEMS"] as $item){
+			$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
+			$mapRaw = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
+			$mapRaw = trim((string)$mapRaw);
+			if($mapRaw !== '' && stripos($mapRaw, '<iframe') !== false && preg_match('/src=["\']([^"\']+)["\']/', $mapRaw, $matches)){
+				$mapRaw = $matches[1];
+			}
+			if($mapRaw !== ''){?>
+				data-map-<?=$item["ID"];?>="<?=htmlspecialcharsbx($mapRaw);?>"
 			<?}?>
+			data-coords-<?=$item["ID"];?>="<?=htmlspecialcharsbx(Json::encode($districtCoords[$item["ID"]] ?? []));?>"
 		<?}?>
-      ></iframe>
+      ><?if(!empty($defaultMapSrc)){?>
+		  <iframe src="<?=htmlspecialcharsbx($defaultMapSrc);?>" loading="lazy" allowfullscreen></iframe>
+		<?}?></div>
     </div>
   </div>
 </section>
