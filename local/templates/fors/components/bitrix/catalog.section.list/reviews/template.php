@@ -93,18 +93,24 @@ $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_C
 			<?if(!empty($arResult["ITEMS"][$arSection["ID"]])){?>
 					<?foreach($arResult["ITEMS"][$arSection["ID"]] as $item){
 						$date = strtotime($item["DATE_ACTIVE_FROM"]);
-						if(!empty($item["PROPERTIES"]["VIDEO"]["VALUE"])&&!empty($item["PREVIEW_PICTURE"])){
+						$videoUrl = trim((string)$item["PROPERTIES"]["VIDEO"]["VALUE"]);
+						$videoType = '';
+						if($videoUrl !== '' && strpos($videoUrl, 'rutube.ru/') !== false){
+							$videoType = 'iframe';
+						}
+						if(!empty($videoUrl)&&!empty($item["PREVIEW_PICTURE"])){
 						?>
 						<li class="video-card">
 							<div class="video-card__header">
 							  <span class="video-card__author"><?=$item["NAME"];?></span>
 							  <time class="video-card__date"><?=date("d.m.Y",$date);?> | <?=date("H:i:s",$date);?></time>
 							</div>
-							<a
-							  href="<?=$item["PROPERTIES"]["VIDEO"]["VALUE"];?>"
-							  data-fancybox="video-reviews"
-							  class="video-card__embed"
-							>
+							  <a
+								  href="<?=$videoUrl;?>"
+								  data-fancybox="video-reviews"
+								  <?if($videoType){?>data-type="<?=$videoType;?>"<?}?>
+								  class="video-card__embed"
+								>
 							  <img
 								src="<?=CFile::GetPath($item["PREVIEW_PICTURE"]);?>"
 								alt=""
