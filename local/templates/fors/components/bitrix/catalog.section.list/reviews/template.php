@@ -97,6 +97,16 @@ $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_C
 						$videoType = '';
 						if($videoUrl !== '' && strpos($videoUrl, 'rutube.ru/') !== false){
 							$videoType = 'iframe';
+							$videoPath = parse_url($videoUrl, PHP_URL_PATH);
+							if($videoPath){
+								if(preg_match('~^/video/(private/)?([a-z0-9]+)~i', $videoPath, $matches)){
+									$queryString = parse_url($videoUrl, PHP_URL_QUERY);
+									$videoUrl = 'https://rutube.ru/play/embed/'.$matches[2].'/';
+									if($queryString){
+										$videoUrl .= '?'.$queryString;
+									}
+								}
+							}
 						}
 						if(!empty($videoUrl)&&!empty($item["PREVIEW_PICTURE"])){
 						?>
