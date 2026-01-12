@@ -197,8 +197,9 @@ if($_REQUEST["action"]="addform"&&$_REQUEST["phone"]){
                 try {
                     $addedLeadsCollection = $apiClient->leads()->addComplex($leadsCollection);
                 } catch (AmoCRMApiException $e) {
-                   \Bitrix\Main\Diag\Debug::writeToFile($e->getMessage(), 'AmoCRMApiException message', 'amocrm.log');
-                   \Bitrix\Main\Diag\Debug::writeToFile($e->getLastRequestInfo(), 'AmoCRMApiException last request', 'amocrm.log');
+                   $amocrmLogPath = $_SERVER["DOCUMENT_ROOT"] . "/amocrm.log";
+                   \Bitrix\Main\Diag\Debug::writeToFile($e->getMessage(), 'AmoCRMApiException message', $amocrmLogPath);
+                   \Bitrix\Main\Diag\Debug::writeToFile($e->getLastRequestInfo(), 'AmoCRMApiException last request', $amocrmLogPath);
                    echo json_encode(["result"=>"error","message"=>'Заявка отправилась, но произошли проблемы на стороне CRM']);
                    exit;
                 }
