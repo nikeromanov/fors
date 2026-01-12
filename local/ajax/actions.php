@@ -198,11 +198,14 @@ if($_REQUEST["action"]="addform"&&$_REQUEST["phone"]){
                     $addedLeadsCollection = $apiClient->leads()->addComplex($leadsCollection);
                 } catch (AmoCRMApiException $e) {
                    echo json_encode(["result"=>"error","message"=>'Заявка отправилась, но произошли проблемы на стороне CRM']);
+                   exit;
                 }
 			echo json_encode(["result"=>"success","message"=>'Спасибо, ваша заявка отправлена']);
+			exit;
 		
 	}else{
 		echo json_encode(["result"=>"error","message"=>'<h3 style="color:red">'.$el->LAST_ERROR.'</h3>']);
+		exit;
 		
 	}
 }
