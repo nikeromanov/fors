@@ -24,7 +24,9 @@ use AmoCRM\Models\Unsorted\FormsMetadata;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
-if($_REQUEST["action"]="addform"&&$_REQUEST["phone"]){
+header('Content-Type: application/json; charset=UTF-8');
+
+if($_REQUEST["action"] === "addform" && !empty($_REQUEST["phone"])){
 	CModule::IncludeModule('iblock'); 
 
 	$nameForm = "Записаться на курс";
