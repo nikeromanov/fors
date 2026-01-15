@@ -165,6 +165,7 @@ $(document).ready(function(){
                 .replace(/o/g, 'о')
                 .replace(/p/g, 'р')
                 .replace(/v/g, 'в');
+        var hasServiceValue = normalizedServiceValue.length > 0;
         var isCategoryAService = normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1;
         var isCategoryBService = normalizedServiceValue.indexOf('категория в') !== -1 || normalizedServiceValue.indexOf('категории в') !== -1;
         var isCategoryCService = normalizedServiceValue.indexOf('категория с') !== -1 || normalizedServiceValue.indexOf('категории с') !== -1;
@@ -178,16 +179,17 @@ $(document).ready(function(){
 
         var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
         var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
-        var isCategoryAPage = normalizedLocationPath === '/category/kategoriya-a-a1/';
-        var isCategoryBPage = normalizedLocationPath === '/category/kategoriya-v-v1/';
-        var isCategoryCPage = normalizedLocationPath === '/category/kategoriya-c-s1/';
-        var isCategoryDPage = normalizedLocationPath === '/kategoriya-d-d1/';
-        var isCategoryEPage = normalizedLocationPath === '/category/kategoriya-e/';
-        var isCategoryMPage = normalizedLocationPath === '/category/kategoriya-m/';
-        var isCategoryKvadroPage = normalizedLocationPath === '/category/kategoriya-kvadrotsikly/';
-        var isCategoryBCPage = normalizedLocationPath === '/category/pereobuchenie-s-v-na-s/';
-        var isCategoryCDPage = normalizedLocationPath === '/category/pereobuchenie-s-v-na-d-s-s-na-d/';
-        var isGiftsPage = normalizedLocationPath === '/gifts/';
+        var shouldUsePageFallback = !hasServiceValue;
+        var isCategoryAPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-a-a1/';
+        var isCategoryBPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-v-v1/';
+        var isCategoryCPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-c-s1/';
+        var isCategoryDPage = shouldUsePageFallback && normalizedLocationPath === '/kategoriya-d-d1/';
+        var isCategoryEPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-e/';
+        var isCategoryMPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-m/';
+        var isCategoryKvadroPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-kvadrotsikly/';
+        var isCategoryBCPage = shouldUsePageFallback && normalizedLocationPath === '/category/pereobuchenie-s-v-na-s/';
+        var isCategoryCDPage = shouldUsePageFallback && normalizedLocationPath === '/category/pereobuchenie-s-v-na-d-s-s-na-d/';
+        var isGiftsPage = shouldUsePageFallback && normalizedLocationPath === '/gifts/';
 
         if(typeof ym === 'function'){
                 var isConsultForm = $(form).hasClass('consult-form__form');
