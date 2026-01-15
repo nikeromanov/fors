@@ -24,7 +24,9 @@ use AmoCRM\Models\Unsorted\FormsMetadata;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
-if($_REQUEST["action"]="addform"&&$_REQUEST["phone"]){
+header('Content-Type: application/json; charset=UTF-8');
+
+if($_REQUEST["action"] === "addform" && !empty($_REQUEST["phone"])){
 	CModule::IncludeModule('iblock'); 
 
 	$nameForm = "Записаться на курс";
@@ -197,12 +199,18 @@ if($_REQUEST["action"]="addform"&&$_REQUEST["phone"]){
                 try {
                     $addedLeadsCollection = $apiClient->leads()->addComplex($leadsCollection);
                 } catch (AmoCRMApiException $e) {
-                   echo json_encode(["result"=>"error","message"=>'Заявка отправилась, но произошли проблемы на стороне CRM']);
+                   $amocrmLogPath = $_SERVER["DOCUMENT_ROOT"] . "/amocrm.log";
+                   \Bitrix\Main\Diag\Debug::writeToFile($e->getMessage(), 'AmoCRMApiException message', $amocrmLogPath);
+                   \Bitrix\Main\Diag\Debug::writeToFile($e->getLastRequestInfo(), 'AmoCRMApiException last request', $amocrmLogPath);
+                   echo json_encode(["result"=>"error","message"=>'Заявка отправилась, но произошли проблемы на стороне CRM'.print_r($e->getMessage(),true).print_r($e->getLastRequestInfo(),true)]);
+                   exit;
                 }
 			echo json_encode(["result"=>"success","message"=>'Спасибо, ваша заявка отправлена']);
+			exit;
 		
 	}else{
 		echo json_encode(["result"=>"error","message"=>'<h3 style="color:red">'.$el->LAST_ERROR.'</h3>']);
+		exit;
 		
 	}
 }
