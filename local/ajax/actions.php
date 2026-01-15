@@ -200,7 +200,7 @@ if($_REQUEST["action"]="addform"&&$_REQUEST["phone"]){
                    $amocrmLogPath = $_SERVER["DOCUMENT_ROOT"] . "/amocrm.log";
                    \Bitrix\Main\Diag\Debug::writeToFile($e->getMessage(), 'AmoCRMApiException message', $amocrmLogPath);
                    \Bitrix\Main\Diag\Debug::writeToFile($e->getLastRequestInfo(), 'AmoCRMApiException last request', $amocrmLogPath);
-                   echo json_encode(["result"=>"error","message"=>'Заявка отправилась, но произошли проблемы на стороне CRM']);
+                   echo json_encode(["result"=>"error","message"=>'Заявка отправилась, но произошли проблемы на стороне CRM'.print_r($e->getMessage(),true).print_r($e->getLastRequestInfo(),true)]);
                    exit;
                 }
 			echo json_encode(["result"=>"success","message"=>'Спасибо, ваша заявка отправлена']);
