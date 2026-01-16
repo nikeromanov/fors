@@ -76,8 +76,9 @@ $(document).ready(function(){
                                                 data: dataf,
                                                 processData: false,
                                                 contentType: false,
+                                                dataType: "json",
                                         }).done(function( answ ){
-						var data = JSON.parse(answ);
+						var data = answ || {};
                                                 if(data.result=="success"){
                                                         var formContainer = $(form).closest('.consult-form');
                                                         var successBlock = formContainer.find('.consult-form__success');
