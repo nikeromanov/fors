@@ -13,6 +13,7 @@ $dir = $APPLICATION->GetCurDir();
 global $USER;
 global $hideH;
 global $notstandart;
+CJSCore::Init(array('ajax'));
 ?><!DOCTYPE html>
     <html lang="">
     <head>
@@ -44,6 +45,9 @@ global $notstandart;
 		$objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/app.js');
 		
         $objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/script.js');
+		if($dir == "/" && !empty($settings["AKC_DATE"]["VALUE"]) && strtotime($settings["AKC_DATE"]["VALUE"]) > time()){
+			$objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/home-hero-timer.js');
+		}
         $APPLICATION->ShowViewContent('ogtitle');
         $APPLICATION->ShowViewContent('ogdescription');
         $APPLICATION->ShowViewContent('ogimage');
