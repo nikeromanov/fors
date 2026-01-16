@@ -26,7 +26,14 @@ use League\OAuth2\Client\Token\AccessTokenInterface;
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 header('Content-Type: application/json; charset=UTF-8');
 
-if($_REQUEST["action"] === "addform" && !empty($_REQUEST["phone"])){
+$action = isset($_REQUEST["action"]) ? trim((string)$_REQUEST["action"]) : "";
+$normalizedAction = str_replace("_", "", $action);
+if($normalizedAction !== "addform" || empty($_REQUEST["phone"])){
+	echo json_encode(["result"=>"error","message"=>"Некорректные данные формы"]);
+	exit;
+}
+
+if($normalizedAction === "addform"){
 	CModule::IncludeModule('iblock'); 
 
 	$nameForm = "Записаться на курс";
