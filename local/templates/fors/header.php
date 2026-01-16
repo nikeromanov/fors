@@ -13,6 +13,7 @@ $dir = $APPLICATION->GetCurDir();
 global $USER;
 global $hideH;
 global $notstandart;
+CJSCore::Init(array('ajax'));
 ?><!DOCTYPE html>
     <html lang="">
     <head>
