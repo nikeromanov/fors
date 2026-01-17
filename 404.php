@@ -6,6 +6,7 @@ CHTTP::SetStatus("404 Not Found");
 define("HIDE_SIDEBAR", true);
 global $additionalClass;
 $additionalClass = "page-404";
+$APPLICATION->AddHeadString('<style>body.page-404 .primary-nav__link{color:var(--color-text);}</style>');
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
