@@ -181,7 +181,8 @@ $(document).ready(function(){
                 .replace(/p/g, 'р')
                 .replace(/v/g, 'в');
         var hasServiceValue = normalizedServiceValue.length > 0;
-        var isCategoryAService = normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1 || normalizedServiceValue.indexOf('категория а1') !== -1 || normalizedServiceValue.indexOf('категории а1') !== -1;
+        var isCategoryA1Service = normalizedServiceValue.indexOf('категория а1') !== -1 || normalizedServiceValue.indexOf('категории а1') !== -1;
+        var isCategoryAService = (normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1) && !isCategoryA1Service;
         var isCategoryBService = normalizedServiceValue.indexOf('категория в') !== -1 || normalizedServiceValue.indexOf('категории в') !== -1;
         var isCategoryCService = normalizedServiceValue.indexOf('категория с') !== -1 || normalizedServiceValue.indexOf('категории с') !== -1;
         var isCategoryDService = normalizedServiceValue.indexOf('категория д') !== -1 || normalizedServiceValue.indexOf('категории д') !== -1;
@@ -193,7 +194,8 @@ $(document).ready(function(){
         var isGiftCertificateService = normalizedServiceValue.indexOf('подарочн') !== -1;
 
         var shouldUsePageFallback = !hasServiceValue;
-        var isCategoryAPage = shouldUsePageFallback && (normalizedLocationPath === '/category/kategoriya-a/' || normalizedLocationPath === '/category/kategoriya-a1/');
+        var isCategoryAPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-a/';
+        var isCategoryA1Page = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-a1/';
         var isCategoryBPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-v-v1/';
         var isCategoryCPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-c-s1/';
         var isCategoryDPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-d-d1/';
@@ -207,7 +209,9 @@ $(document).ready(function(){
         if(typeof ym === 'function'){
                 var isConsultForm = $(form).hasClass('consult-form__form');
 
-                if(isCategoryAService || isCategoryAPage){
+                if(isCategoryA1Service || isCategoryA1Page){
+                        ym(11787892, 'reachGoal', 'form_A1');
+                }else if(isCategoryAService || isCategoryAPage){
                         ym(11787892, 'reachGoal', 'form_A');
                 }else if(isGiftCertificateService || isGiftsPage){
                         ym(11787892, 'reachGoal', 'form_sert');
