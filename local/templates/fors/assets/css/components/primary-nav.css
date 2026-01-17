@@ -13,6 +13,10 @@
   font-weight: 500;
   transition: color 0.25s ease;
 }
+
+.home_page .primary-nav__link {
+  color: var(--color-static-text);
+}
 .primary-nav__link:hover,
 .primary-nav__link:focus-visible {
   color: var(--color-menu-text-hover);
