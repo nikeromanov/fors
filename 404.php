@@ -4,6 +4,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/urlrewrite.
 CHTTP::SetStatus("404 Not Found");
 @define("ERROR_404","Y");
 define("HIDE_SIDEBAR", true);
+global $additionalClass;
+$additionalClass = "page-404";
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
