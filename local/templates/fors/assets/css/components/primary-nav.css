@@ -17,6 +17,10 @@
 .home_page:not(.page-404) .primary-nav__link {
   color: var(--color-static-text);
 }
+
+.page-404 .primary-nav__link {
+  color: var(--color-text);
+}
 .primary-nav__link:hover,
 .primary-nav__link:focus-visible {
   color: var(--color-menu-text-hover);
