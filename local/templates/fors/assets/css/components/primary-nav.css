@@ -14,7 +14,7 @@
   transition: color 0.25s ease;
 }
 
-.home_page .primary-nav__link {
+.home_page:not(.page-404) .primary-nav__link {
   color: var(--color-static-text);
 }
 .primary-nav__link:hover,
