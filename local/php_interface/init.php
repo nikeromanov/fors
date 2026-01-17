@@ -76,6 +76,7 @@ function splitByParentheses(string $s): array
 }
 
 AddEventHandler('main', 'OnEpilog', 'forsSendLastModifiedHeader');
+AddEventHandler('main', 'OnEndBufferContent', 'forsApplyAltFromCsv');
 
 function forsSendLastModifiedHeader()
 {
@@ -169,4 +170,151 @@ function forsSendLastModifiedHeader()
     } else {
         header('Last-Modified: ' . $headerValue);
     }
+}
+
+function forsLoadAltMapFromCsv(): array
+{
+    static $cache = null;
+
+    if ($cache !== null) {
+        return $cache;
+    }
+
+    $cache = [];
+    $filePath = rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/alt_texts.csv';
+
+    if (!is_file($filePath) || !is_readable($filePath)) {
+        return $cache;
+    }
+
+    if (($handle = fopen($filePath, 'r')) === false) {
+        return $cache;
+    }
+
+    $header = fgetcsv($handle);
+
+    if (!is_array($header)) {
+        fclose($handle);
+        return $cache;
+    }
+
+    $headerMap = [];
+    foreach ($header as $index => $name) {
+        $name = mb_strtolower(trim((string)$name));
+        if ($name !== '') {
+            $headerMap[$name] = $index;
+        }
+    }
+
+    $fromIndex = $headerMap['from'] ?? null;
+    $toIndex = $headerMap['to'] ?? null;
+    $altIndex = $headerMap['alt'] ?? null;
+
+    if ($fromIndex === null || $toIndex === null || $altIndex === null) {
+        fclose($handle);
+        return $cache;
+    }
+
+    while (($row = fgetcsv($handle)) !== false) {
+        $from = trim((string)($row[$fromIndex] ?? ''));
+        $to = trim((string)($row[$toIndex] ?? ''));
+        $alt = trim((string)($row[$altIndex] ?? ''));
+
+        if ($to === '' || $alt === '') {
+            continue;
+        }
+
+        if ($from === '') {
+            $from = '*';
+        }
+
+        $cache[$from][$to] = $alt;
+    }
+
+    fclose($handle);
+
+    return $cache;
+}
+
+function forsApplyAltFromCsv(&$content): void
+{
+    if (!is_string($content) || $content === '' || stripos($content, '<img') === false) {
+        return;
+    }
+
+    if (defined('ADMIN_SECTION') && ADMIN_SECTION === true) {
+        return;
+    }
+
+    $request = \Bitrix\Main\Context::getCurrent()->getRequest();
+    if (!$request || !in_array($request->getRequestMethod(), ['GET', 'HEAD'], true)) {
+        return;
+    }
+
+    $altMap = forsLoadAltMapFromCsv();
+    if (!$altMap) {
+        return;
+    }
+
+    global $APPLICATION;
+
+    if (!is_object($APPLICATION) || !method_exists($APPLICATION, 'GetCurPage')) {
+        return;
+    }
+
+    $scheme = $request->isHttps() ? 'https' : 'http';
+    $host = $request->getHttpHost();
+    $path = $APPLICATION->GetCurPage(false);
+    $currentUrl = $scheme . '://' . $host . $path;
+
+    $pageTargets = $altMap[$currentUrl] ?? $altMap[$path] ?? $altMap['*'] ?? [];
+
+    if (!$pageTargets) {
+        return;
+    }
+
+    $content = preg_replace_callback('/<img\b[^>]*>/i', function ($matches) use ($pageTargets, $scheme, $host) {
+        $tag = $matches[0];
+
+        if (!preg_match('/\bsrc\s*=\s*(["\'])(.*?)\1/i', $tag, $srcMatch)) {
+            return $tag;
+        }
+
+        $src = trim($srcMatch[2]);
+        if ($src === '') {
+            return $tag;
+        }
+
+        $candidates = [$src];
+        if (strpos($src, '//') === 0) {
+            $candidates[] = $scheme . ':' . $src;
+        } elseif (strpos($src, '/') === 0) {
+            $candidates[] = $scheme . '://' . $host . $src;
+        }
+
+        $altText = null;
+        foreach ($candidates as $candidate) {
+            if (isset($pageTargets[$candidate])) {
+                $altText = $pageTargets[$candidate];
+                break;
+            }
+        }
+
+        if ($altText === null) {
+            return $tag;
+        }
+
+        $charset = defined('SITE_CHARSET') ? SITE_CHARSET : 'UTF-8';
+        $escapedAlt = htmlspecialchars($altText, ENT_QUOTES | ENT_SUBSTITUTE, $charset);
+
+        if (preg_match('/\balt\s*=\s*(["\'])(.*?)\1/i', $tag)) {
+            return preg_replace('/\balt\s*=\s*(["\'])(.*?)\1/i', 'alt="' . $escapedAlt . '"', $tag, 1);
+        }
+
+        if (substr($tag, -2) === '/>') {
+            return substr($tag, 0, -2) . ' alt="' . $escapedAlt . '" />';
+        }
+
+        return substr($tag, 0, -1) . ' alt="' . $escapedAlt . '">';
+    }, $content);
 }
