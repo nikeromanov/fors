@@ -76,8 +76,9 @@ $(document).ready(function(){
                                                 data: dataf,
                                                 processData: false,
                                                 contentType: false,
+                                                dataType: "json",
                                         }).done(function( answ ){
-						var data = JSON.parse(answ);
+						var data = answ || {};
                                                 if(data.result=="success"){
                                                         var formContainer = $(form).closest('.consult-form');
                                                         var successBlock = formContainer.find('.consult-form__success');
@@ -152,6 +153,20 @@ $(document).ready(function(){
                                                                 $(form).find('textarea').val('');
 
                                                                 var formServiceValue = ($(form).find('[name="service"]').val() || '').toString().trim();
+        var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
+        var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
+        var isCategoryRootPage = normalizedLocationPath === '/category/';
+
+        if (!formServiceValue && isCategoryRootPage) {
+                var activeCategoryService = $('.categories__slider .swiper-slide-active [data-service]').first().attr('data-service');
+                var activeCategoryTitle = $('.categories__slider .swiper-slide-active .price-card__title').first().text();
+                var fallbackCategoryValue = (activeCategoryService || activeCategoryTitle || '').toString().trim();
+
+                if (fallbackCategoryValue) {
+                        formServiceValue = fallbackCategoryValue;
+                }
+        }
+
         var normalizedServiceValue = formServiceValue
                 .toLowerCase()
                 .replace(/a/g, 'а')
@@ -165,7 +180,9 @@ $(document).ready(function(){
                 .replace(/o/g, 'о')
                 .replace(/p/g, 'р')
                 .replace(/v/g, 'в');
-        var isCategoryAService = normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1;
+        var hasServiceValue = normalizedServiceValue.length > 0;
+        var isCategoryA1Service = normalizedServiceValue.indexOf('категория а1') !== -1 || normalizedServiceValue.indexOf('категории а1') !== -1;
+        var isCategoryAService = (normalizedServiceValue.indexOf('категория а') !== -1 || normalizedServiceValue.indexOf('категории а') !== -1) && !isCategoryA1Service;
         var isCategoryBService = normalizedServiceValue.indexOf('категория в') !== -1 || normalizedServiceValue.indexOf('категории в') !== -1;
         var isCategoryCService = normalizedServiceValue.indexOf('категория с') !== -1 || normalizedServiceValue.indexOf('категории с') !== -1;
         var isCategoryDService = normalizedServiceValue.indexOf('категория д') !== -1 || normalizedServiceValue.indexOf('категории д') !== -1;
@@ -176,23 +193,25 @@ $(document).ready(function(){
         var isCategoryCDService = normalizedServiceValue.indexOf('переобучение с в на д') !== -1 || normalizedServiceValue.indexOf('переобучение с с на д') !== -1;
         var isGiftCertificateService = normalizedServiceValue.indexOf('подарочн') !== -1;
 
-        var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
-        var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
-        var isCategoryAPage = normalizedLocationPath === '/category/kategoriya-a-a1/';
-        var isCategoryBPage = normalizedLocationPath === '/category/kategoriya-v-v1/';
-        var isCategoryCPage = normalizedLocationPath === '/category/kategoriya-c-s1/';
-        var isCategoryDPage = normalizedLocationPath === '/kategoriya-d-d1/';
-        var isCategoryEPage = normalizedLocationPath === '/category/kategoriya-e/';
-        var isCategoryMPage = normalizedLocationPath === '/category/kategoriya-m/';
-        var isCategoryKvadroPage = normalizedLocationPath === '/category/kategoriya-kvadrotsikly/';
-        var isCategoryBCPage = normalizedLocationPath === '/category/pereobuchenie-s-v-na-s/';
-        var isCategoryCDPage = normalizedLocationPath === '/category/pereobuchenie-s-v-na-d-s-s-na-d/';
-        var isGiftsPage = normalizedLocationPath === '/gifts/';
+        var shouldUsePageFallback = !hasServiceValue;
+        var isCategoryAPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-a/';
+        var isCategoryA1Page = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-a1/';
+        var isCategoryBPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-v-v1/';
+        var isCategoryCPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-c-s1/';
+        var isCategoryDPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-d-d1/';
+        var isCategoryEPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-e/';
+        var isCategoryMPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-m/';
+        var isCategoryKvadroPage = shouldUsePageFallback && normalizedLocationPath === '/category/kategoriya-kvadrotsikly/';
+        var isCategoryBCPage = shouldUsePageFallback && normalizedLocationPath === '/category/pereobuchenie-s-v-na-s/';
+        var isCategoryCDPage = shouldUsePageFallback && normalizedLocationPath === '/category/pereobuchenie-s-v-na-d-s-s-na-d/';
+        var isGiftsPage = shouldUsePageFallback && normalizedLocationPath === '/gifts/';
 
         if(typeof ym === 'function'){
                 var isConsultForm = $(form).hasClass('consult-form__form');
 
-                if(isCategoryAService || isCategoryAPage){
+                if(isCategoryA1Service || isCategoryA1Page){
+                        ym(11787892, 'reachGoal', 'form_A1');
+                }else if(isCategoryAService || isCategoryAPage){
                         ym(11787892, 'reachGoal', 'form_A');
                 }else if(isGiftCertificateService || isGiftsPage){
                         ym(11787892, 'reachGoal', 'form_sert');
