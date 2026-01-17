@@ -1,6 +1,5 @@
 /* Error page */
 .error-hero {
-  background-color: var(--color-surface);
   display: flex;
   flex-direction: column;
   align-items: center;
