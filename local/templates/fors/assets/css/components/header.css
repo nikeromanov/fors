@@ -17,6 +17,10 @@
     border-bottom: 1px solid var(--yellow);
 }
 
+.theme-dark .header--inner {
+  color: var(--color-text);
+}
+
 .header__container {
   display: flex;
   align-items: center;
