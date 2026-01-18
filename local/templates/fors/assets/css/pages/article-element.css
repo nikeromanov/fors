@@ -1,7 +1,6 @@
 /* News element */
 
 .article-detail {
-  background-color: var(--color-surface);
   color: var(--color-text);
 }
 
