@@ -156,6 +156,16 @@ $seoText = $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"]
 		<?=$seoTextCategory;?>
 	  </div>
 	  <?}?>
+	  <?
+	  $seoTextMethods = $settingsPageCur["PROPERTIES"]["SEO_TEXT_METHODS"]["~VALUE"]["TEXT"]
+		?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_METHODS"]["~VALUE"]
+		?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_METHODS"]["VALUE"];
+	  ?>
+	  <?if(!empty($seoTextMethods)){?>
+	  <div class="content_block detail_content">
+		<?=$seoTextMethods;?>
+	  </div>
+	  <?}?>
 	  <ul class="badge-list" role="list">
 	  <?foreach($settingsPageCur["PROPERTIES"]["NAPRS"]["VALUE"] as $k=>$el){?>
 		<li class="badge-list__item">
