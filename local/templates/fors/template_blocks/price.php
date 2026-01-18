@@ -106,6 +106,16 @@ $settingsPageCur = getSettings(36);
 <section class="page-section price-benefits container" aria-labelledby="price-benefits-title">
   <div class="u-container price-benefits__inner">
     <?if(!empty($settingsPageCur["PROPERTIES"]["TITLE_WHAT"]["VALUE"])){?><h2 class="price-benefits__title" id="price-benefits-title"><?=$settingsPageCur["PROPERTIES"]["TITLE_WHAT"]["VALUE"];?></h2><?}?>
+	<?
+	$seoTextAdvantages = $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["~VALUE"]["TEXT"]
+		?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["~VALUE"]
+		?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["VALUE"];
+	?>
+	<?if(!empty($seoTextAdvantages)){?>
+	<div class="content_block detail_content">
+		<?=$seoTextAdvantages;?>
+	</div>
+	<?}?>
 	<?if(!empty($settingsPageCur["PROPERTIES"]["WHAT"]["VALUE"])){
 		$items = array_chunk($settingsPageCur["PROPERTIES"]["WHAT"]["VALUE"],round(count($settingsPageCur["PROPERTIES"]["WHAT"]["VALUE"])/2));
 		
