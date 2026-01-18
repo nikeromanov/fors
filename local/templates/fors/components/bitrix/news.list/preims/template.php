@@ -21,7 +21,7 @@ $this->setFrameMode(true);
 	</h2>
 	<?if(!empty($arParams["SEO_TEXT_ADVANTAGES"])){?>
 	<div class="content_block detail_content">
-		<?=$arParams["SEO_TEXT_ADVANTAGES"];?>
+		<?=htmlspecialcharsback($arParams["SEO_TEXT_ADVANTAGES"]);?>
 	</div>
 	<?}?>
 	<?if($arParams["SUBTITLE"]){?><p class="exams__text">
