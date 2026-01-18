@@ -21,7 +21,6 @@ CJSCore::Init(array('ajax'));
 $breadcrumbIblockMap = [
 	'/category/' => 5,
 	'/articles/' => 14,
-	'/news/' => 11,
 	'/shares/' => 24,
 	'/reviews/' => 9,
 	'/gallery/' => 33,
