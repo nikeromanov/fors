@@ -131,10 +131,15 @@ $settingsPageCur = getSettings(36);
 </section>
 <?}?>
 <? include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH."/includes/form.php";?>
-<?if(!empty($settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"])){?>
+<?
+$seoText = $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"]
+	?? $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]
+	?? $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["VALUE"];
+?>
+<?if(!empty($seoText)){?>
 <section class="page-section price-seo container" aria-label="SEO текст">
 	<div class="content_block detail_content">
-		<?=$settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"];?>
+		<?=$seoText;?>
 	</div>
 </section>
 <?}?>
