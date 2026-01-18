@@ -131,6 +131,13 @@ $settingsPageCur = getSettings(36);
 </section>
 <?}?>
 <? include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH."/includes/form.php";?>
+<?if(!empty($settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"])){?>
+<section class="page-section price-seo container" aria-label="SEO текст">
+	<div class="content_block detail_content">
+		<?=$settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"];?>
+	</div>
+</section>
+<?}?>
 <?if(!empty($settingsPageCur["PROPERTIES"]["TITLE_NAPR"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["NAPRS"]["VALUE"])){?>
 	<section class="page-section price-directions container" aria-labelledby="price-directions-title">
 	  <?if(!empty($settingsPageCur["PROPERTIES"]["TITLE_NAPR"]["VALUE"])){?><h2 class="page-section__title" id="price-directions-title"><?=$settingsPageCur["PROPERTIES"]["TITLE_NAPR"]["VALUE"];?></h2><?}?>
