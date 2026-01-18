@@ -6,7 +6,7 @@ $APPLICATION->SetTitle("Расписание");
 	"schedule", 
 	[
 		"ADDITIONAL_COUNT_ELEMENTS_FILTER" => "additionalCountFilter",
-		"ADD_SECTIONS_CHAIN" => "N",
+		"ADD_SECTIONS_CHAIN" => "Y",
 		"CACHE_FILTER" => "N",
 		"CACHE_GROUPS" => "Y",
 		"CACHE_TIME" => "36000000",
