@@ -84,13 +84,21 @@ CJSCore::Init(array('ajax'));
 <?
 
 if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
-    ?><? if ($dir != "/") { ?><? $APPLICATION->IncludeComponent("bitrix:breadcrumb", "main", Array(), false); ?><?}?>
+    ?><? if ($dir != "/") { ?><? $APPLICATION->AddBufferContent(function () use ($APPLICATION) {
+        ob_start();
+        $APPLICATION->IncludeComponent("bitrix:breadcrumb", "main", Array(), false);
+        return ob_get_clean();
+    }); ?><?}?>
     <?
     include_once "template_blocks/" . TEMPLATE_PAGE . ".php";
     ?>
 <? }else{ ?>
 <main class="main">
-<? $APPLICATION->IncludeComponent("bitrix:breadcrumb", "main", Array(), false); ?>
+<? $APPLICATION->AddBufferContent(function () use ($APPLICATION) {
+    ob_start();
+    $APPLICATION->IncludeComponent("bitrix:breadcrumb", "main", Array(), false);
+    return ob_get_clean();
+}); ?>
 <? if (!CSite::InDir('/shares/')&&!($dir != "/articles/"&&CSite::InDir('/articles/'))&&!CSite::InDir('/category/')&&!($dir != "/instructors/"&&CSite::InDir('/instructors/'))&&!($dir != "/news/"&&CSite::InDir('/news/'))) { ?><section class="page-section page-section__flex container">
 	<h1 class="page-section__title"><? $APPLICATION->ShowTitle(false); ?></h1>
 	<div class="content_block ">
