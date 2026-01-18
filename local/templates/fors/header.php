@@ -2,6 +2,7 @@
 
 use Bitrix\Main\Page\Asset;
 use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Loader;
 global $additionalClass;
 Loc::loadMessages(__FILE__);
 global $settings;
@@ -17,6 +18,71 @@ global $USER;
 global $hideH;
 global $notstandart;
 CJSCore::Init(array('ajax'));
+$breadcrumbIblockMap = [
+	'/category/' => 5,
+	'/articles/' => 14,
+	'/shares/' => 24,
+	'/reviews/' => 9,
+	'/gallery/' => 33,
+	'/test/' => 40,
+	'/instructors/' => 35,
+	'/faq/' => 30,
+	'/calendar/' => 23,
+];
+$addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION) {
+	if (!Loader::includeModule('iblock')) {
+		return;
+	}
+	foreach ($breadcrumbIblockMap as $baseDir => $iblockId) {
+		if ($dir === $baseDir || strpos($dir, $baseDir) !== 0) {
+			continue;
+		}
+		$relativePath = trim(substr($dir, strlen($baseDir)), '/');
+		if ($relativePath === '') {
+			break;
+		}
+		$relativeParts = explode('/', $relativePath);
+		$lastSegment = end($relativeParts);
+		$section = CIBlockSection::GetList(
+			[],
+			[
+				'IBLOCK_ID' => $iblockId,
+				'=CODE' => $lastSegment,
+				'ACTIVE' => 'Y',
+			],
+			false,
+			['ID', 'NAME', 'SECTION_PAGE_URL']
+		)->Fetch();
+		if ($section) {
+			$navChain = CIBlockSection::GetNavChain($iblockId, $section['ID'], ['ID', 'NAME', 'SECTION_PAGE_URL']);
+			while ($navItem = $navChain->GetNext()) {
+				$APPLICATION->AddChainItem($navItem['NAME'], $navItem['SECTION_PAGE_URL']);
+			}
+			break;
+		}
+		$element = CIBlockElement::GetList(
+			[],
+			[
+				'IBLOCK_ID' => $iblockId,
+				'=CODE' => $lastSegment,
+				'ACTIVE' => 'Y',
+			],
+			false,
+			false,
+			['ID', 'NAME', 'IBLOCK_SECTION_ID', 'DETAIL_PAGE_URL']
+		)->GetNext();
+		if ($element) {
+			if (!empty($element['IBLOCK_SECTION_ID'])) {
+				$navChain = CIBlockSection::GetNavChain($iblockId, $element['IBLOCK_SECTION_ID'], ['ID', 'NAME', 'SECTION_PAGE_URL']);
+				while ($navItem = $navChain->GetNext()) {
+					$APPLICATION->AddChainItem($navItem['NAME'], $navItem['SECTION_PAGE_URL']);
+				}
+			}
+			$APPLICATION->AddChainItem($element['NAME'], $element['DETAIL_PAGE_URL']);
+		}
+		break;
+	}
+};
 ?><!DOCTYPE html>
     <html lang="">
     <head>
@@ -84,12 +150,16 @@ CJSCore::Init(array('ajax'));
 <?
 
 if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
-    ?><? if ($dir != "/") { ?><? $APPLICATION->IncludeComponent("bitrix:breadcrumb", "main", Array(), false); ?><?}?>
+    ?><? if ($dir != "/") { ?>
+		<?
+		$addBreadcrumbChain();
+		?><? $APPLICATION->IncludeComponent("bitrix:breadcrumb", "main", Array(), false); ?><?}?>
     <?
     include_once "template_blocks/" . TEMPLATE_PAGE . ".php";
     ?>
 <? }else{ ?>
 <main class="main">
+<? $addBreadcrumbChain(); ?>
 <? $APPLICATION->IncludeComponent("bitrix:breadcrumb", "main", Array(), false); ?>
 <? if (!CSite::InDir('/shares/')&&!($dir != "/articles/"&&CSite::InDir('/articles/'))&&!CSite::InDir('/category/')&&!($dir != "/instructors/"&&CSite::InDir('/instructors/'))&&!($dir != "/news/"&&CSite::InDir('/news/'))) { ?><section class="page-section page-section__flex container">
 	<h1 class="page-section__title"><? $APPLICATION->ShowTitle(false); ?></h1>
