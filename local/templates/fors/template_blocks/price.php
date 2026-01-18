@@ -131,9 +131,31 @@ $settingsPageCur = getSettings(36);
 </section>
 <?}?>
 <? include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH."/includes/form.php";?>
+<?
+$seoText = $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"]
+	?? $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]
+	?? $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["VALUE"];
+?>
+<?if(!empty($seoText)){?>
+<section class="page-section price-seo container" aria-label="SEO текст">
+	<div class="content_block detail_content">
+		<?=$seoText;?>
+	</div>
+</section>
+<?}?>
 <?if(!empty($settingsPageCur["PROPERTIES"]["TITLE_NAPR"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["NAPRS"]["VALUE"])){?>
 	<section class="page-section price-directions container" aria-labelledby="price-directions-title">
 	  <?if(!empty($settingsPageCur["PROPERTIES"]["TITLE_NAPR"]["VALUE"])){?><h2 class="page-section__title" id="price-directions-title"><?=$settingsPageCur["PROPERTIES"]["TITLE_NAPR"]["VALUE"];?></h2><?}?>
+	  <?
+	  $seoTextCategory = $settingsPageCur["PROPERTIES"]["SEO_TEXT_CATEGORY"]["~VALUE"]["TEXT"]
+		?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_CATEGORY"]["~VALUE"]
+		?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_CATEGORY"]["VALUE"];
+	  ?>
+	  <?if(!empty($seoTextCategory)){?>
+	  <div class="content_block detail_content">
+		<?=$seoTextCategory;?>
+	  </div>
+	  <?}?>
 	  <ul class="badge-list" role="list">
 	  <?foreach($settingsPageCur["PROPERTIES"]["NAPRS"]["VALUE"] as $k=>$el){?>
 		<li class="badge-list__item">
@@ -146,8 +168,18 @@ $settingsPageCur = getSettings(36);
 		</li>
 	  <?}?>
 		
-	  </ul>
-	</section>
+		  </ul>
+		  <?
+		  $seoTextAfterCategory = $settingsPageCur["PROPERTIES"]["SEO_TEXT_AFTER_CATEGORY"]["~VALUE"]["TEXT"]
+			?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_AFTER_CATEGORY"]["~VALUE"]
+			?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_AFTER_CATEGORY"]["VALUE"];
+		  ?>
+		  <?if(!empty($seoTextAfterCategory)){?>
+		  <div class="content_block detail_content">
+			<?=$seoTextAfterCategory;?>
+		  </div>
+		  <?}?>
+		</section>
 <?}?>
 
 <?$APPLICATION->IncludeComponent(
