@@ -4,6 +4,51 @@ define("CATALOG_IBLOCK_ID","2");
 
 include_once __DIR__ . '/vendor/autoload.php';
 
+AddEventHandler('main', 'OnPageStart', 'forsHandleInvalidUrl');
+function forsHandleInvalidUrl()
+{
+    if (defined('ADMIN_SECTION') && ADMIN_SECTION === true) {
+        return;
+    }
+
+    if (php_sapi_name() === 'cli') {
+        return;
+    }
+
+    if (!class_exists('\Bitrix\Main\Context')) {
+        return;
+    }
+
+    $request = \Bitrix\Main\Context::getCurrent()->getRequest();
+    if (!$request) {
+        return;
+    }
+
+    $path = (string)$request->getRequestedPage();
+    if ($path === '') {
+        return;
+    }
+
+    if (preg_match('#//+#', $path)) {
+        if (!defined('ERROR_404')) {
+            define('ERROR_404', 'Y');
+        }
+        if (class_exists('CHTTP')) {
+            CHTTP::SetStatus('404 Not Found');
+        } elseif (function_exists('http_response_code')) {
+            http_response_code(404);
+        }
+        $page404 = rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/404.php';
+        if (is_file($page404)) {
+            require $page404;
+        }
+        if (class_exists('\Bitrix\Main\Application')) {
+            \Bitrix\Main\Application::getInstance()->end();
+        }
+        exit;
+    }
+}
+
 
 if (!function_exists('CurrencyFormat')) {
 

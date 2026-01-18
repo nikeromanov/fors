@@ -1,7 +1,13 @@
 <?
 global $settings;
-?><header class="header" role="banner">
-  <div class="header__container header__container--index">
+$headerClass = "header";
+$containerClass = "header__container header__container--index";
+if (defined("ERROR_404")) {
+  $headerClass = "header header--inner";
+  $containerClass = "header__container";
+}
+?><header class="<?=$headerClass;?>" role="banner">
+  <div class="<?=$containerClass;?>">
     
     <a class="header__logo" href="/" aria-label="Автошкола Форсаж — на главную">
       <img
