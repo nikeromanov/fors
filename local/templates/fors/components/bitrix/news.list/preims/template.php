@@ -59,6 +59,11 @@ $this->setFrameMode(true);
 	
 	 
 	</ul>
+	<?if(!empty($arParams["SEO_TEXT_ADVANTAGES_AFTER"])){?>
+	<div class="content_block detail_content">
+		<?=htmlspecialcharsback($arParams["SEO_TEXT_ADVANTAGES_AFTER"]);?>
+	</div>
+	<?}?>
 	<?if($arParams["IMAGE"]){?>
           <figure class="exams__figure">
             <picture>

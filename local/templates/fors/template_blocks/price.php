@@ -216,6 +216,9 @@ $seoText = $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"]
 $seoTextAdvantages = $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["~VALUE"]["TEXT"]
 	?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["~VALUE"]
 	?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["VALUE"];
+$seoTextAdvantagesAfter = $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES_AFTER"]["~VALUE"]["TEXT"]
+	?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES_AFTER"]["~VALUE"]
+	?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES_AFTER"]["VALUE"];
 ?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
@@ -275,6 +278,7 @@ $seoTextAdvantages = $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["~VAL
 		"SET_TITLE" => "N",
 		"SHOW_404" => "N",
 		"SEO_TEXT_ADVANTAGES" => $seoTextAdvantages,
+		"SEO_TEXT_ADVANTAGES_AFTER" => $seoTextAdvantagesAfter,
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER1" => "DESC",
