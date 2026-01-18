@@ -146,6 +146,16 @@ $seoText = $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"]
 <?if(!empty($settingsPageCur["PROPERTIES"]["TITLE_NAPR"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["NAPRS"]["VALUE"])){?>
 	<section class="page-section price-directions container" aria-labelledby="price-directions-title">
 	  <?if(!empty($settingsPageCur["PROPERTIES"]["TITLE_NAPR"]["VALUE"])){?><h2 class="page-section__title" id="price-directions-title"><?=$settingsPageCur["PROPERTIES"]["TITLE_NAPR"]["VALUE"];?></h2><?}?>
+	  <?
+	  $seoTextCategory = $settingsPageCur["PROPERTIES"]["SEO_TEXT_CATEGORY"]["~VALUE"]["TEXT"]
+		?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_CATEGORY"]["~VALUE"]
+		?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_CATEGORY"]["VALUE"];
+	  ?>
+	  <?if(!empty($seoTextCategory)){?>
+	  <div class="content_block detail_content">
+		<?=$seoTextCategory;?>
+	  </div>
+	  <?}?>
 	  <ul class="badge-list" role="list">
 	  <?foreach($settingsPageCur["PROPERTIES"]["NAPRS"]["VALUE"] as $k=>$el){?>
 		<li class="badge-list__item">
