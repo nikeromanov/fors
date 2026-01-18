@@ -168,8 +168,18 @@ $seoText = $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"]
 		</li>
 	  <?}?>
 		
-	  </ul>
-	</section>
+		  </ul>
+		  <?
+		  $seoTextAfterCategory = $settingsPageCur["PROPERTIES"]["SEO_TEXT_AFTER_CATEGORY"]["~VALUE"]["TEXT"]
+			?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_AFTER_CATEGORY"]["~VALUE"]
+			?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_AFTER_CATEGORY"]["VALUE"];
+		  ?>
+		  <?if(!empty($seoTextAfterCategory)){?>
+		  <div class="content_block detail_content">
+			<?=$seoTextAfterCategory;?>
+		  </div>
+		  <?}?>
+		</section>
 <?}?>
 
 <?$APPLICATION->IncludeComponent(
