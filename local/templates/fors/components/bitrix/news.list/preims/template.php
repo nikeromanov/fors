@@ -19,6 +19,11 @@ $this->setFrameMode(true);
 	<h2 class="discount__section-title page-section__title" id="discount-why-title">
 	  <?if($arParams["TITLE"]){?><?=$arParams["TITLE"];?><?}else{?>Преимущества обращения к нам<?}?>
 	</h2>
+	<?if(!empty($arParams["SEO_TEXT_ADVANTAGES"])){?>
+	<div class="content_block detail_content">
+		<?=htmlspecialcharsback($arParams["SEO_TEXT_ADVANTAGES"]);?>
+	</div>
+	<?}?>
 	<?if($arParams["SUBTITLE"]){?><p class="exams__text">
            <?=$arParams["SUBTITLE"];?>
 	</p><?}?>
@@ -54,6 +59,11 @@ $this->setFrameMode(true);
 	
 	 
 	</ul>
+	<?if(!empty($arParams["SEO_TEXT_ADVANTAGES_AFTER"])){?>
+	<div class="content_block detail_content">
+		<?=htmlspecialcharsback($arParams["SEO_TEXT_ADVANTAGES_AFTER"]);?>
+	</div>
+	<?}?>
 	<?if($arParams["IMAGE"]){?>
           <figure class="exams__figure">
             <picture>
