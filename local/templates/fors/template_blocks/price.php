@@ -212,6 +212,11 @@ $seoText = $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"]
 		</section>
 <?}?>
 
+<?
+$seoTextAdvantages = $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["~VALUE"]["TEXT"]
+	?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["~VALUE"]
+	?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["VALUE"];
+?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"preims", 
@@ -269,6 +274,7 @@ $seoText = $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"]
 		"SET_STATUS_404" => "N",
 		"SET_TITLE" => "N",
 		"SHOW_404" => "N",
+		"SEO_TEXT_ADVANTAGES" => $seoTextAdvantages,
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER1" => "DESC",
