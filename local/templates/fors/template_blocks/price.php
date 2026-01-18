@@ -209,16 +209,6 @@ $seoText = $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"]
 			<?=$seoTextPrice;?>
 		  </div>
 		  <?}?>
-		  <?
-		  $seoTextAdvantages = $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["~VALUE"]["TEXT"]
-			?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["~VALUE"]
-			?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_ADVANTAGES"]["VALUE"];
-		  ?>
-		  <?if(!empty($seoTextAdvantages)){?>
-		  <div class="content_block detail_content">
-			<?=$seoTextAdvantages;?>
-		  </div>
-		  <?}?>
 		</section>
 <?}?>
 
