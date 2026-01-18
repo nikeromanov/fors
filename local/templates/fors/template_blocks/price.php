@@ -189,6 +189,16 @@ $seoText = $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"]
 			<?=$seoTextMethods;?>
 		  </div>
 		  <?}?>
+		  <?
+		  $seoTextPrice = $settingsPageCur["PROPERTIES"]["SEO_TEXT_PRICE"]["~VALUE"]["TEXT"]
+			?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_PRICE"]["~VALUE"]
+			?? $settingsPageCur["PROPERTIES"]["SEO_TEXT_PRICE"]["VALUE"];
+		  ?>
+		  <?if(!empty($seoTextPrice)){?>
+		  <div class="content_block detail_content">
+			<?=$seoTextPrice;?>
+		  </div>
+		  <?}?>
 		</section>
 <?}?>
 
