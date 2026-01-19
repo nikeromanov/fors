@@ -72,7 +72,7 @@ $settingsPage = getSettings(3);
                                 }
                                 ?>
                                 <?if($sectionIconSrc){?>
-                                        <span class="price-card__category" aria-hidden="true">
+                                        <span class="price-card__category price-card__category--icon" aria-hidden="true">
                                                 <img class="price-card__category-icon" src="<?=$sectionIconSrc;?>" alt="<?=$arSection["UF_LETTER"]; ?>">
                                         </span>
                                 <?} else {?>
