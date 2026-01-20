@@ -28,5 +28,23 @@ $this->setFrameMode(true);
 			 <?}?>
 		  </ol>
 		</div>
+		<?
+		$stagesOfStudy = $settingsPage["PROPERTIES"]["STAGES_OF_STUDY"]["~VALUE"]["TEXT"]
+			?? $settingsPage["PROPERTIES"]["STAGES_OF_STUDY"]["~VALUE"]
+			?? $settingsPage["PROPERTIES"]["STAGES_OF_STUDY"]["VALUE"];
+		$whyWe = $settingsPage["PROPERTIES"]["WHY_WE"]["~VALUE"]["TEXT"]
+			?? $settingsPage["PROPERTIES"]["WHY_WE"]["~VALUE"]
+			?? $settingsPage["PROPERTIES"]["WHY_WE"]["VALUE"];
+		?>
+		<?if(!empty($stagesOfStudy)){?>
+			<div class="content_block detail_content steps__seo">
+				<?=$stagesOfStudy;?>
+			</div>
+		<?}?>
+		<?if(!empty($whyWe)){?>
+			<div class="content_block detail_content steps__seo">
+				<?=$whyWe;?>
+			</div>
+		<?}?>
 	</div>
 <?}?>

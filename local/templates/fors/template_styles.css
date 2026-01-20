@@ -78,6 +78,20 @@ section#consult_form {
     color: var(--color-text-secondary);
 }
 
+.ordered-list {
+    margin: 0;
+    padding: 0 0 0 clamp(1.1rem, 0.9rem + 1.5vw, 2.5rem);
+    list-style: decimal;
+    display: grid;
+    gap: clamp(1rem, 0.85rem + 0.7vw, 1.6rem);
+    color: var(--color-text-secondary);
+}
+
+.ordered-list li {
+    display: grid;
+    gap: clamp(0.75rem, 0.6rem + 0.3vw, 1rem);
+}
+
 .detail_content ol ul,  .detail_content ol ol, .detail_content ul ul,  .detail_content ul ol{
     margin: 0;
     padding-left: clamp(1.2rem, 1rem + 0.6vw, 1.8rem);
