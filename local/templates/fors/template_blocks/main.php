@@ -111,6 +111,16 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 			<?}?>
 			</ul>
 		<?}?>
+		<?
+		$seoTextFeatures = $properties["FEATURES"]["~VALUE"]["TEXT"]
+			?? $properties["FEATURES"]["~VALUE"]
+			?? $properties["FEATURES"]["VALUE"];
+		?>
+		<?if(!empty($seoTextFeatures)){?>
+			<div class="content_block detail_content">
+				<?=$seoTextFeatures;?>
+			</div>
+		<?}?>
 		
 		<?if(!empty($settings["VK"]["VALUE"])||!empty($settings["MAX"]["VALUE"])||!empty($settings["TELEGRAM"]["VALUE"])){?>
 		<div class="social-banner">
