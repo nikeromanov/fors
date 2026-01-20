@@ -34,7 +34,7 @@ $this->setFrameMode(true);
 			?? $settingsPage["PROPERTIES"]["STAGES_OF_STUDY"]["VALUE"];
 		?>
 		<?if(!empty($stagesOfStudy)){?>
-			<div class="content_block detail_content">
+			<div class="content_block detail_content steps__seo">
 				<?=$stagesOfStudy;?>
 			</div>
 		<?}?>
