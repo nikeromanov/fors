@@ -81,7 +81,8 @@ section#consult_form {
 .ordered-list {
     margin: 0;
     padding: 0 0 0 clamp(1.1rem, 0.9rem + 1.5vw, 2.5rem);
-    list-style: decimal;
+    list-style: none;
+    counter-reset: ordered-list;
     display: grid;
     gap: clamp(1rem, 0.85rem + 0.7vw, 1.6rem);
     color: var(--color-text-secondary);
@@ -89,7 +90,17 @@ section#consult_form {
 
 .ordered-list li {
     display: grid;
+    grid-template-columns: auto 1fr;
     gap: clamp(0.75rem, 0.6rem + 0.3vw, 1rem);
+    align-items: start;
+}
+
+.ordered-list li::before {
+    counter-increment: ordered-list;
+    content: counter(ordered-list) ".";
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    line-height: 1.4;
 }
 
 .detail_content ol ul,  .detail_content ol ol, .detail_content ul ul,  .detail_content ul ol{
