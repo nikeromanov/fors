@@ -9,7 +9,7 @@ $APPLICATION->SetTitle("Инструкторы по вождению");
 	"bitrix:news", 
 	"instructors", 
 	[
-		"ADD_ELEMENT_CHAIN" => "Y",
+		"ADD_ELEMENT_CHAIN" => "N",
 		"ADD_SECTIONS_CHAIN" => "Y",
 		"AJAX_MODE" => "N",
 		"AJAX_OPTION_ADDITIONAL" => "",
