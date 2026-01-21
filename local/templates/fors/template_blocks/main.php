@@ -492,10 +492,18 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 	  <?}?>
 	</div>
 	<?}?>
+	<?
+	$stagesOfStudy = $properties["STAGES_OF_STUDY"]["~VALUE"]["TEXT"]
+		?? $properties["STAGES_OF_STUDY"]["~VALUE"]
+		?? $properties["STAGES_OF_STUDY"]["VALUE"];
+	$whyWe = $properties["WHY_WE"]["~VALUE"]["TEXT"]
+		?? $properties["WHY_WE"]["~VALUE"]
+		?? $properties["WHY_WE"]["VALUE"];
+	?>
 	<div class="profit-banner">
-	  <?if(!empty($properties["BLOCK7_TITLE"]["VALUE"])){?><h5 class="profit-banner__title">
+	  <?if(!empty($properties["BLOCK7_TITLE"]["VALUE"])){?><h2 class="profit-banner__title">
 		<?=$properties["BLOCK7_TITLE"]["VALUE"];?>
-	  </h5><?}?>
+	  </h2><?}?>
 	  <?if(!empty($properties["BLOCK7_SUBTITLE"]["VALUE"])){?><p class="profit-banner__list-title"><?=$properties["BLOCK7_SUBTITLE"]["VALUE"];?></p><?}?>
 	  <?if(!empty($properties["BLOCK7_LIST"]["VALUE"])){?><ul class="profit-banner__list">
 	  <?foreach($properties["BLOCK7_LIST"]["VALUE"] as $item){?>
@@ -510,6 +518,16 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 	  </p><?}?>
 	  <a class="btn btn--secondary btn--large profit-banner__btn" data-fancybox data-service="Записаться на курс" href="#consult_form">Записаться на курс</a>
 	</div>
+	<?if(!empty($stagesOfStudy)){?>
+		<div class="content_block detail_content steps__seo">
+			<?=$stagesOfStudy;?>
+		</div>
+	<?}?>
+	<?if(!empty($whyWe)){?>
+		<div class="content_block detail_content steps__seo">
+			<?=$whyWe;?>
+		</div>
+	<?}?>
   </section>
 	<?}?>
  <?$APPLICATION->IncludeComponent(
