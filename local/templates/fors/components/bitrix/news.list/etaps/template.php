@@ -14,9 +14,17 @@ $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){
 	$settingsPage = getSettings(3);
+	$stagesSecond = $settingsPage["PROPERTIES"]["STAGES_2"]["~VALUE"]["TEXT"]
+		?? $settingsPage["PROPERTIES"]["STAGES_2"]["~VALUE"]
+		?? $settingsPage["PROPERTIES"]["STAGES_2"]["VALUE"];
 	?>
 	<div class="u-container">
 		<?if(!empty($settingsPage["PROPERTIES"]["BLOCK4_TITLE"]["VALUE"])){?><h2 class="section-title section-title--center" id="steps-title"><?=$settingsPage["PROPERTIES"]["BLOCK4_TITLE"]["VALUE"];?></h2><?}?>
+		<?if(!empty($stagesSecond)){?>
+			<div class="content_block detail_content steps__seo">
+				<?=$stagesSecond;?>
+			</div>
+		<?}?>
 		<div class="steps" role="group" aria-labelledby="steps-title">
 		  <ol class="steps__list">
 			 <?foreach($arResult["ITEMS"] as $k=>$item){?>
