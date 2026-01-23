@@ -164,5 +164,15 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
     </form>
   </div>
 </section>
+<?
+$utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+
+foreach ($utmParams as $param) {
+    if (isset($_GET[$param]) && !empty($_GET[$param])) {
+        setcookie($param, $_GET[$param], time() + (1 * 24 * 60 * 60), '/');
+        $_COOKIE[$param] = $_GET[$param];
+    }
+}
+?>
 </body>
 </html>
