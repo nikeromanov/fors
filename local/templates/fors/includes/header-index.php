@@ -59,7 +59,7 @@ if (defined("ERROR_404")) {
         </svg>
       </button>
       <?if($settings["PHONE"]["VALUE"]){?>
-      <a class="header__actions-phone" href="tel:<?=str_replace(["-"," ",")","(","_"],"",$settings["PHONE"]["VALUE"]);?>">
+      <a class="header__actions-phone phone_alloka" href="tel:<?=str_replace(["-"," ",")","(","_"],"",$settings["PHONE"]["VALUE"]);?>">
         <?=$settings["PHONE"]["VALUE"];?>
       </a>
 	  <?}?>
@@ -119,7 +119,7 @@ if (defined("ERROR_404")) {
 			<?if($settings["PHONE"]["VALUE"]){?>
 				<li class="site-menu__contacts-item">
 				  <span aria-hidden="true" class="site-menu__contacts-icon" data-icon="phone"></span>
-				  <a class="site-menu__contacts-link" href="tel:<?=str_replace(["-"," ",")","(","_"],"",$settings["PHONE"]["VALUE"]);?>"><?=$settings["PHONE"]["VALUE"];?></a>
+				  <a class="site-menu__contacts-link phone_alloka" href="tel:<?=str_replace(["-"," ",")","(","_"],"",$settings["PHONE"]["VALUE"]);?>"><?=$settings["PHONE"]["VALUE"];?></a>
 				</li>
 			<?}?>
 			<?if($settings["EMAIL"]["VALUE"]){?>
