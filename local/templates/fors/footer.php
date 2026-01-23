@@ -72,7 +72,7 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
             </li><?}?>
             <?if($settings["PHONE"]["VALUE"]){?><li class="footer__contacts-item">
               <span aria-hidden="true" class="footer__contacts-icon" data-icon="phone"></span>
-              <a class="footer__contacts-link" href="tel:<?=str_replace(["-"," ",")","(","_"],"",$settings["PHONE"]["VALUE"]);?>"><?=$settings["PHONE"]["VALUE"];?></a>
+              <a class="footer__contacts-link phone_alloka" href="tel:<?=str_replace(["-"," ",")","(","_"],"",$settings["PHONE"]["VALUE"]);?>"><?=$settings["PHONE"]["VALUE"];?></a>
             </li><?}?>
             <?if($settings["EMAIL"]["VALUE"]){?><li class="footer__contacts-item">
               <span aria-hidden="true" class="footer__contacts-icon" data-icon="email"></span>
