@@ -48,7 +48,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
                           </dl>
                           <?if(!empty($settings["PHONE"]["VALUE"])) {?>
                             <a
-                              class="home-hero__phone"
+                              class="home-hero__phone phone_alloka"
                               href="tel:<?=str_replace(["-"," ",")","(","_"],"",$settings["PHONE"]["VALUE"]);?>"
                             >
                               <span aria-hidden="true" class="home-hero__phone-icon" data-icon="phone"></span>

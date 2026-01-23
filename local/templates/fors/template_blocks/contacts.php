@@ -24,7 +24,7 @@ $settingsPage = $set["PROPERTIES"];
 				<span class="ui-icon ui-icon_small contacts__icon" aria-hidden="true" data-icon="phone"></span>
 				<div class="contacts-card__body">
 				  <span class="contacts-card__label">Телефон:</span>
-				  <a class="contacts-card__value contacts-card__link" href="tel:<?=str_replace(["-"," ",")","(","_"],"",$settings["PHONE"]["VALUE"]);?>">
+				  <a class="contacts-card__value contacts-card__link phone_alloka" href="tel:<?=str_replace(["-"," ",")","(","_"],"",$settings["PHONE"]["VALUE"]);?>">
 					<?=$settings["PHONE"]["VALUE"];?>
 				  </a>
 				</div>
