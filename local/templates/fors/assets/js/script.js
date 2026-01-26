@@ -41,7 +41,16 @@ $(document).ready(function(){
 	$(document).on("click",'[data-service]',function(){
 
 		let lnk = $(this).attr("href");
-		$(lnk).find('[name="service"]').val($(this).attr("data-service"));
+		var serviceValue = $(this).attr("data-service");
+		var goalValue = $(this).attr("data-goal");
+		window._lastMetrikaGoal = goalValue ? goalValue : "";
+		window._lastMetrikaService = serviceValue ? serviceValue : "";
+		var targetForm = $(lnk);
+		targetForm.find('[name="service"]').val(serviceValue);
+		if(targetForm.find('[name="goal"]').length === 0){
+			targetForm.append('<input type="hidden" name="goal" value="">');
+		}
+		targetForm.find('[name="goal"]').val(goalValue ? goalValue : "");
 	});
 	$('.phone,[name="phone"]').inputmask("+7 (999) 999-99-99",{clearMaskOnLostFocus: true,clearIncomplete: true, showMaskOnHover:false });
 	$(".standart_form").each(function(){
@@ -153,17 +162,45 @@ $(document).ready(function(){
                                                                 $(form).find('textarea').val('');
 
                                                                 var formServiceValue = ($(form).find('[name="service"]').val() || '').toString().trim();
+        var formGoalValue = ($(form).find('[name="goal"]').val() || '').toString().trim();
+        if (!formGoalValue && window._lastMetrikaGoal) {
+                formGoalValue = window._lastMetrikaGoal;
+        }
+        if (!formServiceValue && window._lastMetrikaService) {
+                formServiceValue = window._lastMetrikaService;
+        }
         var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
         var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
         var isCategoryRootPage = normalizedLocationPath === '/category/';
 
-        if (!formServiceValue && isCategoryRootPage) {
-                var activeCategoryService = $('.categories__slider .swiper-slide-active [data-service]').first().attr('data-service');
-                var activeCategoryTitle = $('.categories__slider .swiper-slide-active .price-card__title').first().text();
-                var fallbackCategoryValue = (activeCategoryService || activeCategoryTitle || '').toString().trim();
+        var goalByPathMap = {
+                '/category/kategoriya-a/': 'form_A',
+                '/category/kategoriya-a1/': 'form_A1',
+                '/category/kategoriya-v-v1/': 'form_B',
+                '/category/kategoriya-c-s1/': 'form_C',
+                '/category/kategoriya-d-d1/': 'form_D',
+                '/category/kategoriya-e/': 'form_E',
+                '/category/kategoriya-m/': 'form_M',
+                '/category/kategoriya-kvadrotsikly/': 'form_kvadro',
+                '/category/pereobuchenie-s-v-na-s/': 'form_BC',
+                '/category/pereobuchenie-s-v-na-d-s-s-na-d/': 'form_CD',
+                '/gifts/': 'form_sert'
+        };
 
-                if (fallbackCategoryValue) {
-                        formServiceValue = fallbackCategoryValue;
+        var activeCategoryService = '';
+        var activeCategoryGoal = '';
+        if (isCategoryRootPage) {
+                activeCategoryService = ($('.categories__slider .swiper-slide-active [data-service]').first().attr('data-service') || '').toString().trim();
+                var activeCategoryTitle = $('.categories__slider .swiper-slide-active .price-card__title').first().text();
+                var activeCategoryLink = $('.categories__slider .swiper-slide-active .price-card__title').first().attr('href') || '';
+                var activeCategoryPath = activeCategoryLink ? activeCategoryLink.replace(/\/+$/, '') + '/' : '';
+                activeCategoryGoal = goalByPathMap[activeCategoryPath] ? goalByPathMap[activeCategoryPath] : '';
+
+                if (!formServiceValue && (activeCategoryService || activeCategoryTitle)) {
+                        formServiceValue = (activeCategoryService || activeCategoryTitle || '').toString().trim();
+                }
+                if (!formGoalValue && activeCategoryGoal) {
+                        formGoalValue = activeCategoryGoal;
                 }
         }
 
@@ -209,42 +246,73 @@ $(document).ready(function(){
         if(typeof ym === 'function'){
                 var isConsultForm = $(form).hasClass('consult-form__form');
 
-                if(isCategoryA1Service || isCategoryA1Page){
+                var pagePath = window.location && window.location.pathname ? window.location.pathname : '';
+                var logGoal = function(goalName){
+                        if(!goalName){
+                                return;
+                        }
+                        var now = new Date();
+                        var pad = function(num){ return String(num).padStart(2, '0'); };
+                        var stamp = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate())
+                                + ' ' + pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+                        console.log('[metrika goal]', stamp, 'goal=' + goalName, 'page=' + pagePath);
+                };
+
+                if(formGoalValue){
+                        ym(11787892, 'reachGoal', formGoalValue);
+                        logGoal(formGoalValue);
+                }else if(isCategoryA1Service || isCategoryA1Page){
                         ym(11787892, 'reachGoal', 'form_A1');
+                        logGoal('form_A1');
                 }else if(isCategoryAService || isCategoryAPage){
                         ym(11787892, 'reachGoal', 'form_A');
+                        logGoal('form_A');
                 }else if(isGiftCertificateService || isGiftsPage){
                         ym(11787892, 'reachGoal', 'form_sert');
+                        logGoal('form_sert');
                 }else if(isCategoryBCService || isCategoryBCPage){
                         ym(11787892, 'reachGoal', 'form_BC');
+                        logGoal('form_BC');
                 }else if(isCategoryCDService || isCategoryCDPage){
                         ym(11787892, 'reachGoal', 'form_CD');
+                        logGoal('form_CD');
                 }else if(isCategoryBService || isCategoryBPage){
                         ym(11787892, 'reachGoal', 'form_B');
+                        logGoal('form_B');
                 }else if(isCategoryCService || isCategoryCPage){
                         ym(11787892, 'reachGoal', 'form_C');
+                        logGoal('form_C');
                 }else if(isCategoryDService || isCategoryDPage){
                         ym(11787892, 'reachGoal', 'form_D');
+                        logGoal('form_D');
                 }else if(isCategoryEService || isCategoryEPage){
                         ym(11787892, 'reachGoal', 'form_E');
+                        logGoal('form_E');
                 }else if(isCategoryMService || isCategoryMPage){
                         ym(11787892, 'reachGoal', 'form_M');
+                        logGoal('form_M');
                 }else if(isCategoryKvadroService || isCategoryKvadroPage){
                         ym(11787892, 'reachGoal', 'form_kvadro');
+                        logGoal('form_kvadro');
                 }else if(isConsultForm){
                         ym(11787892, 'reachGoal', 'form_general');
+                        logGoal('form_general');
                 }
 
                                                                         if($(form).hasClass('cars-gallery__contact-form')){
                                                                                 ym(11787892, 'reachGoal', 'form_car');
+                                                                                logGoal('form_car');
                                                                         }
 
                                                                         if(window.location && (window.location.pathname === '/online-traning/' || window.location.pathname === '/online-traning')){
                                                                                 ym(11787892, 'reachGoal', 'online_ok');
+                                                                                logGoal('online_ok');
                                                                         }
 
                                                                         ym(11787892, 'reachGoal', 'all_form');
+                                                                        logGoal('all_form');
                                                                 }
+                                                                $(form).find('[name="goal"]').val('');
 
 
                                                 }else{
