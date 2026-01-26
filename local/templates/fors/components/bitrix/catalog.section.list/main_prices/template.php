@@ -46,6 +46,21 @@ $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_C
 $settingsPage = getSettings(3);
 ?>
 <?if(!empty($arResult['SECTIONS'])){?>
+<?
+$goalByPathMap = [
+	'/category/kategoriya-a/' => 'form_A',
+	'/category/kategoriya-a1/' => 'form_A1',
+	'/category/kategoriya-v-v1/' => 'form_B',
+	'/category/kategoriya-c-s1/' => 'form_C',
+	'/category/kategoriya-d-d1/' => 'form_D',
+	'/category/kategoriya-e/' => 'form_E',
+	'/category/kategoriya-m/' => 'form_M',
+	'/category/kategoriya-kvadrotsikly/' => 'form_kvadro',
+	'/category/pereobuchenie-s-v-na-s/' => 'form_BC',
+	'/category/pereobuchenie-s-v-na-d-s-s-na-d/' => 'form_CD',
+	'/gifts/' => 'form_sert',
+];
+?>
 
 <section class="page-section categories container" aria-labelledby="categories-title">
   <?if(!empty($settingsPage["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"])){?><h2 class="categories__title" id="categories-title"><?=$settingsPage["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"];?></h2><?}?>
@@ -61,6 +76,10 @@ $settingsPage = getSettings(3);
 			{
 				$this->AddEditAction($arSection['ID'], $arSection['EDIT_LINK'], $strSectionEdit);
 				$this->AddDeleteAction($arSection['ID'], $arSection['DELETE_LINK'], $strSectionDelete, $arSectionDeleteParams);?>
+		<?
+		$sectionPath = rtrim($arSection["SECTION_PAGE_URL"], "/") . "/";
+		$sectionGoal = isset($goalByPathMap[$sectionPath]) ? $goalByPathMap[$sectionPath] : "";
+		?>
 		<div class="swiper-slide categories__slide">
 			<div class="price-card">
 			  <div class="price-card__header">
@@ -99,7 +118,7 @@ $settingsPage = getSettings(3);
 				<?}?>
 			  </dl>
 			  <span class="price-card__price"><?if(!empty($arResult["PRICES"][$arSection["ID"]])){?>от <?=CurrencyFormat($arResult["PRICES"][$arSection["ID"]],"RUB");?><?}?></span>
-			  <a href="#consult_form" data-fancybox class="btn btn--secondary btn--large" href="#consult_form" data-service="<?=$arSection["UF_NAME"];?>">Записаться на курс</a>
+			  <a href="#consult_form" data-fancybox class="btn btn--secondary btn--large" href="#consult_form" data-service="<?=$arSection["UF_NAME"];?>"<?if($sectionGoal){?> data-goal="<?=$sectionGoal;?>"<?}?>>Записаться на курс</a>
 			</div>
 		  </div>
 				<?
