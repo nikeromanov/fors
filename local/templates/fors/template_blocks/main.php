@@ -141,8 +141,17 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		  </div>
 		</div>
 		<?}?>
-	  </section>
+  </section>
   <?}?>
+
+  <?
+	$stagesOfStudy = $properties["STAGES_OF_STUDY"]["~VALUE"]["TEXT"]
+		?? $properties["STAGES_OF_STUDY"]["~VALUE"]
+		?? $properties["STAGES_OF_STUDY"]["VALUE"];
+	$whyWe = $properties["WHY_WE"]["~VALUE"]["TEXT"]
+		?? $properties["WHY_WE"]["~VALUE"]
+		?? $properties["WHY_WE"]["VALUE"];
+  ?>
 
   <?$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
@@ -178,7 +187,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
 		"INCLUDE_SUBSECTIONS" => "N",
 		"MESSAGE_404" => "",
-		"NEWS_COUNT" => "3",
+		"NEWS_COUNT" => "20",
 		"PAGER_BASE_LINK_ENABLE" => "N",
 		"PAGER_DESC_NUMBERING" => "N",
 		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
@@ -186,7 +195,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		"PAGER_SHOW_ALWAYS" => "N",
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
-		"PARENT_SECTION" => "10",
+		"PARENT_SECTION" => "",
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => [
@@ -205,7 +214,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER1" => "ASC",
 		"SORT_ORDER2" => "ASC",
-		"STRICT_SECTION_CHECK" => "Y",
+		"STRICT_SECTION_CHECK" => "N",
 		"COMPONENT_TEMPLATE" => ".default"
 	],
 	false
@@ -282,7 +291,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
 		"INCLUDE_SUBSECTIONS" => "N",
 		"MESSAGE_404" => "",
-		"NEWS_COUNT" => "3",
+		"NEWS_COUNT" => "20",
 		"PAGER_BASE_LINK_ENABLE" => "N",
 		"PAGER_DESC_NUMBERING" => "N",
 		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
@@ -290,7 +299,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		"PAGER_SHOW_ALWAYS" => "N",
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
-		"PARENT_SECTION" => "10",
+		"PARENT_SECTION" => "",
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => [
@@ -352,7 +361,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
 		"INCLUDE_SUBSECTIONS" => "Y",
 		"MESSAGE_404" => "",
-		"NEWS_COUNT" => "3",
+		"NEWS_COUNT" => "20",
 		"PAGER_BASE_LINK_ENABLE" => "N",
 		"PAGER_DESC_NUMBERING" => "N",
 		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
@@ -360,7 +369,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		"PAGER_SHOW_ALWAYS" => "N",
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
-		"PARENT_SECTION" => "10",
+		"PARENT_SECTION" => "",
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => [
@@ -383,11 +392,18 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER1" => "ASC",
 		"SORT_ORDER2" => "ASC",
-		"STRICT_SECTION_CHECK" => "Y",
+		"STRICT_SECTION_CHECK" => "N",
 		"COMPONENT_TEMPLATE" => "etaps"
 	],
 	false
 );?>
+
+	<?if(!empty($stagesOfStudy)){?>
+		<div class="content_block detail_content steps__seo">
+			<?=$stagesOfStudy;?>
+		</div>
+	<?}?>
+
 <?php include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH . "/includes/fast-banner.php"; ?>
 
   </section>
@@ -461,22 +477,6 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 	],
 	false
 );?>
-
-	<?
-	$stagesOfStudy = $properties["STAGES_OF_STUDY"]["~VALUE"]["TEXT"]
-		?? $properties["STAGES_OF_STUDY"]["~VALUE"]
-		?? $properties["STAGES_OF_STUDY"]["VALUE"];
-	$whyWe = $properties["WHY_WE"]["~VALUE"]["TEXT"]
-		?? $properties["WHY_WE"]["~VALUE"]
-		?? $properties["WHY_WE"]["VALUE"];
-	?>
-	<?if(!empty($stagesOfStudy)){?>
-		<section class="page-section container">
-			<div class="content_block detail_content steps__seo">
-				<?=$stagesOfStudy;?>
-			</div>
-		</section>
-	<?}?>
 
 	<?if(!empty($properties["BLOCK6_LIST"]["VALUE"])||!empty($properties["BLOCK7_LIST"]["VALUE"])){?>
   <section class="page-section remote container">
@@ -691,7 +691,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC",
-		"STRICT_SECTION_CHECK" => "Y",
+		"STRICT_SECTION_CHECK" => "N",
 		"COMPONENT_TEMPLATE" => "faq"
 	],
 	false
