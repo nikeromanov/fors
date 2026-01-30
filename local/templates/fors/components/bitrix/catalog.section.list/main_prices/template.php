@@ -60,6 +60,38 @@ $goalByPathMap = [
 	'/category/pereobuchenie-s-v-na-d-s-s-na-d/' => 'form_CD',
 	'/gifts/' => 'form_sert',
 ];
+$goalByLetterMap = [
+	'А' => 'form_A',
+	'А1' => 'form_A1',
+	'В' => 'form_B',
+	'С' => 'form_C',
+	'Д' => 'form_D',
+	'Е' => 'form_E',
+	'М' => 'form_M',
+	'BC' => 'form_BC',
+	'ВC' => 'form_BC',
+	'CD' => 'form_CD',
+	'СD' => 'form_CD',
+];
+?>
+<?
+function normalizeGoalLetter($value){
+	$value = trim((string)$value);
+	if($value === ''){
+		return '';
+	}
+	if(function_exists('mb_strtoupper')){
+		$value = mb_strtoupper($value);
+	}else{
+		$value = strtoupper($value);
+	}
+	$value = str_replace(
+		['A','B','C','D','E','K','M'],
+		['А','В','С','Д','Е','К','М'],
+		$value
+	);
+	return $value;
+}
 ?>
 
 <section class="page-section categories container" aria-labelledby="categories-title">
@@ -79,6 +111,27 @@ $goalByPathMap = [
 		<?
 		$sectionPath = rtrim($arSection["SECTION_PAGE_URL"], "/") . "/";
 		$sectionGoal = isset($goalByPathMap[$sectionPath]) ? $goalByPathMap[$sectionPath] : "";
+		if(!$sectionGoal){
+			$sectionLetter = normalizeGoalLetter($arSection["UF_LETTER"] ?? '');
+			$sectionGoal = isset($goalByLetterMap[$sectionLetter]) ? $goalByLetterMap[$sectionLetter] : "";
+		}
+		if(!$sectionGoal){
+			$sectionNameLower = (string)($arSection["UF_NAME"] ?? '');
+			if(function_exists('mb_strtolower')){
+				$sectionNameLower = mb_strtolower($sectionNameLower);
+			}else{
+				$sectionNameLower = strtolower($sectionNameLower);
+			}
+			if(strpos($sectionNameLower, 'квадро') !== false){
+				$sectionGoal = 'form_kvadro';
+			}else if(strpos($sectionNameLower, 'переобучение с в на с') !== false){
+				$sectionGoal = 'form_BC';
+			}else if(strpos($sectionNameLower, 'переобучение с в на д') !== false || strpos($sectionNameLower, 'переобучение с с на д') !== false){
+				$sectionGoal = 'form_CD';
+			}else if(strpos($sectionNameLower, 'подарочн') !== false){
+				$sectionGoal = 'form_sert';
+			}
+		}
 		?>
 		<div class="swiper-slide categories__slide">
 			<div class="price-card">

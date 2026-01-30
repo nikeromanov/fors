@@ -38,11 +38,33 @@ function conv_size(b){
 
 }
 $(document).ready(function(){
+	var goalByPathMap = {
+		'/category/kategoriya-a/': 'form_A',
+		'/category/kategoriya-a1/': 'form_A1',
+		'/category/kategoriya-v-v1/': 'form_B',
+		'/category/kategoriya-c-s1/': 'form_C',
+		'/category/kategoriya-d-d1/': 'form_D',
+		'/category/kategoriya-e/': 'form_E',
+		'/category/kategoriya-m/': 'form_M',
+		'/category/kategoriya-kvadrotsikly/': 'form_kvadro',
+		'/category/pereobuchenie-s-v-na-s/': 'form_BC',
+		'/category/pereobuchenie-s-v-na-d-s-s-na-d/': 'form_CD',
+		'/gifts/': 'form_sert'
+	};
+	var getGoalByLink = function(link){
+		var normalized = link ? link.replace(/\/+$/, '') + '/' : '';
+		return normalized && goalByPathMap[normalized] ? goalByPathMap[normalized] : '';
+	};
 	$(document).on("click",'[data-service]',function(){
 
 		let lnk = $(this).attr("href");
 		var serviceValue = $(this).attr("data-service");
 		var goalValue = $(this).attr("data-goal");
+		if(!goalValue){
+			var card = $(this).closest('.price-card');
+			var cardLink = card.length ? (card.find('.price-card__title').first().attr('href') || '') : '';
+			goalValue = getGoalByLink(cardLink);
+		}
 		window._lastMetrikaGoal = goalValue ? goalValue : "";
 		window._lastMetrikaService = serviceValue ? serviceValue : "";
 		var targetForm = $(lnk);
@@ -172,20 +194,6 @@ $(document).ready(function(){
         var locationPath = window.location && window.location.pathname ? window.location.pathname : '';
         var normalizedLocationPath = locationPath ? locationPath.replace(/\/+$/, '') + '/' : '';
         var isCategoryRootPage = normalizedLocationPath === '/category/';
-
-        var goalByPathMap = {
-                '/category/kategoriya-a/': 'form_A',
-                '/category/kategoriya-a1/': 'form_A1',
-                '/category/kategoriya-v-v1/': 'form_B',
-                '/category/kategoriya-c-s1/': 'form_C',
-                '/category/kategoriya-d-d1/': 'form_D',
-                '/category/kategoriya-e/': 'form_E',
-                '/category/kategoriya-m/': 'form_M',
-                '/category/kategoriya-kvadrotsikly/': 'form_kvadro',
-                '/category/pereobuchenie-s-v-na-s/': 'form_BC',
-                '/category/pereobuchenie-s-v-na-d-s-s-na-d/': 'form_CD',
-                '/gifts/': 'form_sert'
-        };
 
         var activeCategoryService = '';
         var activeCategoryGoal = '';
