@@ -1,8 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("description", "Галерея");
+$APPLICATION->SetPageProperty("description", "Посмотрите фотогалерею автошколы «Форсаж» в Воронеже: изображения учебного процесса, автомобилей и работы сотрудников.");
 $APPLICATION->SetPageProperty("keywords", "Галерея");
-$APPLICATION->SetPageProperty("title", "Фотогалерея автошколы в Воронеже: фото вождения, администраторов и классов на сайте школы Форсаж ");
+$APPLICATION->SetPageProperty("title", "Фотогалерея автошколы «Форсаж» в Воронеже: фото уроков, автомобилей, классов и сотрудников");
 $APPLICATION->SetTitle("Галлерея");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
