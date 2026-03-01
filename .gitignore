@@ -37,6 +37,10 @@ pnpm-debug.log
 # ==============================
 *.log
 /robots.txt
+
+# Local DB migration runtime state (not for VCS)
+local/db/migrations/state/cursor.env
+local/db/migrations/state/capture.log
 # ==============================
 # Uploads (медиа и 1С-обмен)
 # ==============================
