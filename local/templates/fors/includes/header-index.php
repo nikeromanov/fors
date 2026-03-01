@@ -15,7 +15,7 @@ if (defined("ERROR_404")) {
         src="<?=SITE_TEMPLATE_PATH;?>/assets/icons/logo-forsazh.svg"
         data-logo-light="<?=SITE_TEMPLATE_PATH;?>/assets/icons/logo-forsazh.svg"
         data-logo-dark="<?=SITE_TEMPLATE_PATH;?>/assets/icons/logo-dark.svg"
-        alt="Логотип Форсаж"
+        alt="Форсаж — автошкола в Воронеже"
         width="120"
         height="28"
         loading="eager"
