@@ -5,7 +5,6 @@ define("CATALOG_IBLOCK_ID","2");
 include_once __DIR__ . '/vendor/autoload.php';
 
 AddEventHandler('main', 'OnPageStart', 'forsHandleInvalidUrl');
-AddEventHandler('main', 'OnEpilog', 'forsHandleNotFoundRedirect');
 
 function forsHasBitrixSystemQueryParams($request): bool
 {
@@ -114,6 +113,14 @@ function forsHandleInvalidUrl()
         LocalRedirect('/contacts/', true, '301 Moved Permanently');
     }
 
+    if (preg_match('#^/concurses(?:/|$)#i', $path)) {
+        LocalRedirect('/', true, '301 Moved Permanently');
+    }
+
+    if (preg_match('#^/ofisy-i-klassy(?:/|$)#i', $path)) {
+        LocalRedirect('/', true, '301 Moved Permanently');
+    }
+
     $pathForSlashNormalization = $uriPath !== '' ? $uriPath : $path;
 
     if (preg_match('#//+#', $pathForSlashNormalization)) {
@@ -131,52 +138,6 @@ function forsHandleInvalidUrl()
 
         LocalRedirect($redirectTo, true, '301 Moved Permanently');
     }
-}
-
-function forsHandleNotFoundRedirect()
-{
-    if (defined('ADMIN_SECTION') && ADMIN_SECTION === true) {
-        return;
-    }
-
-    if (php_sapi_name() === 'cli') {
-        return;
-    }
-
-    if (!defined('ERROR_404') || ERROR_404 !== 'Y') {
-        return;
-    }
-
-    if (!class_exists('\Bitrix\Main\Context')) {
-        return;
-    }
-
-    $request = \Bitrix\Main\Context::getCurrent()->getRequest();
-    if (!$request) {
-        return;
-    }
-
-    $requestMethod = strtoupper((string)$request->getRequestMethod());
-    if (!in_array($requestMethod, ['GET', 'HEAD'], true)) {
-        return;
-    }
-
-    $requestUri = (string)($_SERVER['REQUEST_URI'] ?? '');
-    $uriPath = (string)parse_url($requestUri, PHP_URL_PATH);
-
-    if ($uriPath === '') {
-        $uriPath = (string)$request->getRequestedPage();
-    }
-
-    if ($uriPath === '' || $uriPath === '/') {
-        return;
-    }
-
-    if (preg_match('#^/branches(?:/|$)#i', $uriPath)) {
-        LocalRedirect('/contacts/', true, '301 Moved Permanently');
-    }
-
-    LocalRedirect('/', true, '301 Moved Permanently');
 }
 
 
