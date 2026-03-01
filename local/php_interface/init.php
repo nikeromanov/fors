@@ -5,6 +5,63 @@ define("CATALOG_IBLOCK_ID","2");
 include_once __DIR__ . '/vendor/autoload.php';
 
 AddEventHandler('main', 'OnPageStart', 'forsHandleInvalidUrl');
+
+function forsHasBitrixSystemQueryParams($request): bool
+{
+    $params = [];
+
+    if (is_object($request) && method_exists($request, 'getQueryList')) {
+        $queryList = $request->getQueryList();
+
+        if (is_object($queryList) && method_exists($queryList, 'toArray')) {
+            $params = (array)$queryList->toArray();
+        }
+    }
+
+    if (empty($params) && isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] !== '') {
+        parse_str((string)$_SERVER['QUERY_STRING'], $params);
+    }
+
+    if (empty($params)) {
+        return false;
+    }
+
+    $systemKeys = [
+        'clear_cache',
+        'clear_cache_session',
+        'bitrix_include_areas',
+        'mode',
+        'bxpublic',
+        'iframe',
+        'iframe_type',
+        'bxajaxid',
+        'sessid',
+        'show_page_exec_time',
+        'show_include_exec_time',
+        'show_sql_stat',
+        'show_link_stat',
+        'show_cache_stat',
+    ];
+
+    foreach (array_keys($params) as $name) {
+        $name = mb_strtolower((string)$name);
+
+        if ($name === '') {
+            continue;
+        }
+
+        if (in_array($name, $systemKeys, true)) {
+            return true;
+        }
+
+        if (strpos($name, 'bx') === 0 || strpos($name, 'show_') === 0) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 function forsHandleInvalidUrl()
 {
     if (defined('ADMIN_SECTION') && ADMIN_SECTION === true) {
@@ -24,32 +81,50 @@ function forsHandleInvalidUrl()
         return;
     }
 
+    $requestMethod = strtoupper((string)$request->getRequestMethod());
+    if (!in_array($requestMethod, ['GET', 'HEAD'], true)) {
+        return;
+    }
+
     $path = (string)$request->getRequestedPage();
     if ($path === '') {
         return;
+    }
+
+    $requestUri = (string)($_SERVER['REQUEST_URI'] ?? '');
+    $uriPath = (string)parse_url($requestUri, PHP_URL_PATH);
+
+    if ($uriPath === '') {
+        $uriPath = $path;
+    }
+
+    $isBrokenRootQuestion = ($requestUri === '/?');
+    $isBrokenPercentPath = (preg_match('#^/%(?:25)?/?$#i', $uriPath) === 1);
+
+    if (($isBrokenRootQuestion || $isBrokenPercentPath) && !forsHasBitrixSystemQueryParams($request)) {
+        LocalRedirect('/', true, '301 Moved Permanently');
     }
 
     if (preg_match('#^/shares(?:/|$)#', $path)) {
         LocalRedirect('/news/', true, '301 Moved Permanently');
     }
 
-    if (preg_match('#//+#', $path)) {
-        if (!defined('ERROR_404')) {
-            define('ERROR_404', 'Y');
+    $pathForSlashNormalization = $uriPath !== '' ? $uriPath : $path;
+
+    if (preg_match('#//+#', $pathForSlashNormalization)) {
+        $normalizedPath = preg_replace('#/+#', '/', $pathForSlashNormalization);
+        if ($normalizedPath === '' || $normalizedPath === null) {
+            $normalizedPath = '/';
         }
-        if (class_exists('CHTTP')) {
-            CHTTP::SetStatus('404 Not Found');
-        } elseif (function_exists('http_response_code')) {
-            http_response_code(404);
+
+        $queryString = (string)($_SERVER['QUERY_STRING'] ?? '');
+        $redirectTo = $normalizedPath;
+
+        if ($queryString !== '') {
+            $redirectTo .= '?' . $queryString;
         }
-        $page404 = rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/404.php';
-        if (is_file($page404)) {
-            require $page404;
-        }
-        if (class_exists('\Bitrix\Main\Application')) {
-            \Bitrix\Main\Application::getInstance()->end();
-        }
-        exit;
+
+        LocalRedirect($redirectTo, true, '301 Moved Permanently');
     }
 }
 
