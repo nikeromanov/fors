@@ -91,6 +91,8 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
         <title><? $APPLICATION->ShowTitle(); ?></title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+		<link rel="alternate icon" href="/favicon.ico" type="image/x-icon" />
 		
 		
 		<link rel="preload" as="style" href="<?= SITE_TEMPLATE_PATH; ?>/assets/css/styles.css" />
