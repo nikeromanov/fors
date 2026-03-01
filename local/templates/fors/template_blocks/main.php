@@ -55,7 +55,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
                               <?=$settings["PHONE"]["VALUE"];?>
                             </a>
                           <?}?>
-			  <a class="btn btn--primary btn--large btn--block" data-fancybox data-service="Записаться на курс" href="#consult_form">Записаться на курс</a>
+			  <a class="btn btn--primary btn--large btn--block" data-fancybox data-service="Получи скидку 5000 руб." href="#consult_form">Получи скидку 5000 руб.</a>
 			 <?if(!empty($settings["AKC_LEFT"]["VALUE"])){?> <div class="home-hero__badge">
 				<span class="home-hero__badge-label">осталось</span>
 				<span class="home-hero__badge-value"><?=$settings["AKC_LEFT"]["VALUE"];?></span>
