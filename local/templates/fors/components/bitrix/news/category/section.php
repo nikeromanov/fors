@@ -95,7 +95,7 @@ $this->setFrameMode(true);
 		"CACHE_FILTER" => "N",
 		"CACHE_GROUPS" => "Y",
 		"CACHE_TIME" => "36000000",
-		"CACHE_TYPE" => "A",
+		"CACHE_TYPE" => "N",
 		"COUNT_ELEMENTS" => "N",
 		"COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
 		"FILTER_NAME" => "sectionsFilter",

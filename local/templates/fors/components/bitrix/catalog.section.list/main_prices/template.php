@@ -48,8 +48,37 @@ $currentDir = is_object($APPLICATION) && method_exists($APPLICATION, 'GetCurDir'
 	? (string)$APPLICATION->GetCurDir()
 	: '';
 $titleTag = $currentDir === '/category/' ? 'h1' : 'h2';
+$currentPage = '';
+$requestUri = (string)($_SERVER['REQUEST_URI'] ?? '');
+if ($requestUri !== '') {
+	$currentPage = (string)parse_url($requestUri, PHP_URL_PATH);
+}
+
+if ($currentPage === '' && is_object($APPLICATION) && method_exists($APPLICATION, 'GetCurPage')) {
+	$currentPage = (string)$APPLICATION->GetCurPage(false);
+}
+
+$currentPage = rtrim($currentPage, '/');
+
+if ($currentPage === '') {
+	$currentPage = '/';
+}
+
+$displaySections = [];
+foreach ((array)$arResult['SECTIONS'] as $sectionItem) {
+	$sectionPage = rtrim((string)($sectionItem['SECTION_PAGE_URL'] ?? ''), '/');
+	if ($sectionPage === '') {
+		$sectionPage = '/';
+	}
+
+	if ($sectionPage === $currentPage) {
+		continue;
+	}
+
+	$displaySections[] = $sectionItem;
+}
 ?>
-<?if(!empty($arResult['SECTIONS'])){?>
+<?if(!empty($displaySections)){?>
 <?
 $goalByPathMap = [
 	'/category/kategoriya-a/' => 'form_A',
@@ -108,7 +137,7 @@ function normalizeGoalLetter($value){
   <div class="swiper categories__slider categories__slider--nudge" aria-label="Категории обучения">
     <div class="swiper-wrapper">
                 <?
-                foreach ($arResult['SECTIONS'] as $arSection)
+                foreach ($displaySections as $arSection)
 			{
 				$this->AddEditAction($arSection['ID'], $arSection['EDIT_LINK'], $strSectionEdit);
 				$this->AddDeleteAction($arSection['ID'], $arSection['DELETE_LINK'], $strSectionDelete, $arSectionDeleteParams);?>
@@ -195,7 +224,7 @@ function normalizeGoalLetter($value){
       <span class="slider__page-counter">
         <span class="slider__page-current categories__page-current">1</span>
         <span class="slider__page-divider">/</span>
-        <span class="slider__page-total categories__page-total"><?=count(array_chunk($arResult['SECTIONS'],3));?></span>
+        <span class="slider__page-total categories__page-total"><?=count(array_chunk($displaySections,3));?></span>
       </span>
       <button class="slider__nav-btn categories__nav-btn--next" type="button" aria-label="Следующая страница">
         <span class="ui-icon slider__nav-icon" data-icon="right-arrow" aria-hidden="true"></span>
