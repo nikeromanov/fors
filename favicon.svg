@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
-  <title>Форсаж</title>
-  <rect width="120" height="120" rx="24" fill="#d8232a" />
-  <path d="M34 30h52v12H46v16h34v12H46v20H34z" fill="#fff" />
+  <title>Ф</title>
+  <rect width="120" height="120" rx="24" fill="#f2d502" />
+  <circle cx="60" cy="60" r="28" fill="none" stroke="#1A1A1A" stroke-width="10" />
+  <rect x="55" y="18" width="10" height="84" rx="5" fill="#1A1A1A" />
 </svg>
