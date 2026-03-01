@@ -11,6 +11,11 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+
+$instructorTitle = trim((string)($arResult["NAME"] ?? ''));
+if ($instructorTitle === '' && is_object($APPLICATION) && method_exists($APPLICATION, 'GetTitle')) {
+	$instructorTitle = trim((string)$APPLICATION->GetTitle(false));
+}
 ?>
 
 <section class="page-section instructor-detail container" aria-labelledby="instructor-title">
@@ -32,7 +37,7 @@ $this->setFrameMode(true);
 
   <div class="instructor-detail__info">
 	<h1 class="instructor-detail__title" id="instructor-title">
-	  <? $APPLICATION->ShowTitle(false); ?>
+	  <?=htmlspecialcharsbx($instructorTitle);?>
 	</h1>
 
 	<div class="instructor-detail__content detail_content content_block">
@@ -78,6 +83,5 @@ $this->setFrameMode(true);
   </div>
 </div>
 </section>
-
 
 

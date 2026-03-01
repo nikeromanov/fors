@@ -44,6 +44,10 @@ $strSectionEdit = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_EDIT");
 $strSectionDelete = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_DELETE");
 $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_CONFIRM'));
 $settingsPage = getSettings(3);
+$currentDir = is_object($APPLICATION) && method_exists($APPLICATION, 'GetCurDir')
+	? (string)$APPLICATION->GetCurDir()
+	: '';
+$titleTag = $currentDir === '/category/' ? 'h1' : 'h2';
 ?>
 <?if(!empty($arResult['SECTIONS'])){?>
 <?
@@ -95,7 +99,7 @@ function normalizeGoalLetter($value){
 ?>
 
 <section class="page-section categories container" aria-labelledby="categories-title">
-  <?if(!empty($settingsPage["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"])){?><h2 class="categories__title" id="categories-title"><?=$settingsPage["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"];?></h2><?}?>
+  <?if(!empty($settingsPage["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"])){?><<?=$titleTag;?> class="categories__title" id="categories-title"><?=$settingsPage["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"];?></<?=$titleTag;?>><?}?>
   <?if(!empty($settingsPage["PROPERTIES"]["BLOCK3_SUBTITLE"]["VALUE"])){?><p class="categories__subtitle">
     <?=$settingsPage["PROPERTIES"]["BLOCK3_SUBTITLE"]["VALUE"];?>
   </p><?}?>
