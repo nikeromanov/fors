@@ -5,6 +5,8 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # shellcheck disable=SC1091
 source "$SCRIPT_DIR/common.sh"
 
+dbmig_context
+
 status="$(read_master_status || true)"
 if [[ -z "$status" ]]; then
   echo "ERROR: binlog is disabled or unavailable."

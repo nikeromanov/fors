@@ -39,16 +39,15 @@ fi
 
 while IFS= read -r logf; do
   [[ -z "$logf" ]] && continue
-  start_opt=""
-  stop_opt=""
+  opts=()
   if [[ "$logf" == "$start_file" ]]; then
-    start_opt="--start-position=${start_pos}"
+    opts+=("--start-position=${start_pos}")
   fi
   if [[ "$logf" == "$end_file" ]]; then
-    stop_opt="--stop-position=${end_pos}"
+    opts+=("--stop-position=${end_pos}")
   fi
 
-  compose_exec_db sh -lc "mysqlbinlog --database='${APP_DB_NAME}' ${start_opt} ${stop_opt} /var/lib/mysql/${logf}" >> "$out_file"
+  dump_binlog "$logf" "${opts[@]}" >> "$out_file"
 done <<< "$range"
 
 if [[ ! -s "$out_file" ]]; then

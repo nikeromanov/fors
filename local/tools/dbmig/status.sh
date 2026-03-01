@@ -5,6 +5,9 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # shellcheck disable=SC1091
 source "$SCRIPT_DIR/common.sh"
 
+dbmig_context
+echo ""
+
 if [[ -f "$CURSOR_FILE" ]]; then
   echo "Cursor file: $CURSOR_FILE"
   cat "$CURSOR_FILE"
