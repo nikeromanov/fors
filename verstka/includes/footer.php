@@ -31,7 +31,7 @@
             <a class="footer-nav__link" href="/gallery/">Галерея</a>
           </li>
           <li class="footer-nav__item">
-            <a class="footer-nav__link" href="/branches/">Филиалы</a>
+            <a class="footer-nav__link" href="/contacts/">Филиалы</a>
           </li>
           <li class="footer-nav__item">
             <a class="footer-nav__link" href="/promotions/">Акции</a>
