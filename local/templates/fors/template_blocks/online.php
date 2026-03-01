@@ -28,6 +28,24 @@ if (Loader::includeModule('iblock')) {
         }
     }
 }
+
+if ($onlineMainContentHtml !== '') {
+    $onlineMainContentHtml = str_replace(
+        [
+            '<h2>Актуальность удаленных форматов</h2>',
+            '<h2>Что нужно для дистанционного обучения в автошколе на водительские права</h2>',
+            '<h3>Порядок подготовки</h3>',
+            '<h2>Как записаться на курс обучения вождению автомобиля онлайн для начинающих</h2>',
+        ],
+        [
+            '<h2>ПОПУЛЯРНОСТЬ УДАЛЕННЫХ ФОРМАТОВ</h2>',
+            '<h2>ЧТО НУЖНО ДЛЯ ОНЛАЙН-ОБУЧЕНИЯ В АВТОШКОЛЕ</h2>',
+            '<h2>ПОРЯДОК ПОДГОТОВКИ</h2>',
+            '<h2>КАК ЗАПИСАТЬСЯ НА ОНЛАЙН-АВТОКУРСЫ В ВОРОНЕЖЕ</h2>',
+        ],
+        $onlineMainContentHtml
+    );
+}
 ?>
 
       <section class="page-section page-section__flex online container" aria-labelledby="online-title">
@@ -124,7 +142,7 @@ if (Loader::includeModule('iblock')) {
 
       <div class="driving-layout">
         <aside class="driving-sidebar" aria-labelledby="online-sidebar-title">
-          <h2 class="driving-sidebar__title" id="online-sidebar-title">Курсантам:</h2>
+          <p class="driving-sidebar__title" id="online-sidebar-title">Курсантам:</p>
           <?$APPLICATION->IncludeComponent(
 			"bitrix:menu",
 			"left",
@@ -222,9 +240,9 @@ if (Loader::includeModule('iblock')) {
 	],
 	false
 );?>
-<? include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH."/includes/form.php";?>
+      <? include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH."/includes/form.php";?>
       <section class="page-section remote container">
-        <h2 class="remote__title">Дистанционное обучение</h2>
+        <p class="remote__title">Дистанционное обучение</p>
         <div class="remote-banner">
           <ul class="remote-banner__content">
             <li class="remote-banner__item">

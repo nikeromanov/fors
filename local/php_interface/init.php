@@ -109,6 +109,13 @@ function forsHandleInvalidUrl()
         LocalRedirect('/news/', true, '301 Moved Permanently');
     }
 
+    $isLegacyNewsOfficePath = preg_match('#^/news/grafik-raboty-tsentralnogo-ofisa-tel-295-93-42(?:/|$)#i', $path) === 1
+        || preg_match('#^/news/grafik-raboty-tsentralnogo-ofisa-tel-295-93-42(?:/|$)#i', $uriPath) === 1;
+
+    if ($isLegacyNewsOfficePath) {
+        LocalRedirect('/news/', true, '301 Moved Permanently');
+    }
+
     if (preg_match('#^/branches(?:/|$)#i', $path)) {
         LocalRedirect('/contacts/', true, '301 Moved Permanently');
     }

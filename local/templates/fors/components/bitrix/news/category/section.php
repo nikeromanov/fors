@@ -109,6 +109,7 @@ $this->setFrameMode(true);
 		],
 		"SECTION_ID" => "",
 		"SECTION_URL" => "",
+		"HEADING_TAG" => "h2",
                 "SECTION_USER_FIELDS" => [
                         0 => "UF_NAME",
                         1 => "UF_LETTER",

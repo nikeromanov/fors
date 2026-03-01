@@ -45,7 +45,7 @@ $markerIcon = SITE_TEMPLATE_PATH.'/assets/icons/marker.png';
 ?>
 
 <section class="page-section container" aria-labelledby="map-title">
-  <h2 class="page-section__title u-visually-hidden" id="map-title">Наши офисы и автодромы в Воронеже</h2>
+  <h2 class="page-section__title" id="map-title">Наши офисы и автодромы в Воронеже</h2>
   <div class="office-map js-district-tabs">
     <ul class="tabs" role="tablist" aria-label="Районы города">
 		<?foreach($arResult["ITEMS"] as $item){?>

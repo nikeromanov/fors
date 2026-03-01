@@ -1,6 +1,6 @@
 <div class="fast-banner">
   <div class="fast-banner__content">
-    <h5 class="fast-banner__title">Получи права за 35 дней!</h5>
+    <p class="fast-banner__title">Получи права за 35 дней!</p>
     <a href="#consult_form" class="fast-banner__button btn btn--secondary btn--large" data-fancybox="" data-service="Получи права за 35 дней!">Оставить заявку</a>
   </div>
   <figure>

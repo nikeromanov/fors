@@ -4,7 +4,7 @@
         <h1 class="skills__title page-section__title" id="specsignal-title">Обучение на спецсигналы</h1>
         <div class="driving-layout">
           <aside class="driving-sidebar" aria-labelledby="specsignal-sidebar-title">
-            <h2 class="driving-sidebar__title" id="specsignal-sidebar-title">Курсантам:</h2>
+            <p class="driving-sidebar__title" id="specsignal-sidebar-title">Курсантам:</p>
             <?$APPLICATION->IncludeComponent(
 			"bitrix:menu",
 			"left",

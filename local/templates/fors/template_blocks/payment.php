@@ -29,7 +29,7 @@ $settingsPageCur = getSettings(34);
 
 <div class="driving-layout">
 <aside class="driving-sidebar" aria-labelledby="driving-sidebar-title">
-  <h2 class="driving-sidebar__title" id="driving-sidebar-title">Курсантам:</h2>
+  <p class="driving-sidebar__title" id="driving-sidebar-title">Курсантам:</p>
    <?$APPLICATION->IncludeComponent(
 			"bitrix:menu",
 			"left",
@@ -49,7 +49,15 @@ $settingsPageCur = getSettings(34);
 </aside>
 
 <div class="driving-content">
-	<?=$settingsPageCur["DETAIL_TEXT"];?>
+	<?
+	$paymentContent = (string)$settingsPageCur["DETAIL_TEXT"];
+	$paymentContent = preg_replace(
+		'#(<h2[^>]*id=["\']payment-methods-title["\'][^>]*>)\s*Оплата обучения\s*(</h2>)#ui',
+		'$1Как вернуть деньги$2',
+		$paymentContent
+	);
+	?>
+	<?=$paymentContent;?>
  
 </div>
 </div>

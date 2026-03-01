@@ -29,7 +29,7 @@ $settingsPageCur = getSettings(29);
 
 <div class="driving-layout">
 <aside class="driving-sidebar" aria-labelledby="driving-sidebar-title">
-  <h2 class="driving-sidebar__title" id="driving-sidebar-title">Курсантам:</h2>
+  <p class="driving-sidebar__title" id="driving-sidebar-title">Курсантам:</p>
    <?$APPLICATION->IncludeComponent(
 			"bitrix:menu",
 			"left",
@@ -49,7 +49,15 @@ $settingsPageCur = getSettings(29);
 </aside>
 
 <div class="driving-content">
-	<?=$settingsPageCur["DETAIL_TEXT"];?>
+	<?
+	$extremalContent = (string)$settingsPageCur["DETAIL_TEXT"];
+	$extremalContent = preg_replace(
+		'#(<h2[^>]*id=["\']extreme-price-title["\'][^>]*>)\s*Расценки\s*(</h2>)#ui',
+		'$1Стоимость$2',
+		$extremalContent
+	);
+	?>
+	<?=$extremalContent;?>
  
 </div>
 </div>

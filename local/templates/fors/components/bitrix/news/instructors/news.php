@@ -156,15 +156,26 @@ $APPLICATION->IncludeComponent(
 	<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK2_SUBTITLE"]["VALUE"])){?><p class="instructors__with-text">
 	 <?=$settingsPageCur["PROPERTIES"]["BLOCK2_SUBTITLE"]["VALUE"];?>
 	</p><?}?>
-	<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["VALUE"])){?>
-		<?foreach($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["VALUE"] as $k=>$it){?>
-			<span class="ui-icon instructors__with-icon" aria-hidden="true" data-icon="down-arrow"></span>
-			<?if($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["DESCRIPTION"][$k]){?><h3 class="instructors__with-subtitle"> <?=$settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["DESCRIPTION"][$k];?></h3><?}?>
-			<p class="instructors__with-subtext">
-			<?=$it;?>
-			</p>
+		<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["VALUE"])){?>
+			<?$seenBlock2Subtitles = [];?>
+			<?foreach($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["VALUE"] as $k=>$it){?>
+				<span class="ui-icon instructors__with-icon" aria-hidden="true" data-icon="down-arrow"></span>
+				<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["DESCRIPTION"][$k])){
+					$subtitleText = trim((string)$settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["DESCRIPTION"][$k]);
+					$subtitleKey = mb_strtolower($subtitleText);
+					$isSubtitleDuplicate = in_array($subtitleKey, $seenBlock2Subtitles, true);
+					if (!$isSubtitleDuplicate) {
+						$seenBlock2Subtitles[] = $subtitleKey;
+						?><h3 class="instructors__with-subtitle"><?=$subtitleText;?></h3><?
+					} else {
+						?><p class="instructors__with-subtitle"><?=$subtitleText;?></p><?
+					}
+				}?>
+				<p class="instructors__with-subtext">
+				<?=$it;?>
+				</p>
+			<?}?>
 		<?}?>
-	<?}?>
 	
 </section>
 <?}?>
@@ -173,17 +184,17 @@ $APPLICATION->IncludeComponent(
 <section class="page-section page-section__flex instructors__consult" aria-labelledby="instructors-consult-title">
 	<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"])){?><h2 id="instructors-consult-title " class="instructors__consult-title page-section__title"><?=$settingsPageCur["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"];?></h2><?}?>
 	<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK3_SUBTITLE"]["VALUE"])){?><p class="instructors__consult-subtitle"><?=$settingsPageCur["PROPERTIES"]["BLOCK3_SUBTITLE"]["VALUE"];?></p><?}?>
-	<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["VALUE"])){?>
-	<ol class="steps__list">
-	<?foreach($settingsPageCur["PROPERTIES"]["BLOCK3_LIST"]["VALUE"] as $k=>$it){?>
-	  <li class="steps__item">
-		<p class="steps__number" aria-hidden="true"><?=str_pad(($k+1), 2, '0', STR_PAD_LEFT);?></p>
-		<h3 class="steps__title"><?=$it;?></h3>
-		<?if($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["DESCRIPTION"][$k]){?><p class="steps__description"><?=$settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["DESCRIPTION"][$k];?></p><?}?>
-	  </li>
-	<?}?>
-	</ol>
-	<?}?>
+		<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK3_LIST"]["VALUE"])){?>
+		<ol class="steps__list">
+		<?foreach($settingsPageCur["PROPERTIES"]["BLOCK3_LIST"]["VALUE"] as $k=>$it){?>
+		  <li class="steps__item">
+			<p class="steps__number" aria-hidden="true"><?=str_pad(($k+1), 2, '0', STR_PAD_LEFT);?></p>
+			<h3 class="steps__title"><?=$it;?></h3>
+			<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK3_LIST"]["DESCRIPTION"][$k])){?><p class="steps__description"><?=$settingsPageCur["PROPERTIES"]["BLOCK3_LIST"]["DESCRIPTION"][$k];?></p><?}?>
+		  </li>
+		<?}?>
+		</ol>
+		<?}?>
 	  <?if($settingsPageCur["DETAIL_TEXT"]){?>
 			<div class="instructors__consult-container double_text content_block detail_content">
 				<?=$settingsPageCur["DETAIL_TEXT"];?>

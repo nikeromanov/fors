@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetPageProperty("description", "Посмотрите фотогалерею автошколы «Форсаж» в Воронеже: изображения учебного процесса, автомобилей и работы сотрудников.");
 $APPLICATION->SetPageProperty("keywords", "Галерея");
 $APPLICATION->SetPageProperty("title", "Фотогалерея автошколы «Форсаж» в Воронеже: фото уроков, автомобилей, классов и сотрудников");
-$APPLICATION->SetTitle("Галлерея");
+$APPLICATION->SetTitle("Галерея");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"gallery", 
@@ -93,4 +93,8 @@ $APPLICATION->SetTitle("Галлерея");
 		"USE_SHARE" => "N"
 	],
 	false
-);?><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+);?>
+<?if ($APPLICATION->GetCurPage(false) === "/gallery/") {
+	$APPLICATION->SetTitle("Галерея");
+}?>
+<br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

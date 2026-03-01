@@ -29,7 +29,7 @@ $settingsPageCur = getSettings(26);
 
 <div class="driving-layout">
 <aside class="driving-sidebar" aria-labelledby="driving-sidebar-title">
-  <h2 class="driving-sidebar__title" id="driving-sidebar-title">Курсантам:</h2>
+  <p class="driving-sidebar__title" id="driving-sidebar-title">Курсантам:</p>
    <?$APPLICATION->IncludeComponent(
 			"bitrix:menu",
 			"left",

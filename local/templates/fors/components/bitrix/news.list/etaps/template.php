@@ -14,12 +14,16 @@ $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){
 	$settingsPage = getSettings(3);
+	$stagesTitle = trim((string)($settingsPage["PROPERTIES"]["BLOCK4_TITLE"]["VALUE"] ?? ''));
+	if ($stagesTitle === 'Этапы учебы') {
+		$stagesTitle = 'Этапы обучения';
+	}
 	$stagesSecond = $settingsPage["PROPERTIES"]["STAGES_2"]["~VALUE"]["TEXT"]
 		?? $settingsPage["PROPERTIES"]["STAGES_2"]["~VALUE"]
 		?? $settingsPage["PROPERTIES"]["STAGES_2"]["VALUE"];
 	?>
 	<div class="u-container">
-		<?if(!empty($settingsPage["PROPERTIES"]["BLOCK4_TITLE"]["VALUE"])){?><h2 class="section-title section-title--center" id="steps-title"><?=$settingsPage["PROPERTIES"]["BLOCK4_TITLE"]["VALUE"];?></h2><?}?>
+		<?if($stagesTitle !== ''){?><h2 class="section-title section-title--center" id="steps-title"><?=$stagesTitle;?></h2><?}?>
 		<?if(!empty($stagesSecond)){?>
 			<div class="content_block detail_content steps__seo">
 				<?=$stagesSecond;?>

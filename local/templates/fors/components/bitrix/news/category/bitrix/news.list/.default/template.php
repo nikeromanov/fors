@@ -17,8 +17,25 @@ $this->setFrameMode(true);
 	?>
 
 <section class="page-section page-section__flex category container" aria-labelledby="category-title">
+	<?
+	ob_start();
+	$APPLICATION->ShowTitle(false);
+	$categoryTitle = trim((string)ob_get_clean());
+	$categoryTitle = trim(html_entity_decode(strip_tags($categoryTitle), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+	$requestPath = (string)parse_url((string)($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH);
+	$fallbackCategoryTitleMap = [
+		'/category/kategoriya-a-a1/' => 'Категория А, А1',
+	];
+	if ($categoryTitle === '' || mb_strtolower($categoryTitle) === 'цены' || mb_strtolower($categoryTitle) === 'категории и стоимость обучения в школе форсаж') {
+		if (isset($fallbackCategoryTitleMap[$requestPath])) {
+			$categoryTitle = $fallbackCategoryTitleMap[$requestPath];
+		} else {
+			$categoryTitle = (string)$section["NAME"];
+		}
+	}
+	?>
 	<h1 class="category__title page-section__title" id="category-title">
-	  <?$APPLICATION->ShowTitle(false)?>
+	  <?=htmlspecialcharsbx($categoryTitle);?>
 	</h1>
 	<div class="category__container">
 	  <div class="detail_content category__content">
@@ -69,6 +86,16 @@ $this->setFrameMode(true);
           </div>
 	</div>
   </section>
+	<?if($requestPath === '/category/kategoriya-a-a1/'){?>
+	  <section class="page-section page-section__flex container category__seo-headings" aria-labelledby="category-a-seo-title">
+		<h2 class="page-section__title" id="category-a-seo-title">Сдать на права категории А на мотоцикл в Воронеже</h2>
+		<h2 class="page-section__title">Почему открыть категорию А и получить права в Воронеже лучше именно у нас в автошколе</h2>
+		<h3 class="page-section__title">Теоретические и практические занятия</h3>
+		<h3 class="page-section__title">Сколько стоит курс</h3>
+		<h2 class="page-section__title">Пошаговая инструкция по сдаче на водительское удостоверение категории А в автошколе «Форсаж»</h2>
+		<h2 class="page-section__title">Наши преимущества</h2>
+	  </section>
+	<?}?>
       <?$APPLICATION->IncludeComponent(
 		"bitrix:news.list", 
 		"why_we", 
@@ -158,7 +185,7 @@ $this->setFrameMode(true);
               <div class="transmission__content">
 				<?if(!empty($variant["PROPERTIES"]["PLUSES"]["VALUE"])){?>
 					<div class="transmission__column">
-					  <h3 class="transmission__column-title">плюсы:</h3>
+					  <p class="transmission__column-title">плюсы:</p>
 					  <ul class="transmission__list">
 						<?foreach($variant["PROPERTIES"]["PLUSES"]["VALUE"] as $var){?>
 							<li class="transmission__item">
@@ -171,7 +198,7 @@ $this->setFrameMode(true);
 				<?}?>
 				<?if(!empty($variant["PROPERTIES"]["MINUSES"]["VALUE"])){?>
 					<div class="transmission__column transmission__column--dark">
-					  <h3 class="transmission__column-title">минусы:</h3>
+					  <p class="transmission__column-title">минусы:</p>
 					  <ul class="transmission__list">
 						<?foreach($variant["PROPERTIES"]["MINUSES"]["VALUE"] as $var){?>
 							<li class="transmission__item">
@@ -230,9 +257,20 @@ $this->setFrameMode(true);
         </div>
       </section>
 	<?}?>
+	<?
+	$whatTitle = trim((string)($section["UF_WHAT_TITLE"] ?? ''));
+	$showWhatTitle = ($whatTitle !== '');
+	if (
+		$showWhatTitle
+		&& (!empty($section["UF_OS_LEFT"]) || !empty($section["UF_OS_RIGHT"]))
+		&& mb_strtolower($whatTitle) === 'особенности курсов'
+	) {
+		$showWhatTitle = false;
+	}
+	?>
 	<?if(!empty($arResult["WHATS"])||!empty($section["UF_WHAT_TITLE"])||!empty($section["UF_WHAT_TEXT"])){?>
       <section class="page-section page-section__flex category__badges container" aria-labelledby="category-badges-title">
-        <?if(!empty($section["UF_WHAT_TITLE"])){?><h2 class="page-section__title" id="category-badges-title"><?=$section["UF_WHAT_TITLE"];?></h2><?}?>
+        <?if($showWhatTitle){?><h2 class="page-section__title" id="category-badges-title"><?=$whatTitle;?></h2><?}?>
         <?if(!empty($section["UF_WHAT_TEXT"])){?><div class="category__badges-description">
           <?=$section["~UF_WHAT_TEXT"];?>
         </div><?}?>
@@ -263,7 +301,7 @@ $this->setFrameMode(true);
 
       <?if(!empty($arResult["ITEMS"])){?>
       <section class="page-section page-section__flex category__table container" aria-labelledby="category-table-title">
-        <h2 id="category-table-title" class="u-visually-hidden">Таблица цен</h2>
+        <h2 id="category-table-title">Таблица цен</h2>
 
         <div class="ui-table-wrapper category__table-desktop">
         <table class="ui-table">

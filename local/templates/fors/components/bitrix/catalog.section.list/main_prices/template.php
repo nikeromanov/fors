@@ -44,10 +44,10 @@ $strSectionEdit = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_EDIT");
 $strSectionDelete = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_DELETE");
 $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_CONFIRM'));
 $settingsPage = getSettings(3);
-$currentDir = is_object($APPLICATION) && method_exists($APPLICATION, 'GetCurDir')
-	? (string)$APPLICATION->GetCurDir()
-	: '';
-$titleTag = $currentDir === '/category/' ? 'h1' : 'h2';
+$titleTag = (string)($arParams['HEADING_TAG'] ?? 'h2');
+if ($titleTag !== 'h1' && $titleTag !== 'h2') {
+	$titleTag = 'h2';
+}
 ?>
 <?if(!empty($arResult['SECTIONS'])){?>
 <?
