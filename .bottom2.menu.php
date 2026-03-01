@@ -8,13 +8,6 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Акции", 
-		"/shares/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
 		"Оплата госпошлины", 
 		"/text-page/", 
 		Array(), 

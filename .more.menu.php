@@ -34,13 +34,6 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
-	),
-	Array(
-		"Акции", 
-		"/shares/", 
-		Array(), 
-		Array(), 
-		"" 
 	)
 );
 ?>

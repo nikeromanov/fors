@@ -29,6 +29,10 @@ function forsHandleInvalidUrl()
         return;
     }
 
+    if (preg_match('#^/shares(?:/|$)#', $path)) {
+        LocalRedirect('/news/', true, '301 Moved Permanently');
+    }
+
     if (preg_match('#//+#', $path)) {
         if (!defined('ERROR_404')) {
             define('ERROR_404', 'Y');
