@@ -1,6 +1,7 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetPageProperty("title", "Тестовая страница типографики заголовков");
+$APPLICATION->SetPageProperty("robots", "noindex, nofollow");
 $APPLICATION->SetTitle("Типографика заголовков");
 
 $headingLevels = [

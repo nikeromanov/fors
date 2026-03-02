@@ -23,7 +23,6 @@ $breadcrumbIblockMap = [
 	'/articles/' => 14,
 	'/shares/' => 24,
 	'/reviews/' => 9,
-	'/gallery/' => 33,
 	'/test/' => 40,
 	'/instructors/' => 35,
 	'/faq/' => 30,
