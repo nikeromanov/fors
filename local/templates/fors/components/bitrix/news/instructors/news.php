@@ -150,9 +150,9 @@ $APPLICATION->IncludeComponent(
 );?>
 <?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK2_TITLE"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["BLOCK2_SUBTITLE"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["VALUE"])){?>
 <section class="page-section page-section__flex instructors__with" aria-labelledby="instructors-with-title">
-	<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK2_TITLE"]["VALUE"])){?><h2 id="instructors-with-title" class="instructors__with-title">
-	  <?=$settingsPageCur["PROPERTIES"]["BLOCK2_TITLE"]["VALUE"];?>
-	</h2><?}?>
+		<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK2_TITLE"]["VALUE"])){?><h2 id="instructors-with-title" class="instructors__with-title u-text-center">
+		  <?=$settingsPageCur["PROPERTIES"]["BLOCK2_TITLE"]["VALUE"];?>
+		</h2><?}?>
 	<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK2_SUBTITLE"]["VALUE"])){?><p class="instructors__with-text">
 	 <?=$settingsPageCur["PROPERTIES"]["BLOCK2_SUBTITLE"]["VALUE"];?>
 	</p><?}?>
