@@ -12,17 +12,10 @@ $strReturn .= '<nav class="breadcrumbs container" aria-label="Хлебные к�
 $strReturn .= ' <ol class="breadcrumbs__list">';
 
 $arrow = '';
-$requestPath = (string)parse_url((string)($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH);
-$normalizedPath = rtrim($requestPath, '/') . '/';
-$skipLastBreadcrumb = (bool)preg_match('#^/category/[^/]+/$#', $normalizedPath);
 
 
 $itemSize = count($arResult);
 for ($index = 0; $index < $itemSize; $index++) {
-    if ($skipLastBreadcrumb && $index === $itemSize - 1) {
-        continue;
-    }
-
     $title = htmlspecialcharsex($arResult[$index]['TITLE']);
 	if($arResult[$index]["LINK"] <> "" && $index != $itemSize-1)
 	{
