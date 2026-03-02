@@ -158,3 +158,38 @@ $this->setFrameMode(true);
 	],
 	false
 );?>
+<?php
+$sectionCode = (string)($arResult["VARIABLES"]["SECTION_CODE"] ?? "");
+if ($sectionCode === "kategoriya-v-v1" && \Bitrix\Main\Loader::includeModule("iblock")) {
+	$sectionMeta = CIBlockSection::GetList(
+		[],
+		[
+			"IBLOCK_ID" => (int)$arParams["IBLOCK_ID"],
+			"=CODE" => $sectionCode,
+			"ACTIVE" => "Y",
+		],
+		false,
+		["ID", "NAME"]
+	)->GetNext();
+
+	if (!empty($sectionMeta["ID"])) {
+		$ipropValues = new \Bitrix\Iblock\InheritedProperty\SectionValues(
+			(int)$arParams["IBLOCK_ID"],
+			(int)$sectionMeta["ID"]
+		);
+		$iprop = $ipropValues->getValues();
+
+		if (!empty($iprop["SECTION_META_TITLE"])) {
+			$APPLICATION->SetPageProperty("title", (string)$iprop["SECTION_META_TITLE"]);
+		}
+		if (!empty($iprop["SECTION_META_DESCRIPTION"])) {
+			$APPLICATION->SetPageProperty("description", (string)$iprop["SECTION_META_DESCRIPTION"]);
+		}
+		if (!empty($iprop["SECTION_PAGE_TITLE"])) {
+			$APPLICATION->SetTitle((string)$iprop["SECTION_PAGE_TITLE"]);
+		} elseif (!empty($sectionMeta["NAME"])) {
+			$APPLICATION->SetTitle((string)$sectionMeta["NAME"]);
+		}
+	}
+}
+?>
