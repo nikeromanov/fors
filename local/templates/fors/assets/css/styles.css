@@ -78,7 +78,11 @@
 @import "pages/instructor-detail.css";
 @import "pages/info.css";
 @import "pages/category.css";
+@import "pages/typography.css";
 
 /* vendor styles */
 @import "vendor/swiper-bundle.min.css";
 @import "vendor/fancybox.css";
+
+/* Global heading scale (loaded last to normalize H1-H6 hierarchy) */
+@import "components/headings.css";

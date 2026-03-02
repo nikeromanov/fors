@@ -1319,3 +1319,15 @@
     });
   });
 })();
+
+// Heading scale classes
+(function () {
+  document.addEventListener('DOMContentLoaded', () => {
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+
+    headings.forEach((heading) => {
+      const level = heading.tagName.toLowerCase();
+      heading.classList.add('heading-level', `heading-level--${level}`);
+    });
+  });
+})();

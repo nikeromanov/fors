@@ -1,0 +1,50 @@
+.typography-demo {
+  display: grid;
+  gap: clamp(1.5rem, 1.2rem + 1vw, 2.5rem);
+}
+
+.typography-demo__lead {
+  margin: 0;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.typography-demo__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.typography-demo__item {
+  border: 1px solid var(--color-border, #d9d9d9);
+  border-radius: 16px;
+  padding: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
+  background: var(--color-bg, #fff);
+}
+
+.typography-demo__label {
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.typography-demo__sample {
+  margin: 0;
+}
+
+.typography-demo__meta {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.typography-demo__meta code {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+@media (min-width: 768px) {
+  .typography-demo__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
