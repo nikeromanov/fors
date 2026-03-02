@@ -18,9 +18,7 @@ $this->setFrameMode(true);
 
 <section class="page-section page-section__flex category container" aria-labelledby="category-title">
 	<?
-	ob_start();
-	$APPLICATION->ShowTitle(false);
-	$categoryTitle = trim((string)ob_get_clean());
+	$categoryTitle = trim((string)$APPLICATION->GetTitle(false, true));
 	$categoryTitle = trim(html_entity_decode(strip_tags($categoryTitle), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 	$requestPath = (string)parse_url((string)($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH);
 	$fallbackCategoryTitleMap = [

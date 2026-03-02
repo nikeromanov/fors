@@ -123,6 +123,7 @@ local/db/migrations/state/capture.log
 # ==============================
 /AGENTS.md
 /docs/
+/screens/
 /.ssh/
 *.bak
 *.orig
