@@ -1320,14 +1320,65 @@
   });
 })();
 
-// Heading scale classes
+// Heading scale classes (content + section headings only)
 (function () {
   document.addEventListener('DOMContentLoaded', () => {
     const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    const headingLevelClasses = [
+      'heading-level--h1',
+      'heading-level--h2',
+      'heading-level--h3',
+      'heading-level--h4',
+      'heading-level--h5',
+      'heading-level--h6',
+    ];
+    const designHeadingClasses = new Set([
+      'advantages__item-title',
+      'why-list__title',
+      'steps__title',
+      'news-card__title',
+      'office-map__label',
+      'about-highlights__card-title',
+      'instructors__name',
+      'instructors__with-subtitle',
+      'cars-gallery__car-name',
+      'schedule-card__location',
+      'docs__card-title',
+      'faq-card__author',
+      'fast-benefit__card-title',
+    ]);
+    const contentSelectors = [
+      '.detail_content',
+      '.policy__document',
+      '.article-detail__article',
+      '.driving-content',
+      '.text-page',
+    ];
+    const aboveBlockHeadingClasses = new Set([
+      'page-section__title',
+      'section-title',
+      'also__title',
+      'categories__title',
+      'u-text-center',
+    ]);
+
+    const hasDesignHeadingClass = (heading) =>
+      Array.from(heading.classList).some((className) => designHeadingClasses.has(className));
+    const isContentHeading = (heading) =>
+      contentSelectors.some((selector) => heading.closest(selector) !== null);
+    const isAboveBlockHeading = (heading) =>
+      Array.from(heading.classList).some((className) => aboveBlockHeadingClasses.has(className));
 
     headings.forEach((heading) => {
       const level = heading.tagName.toLowerCase();
-      heading.classList.add('heading-level', `heading-level--${level}`);
+      const shouldUseUnifiedScale =
+        (isContentHeading(heading) || isAboveBlockHeading(heading)) && !hasDesignHeadingClass(heading);
+
+      heading.classList.remove('heading-level', ...headingLevelClasses);
+
+      if (shouldUseUnifiedScale) {
+        heading.classList.add('heading-level', `heading-level--${level}`);
+      }
     });
   });
 })();
