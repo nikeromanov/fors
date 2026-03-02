@@ -67,11 +67,17 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 	  </div>
 	</div>
   </section>
-  <?if(!empty($properties["BLOCK1_TITLE"]["VALUE"])||!empty($properties["BLOCK1_LEFT"]["VALUE"])||!empty($properties["BLOCK1_RIGHT"]["VALUE"])||!empty($properties["BLOCK1_ELEMENTS"]["VALUE"])){?>
-	  <section class="page-section school container" aria-labelledby="school-title">
-		<?if(!empty($properties["BLOCK1_TITLE"]["VALUE"])){?><h2 class="school__title" id="school-title"><?=$properties["BLOCK1_TITLE"]["VALUE"];?></h2><?}?>
-		<?if(!empty($properties["BLOCK1_LEFT"]["~VALUE"]["TEXT"])||!empty($properties["BLOCK1_RIGHT"]["~VALUE"]["TEXT"])){?>
-			<div class="school__text-container">
+	  <?if(!empty($properties["BLOCK1_TITLE"]["VALUE"])||!empty($properties["BLOCK1_LEFT"]["VALUE"])||!empty($properties["BLOCK1_RIGHT"]["VALUE"])||!empty($properties["BLOCK1_ELEMENTS"]["VALUE"])){?>
+		  <?
+		  $schoolTitle = $properties["BLOCK1_TITLE"]["VALUE"] ?? '';
+		  if ($schoolTitle === 'Автошкола Форсаж') {
+			  $schoolTitle = 'Автошкола Форсаж (О нас)';
+		  }
+		  ?>
+		  <section class="page-section school container" aria-labelledby="school-title">
+			<?if(!empty($schoolTitle)){?><h2 class="school__title" id="school-title"><?=$schoolTitle;?></h2><?}?>
+			<?if(!empty($properties["BLOCK1_LEFT"]["~VALUE"]["TEXT"])||!empty($properties["BLOCK1_RIGHT"]["~VALUE"]["TEXT"])){?>
+				<div class="school__text-container">
 			  <?if(!empty($properties["BLOCK1_LEFT"]["~VALUE"]["TEXT"])){?><div class="school__text content_block">
 				<?=$properties["BLOCK1_LEFT"]["~VALUE"]["TEXT"];?>
 			  </div><?}?>
