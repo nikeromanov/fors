@@ -21,7 +21,6 @@ $this->setFrameMode(true);
 	$categoryTitle = trim((string)$APPLICATION->GetTitle(false, true));
 	$categoryTitle = trim(html_entity_decode(strip_tags($categoryTitle), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 	$requestPath = (string)parse_url((string)($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH);
-	$isCategoryCS1Page = ($requestPath === '/category/kategoriya-c-s1/');
 	$fallbackCategoryTitleMap = [
 		'/category/kategoriya-a-a1/' => 'Категория А, А1',
 	];
@@ -298,9 +297,9 @@ $this->setFrameMode(true);
 	</div>
 <?}?>
 
-      <?if(!empty($arResult["ITEMS"])){?>
-      <section class="page-section page-section__flex category__table container" aria-labelledby="category-table-title">
-        <h2 id="category-table-title"<?if($isCategoryCS1Page){?> class="u-text-center"<?}?>>Таблица цен</h2>
+	      <?if(!empty($arResult["ITEMS"])){?>
+	      <section class="page-section page-section__flex category__table container" aria-labelledby="category-table-title">
+	        <h2 id="category-table-title" class="u-text-center">Таблица цен</h2>
 
         <div class="ui-table-wrapper category__table-desktop">
         <table class="ui-table">
