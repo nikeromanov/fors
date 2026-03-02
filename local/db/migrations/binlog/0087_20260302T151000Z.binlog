@@ -1,0 +1,60 @@
+-- dbmig: kategoriya-e meta exact quotes
+SET NAMES utf8mb4;
+
+SET @section_id := (
+  SELECT ID
+  FROM b_iblock_section
+  WHERE IBLOCK_ID = 5
+    AND CODE = 'kategoriya-e' COLLATE utf8mb4_unicode_ci
+  LIMIT 1
+);
+
+SET @meta_title := 'Обучение категории Е в Воронеже по оптимальной стоимости: сдать экзамен и получить водительские права направления E по выгодной цене с автошколой "Форсаж"';
+SET @meta_description := 'Запишитесь на обучение категории Е в Воронеже по отличной стоимости: сдайте экзамен и получите водительские права класса E по доступной цене для вождения транспортного средства с прицепом в автошколе "Форсаж".';
+
+UPDATE b_iblock_iproperty
+SET TEMPLATE = @meta_title
+WHERE IBLOCK_ID = 5
+  AND ENTITY_TYPE = 'S'
+  AND ENTITY_ID = @section_id
+  AND CODE = 'SECTION_META_TITLE';
+
+INSERT INTO b_iblock_iproperty (IBLOCK_ID, CODE, ENTITY_TYPE, ENTITY_ID, TEMPLATE)
+SELECT 5, 'SECTION_META_TITLE', 'S', @section_id, @meta_title
+FROM DUAL
+WHERE @section_id IS NOT NULL
+  AND NOT EXISTS (
+    SELECT 1
+    FROM b_iblock_iproperty
+    WHERE IBLOCK_ID = 5
+      AND ENTITY_TYPE = 'S'
+      AND ENTITY_ID = @section_id
+      AND CODE = 'SECTION_META_TITLE'
+  );
+
+UPDATE b_iblock_iproperty
+SET TEMPLATE = @meta_description
+WHERE IBLOCK_ID = 5
+  AND ENTITY_TYPE = 'S'
+  AND ENTITY_ID = @section_id
+  AND CODE = 'SECTION_META_DESCRIPTION';
+
+INSERT INTO b_iblock_iproperty (IBLOCK_ID, CODE, ENTITY_TYPE, ENTITY_ID, TEMPLATE)
+SELECT 5, 'SECTION_META_DESCRIPTION', 'S', @section_id, @meta_description
+FROM DUAL
+WHERE @section_id IS NOT NULL
+  AND NOT EXISTS (
+    SELECT 1
+    FROM b_iblock_iproperty
+    WHERE IBLOCK_ID = 5
+      AND ENTITY_TYPE = 'S'
+      AND ENTITY_ID = @section_id
+      AND CODE = 'SECTION_META_DESCRIPTION'
+  );
+
+DELETE FROM b_iblock_section_iprop
+WHERE SECTION_ID = @section_id;
+
+UPDATE b_iblock_section
+SET TIMESTAMP_X = NOW()
+WHERE ID = @section_id;

@@ -160,7 +160,8 @@ $this->setFrameMode(true);
 );?>
 <?php
 $sectionCode = (string)($arResult["VARIABLES"]["SECTION_CODE"] ?? "");
-if ($sectionCode === "kategoriya-v-v1" && \Bitrix\Main\Loader::includeModule("iblock")) {
+$metaOverrideSections = ["kategoriya-v-v1", "kategoriya-e"];
+if (in_array($sectionCode, $metaOverrideSections, true) && \Bitrix\Main\Loader::includeModule("iblock")) {
 	$sectionMeta = CIBlockSection::GetList(
 		[],
 		[
@@ -180,10 +181,16 @@ if ($sectionCode === "kategoriya-v-v1" && \Bitrix\Main\Loader::includeModule("ib
 		$iprop = $ipropValues->getValues();
 
 		if (!empty($iprop["SECTION_META_TITLE"])) {
-			$APPLICATION->SetPageProperty("title", (string)$iprop["SECTION_META_TITLE"]);
+			$APPLICATION->SetPageProperty(
+				"title",
+				html_entity_decode((string)$iprop["SECTION_META_TITLE"], ENT_QUOTES | ENT_HTML5, "UTF-8")
+			);
 		}
 		if (!empty($iprop["SECTION_META_DESCRIPTION"])) {
-			$APPLICATION->SetPageProperty("description", (string)$iprop["SECTION_META_DESCRIPTION"]);
+			$APPLICATION->SetPageProperty(
+				"description",
+				html_entity_decode((string)$iprop["SECTION_META_DESCRIPTION"], ENT_QUOTES | ENT_HTML5, "UTF-8")
+			);
 		}
 		if (!empty($iprop["SECTION_PAGE_TITLE"])) {
 			$APPLICATION->SetTitle((string)$iprop["SECTION_PAGE_TITLE"]);
