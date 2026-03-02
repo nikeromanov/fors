@@ -8,13 +8,13 @@ $headingLevels = [
         "tag" => "h1",
         "label" => "H1",
         "text" => "Заголовок первого уровня",
-        "size" => "clamp(3.8rem, 3.2rem + 2.6vw, 5.6rem)",
+        "size" => "clamp(2rem, 1.55rem + 1.9vw, 3.25rem)",
     ],
     [
         "tag" => "h2",
         "label" => "H2",
         "text" => "Заголовок второго уровня",
-        "size" => "clamp(3.3rem, 2.8rem + 2vw, 4.6rem)",
+        "size" => "clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem)",
     ],
     [
         "tag" => "h3",
