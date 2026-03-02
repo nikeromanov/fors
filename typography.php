@@ -20,25 +20,25 @@ $headingLevels = [
         "tag" => "h3",
         "label" => "H3",
         "text" => "Заголовок третьего уровня",
-        "size" => "clamp(3rem, 2.5rem + 1.8vw, 4rem)",
+        "size" => "clamp(2.25rem, 1.875rem + 1.35vw, 3rem)",
     ],
     [
         "tag" => "h4",
         "label" => "H4",
         "text" => "Заголовок четвертого уровня",
-        "size" => "clamp(2.5rem, 2.2rem + 1.2vw, 3.25rem)",
+        "size" => "clamp(1.875rem, 1.65rem + 0.9vw, 2.4375rem)",
     ],
     [
         "tag" => "h5",
         "label" => "H5",
         "text" => "Заголовок пятого уровня",
-        "size" => "clamp(2.25rem, 2.1rem + 0.7vw, 2.75rem)",
+        "size" => "clamp(1.6875rem, 1.575rem + 0.525vw, 2.0625rem)",
     ],
     [
         "tag" => "h6",
         "label" => "H6",
         "text" => "Заголовок шестого уровня",
-        "size" => "clamp(2rem, 1.9rem + 0.4vw, 2.25rem)",
+        "size" => "clamp(1.5rem, 1.425rem + 0.3vw, 1.6875rem)",
     ],
 ];
 ?>

@@ -1,10 +1,10 @@
 :root {
   --heading-size-h1: clamp(2rem, 1.55rem + 1.9vw, 3.25rem);
   --heading-size-h2: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
-  --heading-size-h3: clamp(3rem, 2.5rem + 1.8vw, 4rem);
-  --heading-size-h4: clamp(2.5rem, 2.2rem + 1.2vw, 3.25rem);
-  --heading-size-h5: clamp(2.25rem, 2.1rem + 0.7vw, 2.75rem);
-  --heading-size-h6: clamp(2rem, 1.9rem + 0.4vw, 2.25rem);
+  --heading-size-h3: clamp(2.25rem, 1.875rem + 1.35vw, 3rem);
+  --heading-size-h4: clamp(1.875rem, 1.65rem + 0.9vw, 2.4375rem);
+  --heading-size-h5: clamp(1.6875rem, 1.575rem + 0.525vw, 2.0625rem);
+  --heading-size-h6: clamp(1.5rem, 1.425rem + 0.3vw, 1.6875rem);
 }
 
 .heading-level {
