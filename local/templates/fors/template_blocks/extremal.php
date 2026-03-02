@@ -49,15 +49,7 @@ $settingsPageCur = getSettings(29);
 </aside>
 
 <div class="driving-content">
-	<?
-	$extremalContent = (string)$settingsPageCur["DETAIL_TEXT"];
-	$extremalContent = preg_replace(
-		'#(<h2[^>]*id=["\']extreme-price-title["\'][^>]*>)\s*Расценки\s*(</h2>)#ui',
-		'$1Стоимость$2',
-		$extremalContent
-	);
-	?>
-	<?=$extremalContent;?>
+	<?=$settingsPageCur["DETAIL_TEXT"];?>
  
 </div>
 </div>
