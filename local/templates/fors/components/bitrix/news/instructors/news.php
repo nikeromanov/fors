@@ -158,13 +158,27 @@ $APPLICATION->IncludeComponent(
 	</p><?}?>
 		<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["VALUE"])){?>
 			<?$seenBlock2Subtitles = [];?>
+			<?$seenBlock2Items = [];?>
 			<?foreach($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["VALUE"] as $k=>$it){?>
-				<span class="ui-icon instructors__with-icon" aria-hidden="true" data-icon="down-arrow"></span>
-				<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["DESCRIPTION"][$k])){
-					$subtitleText = trim((string)$settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["DESCRIPTION"][$k]);
-					$subtitleKey = mb_strtolower($subtitleText);
-					$isSubtitleDuplicate = in_array($subtitleKey, $seenBlock2Subtitles, true);
-					if (!$isSubtitleDuplicate) {
+				<?
+				$subtitleText = trim((string)($settingsPageCur["PROPERTIES"]["BLOCK2_LIST"]["DESCRIPTION"][$k] ?? ''));
+				$itemText = trim((string)$it);
+				$normalizedItemText = html_entity_decode(strip_tags($itemText), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+				$pairKey = trim($subtitleText . '|' . $normalizedItemText);
+				if ($pairKey !== '') {
+					$pairKey = preg_replace('/\s+/u', ' ', $pairKey);
+					$pairKey = function_exists('mb_strtolower') ? mb_strtolower($pairKey) : strtolower($pairKey);
+					if (isset($seenBlock2Items[$pairKey])) {
+						continue;
+					}
+					$seenBlock2Items[$pairKey] = true;
+				}
+				?>
+					<span class="ui-icon instructors__with-icon" aria-hidden="true" data-icon="down-arrow"></span>
+				<?if($subtitleText !== ''){
+						$subtitleKey = mb_strtolower($subtitleText);
+						$isSubtitleDuplicate = in_array($subtitleKey, $seenBlock2Subtitles, true);
+						if (!$isSubtitleDuplicate) {
 						$seenBlock2Subtitles[] = $subtitleKey;
 						?><h3 class="instructors__with-subtitle"><?=$subtitleText;?></h3><?
 					} else {
