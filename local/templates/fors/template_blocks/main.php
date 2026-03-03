@@ -22,28 +22,28 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 			  <h2 class="home-hero__offer-title" id="hero-offer-title">До конца акции осталось</h2>
 			  <dl class="home-hero__timer" aria-label="Таймер окончания акции" data-date="<?=date("d.m.Y H:i:s",strtotime($settings["AKC_DATE"]["VALUE"]));?>" data-curdate="<?=date("d.m.Y H:i:s");?>">
 				<div class="home-hero__timer-item">
-				  <dd class="home-hero__timer-value">
-					<time datetime="P5D">00</time>
-				  </dd>
 				  <dt class="home-hero__timer-label">Дней</dt>
+				  <dd class="home-hero__timer-value">
+					<span class="home-hero__timer-number">00</span>
+				  </dd>
 				</div>
 				<div class="home-hero__timer-item">
-				  <dd class="home-hero__timer-value">
-					<time datetime="PT48H">00</time>
-				  </dd>
 				  <dt class="home-hero__timer-label">Часов</dt>
+				  <dd class="home-hero__timer-value">
+					<span class="home-hero__timer-number">00</span>
+				  </dd>
 				</div>
 				<div class="home-hero__timer-item">
-				  <dd class="home-hero__timer-value">
-					<time datetime="PT0M">00</time>
-				  </dd>
 				  <dt class="home-hero__timer-label">Минут</dt>
+				  <dd class="home-hero__timer-value">
+					<span class="home-hero__timer-number">00</span>
+				  </dd>
 				</div>
 				<div class="home-hero__timer-item">
-				  <dd class="home-hero__timer-value">
-					<time datetime="PT0S">00</time>
-				  </dd>
 				  <dt class="home-hero__timer-label">Секунд</dt>
+				  <dd class="home-hero__timer-value">
+					<span class="home-hero__timer-number">00</span>
+				  </dd>
 				</div>
                           </dl>
                           <?if(!empty($settings["PHONE"]["VALUE"])) {?>

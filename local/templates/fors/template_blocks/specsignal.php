@@ -33,7 +33,7 @@
               </p>
             </div>
 
-            <div class="driving-section" aria-labelledby="specsignal-features-title">
+            <div class="driving-section" role="region" aria-labelledby="specsignal-features-title">
               <h2 id="specsignal-features-title">Что включает автокурс</h2>
               <p class="driving-content__text">Программа предусматривает изучение:</p>
               <ul class="driving-content__list">
@@ -68,7 +68,7 @@
               </p>
             </div>
 
-            <div class="driving-section" aria-labelledby="specsignal-useful-title">
+            <div class="driving-section" role="region" aria-labelledby="specsignal-useful-title">
               <h2 id="specsignal-useful-title">Особенности обучения на спецсигналы от автошколы «Форсаж» в Воронеже</h2>
               <p class="driving-content__text">
                 Прохождение уроков в нашей школе возможно в удобное для вас время. Также предусмотрено онлайн-изучение
@@ -81,7 +81,7 @@
               </p>
             </div>
 
-            <div class="driving-section" aria-labelledby="specsignal-benefits-title">
+            <div class="driving-section" role="region" aria-labelledby="specsignal-benefits-title">
               <h2 id="specsignal-benefits-title">Преимущества сотрудничества с нами</h2>
 
               <ul class="driving-content__list">
@@ -133,7 +133,7 @@
               </p>
             </div>
 
-            <div class="driving-section" aria-labelledby="specsignal-why-title">
+            <div class="driving-section" role="region" aria-labelledby="specsignal-why-title">
               <h2 id="specsignal-why-title">Как оставить заявку</h2>
               <p class="driving-content__text">
                 Чтобы записаться на уроки по управлению ТС со спецсигналами или получить дополнительную информацию

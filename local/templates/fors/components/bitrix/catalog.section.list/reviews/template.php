@@ -113,7 +113,7 @@ $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_C
 						<li class="video-card">
 							<div class="video-card__header">
 							  <span class="video-card__author"><?=$item["NAME"];?></span>
-							  <time class="video-card__date"><?=date("d.m.Y",$date);?> | <?=date("H:i:s",$date);?></time>
+							  <time class="video-card__date" datetime="<?=date('c', $date);?>"><?=date("d.m.Y",$date);?> | <?=date("H:i:s",$date);?></time>
 							</div>
 							  <a
 								  href="<?=$videoUrl;?>"
@@ -143,7 +143,7 @@ $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_C
 					
 						<li class="reviews-card">
 							<span class="reviews-card__author"><?=$item["NAME"];?></span>
-							<time class="reviews-card__date" ><?=date("d.m.Y",$date);?> | <?=date("H:i:s",$date);?></time>
+							<time class="reviews-card__date" datetime="<?=date('c', $date);?>"><?=date("d.m.Y",$date);?> | <?=date("H:i:s",$date);?></time>
 							<div class="reviews-card__review-text">
 								<?=$item["PREVIEW_TEXT"];?>
 							</div>

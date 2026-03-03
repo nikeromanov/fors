@@ -88,6 +88,7 @@ global $settings;
   </div>
 <div id="site-menu" class="site-menu" data-state="closed" hidden>
   <div class="site-menu__panel" role="dialog" aria-modal="true" aria-labelledby="site-menu-title" tabindex="-1">
+    <h2 id="site-menu-title" class="u-visually-hidden">Меню сайта</h2>
     <button class="site-menu__close" type="button" aria-label="Закрыть меню" data-action="close-menu"></button>
 
     <div class="site-menu__container">

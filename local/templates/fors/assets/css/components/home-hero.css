@@ -186,7 +186,7 @@
   line-height: 1;
 }
 
-.home-hero__timer-value time {
+.home-hero__timer-number {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -195,7 +195,7 @@
   position: relative;
 }
 
-.home-hero__timer-item:not(:last-child) .home-hero__timer-value time::after {
+.home-hero__timer-item:not(:last-child) .home-hero__timer-number::after {
   content: ":";
   position: absolute;
   right: -1.75rem;
@@ -362,7 +362,7 @@
     gap: clamp(0.75rem, 0.6rem + 1vw, 1.25rem);
   }
 
-  .home-hero__timer-item:not(:last-child) .home-hero__timer-value time::after {
+  .home-hero__timer-item:not(:last-child) .home-hero__timer-number::after {
     display: none;
   }
 

@@ -105,7 +105,7 @@ function normalizeGoalLetter($value){
   </p><?}?>
 
   <!-- bx:categories-slider -->
-  <div class="swiper categories__slider categories__slider--nudge" aria-label="Категории обучения">
+  <div class="swiper categories__slider categories__slider--nudge" role="region" aria-label="Категории обучения">
     <div class="swiper-wrapper">
                 <?
                 foreach ($arResult['SECTIONS'] as $arSection)

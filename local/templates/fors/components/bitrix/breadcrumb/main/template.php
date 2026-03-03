@@ -23,7 +23,7 @@ for ($index = 0; $index < $itemSize; $index++) {
     $strReturn .= $title;
     $strReturn .= '</a><span class="breadcrumbs__separator" aria-hidden="true"></span></li>';
 	}else{
-		 $strReturn .= $title;
+		 $strReturn .= '<li class="breadcrumbs__item">' . $title . '</li>';
 	}
     if (
         !empty($arResult[$index]['LINK'])
