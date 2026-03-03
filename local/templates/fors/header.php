@@ -85,11 +85,11 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
 ?><!DOCTYPE html>
     <html lang="">
     <head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <? $APPLICATION->ShowHead();
         ?>
         <title><? $APPLICATION->ShowTitle(); ?></title>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
 		<link rel="alternate icon" href="/favicon.ico" type="image/x-icon" />
 		
@@ -99,7 +99,6 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
 		<link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH; ?>/assets/css/media.css" />
         <?
         $objAsset = Asset::getInstance();
-        $objAsset->addString('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
         // styles
         $objAsset->addCss(SITE_TEMPLATE_PATH . '/assets/js/fancybox/fancyboxudm.css');
         $objAsset->addCss(SITE_TEMPLATE_PATH . '/assets/js/owl/owl.carousel.min.css');

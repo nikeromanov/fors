@@ -162,20 +162,16 @@ function normalizeGoalLetter($value){
 
 			  <dl class="price-card__info">
 				<?if($arSection["UF_SROK"]){?>
-					<div class="price-card__length">
 					  <dt class="price-card__info-title">Срок обучения:</dt>
 					  <dd class="price-card__info-value"><?=$arSection["UF_SROK"];?></dd>
-					</div>
 				<?}?>
 				<?if($arSection["UF_FORMAT"]){?>
-					<div class="price-card__format">
 					  <dt class="price-card__info-title">Формат:</dt>
 					  <dd class="price-card__info-value"><?=$arSection["UF_FORMAT"];?></dd>
-					</div>
 				<?}?>
 			  </dl>
 			  <span class="price-card__price"><?if(!empty($arResult["PRICES"][$arSection["ID"]])){?>от <?=CurrencyFormat($arResult["PRICES"][$arSection["ID"]],"RUB");?><?}?></span>
-			  <a href="#consult_form" data-fancybox class="btn btn--secondary btn--large" href="#consult_form" data-service="<?=$arSection["UF_NAME"];?>"<?if($sectionGoal){?> data-goal="<?=$sectionGoal;?>"<?}?>>Записаться на курс</a>
+			  <a href="#consult_form" data-fancybox class="btn btn--secondary btn--large" data-service="<?=$arSection["UF_NAME"];?>"<?if($sectionGoal){?> data-goal="<?=$sectionGoal;?>"<?}?>>Записаться на курс</a>
 			</div>
 		  </div>
 				<?
