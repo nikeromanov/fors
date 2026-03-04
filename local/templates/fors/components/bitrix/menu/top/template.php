@@ -8,7 +8,11 @@
 <ul class="primary-nav__list">
 <?
 $previousLevel = 0;
+$hasCertificatesMenuItem = false;
 foreach($arResult as $arItem):
+	if ($arItem["LINK"] === "/sertifikaty-i-diplomy/") {
+		$hasCertificatesMenuItem = true;
+	}
 
 ?>
 	<?if ($previousLevel && $arItem["DEPTH_LEVEL"] < $previousLevel):?>
@@ -38,6 +42,12 @@ foreach($arResult as $arItem):
 	<?$previousLevel = $arItem["DEPTH_LEVEL"];?>
 
 <?endforeach?>
+
+<?if (!$hasCertificatesMenuItem):?>
+	<li class="primary-nav__item">
+		<a class="primary-nav__link" href="/sertifikaty-i-diplomy/">Сертификаты и дипломы</a>
+	</li>
+<?endif;?>
 
 <?if ($previousLevel > 1)://close last item tags?>
 
