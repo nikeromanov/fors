@@ -15,14 +15,14 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
-?><section class="page-section article-detail container" aria-labelledby="article-detail-heading">
+?><div class="page-section article-detail container">
 <div class="article-detail__inner u-container">
   <article class="article-detail__article">
 	<header class="article-detail__header">
-	  <h1 class="article-detail__title" id="article-detail-heading">
+	  <h2 class="article-detail__title" id="article-detail-heading">
 		<? $APPLICATION->ShowTitle(false); ?>
-	  </h1>
-	 <?$APPLICATION->ShowViewContent('date');?>
+	  </h2>
+		 <?$APPLICATION->ShowViewContent('date');?>
 	</header>
 <?
 $ElementID = $APPLICATION->IncludeComponent(
@@ -79,7 +79,7 @@ $ElementID = $APPLICATION->IncludeComponent(
 		'STRICT_SECTION_CHECK' => $arParams['STRICT_SECTION_CHECK'],
 	],
 	$component
-);?> </article>
+	);?> </article>
 </div>
 
-<?php include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH . "/includes/fast-banner.php"; ?></section>
+<?php include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH . "/includes/fast-banner.php"; ?></div>
