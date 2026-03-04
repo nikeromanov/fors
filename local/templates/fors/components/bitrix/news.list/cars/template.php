@@ -43,7 +43,7 @@ $this->setFrameMode(true);
 		</button>
 		<div class="cars-gallery__form-content">
 		  <dl class="cars-gallery__specs">
-			<?if($item["PROPERTIES"]["OBJEM"]["VALUE"]){?><div class="cars-gallery__spec-item">
+			<?if($item["PROPERTIES"]["OBJEM"]["VALUE"]){?><div class="cars-gallery__spec-item cars-gallery__spec-item--stack">
 			  <dt>Объем двигателя:</dt>
 			  <dd><?=$item["PROPERTIES"]["OBJEM"]["VALUE"];?></dd>
 			</div><?}?>
@@ -51,7 +51,7 @@ $this->setFrameMode(true);
 			  <dt>Коробка передач:</dt>
 			  <dd><?=$item["PROPERTIES"]["KOROBKA"]["VALUE"];?></dd>
 			</div><?}?>
-			<?if($item["PROPERTIES"]["YEAR"]["VALUE"]){?><div class="cars-gallery__spec-item">
+			<?if($item["PROPERTIES"]["YEAR"]["VALUE"]){?><div class="cars-gallery__spec-item cars-gallery__spec-item--stack">
 			  <dt>Год выпуска:</dt>
 			  <dd><?=$item["PROPERTIES"]["YEAR"]["VALUE"];?></dd>
 			</div><?}?>
