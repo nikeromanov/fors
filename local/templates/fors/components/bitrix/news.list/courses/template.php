@@ -15,8 +15,10 @@ $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){
 	$sectionLabelledBy = !empty($arParams["TITLE"]) ? 'driving-courses' : '';
+	$hasHeading = !empty($sectionLabelledBy);
+	$containerTag = $hasHeading ? 'section' : 'div';
 ?>
-<section class="page-section container <?if($arParams["TITLE"]){?>fast-benefits<?}?>"<?if($sectionLabelledBy){?> aria-labelledby="<?=$sectionLabelledBy;?>"<?}?>>
+<<?=$containerTag;?> class="page-section container <?if($arParams["TITLE"]){?>fast-benefits<?}?>"<?if($sectionLabelledBy){?> aria-labelledby="<?=$sectionLabelledBy;?>"<?}?>>
  <?if($arParams["TITLE"]){?><h2 class="fast-benefits__title" id="driving-courses"><?=$arParams["TITLE"];?></h2><?}?>
  <?if($arParams["SUBTITLE"]){?><p class="fast-benefits__subtitle">
 <?=$arParams["SUBTITLE"];?>
@@ -51,6 +53,6 @@ $this->setFrameMode(true);
           </tbody>
         </table>
         </div>
-</section>
+</<?=$containerTag;?>>
 
 <?}?>

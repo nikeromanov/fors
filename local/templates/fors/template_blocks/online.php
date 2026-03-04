@@ -241,8 +241,8 @@ if ($onlineMainContentHtml !== '') {
 	false
 );?>
       <? include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH."/includes/form.php";?>
-      <section class="page-section remote container">
-        <p class="remote__title">Дистанционное обучение</p>
+      <section class="page-section remote container" aria-labelledby="remote-title">
+        <h2 class="remote__title" id="remote-title">Дистанционное обучение</h2>
         <div class="remote-banner">
           <ul class="remote-banner__content">
             <li class="remote-banner__item">
