@@ -45,13 +45,15 @@ $settingsPageCur = getSettings(15);
         <?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_TITLE"]["VALUE"])){?><h2 class="autodrome-features__title page-section__title" id="autodrome-features-title"><?=$settingsPageCur["PROPERTIES"]["OSOB_TITLE"]["VALUE"];?></h2><?}?>
 		<?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_LEFT"]["~VALUE"]["TEXT"])||!empty($settingsPageCur["PROPERTIES"]["OSOB_RIGHT"]["~VALUE"]["TEXT"])){?>
         <div class="autodrome-features__content">
-          <?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_LEFT"]["~VALUE"]["TEXT"])){?><article>
-            <?=$settingsPageCur["PROPERTIES"]["OSOB_LEFT"]["~VALUE"]["TEXT"];?>
-          </article><?}?>
+	          <?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_LEFT"]["~VALUE"]["TEXT"])){?><article>
+	            <h3 class="u-visually-hidden">Описание особенностей: часть 1</h3>
+	            <?=$settingsPageCur["PROPERTIES"]["OSOB_LEFT"]["~VALUE"]["TEXT"];?>
+	          </article><?}?>
 
-          <?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_RIGHT"]["~VALUE"]["TEXT"])){?><article>
-            <?=$settingsPageCur["PROPERTIES"]["OSOB_RIGHT"]["~VALUE"]["TEXT"];?>
-          </article><?}?>
+	          <?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_RIGHT"]["~VALUE"]["TEXT"])){?><article>
+	            <h3 class="u-visually-hidden">Описание особенностей: часть 2</h3>
+	            <?=$settingsPageCur["PROPERTIES"]["OSOB_RIGHT"]["~VALUE"]["TEXT"];?>
+	          </article><?}?>
         </div>
 		<?}?>
          <?if(!empty($settingsPageCur["PROPERTIES"]["UPR_TITLE"]["VALUE"])){?><h3 class="autodrome-exercises__title" id="autodrome-exercises-title"><?=$settingsPageCur["PROPERTIES"]["UPR_TITLE"]["VALUE"];?></h3><?}?>
@@ -73,7 +75,7 @@ $settingsPageCur = getSettings(15);
        <?if(!empty($settingsPageCur["PROPERTIES"]["GALLERY_TITLE"]["VALUE"])){?><h2 class="gallery-slider__title" id="autodrome-gallery-title"><?=$settingsPageCur["PROPERTIES"]["GALLERY_TITLE"]["VALUE"];?></h2><?}?>
 
         <!-- bx:autodrome-gallery-slider -->
-        <div class="swiper gallery-slider__slider" aria-label="Галерея автодрома">
+	        <div class="swiper gallery-slider__slider">
           <div class="swiper-wrapper">
             <?foreach($settingsPageCur["PROPERTIES"]["GALLERY"]["VALUE"] as $item){?>
 			<div class="swiper-slide gallery-slider__slide">
