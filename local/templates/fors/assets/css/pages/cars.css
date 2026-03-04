@@ -178,6 +178,8 @@
 
 .cars-gallery__spec-item--stack dd {
   flex: 0 0 100%;
+  width: 100%;
+  display: block;
   margin-top: 0.1rem;
 }
 
