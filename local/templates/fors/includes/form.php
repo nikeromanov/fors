@@ -1,4 +1,4 @@
-<section class="page-section container" aria-labelledby="consult-title">
+<div class="page-section container">
   <div class="consult-form">
     <h2 class="consult-form__title" id="consult-title">Получи консультацию прямо сейчас!</h2>
     <p class="consult-form__subtitle">В течение 10 минут с вами свяжется наш специалист.</p>
@@ -51,4 +51,4 @@
       <button class="btn btn--secondary btn--large" type="submit">Оставить заявку</button>
     </form>
   </div>
-</section>
+</div>
