@@ -290,12 +290,12 @@ $this->setFrameMode(true);
 	
 
 <?if(!empty($section["UF_TEXT"])){?>
-	<div class=" container">
-	  <div class="detail_content category__content">
-		<?=html_entity_decode($section["~UF_TEXT"]);?>
-	  </div>
-	</div>
-<?}?>
+		<div class=" container">
+		  <div class="detail_content category__content">
+			<?=$section["~UF_TEXT"];?>
+		  </div>
+		</div>
+	<?}?>
 
 	      <?if(!empty($arResult["ITEMS"])){?>
 	      <section class="page-section page-section__flex category__table container" aria-labelledby="category-table-title">
