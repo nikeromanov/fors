@@ -153,7 +153,6 @@
   .fast-courses__why--item:nth-child(6) {
     grid-row: 2;
     grid-column: span 2;
-    aspect-ratio: 2 / 1;
   }
 }
 
