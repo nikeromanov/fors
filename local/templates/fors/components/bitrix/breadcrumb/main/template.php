@@ -14,20 +14,36 @@ $strReturn .= ' <ol class="breadcrumbs__list">';
 $arrow = '';
 
 
-$itemSize = count($arResult);
+$items = [];
+$prevKey = null;
+foreach ($arResult as $item) {
+    $titleRaw = trim((string)($item['TITLE'] ?? ''));
+    $linkRaw = trim((string)($item['LINK'] ?? ''));
+    $dedupeKey = mb_strtolower($titleRaw . '|' . $linkRaw);
+    if ($dedupeKey === $prevKey) {
+        continue;
+    }
+    $prevKey = $dedupeKey;
+    $items[] = [
+        'TITLE' => $titleRaw,
+        'LINK' => $linkRaw,
+    ];
+}
+
+$itemSize = count($items);
 for ($index = 0; $index < $itemSize; $index++) {
-    $title = htmlspecialcharsex($arResult[$index]['TITLE']);
-	if($arResult[$index]["LINK"] <> "" && $index != $itemSize-1)
+    $title = htmlspecialcharsex($items[$index]['TITLE']);
+	if($items[$index]["LINK"] <> "" && $index != $itemSize-1)
 	{
-    $strReturn .= '<li class="breadcrumbs__item"><a  class="breadcrumbs__link"  href="' . $arResult[$index]['LINK'] . '" title="' . htmlspecialchars($title) . '">';
-    $strReturn .= $title;
-    $strReturn .= '</a><span class="breadcrumbs__separator" aria-hidden="true"></span></li>';
-	}else{
-		 $strReturn .= '<li class="breadcrumbs__item">' . $title . '</li>';
-	}
+	    $strReturn .= '<li class="breadcrumbs__item"><a  class="breadcrumbs__link"  href="' . $items[$index]['LINK'] . '" title="' . htmlspecialchars($title) . '">';
+	    $strReturn .= $title;
+	    $strReturn .= '</a><span class="breadcrumbs__separator" aria-hidden="true"></span></li>';
+		}else{
+			 $strReturn .= '<li class="breadcrumbs__item">' . $title . '</li>';
+		}
     if (
-        !empty($arResult[$index]['LINK'])
-        && $index != $itemSize - 1
+	        !empty($items[$index]['LINK'])
+	        && $index != $itemSize - 1
     ) {
         $strReturn .= $arrow;
     }
