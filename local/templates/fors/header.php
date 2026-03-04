@@ -82,8 +82,9 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
 		break;
 	}
 };
+$pageLang = (defined('LANGUAGE_ID') && LANGUAGE_ID) ? LANGUAGE_ID : 'ru';
 ?><!DOCTYPE html>
-    <html lang="">
+    <html lang="<?=htmlspecialcharsbx($pageLang)?>">
     <head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <? $APPLICATION->ShowHead();
