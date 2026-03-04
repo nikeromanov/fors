@@ -111,7 +111,7 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
     </div>
   </div>
 </footer>
-<section class="page-section" style="display:none" id="consult_form">
+<div class="page-section" style="display:none" id="consult_form">
   <div class="consult-form">
     <p class="consult-form__title" id="consult-popup-title">Получи консультацию прямо сейчас!</p>
     <p class="consult-form__subtitle">В течение 10 минут с вами свяжется наш специалист.</p>
@@ -163,7 +163,7 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
       <button class="btn btn--secondary btn--large" type="submit">Оставить заявку</button>
     </form>
   </div>
-</section>
+</div>
 <?
 $utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
 
