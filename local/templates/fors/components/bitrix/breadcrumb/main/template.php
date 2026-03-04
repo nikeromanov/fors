@@ -28,6 +28,7 @@ foreach ($arResult as $idx => $item) {
 
 $items = [];
 $prevKey = null;
+$prevLinkRaw = null;
 foreach ($arResult as $idx => $item) {
     $titleRaw = trim((string)($item['TITLE'] ?? ''));
     $linkRaw = trim((string)($item['LINK'] ?? ''));
@@ -40,6 +41,16 @@ foreach ($arResult as $idx => $item) {
         continue;
     }
 
+    // Hide redundant "Новость/Новости" node when it repeats the previous link.
+    if (
+        $prevLinkRaw !== null
+        && $linkRaw !== ''
+        && $linkRaw === $prevLinkRaw
+        && in_array($titleNorm, ['новость', 'новости'], true)
+    ) {
+        continue;
+    }
+
     $dedupeKey = mb_strtolower($titleRaw . '|' . $linkRaw);
     if ($dedupeKey === $prevKey) {
         continue;
@@ -49,6 +60,7 @@ foreach ($arResult as $idx => $item) {
         'TITLE' => $titleRaw,
         'LINK' => $linkRaw,
     ];
+    $prevLinkRaw = $linkRaw;
 }
 
 $itemSize = count($items);
