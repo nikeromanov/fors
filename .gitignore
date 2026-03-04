@@ -135,3 +135,16 @@ local/db/migrations/state/capture.log
 *.JPG
 *.webp
 *.xml
+
+# ==============================
+# Playwright local tests/artifacts
+# ==============================
+/playwright-report/
+/test-results/
+/output/playwright/*.spec.js
+/output/playwright/node_modules/
+/output/playwright/package.json
+/output/playwright/package-lock.json
+/output/playwright/videos.concat.txt
+/output/playwright/test-run-all.webm
+/output/playwright/test-run-all.mp4
