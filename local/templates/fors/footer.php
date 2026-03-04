@@ -9,7 +9,7 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
 </main>
 <?}?>
 
-<footer class="footer" role="contentinfo">
+<footer class="footer">
   <div class="footer__container container">
     <div class="footer__nav-wrapper">
       <nav class="footer-nav">
