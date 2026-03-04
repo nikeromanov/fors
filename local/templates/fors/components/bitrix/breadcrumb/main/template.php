@@ -14,11 +14,32 @@ $strReturn .= ' <ol class="breadcrumbs__list">';
 $arrow = '';
 
 
+$titleToLastIndex = [];
+foreach ($arResult as $idx => $item) {
+    $titleRaw = trim((string)($item['TITLE'] ?? ''));
+    $titleNorm = html_entity_decode($titleRaw, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $titleNorm = preg_replace('/\s+/u', ' ', $titleNorm);
+    $titleNorm = preg_replace('/[^\p{L}\p{N}]+/u', '', $titleNorm);
+    $titleNorm = mb_strtolower(trim((string)$titleNorm));
+    if ($titleNorm !== '') {
+        $titleToLastIndex[$titleNorm] = $idx;
+    }
+}
+
 $items = [];
 $prevKey = null;
-foreach ($arResult as $item) {
+foreach ($arResult as $idx => $item) {
     $titleRaw = trim((string)($item['TITLE'] ?? ''));
     $linkRaw = trim((string)($item['LINK'] ?? ''));
+    $titleNorm = html_entity_decode($titleRaw, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $titleNorm = preg_replace('/\s+/u', ' ', $titleNorm);
+    $titleNorm = preg_replace('/[^\p{L}\p{N}]+/u', '', $titleNorm);
+    $titleNorm = mb_strtolower(trim((string)$titleNorm));
+
+    if ($titleNorm !== '' && isset($titleToLastIndex[$titleNorm]) && $titleToLastIndex[$titleNorm] !== $idx) {
+        continue;
+    }
+
     $dedupeKey = mb_strtolower($titleRaw . '|' . $linkRaw);
     if ($dedupeKey === $prevKey) {
         continue;
