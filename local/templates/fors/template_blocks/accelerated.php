@@ -66,7 +66,7 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
         <?if(!empty($settingsPageCur["PROPERTIES"]["ETAP_TITLE"]["VALUE"])){?><h2 class="fast-benefits__title" id="fast-steps__title"><?=$settingsPageCur["PROPERTIES"]["ETAP_TITLE"]["VALUE"];?></h2><?}?>
         <?if(!empty($settingsPageCur["PROPERTIES"]["ETAP_SUBTITLE"]["VALUE"])){?><p class="fast-benefits__subtitle"><?=$settingsPageCur["PROPERTIES"]["ETAP_SUBTITLE"]["VALUE"];?></p><?}?>
 		<?if(!empty($settingsPageCur["PROPERTIES"]["ETAPS"]["VALUE"])){?>
-        <div class="steps" role="group" aria-labelledby="steps-title">
+        <div class="steps" role="group" aria-labelledby="fast-steps__title">
           <ol class="steps__list">
 			<?foreach($settingsPageCur["PROPERTIES"]["ETAPS"]["VALUE"] as $k=>$etap){?>
 				<li class="steps__item">
