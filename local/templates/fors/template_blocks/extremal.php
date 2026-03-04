@@ -3,6 +3,23 @@ use Bitrix\Main\Localization\Loc;
 global $settings;
 global $APPLICATION;
 $settingsPageCur = getSettings(29);
+$extremalDetailHtml = (string)($settingsPageCur["DETAIL_TEXT"] ?? '');
+if ($extremalDetailHtml !== '') {
+	$extremalDetailHtml = preg_replace_callback(
+		'/aria-labelledby="([^"]*)"/i',
+		static function ($matches) {
+			$tokens = preg_split('/\s+/', trim((string)$matches[1])) ?: [];
+			$tokens = array_values(array_filter($tokens, static function ($token) {
+				return $token !== '' && $token !== 'driving-section';
+			}));
+			if (empty($tokens)) {
+				return '';
+			}
+			return 'aria-labelledby="' . htmlspecialcharsbx(implode(' ', $tokens)) . '"';
+		},
+		$extremalDetailHtml
+	);
+}
 ?>
 
 <section class="page-section driving container" aria-labelledby="driving-title">
@@ -49,8 +66,8 @@ $settingsPageCur = getSettings(29);
 </aside>
 
 <div class="driving-content">
-	<?=$settingsPageCur["DETAIL_TEXT"];?>
- 
+		<?=$extremalDetailHtml;?>
+	 
 </div>
 </div>
 
