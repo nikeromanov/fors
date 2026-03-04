@@ -104,7 +104,7 @@ $ElementID = $APPLICATION->IncludeComponent(
 <?if(!empty($properties["BLOCK2_TITLE"]["VALUE"])){?><h2 class="page-section__title" id="discount-badges-title"><?=$properties["BLOCK2_TITLE"]["VALUE"];?></h2><?}?>
 <?if(!empty($properties["BLOCK2_SUBTITLE"]["VALUE"])){?><p class="discount__badges-description"><?=$properties["BLOCK2_SUBTITLE"]["VALUE"];?></p><?}?>
 <?if(!empty($properties["BLOCK2_LIST"]["VALUE"])){?>
-<ul class="badge-list" role="list">
+<ul class="badge-list">
 	<?foreach($properties["BLOCK2_LIST"]["VALUE"] as $k=>$item){?>
   <li class="badge-list__item">
 	<div class="badge-list__container">

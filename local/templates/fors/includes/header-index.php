@@ -110,7 +110,7 @@ if (defined("ERROR_404")) {
 	);?>
 	<div class="site-menu__info">
         <address class="site-menu__contacts">
-          <ul class="site-menu__contacts-list" role="list">
+          <ul class="site-menu__contacts-list">
             <?if($settings["ADDRESS"]["VALUE"]){?>
 				<li class="site-menu__contacts-item">
 				  <span aria-hidden="true" class="site-menu__contacts-icon" data-icon="map"></span>
@@ -132,7 +132,7 @@ if (defined("ERROR_404")) {
           </ul>
         </address>
 
-        <ul class="site-menu__social" role="list" aria-label="Социальные сети">
+        <ul class="site-menu__social" aria-label="Социальные сети">
 			<?if($settings["TIKTOK"]["VALUE"]){?>
 			  <li>
 				<a

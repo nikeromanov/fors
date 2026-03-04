@@ -65,7 +65,7 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
         <a class="btn btn--secondary btn--medium" data-fancybox data-service="Записаться на курс" href="#consult_form">Записаться на курс</a>
         <!-- bx:footer-contacts -->
         <address class="footer__contacts">
-          <ul class="footer__contacts-list" role="list">
+          <ul class="footer__contacts-list">
             <?if($settings["ADDRESS"]["VALUE"]){?><li class="footer__contacts-item">
               <span aria-hidden="true" class="footer__contacts-icon" data-icon="map"></span>
               <span><?=$settings["ADDRESS"]["VALUE"];?></span>
@@ -82,7 +82,7 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
         </address>
       </div>
 
-      <ul class="footer__social" role="list" aria-label="Социальные сети">
+      <ul class="footer__social" aria-label="Социальные сети">
         <?if($settings["TIKTOK"]["VALUE"]){?><li>
           <a class="footer__social-link" href="<?=$settings["TIKTOK"]["VALUE"];?>" target="_blank" rel="noopener">
             <span class="ui-icon ui-icon_small footer__social-icon" aria-hidden="true" data-icon="tiktok"></span>

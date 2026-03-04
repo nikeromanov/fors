@@ -18,7 +18,7 @@ $this->setFrameMode(true);
 
 
 
-	<ul class="faq__list" role="list">
+	<ul class="faq__list">
 	  <?foreach($arResult["ITEMS"] as $item){?>
 	  <?php
 		$questionId = "faq-question-" . ($index + 1);

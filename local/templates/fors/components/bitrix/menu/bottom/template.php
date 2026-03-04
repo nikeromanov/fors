@@ -5,7 +5,7 @@
 <?if (!empty($arResult)):?>
 
 
- <ul class="footer-nav__list" role="list">
+ <ul class="footer-nav__list">
 <?
 $previousLevel = 0;
 foreach($arResult as $arItem):

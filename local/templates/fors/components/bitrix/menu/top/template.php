@@ -5,7 +5,7 @@
 <?if (!empty($arResult)):?>
 
 
-<ul class="primary-nav__list" role="list">
+<ul class="primary-nav__list">
 <?
 $previousLevel = 0;
 foreach($arResult as $arItem):

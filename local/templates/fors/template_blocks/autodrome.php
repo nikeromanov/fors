@@ -55,7 +55,7 @@ $settingsPageCur = getSettings(15);
         </div>
 		<?}?>
          <?if(!empty($settingsPageCur["PROPERTIES"]["UPR_TITLE"]["VALUE"])){?><h3 class="autodrome-exercises__title" id="autodrome-exercises-title"><?=$settingsPageCur["PROPERTIES"]["UPR_TITLE"]["VALUE"];?></h3><?}?>
-        <?if(!empty($settingsPageCur["PROPERTIES"]["UPR"]["VALUE"])){?><ul class="badge-list" role="list">
+        <?if(!empty($settingsPageCur["PROPERTIES"]["UPR"]["VALUE"])){?><ul class="badge-list">
 			  <?foreach($settingsPageCur["PROPERTIES"]["UPR"]["VALUE"] as $k=>$item){?>
 			  <li class="badge-list__item">
 				<div class="badge-list__container">

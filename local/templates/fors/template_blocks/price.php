@@ -166,7 +166,7 @@ $seoText = $settingsPageCur["PROPERTIES"]["SEO_TEXT"]["~VALUE"]["TEXT"]
 		<?=$seoTextCategory;?>
 	  </div>
 	  <?}?>
-	  <ul class="badge-list" role="list">
+	  <ul class="badge-list">
 	  <?foreach($settingsPageCur["PROPERTIES"]["NAPRS"]["VALUE"] as $k=>$el){?>
 		<li class="badge-list__item">
 		  <?if(!empty($settingsPageCur["PROPERTIES"]["NAPRS"]["DESCRIPTION"][$k])){?>
