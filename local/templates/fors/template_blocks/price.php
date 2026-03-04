@@ -6,15 +6,26 @@ $settingsPageCur = getSettings(36);
 ?>
 
 
+<?php
+$pricePreviewText = (string)($settingsPageCur["PREVIEW_TEXT"] ?? '');
+if ($pricePreviewText !== '') {
+	$pricePreviewText = str_ireplace(
+		["<h4", "</h4>", "<h5", "</h5>", "<h6", "</h6>"],
+		["<h2", "</h2>", "<h2", "</h2>", "<h2", "</h2>"],
+		$pricePreviewText
+	);
+}
+?>
+
 <section class="page-section price-intro container" aria-labelledby="price-title">
-        <h1 class="price-intro__title u-text-center" id="price-title"><? $APPLICATION->ShowTitle(false); ?></h1>
-        <div class="split-banner">
-          <div class="split-banner__content">
-           <?if($settingsPageCur["PREVIEW_TEXT"]){?>
-			  <div class="content_block detail_content price_content">
-				<?=$settingsPageCur["PREVIEW_TEXT"];?>
-			  </div>
-		  <?}?>
+	        <h1 class="price-intro__title u-text-center" id="price-title"><? $APPLICATION->ShowTitle(false); ?></h1>
+	        <div class="split-banner">
+	          <div class="split-banner__content">
+	           <?if($settingsPageCur["PREVIEW_TEXT"]){?>
+				  <div class="content_block detail_content price_content">
+					<?=$pricePreviewText;?>
+				  </div>
+			  <?}?>
             <a class="btn btn--secondary btn--large" data-fancybox data-service="Записаться на курс" href="#consult_form">Записаться на курс</a>
           </div>
 		  <?if(!empty($settingsPageCur["PREVIEW_PICTURE"])){?>
