@@ -48,6 +48,7 @@ $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_C
 <?if(!empty($arResult['SECTIONS'])){?>
 <div class="driving-layout js-schedule-tabs">
   <aside class="driving-sidebar" aria-labelledby="schedule-sidebar-title">
+	<h2 class="u-visually-hidden" id="schedule-sidebar-title">Выберите район</h2>
 	<nav class="driving-sidebar__nav" aria-label="Выберите район">
 	  <ul class="driving-sidebar__list" role="tablist">
 		<?foreach($arResult['SECTIONS'] as $k=>$sect){?>
