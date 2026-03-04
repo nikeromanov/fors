@@ -45,15 +45,13 @@ $settingsPageCur = getSettings(15);
         <?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_TITLE"]["VALUE"])){?><h2 class="autodrome-features__title page-section__title" id="autodrome-features-title"><?=$settingsPageCur["PROPERTIES"]["OSOB_TITLE"]["VALUE"];?></h2><?}?>
 		<?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_LEFT"]["~VALUE"]["TEXT"])||!empty($settingsPageCur["PROPERTIES"]["OSOB_RIGHT"]["~VALUE"]["TEXT"])){?>
         <div class="autodrome-features__content">
-	          <?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_LEFT"]["~VALUE"]["TEXT"])){?><article>
-	            <h3 class="u-visually-hidden">Описание особенностей: часть 1</h3>
+	          <?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_LEFT"]["~VALUE"]["TEXT"])){?><div>
 	            <?=$settingsPageCur["PROPERTIES"]["OSOB_LEFT"]["~VALUE"]["TEXT"];?>
-	          </article><?}?>
+	          </div><?}?>
 
-	          <?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_RIGHT"]["~VALUE"]["TEXT"])){?><article>
-	            <h3 class="u-visually-hidden">Описание особенностей: часть 2</h3>
+	          <?if(!empty($settingsPageCur["PROPERTIES"]["OSOB_RIGHT"]["~VALUE"]["TEXT"])){?><div>
 	            <?=$settingsPageCur["PROPERTIES"]["OSOB_RIGHT"]["~VALUE"]["TEXT"];?>
-	          </article><?}?>
+	          </div><?}?>
         </div>
 		<?}?>
          <?if(!empty($settingsPageCur["PROPERTIES"]["UPR_TITLE"]["VALUE"])){?><h3 class="autodrome-exercises__title" id="autodrome-exercises-title"><?=$settingsPageCur["PROPERTIES"]["UPR_TITLE"]["VALUE"];?></h3><?}?>
