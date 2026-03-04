@@ -4,18 +4,25 @@ global $settings;
 global $APPLICATION;
 $set = getSettings(21);
 $settingsPage = $set["PROPERTIES"];
+$policyHtml = (string)($set["DETAIL_TEXT"] ?? '');
+if ($policyHtml !== '') {
+	$policyHtml = preg_replace('/<\s*article\b[^>]*>/i', '<div class="policy__document-article">', $policyHtml);
+	$policyHtml = preg_replace('/<\s*\/\s*article\s*>/i', '</div>', $policyHtml);
+	$policyHtml = preg_replace('/<\s*section\b[^>]*>/i', '<div class="policy__document-section">', $policyHtml);
+	$policyHtml = preg_replace('/<\s*\/\s*section\s*>/i', '</div>', $policyHtml);
+}
 ?>
 <section class="page-section page-section__flex policy container" aria-labelledby="policy-title">
-        <h1 class="policy__title page-section__title" id="policy-title"><?$APPLICATION->ShowTitle(false)?></h1>
-        <article class="policy__document detail_content content_block">
-			<?=$set["DETAIL_TEXT"];?>
-        </article>
-      </section>
-	  <?if(!empty($settingsPage["DOCUMENTS"]["VALUE"])){?>
-      <section class="page-section documents-slider container" aria-labelledby="documents-gallery-title">
-        <h2 class="documents-slider__title" id="documents-gallery-title">Документы</h2>
+	        <h1 class="policy__title page-section__title" id="policy-title"><?$APPLICATION->ShowTitle(false)?></h1>
+	        <div class="policy__document detail_content content_block">
+				<?=$policyHtml;?>
+	        </div>
+	      </section>
+		  <?if(!empty($settingsPage["DOCUMENTS"]["VALUE"])){?>
+	      <section class="page-section documents-slider container" aria-labelledby="documents-gallery-title">
+	        <h2 class="documents-slider__title" id="documents-gallery-title">Документы</h2>
 
-        <div class="swiper documents-slider__slider" aria-label="Галерея документов">
+	        <div class="swiper documents-slider__slider">
           <div class="swiper-wrapper">
 			<?foreach($settingsPage["DOCUMENTS"]["VALUE"] as $doc){?>
             <div class="swiper-slide documents-slider__slide">

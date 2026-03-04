@@ -54,6 +54,15 @@
   border-bottom: none;
 }
 
+.policy__document .policy__document-section {
+  padding: clamp(0.25rem, 0.15rem + 0.4vw, 0.75rem) 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.policy__document .policy__document-section:last-of-type {
+  border-bottom: none;
+}
+
 .policy__document ul {
   margin: clamp(0.5rem, 0.4rem + 0.4vw, 0.9rem) 0;
   padding: 0;
@@ -192,6 +201,7 @@
 
 .theme-dark .policy__document header,
 .theme-dark .policy__document section,
+.theme-dark .policy__document .policy__document-section,
 .theme-dark .policy__document footer {
   border-color: rgba(255, 255, 255, 0.06);
 }
