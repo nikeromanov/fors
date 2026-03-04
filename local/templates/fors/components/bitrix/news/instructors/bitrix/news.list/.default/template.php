@@ -13,29 +13,26 @@
 $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){?>
- <div class="swiper instructors__slider" aria-label="Наши инструкторы">
+ <div class="swiper instructors__slider">
 	  <div class="swiper-wrapper">
 		  <?foreach($arResult["ITEMS"] as $item){
 			  ?>
 			  		<div class="swiper-slide instructors__slide">
 		  <a href="<?=$item["DETAIL_PAGE_URL"];?>" class="instructors__card">
-			<picture>
-			  
-			  <?if(!empty($item["PREVIEW_PICTURE"]["SRC"])){
-				  $file = CFile::ResizeImageGet($item["PREVIEW_PICTURE"]["ID"], array('width'=>750, 'height'=>750), BX_RESIZE_IMAGE_PROPORTIONAL, true);
-				  ?><img
-				src="<?=$file["src"];?>"
-				alt=""
-				class="instructors__image"
-				loading="lazy"
-				width="315"
-				height="450"
-			  /><?}?>
-			</picture>
-			<div class="instructors__info">
-			  <h3 class="instructors__name">
-				<?=$item["NAME"];?>
-			  </h3>
+				  <?if(!empty($item["PREVIEW_PICTURE"]["SRC"])){
+					  $file = CFile::ResizeImageGet($item["PREVIEW_PICTURE"]["ID"], array('width'=>750, 'height'=>750), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+					  ?><picture><img
+					src="<?=$file["src"];?>"
+					alt=""
+					class="instructors__image"
+					loading="lazy"
+					width="315"
+					height="450"
+				  /></picture><?}?>
+				<div class="instructors__info">
+				  <h2 class="instructors__name">
+					<?=$item["NAME"];?>
+				  </h2>
 			  <div class="instructors__meta">
 				<?if(!empty($item["PROPERTIES"]["NUMBER"]["VALUE"])){?>
 					<div class="instructors__rating">

@@ -196,7 +196,7 @@ $APPLICATION->IncludeComponent(
 
 <?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["BLOCK3_SUBTITLE"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["BLOCK3_LIST"]["VALUE"])){?>
 <section class="page-section page-section__flex instructors__consult" aria-labelledby="instructors-consult-title">
-	<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"])){?><h2 id="instructors-consult-title " class="instructors__consult-title page-section__title"><?=$settingsPageCur["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"];?></h2><?}?>
+		<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"])){?><h2 id="instructors-consult-title" class="instructors__consult-title page-section__title"><?=$settingsPageCur["PROPERTIES"]["BLOCK3_TITLE"]["VALUE"];?></h2><?}?>
 	<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK3_SUBTITLE"]["VALUE"])){?><p class="instructors__consult-subtitle"><?=$settingsPageCur["PROPERTIES"]["BLOCK3_SUBTITLE"]["VALUE"];?></p><?}?>
 		<?if(!empty($settingsPageCur["PROPERTIES"]["BLOCK3_LIST"]["VALUE"])){?>
 		<ol class="steps__list">
