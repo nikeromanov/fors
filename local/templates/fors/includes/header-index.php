@@ -6,7 +6,7 @@ if (defined("ERROR_404")) {
   $headerClass = "header header--inner";
   $containerClass = "header__container";
 }
-?><header class="<?=$headerClass;?>" role="banner">
+?><header class="<?=$headerClass;?>">
   <div class="<?=$containerClass;?>">
     
     <a class="header__logo" href="/" aria-label="Автошкола Форсаж — на главную">

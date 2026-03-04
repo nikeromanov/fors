@@ -1,6 +1,6 @@
 <?
 global $settings;
-?><header class="header header--inner" role="banner">
+?><header class="header header--inner">
   <div class="header__container">
     <!-- ЛОГО -->
     <!-- bx:include:site-logo -->
