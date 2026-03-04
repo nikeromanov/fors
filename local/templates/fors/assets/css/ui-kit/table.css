@@ -139,6 +139,7 @@
 
 .category-card__title,
 .price-card__title {
+  margin: 0;
   font-size: clamp(1rem, 0.95rem + 0.5vw, 1.5rem);
   font-weight: 700;
   line-height: 120%;
