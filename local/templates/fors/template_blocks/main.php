@@ -4,6 +4,10 @@ use Bitrix\Main\Page\Asset;
 global $settings;
 $settingsPage = getSettings(3);
 $properties = $settingsPage["PROPERTIES"];
+$heroButtonText = trim((string)($settings["HERO_CTA_TEXT"]["VALUE"] ?? ""));
+if($heroButtonText === ""){
+	$heroButtonText = "Получи скидку 5000 руб.";
+}
 if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALUE"])>time()){
 	Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . '/assets/js/home-hero-timer.js');
 }
@@ -55,7 +59,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
                               <?=$settings["PHONE"]["VALUE"];?>
                             </a>
                           <?}?>
-			  <a class="btn btn--primary btn--large btn--block" data-fancybox data-service="Получи скидку 5000 руб." href="#consult_form">Получи скидку 5000 руб.</a>
+			  <a class="btn btn--primary btn--large btn--block" data-fancybox data-service="<?=$heroButtonText;?>" href="#consult_form"><?=$heroButtonText;?></a>
 			 <?if(!empty($settings["AKC_LEFT"]["VALUE"])){?> <div class="home-hero__badge">
 				<span class="home-hero__badge-label">осталось</span>
 				<span class="home-hero__badge-value"><?=$settings["AKC_LEFT"]["VALUE"];?></span>
