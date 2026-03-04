@@ -128,6 +128,13 @@ function forsHandleInvalidUrl()
         LocalRedirect('/', true, '301 Moved Permanently');
     }
 
+    $isLegacyTextPagePath = preg_match('#^/text-page(?:/|$)#i', $path) === 1
+        || preg_match('#^/text-page(?:/|$)#i', $uriPath) === 1;
+
+    if ($isLegacyTextPagePath) {
+        LocalRedirect('/oplata-gosposhliny/', true, '301 Moved Permanently');
+    }
+
     $pathForSlashNormalization = $uriPath !== '' ? $uriPath : $path;
 
     if (preg_match('#//+#', $pathForSlashNormalization)) {
