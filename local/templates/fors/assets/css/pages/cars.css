@@ -154,12 +154,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
   gap: 0.25rem;
+  justify-items: center;
+  text-align: center;
 }
 
 .cars-gallery__spec-item {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 0.25rem;
   align-items: center;
   font-size: clamp(0.8rem, 0.75rem + 0.2vw, 0.9375rem);
