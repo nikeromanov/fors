@@ -29,7 +29,7 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Сертификаты и дипломы",
+		"Сертификаты",
 		"/sertifikaty-i-diplomy/",
 		Array(),
 		Array(),

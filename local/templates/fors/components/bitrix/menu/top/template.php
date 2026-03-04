@@ -45,7 +45,7 @@ foreach($arResult as $arItem):
 
 <?if (!$hasCertificatesMenuItem):?>
 	<li class="primary-nav__item">
-		<a class="primary-nav__link" href="/sertifikaty-i-diplomy/">Сертификаты и дипломы</a>
+		<a class="primary-nav__link" href="/sertifikaty-i-diplomy/">Сертификаты</a>
 	</li>
 <?endif;?>
 
