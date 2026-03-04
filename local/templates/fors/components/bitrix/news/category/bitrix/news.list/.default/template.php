@@ -332,9 +332,9 @@ $this->setFrameMode(true);
         </table>
         </div>
 
-        <div class="category__table-mobile" role="list">
+        <div class="category__table-mobile">
                         <?foreach($arResult["ITEMS"] as $item){?>
-          <article class="category-card" role="listitem">
+          <article class="category-card">
             <div class="category-card__header">
               <div class="category-card__course">
                 <div class="ui-table__icon-container">
@@ -342,7 +342,7 @@ $this->setFrameMode(true);
                                                 <span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="<?=$item["PROPERTIES"]["ICO"]["VALUE_XML_ID"];?>"></span>
                                         <?}?>
                 </div>
-                <span class="category-card__title"><?=$item["NAME"];?></span>
+                <h3 class="category-card__title"><?=$item["NAME"];?></h3>
               </div>
               <span class="category-card__price"><?=CurrencyFormat($item["PROPERTIES"]["PRICE"]["VALUE"],"RUB");?></span>
             </div>
