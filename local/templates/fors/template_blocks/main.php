@@ -130,7 +130,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		
 		<?if(!empty($settings["VK"]["VALUE"])||!empty($settings["MAX"]["VALUE"])||!empty($settings["TELEGRAM"]["VALUE"])){?>
 		<div class="social-banner">
-		  <?if(!empty($properties["SOC_TITLE"]["VALUE"])){?><h5 class="social-banner__title"><?=$properties["SOC_TITLE"]["VALUE"];?></h5><?}?>
+		  <?if(!empty($properties["SOC_TITLE"]["VALUE"])){?><h3 class="social-banner__title"><?=$properties["SOC_TITLE"]["VALUE"];?></h3><?}?>
 		  <div class="social-banner__buttons">
 			<?if(!empty($settings["TELEGRAM"]["VALUE"])){?><a href="<?=$settings["TELEGRAM"]["VALUE"];?>" target="_blank" class="social-btn social-btn--telegram">
 			  <span class="social-btn__icon" aria-hidden="true"></span>
