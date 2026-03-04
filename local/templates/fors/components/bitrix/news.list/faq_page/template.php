@@ -18,13 +18,13 @@ $this->setFrameMode(true);
 
 
 
-	<ul class="faq__list">
-	  <?foreach($arResult["ITEMS"] as $item){?>
+		<ul class="faq__list">
+		  <?foreach($arResult["ITEMS"] as $index => $item){?>
 	  <?php
 		$questionId = "faq-question-" . ($index + 1);
 		$answerId = "faq-answer-" . ($index + 1);
 		?>
-	  <li class="faq__item" role="listitem">
+		  <li class="faq__item">
 		<article
 		  class="faq-card"
 		  aria-labelledby="<?php echo $questionId; ?>"
