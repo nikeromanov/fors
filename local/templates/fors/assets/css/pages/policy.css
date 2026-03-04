@@ -278,3 +278,18 @@
   display: block;
   object-fit: contain;
 }
+
+/* Upscale small document scans in modal viewer on policy/certificates pages */
+body.page_policy .fancybox__carousel .fancybox__slide.has-image .fancybox__content,
+body.page_certificates .fancybox__carousel .fancybox__slide.has-image .fancybox__content {
+  width: clamp(360px, 72vw, 980px);
+  max-width: 92vw;
+  height: auto;
+}
+
+body.page_policy .fancybox__carousel .fancybox__slide.has-image .fancybox__image,
+body.page_certificates .fancybox__carousel .fancybox__slide.has-image .fancybox__image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
