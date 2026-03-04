@@ -177,7 +177,8 @@
 }
 
 .cars-gallery__spec-item--stack dd {
-  flex-basis: 100%;
+  flex: 0 0 100%;
+  margin-top: 0.1rem;
 }
 
 .cars-gallery__divider {
