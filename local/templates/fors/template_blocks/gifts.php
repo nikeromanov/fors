@@ -167,7 +167,7 @@ $settingsPageCur = getSettings(39);
 );?>
 <?if(!empty($settingsPageCur["PROPERTIES"]["TITLE_HOW"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["HOW_LIST"]["VALUE"])){?>
 <section class="page-section page-section__flex instructors__consult" aria-labelledby="instructors-consult-title">
-	<?if(!empty($settingsPageCur["PROPERTIES"]["TITLE_HOW"]["VALUE"])){?><h2 class="section-title section-title--center" id="steps-title"><?=$settingsPageCur["PROPERTIES"]["TITLE_HOW"]["VALUE"];?></h2><?}?>
+	<?if(!empty($settingsPageCur["PROPERTIES"]["TITLE_HOW"]["VALUE"])){?><h2 class="section-title section-title--center" id="instructors-consult-title"><?=$settingsPageCur["PROPERTIES"]["TITLE_HOW"]["VALUE"];?></h2><?}?>
 	<?if(!empty($settingsPageCur["PROPERTIES"]["HOW_LIST"]["VALUE"])){?>
 	<div class="steps"><ol class="steps__list">
 	<?foreach($settingsPageCur["PROPERTIES"]["HOW_LIST"]["VALUE"] as $k=>$it){?>

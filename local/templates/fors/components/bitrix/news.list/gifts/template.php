@@ -15,7 +15,7 @@ $this->setFrameMode(true);
 <?if(!empty($arResult["ITEMS"])){
 	$k=1;
 	?>
-	  <section class="page-section page-section__flex gifts__why container" aria-labelledby="gifts__why-title">
+	  <div class="page-section page-section__flex gifts__why container">
 	<div class="ui-table-wrapper">
           <table class="ui-table">
             <thead>
@@ -41,7 +41,7 @@ $this->setFrameMode(true);
             </tbody>
           </table>
         </div>
-	</section>
+	</div>
 
 	
 	
