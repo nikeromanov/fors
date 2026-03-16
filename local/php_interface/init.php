@@ -186,6 +186,43 @@ function getSettings($iblockId = 0,$id = 0){
 	}
 	return $arFields;
 }
+
+function getSettingsByCode(string $code, $iblockId = 0){
+	CModule::IncludeModule("iblock");
+	if($iblockId==0){
+		$iblockId=SETTINGS_IBLOCK_ID;
+	}
+	$arFields = [];
+	$arSelect = Array("ID", "IBLOCK_ID","PROPERTY_*","NAME","PREVIEW_TEXT","DETAIL_TEXT","DETAIL_PICTURE","PREVIEW_PICTURE","CODE");
+	$arFilter = Array(
+		"IBLOCK_ID"=>$iblockId,
+		"ACTIVE"=>"Y",
+		"=CODE"=>$code,
+	);
+	$res = CIBlockElement::GetList(Array("SORT" => "ASC", "ID" => "ASC"), $arFilter, false, Array("nTopCount" => 1), $arSelect);
+	if($ob = $res->GetNextElement()){
+		$arFields = $ob->GetFields();
+		$arProps = $ob->GetProperties();
+		$arFields["PROPERTIES"]=$arProps;
+	}
+	return $arFields;
+}
+
+function getIblockIdByCode(string $typeId, string $code): int
+{
+	CModule::IncludeModule("iblock");
+
+	$iblock = CIBlock::GetList(
+		Array(),
+		Array(
+			"TYPE" => $typeId,
+			"=CODE" => $code,
+			"CHECK_PERMISSIONS" => "N",
+		)
+	)->Fetch();
+
+	return (int)($iblock["ID"] ?? 0);
+}
 function num_word_standart($value, $words, $show = true) 
 {
 	$num = $value % 100;
