@@ -1,0 +1,383 @@
+-- Auto-captured DB migration
+-- Generated: 2026-03-16T15:24:01Z
+-- DB: fors36_site
+-- Range: mysql-bin.000005:729056154 -> mysql-bin.000005:729064374
+
+/*!50530 SET @@SESSION.PSEUDO_SLAVE_MODE=1*/;
+/*!40019 SET @@session.max_insert_delayed_threads=0*/;
+/*!50003 SET @OLD_COMPLETION_TYPE=@@COMPLETION_TYPE,COMPLETION_TYPE=0*/;
+DELIMITER /*!*/;
+# at 4
+#260310  8:48:52 server id 1  end_log_pos 256 CRC32 0x86c6306b 	Start: binlog v 4, server v 10.6.25-MariaDB-ubu2204-log created 260310  8:48:52
+# Warning: this binlog is either in use or was not closed properly.
+BINLOG '
+9NqvaQ8BAAAA/AAAAAABAAABAAQAMTAuNi4yNS1NYXJpYURCLXVidTIyMDQtbG9nAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAEzgNAAgAEgAEBAQEEgAA5AAEGggAAAAICAgCAAAACgoKAAAAAAAA
+CgoKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAEEwQADQgICAoKCgFrMMaG
+'/*!*/;
+# at 729056154
+#260316 15:24:00 server id 1  end_log_pos 729056196 CRC32 0x2e1484cd 	GTID 0-1-33537 trans
+/*M!100101 SET @@session.skip_parallel_replication=0*//*!*/;
+/*M!100001 SET @@session.gtid_domain_id=0*//*!*/;
+/*M!100001 SET @@session.server_id=1*//*!*/;
+/*M!100001 SET @@session.gtid_seq_no=33537*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729056196
+#260316 15:24:00 server id 1  end_log_pos 729056228 CRC32 0x247de4bb 	Intvar
+SET INSERT_ID=42/*!*/;
+# at 729056228
+#260316 15:24:00 server id 1  end_log_pos 729056686 CRC32 0xdc10b7a4 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+use `fors36_site`/*!*/;
+SET TIMESTAMP=1773674640.803135/*!*/;
+SET @@session.pseudo_thread_id=11528/*!*/;
+SET @@session.foreign_key_checks=1, @@session.sql_auto_is_null=0, @@session.unique_checks=1, @@session.autocommit=1, @@session.check_constraint_checks=1, @@session.sql_if_exists=0, @@session.explicit_defaults_for_timestamp=0/*!*/;
+SET @@session.sql_mode=0/*!*/;
+SET @@session.auto_increment_increment=1, @@session.auto_increment_offset=1/*!*/;
+/*!\C utf8mb4 *//*!*/;
+SET @@session.character_set_client=utf8mb4,@@session.collation_connection=224,@@session.collation_server=224/*!*/;
+SET @@session.time_zone='SYSTEM'/*!*/;
+SET @@session.lc_time_names=0/*!*/;
+SET @@session.collation_database=DEFAULT/*!*/;
+INSERT INTO b_iblock(`TIMESTAMP_X`, `IBLOCK_TYPE_ID`, `LID`, `CODE`, `NAME`, `ACTIVE`, `SORT`, `DESCRIPTION_TYPE`, `INDEX_ELEMENT`, `INDEX_SECTION`, `WORKFLOW`, `BIZPROC`, `SECTION_CHOOSER`, `RIGHTS_MODE`, `VERSION`, `FULLTEXT_INDEX`) VALUES(NOW(), 'settings', 's1', 'promo_pages', 'Промо-страницы', 'Y', '500', 'text', 'N', 'N', 'Y', 'N', 'L', 'S', '2', 'N')
+/*!*/;
+# at 729056686
+#260316 15:24:00 server id 1  end_log_pos 729056717 CRC32 0x8e3fbcb5 	Xid = 365727
+COMMIT/*!*/;
+# at 729056717
+#260316 15:24:00 server id 1  end_log_pos 729056759 CRC32 0xe0ab8fd5 	GTID 0-1-33538 trans
+/*M!100001 SET @@session.gtid_seq_no=33538*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729056759
+#260316 15:24:00 server id 1  end_log_pos 729056952 CRC32 0xc441dfad 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674640/*!*/;
+INSERT INTO b_iblock_group(IBLOCK_ID, GROUP_ID, PERMISSION)
+					SELECT 42, ID, 'R'
+					FROM b_group
+					WHERE ID = 2
+/*!*/;
+# at 729056952
+#260316 15:24:00 server id 1  end_log_pos 729056983 CRC32 0x173777c3 	Xid = 365729
+COMMIT/*!*/;
+# at 729056983
+#260316 15:24:00 server id 1  end_log_pos 729057025 CRC32 0x7aaf78f5 	GTID 0-1-33539 trans
+/*M!100001 SET @@session.gtid_seq_no=33539*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729057025
+#260316 15:24:00 server id 1  end_log_pos 729057145 CRC32 0x4fe4b7ca 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674640/*!*/;
+DELETE FROM b_iblock_site WHERE IBLOCK_ID = 42
+/*!*/;
+# at 729057145
+#260316 15:24:00 server id 1  end_log_pos 729057225 CRC32 0x2cff3c68 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674640/*!*/;
+COMMIT
+/*!*/;
+# at 729057225
+#260316 15:24:00 server id 1  end_log_pos 729057267 CRC32 0x5ff10232 	GTID 0-1-33540 trans
+/*M!100001 SET @@session.gtid_seq_no=33540*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729057267
+#260316 15:24:00 server id 1  end_log_pos 729057448 CRC32 0xd6f8bb9c 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674640/*!*/;
+INSERT INTO b_iblock_site(IBLOCK_ID, SITE_ID)
+					SELECT 42, LID
+					FROM b_lang
+					WHERE LID IN ('s1')
+/*!*/;
+# at 729057448
+#260316 15:24:00 server id 1  end_log_pos 729057479 CRC32 0x0f2949e5 	Xid = 365733
+COMMIT/*!*/;
+# at 729057479
+#260316 15:24:00 server id 1  end_log_pos 729057521 CRC32 0x66e5b9c5 	GTID 0-1-33541 ddl
+/*M!100001 SET @@session.gtid_seq_no=33541*//*!*/;
+# at 729057521
+#260316 15:24:00 server id 1  end_log_pos 729057727 CRC32 0x5e4b1ba9 	Query	thread_id=11528	exec_time=0	error_code=0	xid=365735
+SET TIMESTAMP=1773674640/*!*/;
+CREATE TABLE IF NOT EXISTS `b_iblock_element_prop_s42` (`IBLOCK_ELEMENT_ID` int NOT NULL, PRIMARY KEY(`IBLOCK_ELEMENT_ID`))
+/*!*/;
+# at 729057727
+#260316 15:24:00 server id 1  end_log_pos 729057769 CRC32 0x308aee92 	GTID 0-1-33542 ddl
+/*M!100001 SET @@session.gtid_seq_no=33542*//*!*/;
+# at 729057769
+#260316 15:24:00 server id 1  end_log_pos 729058129 CRC32 0xabf27195 	Query	thread_id=11528	exec_time=0	error_code=0	xid=365738
+SET TIMESTAMP=1773674640/*!*/;
+CREATE TABLE IF NOT EXISTS `b_iblock_element_prop_m42` (`ID` bigint NOT NULL AUTO_INCREMENT, `IBLOCK_ELEMENT_ID` int NOT NULL, `IBLOCK_PROPERTY_ID` int NOT NULL, `VALUE` text NOT NULL, `VALUE_ENUM` int, `VALUE_NUM` decimal(18, 4), `DESCRIPTION` varchar(255), PRIMARY KEY(`ID`))
+/*!*/;
+# at 729058129
+#260316 15:24:00 server id 1  end_log_pos 729058171 CRC32 0x5b089245 	GTID 0-1-33543 ddl
+/*M!100001 SET @@session.gtid_seq_no=33543*//*!*/;
+# at 729058171
+#260316 15:24:00 server id 1  end_log_pos 729058370 CRC32 0xd903e75b 	Query	thread_id=11528	exec_time=0	error_code=0	xid=365740
+SET TIMESTAMP=1773674640/*!*/;
+CREATE  INDEX `ix_iblock_elem_prop_m42_1` ON `b_iblock_element_prop_m42` (`IBLOCK_ELEMENT_ID`, `IBLOCK_PROPERTY_ID`)
+/*!*/;
+# at 729058370
+#260316 15:24:00 server id 1  end_log_pos 729058412 CRC32 0xbfc8e83a 	GTID 0-1-33544 ddl
+/*M!100001 SET @@session.gtid_seq_no=33544*//*!*/;
+# at 729058412
+#260316 15:24:00 server id 1  end_log_pos 729058590 CRC32 0x786664f1 	Query	thread_id=11528	exec_time=0	error_code=0	xid=365741
+SET TIMESTAMP=1773674640/*!*/;
+CREATE  INDEX `ix_iblock_elem_prop_m42_2` ON `b_iblock_element_prop_m42` (`IBLOCK_PROPERTY_ID`)
+/*!*/;
+# at 729058590
+#260316 15:24:00 server id 1  end_log_pos 729058632 CRC32 0xa29c0962 	GTID 0-1-33545 ddl
+/*M!100001 SET @@session.gtid_seq_no=33545*//*!*/;
+# at 729058632
+#260316 15:24:00 server id 1  end_log_pos 729058824 CRC32 0xa85d9d33 	Query	thread_id=11528	exec_time=0	error_code=0	xid=365742
+SET TIMESTAMP=1773674640/*!*/;
+CREATE  INDEX `ix_iblock_elem_prop_m42_3` ON `b_iblock_element_prop_m42` (`VALUE_ENUM`, `IBLOCK_PROPERTY_ID`)
+/*!*/;
+# at 729058824
+#260316 15:24:00 server id 1  end_log_pos 729058866 CRC32 0x2b287779 	GTID 0-1-33546 trans
+/*M!100001 SET @@session.gtid_seq_no=33546*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729058866
+#260316 15:24:00 server id 1  end_log_pos 729058898 CRC32 0x72b0210c 	Intvar
+SET INSERT_ID=1838/*!*/;
+# at 729058898
+#260316 15:24:00 server id 1  end_log_pos 729059105 CRC32 0x5b78260e 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674640.958224/*!*/;
+INSERT INTO `b_cache_clean_path`(`PREFIX`, `CLUSTER_GROUP`) VALUES ('/bitrix/managed_cache/MYSQL/orm_b_iblock.~44226', 0)
+/*!*/;
+# at 729059105
+#260316 15:24:00 server id 1  end_log_pos 729059136 CRC32 0xa0bf35d0 	Xid = 365744
+COMMIT/*!*/;
+# at 729059136
+#260316 15:24:01 server id 1  end_log_pos 729059178 CRC32 0x3f5640c4 	GTID 0-1-33547 trans
+/*M!100001 SET @@session.gtid_seq_no=33547*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729059178
+#260316 15:24:01 server id 1  end_log_pos 729059210 CRC32 0x84b23572 	Intvar
+SET INSERT_ID=137/*!*/;
+# at 729059210
+#260316 15:24:01 server id 1  end_log_pos 729059615 CRC32 0xc827c500 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674641.000839/*!*/;
+INSERT INTO b_iblock_property(`TIMESTAMP_X`, `IBLOCK_ID`, `NAME`, `ACTIVE`, `SORT`, `CODE`, `PROPERTY_TYPE`, `MULTIPLE`, `SEARCHABLE`, `FILTRABLE`, `IS_REQUIRED`, `VERSION`, `USER_TYPE_SETTINGS`) VALUES(NOW(), '42', 'Заголовок слайдера', 'Y', '100', 'GALLERY_TITLE', 'S', 'N', 'N', 'N', 'N', '2', NULL)
+/*!*/;
+# at 729059615
+#260316 15:24:01 server id 1  end_log_pos 729059646 CRC32 0xf6897771 	Xid = 365756
+COMMIT/*!*/;
+# at 729059646
+#260316 15:24:01 server id 1  end_log_pos 729059688 CRC32 0x65d0ea3a 	GTID 0-1-33548 ddl
+/*M!100001 SET @@session.gtid_seq_no=33548*//*!*/;
+# at 729059688
+#260316 15:24:01 server id 1  end_log_pos 729059833 CRC32 0x281e8461 	Query	thread_id=11528	exec_time=0	error_code=0	xid=365757
+SET TIMESTAMP=1773674641/*!*/;
+ALTER TABLE b_iblock_element_prop_s42
+			ADD PROPERTY_137 text
+/*!*/;
+# at 729059833
+#260316 15:24:01 server id 1  end_log_pos 729059875 CRC32 0xd5626b6c 	GTID 0-1-33549 trans
+/*M!100001 SET @@session.gtid_seq_no=33549*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729059875
+#260316 15:24:01 server id 1  end_log_pos 729059907 CRC32 0x0e713569 	Intvar
+SET INSERT_ID=1839/*!*/;
+# at 729059907
+#260316 15:24:01 server id 1  end_log_pos 729060124 CRC32 0x3d230c6d 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674641.012560/*!*/;
+INSERT INTO `b_cache_clean_path`(`PREFIX`, `CLUSTER_GROUP`) VALUES ('/bitrix/managed_cache/MYSQL/orm_b_iblock_property.~540554', 0)
+/*!*/;
+# at 729060124
+#260316 15:24:01 server id 1  end_log_pos 729060155 CRC32 0x9cf9abb4 	Xid = 365759
+COMMIT/*!*/;
+# at 729060155
+#260316 15:24:01 server id 1  end_log_pos 729060197 CRC32 0x27e77fbd 	GTID 0-1-33550 trans
+/*M!100001 SET @@session.gtid_seq_no=33550*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729060197
+#260316 15:24:01 server id 1  end_log_pos 729060229 CRC32 0x12f25c4d 	Intvar
+SET INSERT_ID=138/*!*/;
+# at 729060229
+#260316 15:24:01 server id 1  end_log_pos 729060605 CRC32 0xebbbb165 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674641.015733/*!*/;
+INSERT INTO b_iblock_property(`TIMESTAMP_X`, `IBLOCK_ID`, `NAME`, `ACTIVE`, `SORT`, `CODE`, `PROPERTY_TYPE`, `MULTIPLE`, `SEARCHABLE`, `FILTRABLE`, `IS_REQUIRED`, `VERSION`, `USER_TYPE_SETTINGS`) VALUES(NOW(), '42', 'Слайды', 'Y', '200', 'GALLERY', 'F', 'Y', 'N', 'N', 'N', '2', NULL)
+/*!*/;
+# at 729060605
+#260316 15:24:01 server id 1  end_log_pos 729060636 CRC32 0x6f4a22ae 	Xid = 365763
+COMMIT/*!*/;
+# at 729060636
+#260316 15:24:01 server id 1  end_log_pos 729060678 CRC32 0x587e4301 	GTID 0-1-33551 ddl
+/*M!100001 SET @@session.gtid_seq_no=33551*//*!*/;
+# at 729060678
+#260316 15:24:01 server id 1  end_log_pos 729060827 CRC32 0x8b560655 	Query	thread_id=11528	exec_time=0	error_code=0	xid=365764
+SET TIMESTAMP=1773674641/*!*/;
+ALTER TABLE b_iblock_element_prop_s42
+			ADD PROPERTY_138 longtext
+/*!*/;
+# at 729060827
+#260316 15:24:01 server id 1  end_log_pos 729060869 CRC32 0x43f87c7c 	GTID 0-1-33552 trans
+/*M!100001 SET @@session.gtid_seq_no=33552*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729060869
+#260316 15:24:01 server id 1  end_log_pos 729060901 CRC32 0x9cb9fc9b 	Intvar
+SET INSERT_ID=139/*!*/;
+# at 729060901
+#260316 15:24:01 server id 1  end_log_pos 729061316 CRC32 0xebac4681 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674641.020051/*!*/;
+INSERT INTO b_iblock_property(`TIMESTAMP_X`, `IBLOCK_ID`, `NAME`, `ACTIVE`, `SORT`, `CODE`, `PROPERTY_TYPE`, `LIST_TYPE`, `MULTIPLE`, `SEARCHABLE`, `FILTRABLE`, `IS_REQUIRED`, `VERSION`, `USER_TYPE_SETTINGS`) VALUES(NOW(), '42', 'Формат слайдера', 'Y', '300', 'SLIDER_VIEW', 'L', 'L', 'N', 'N', 'N', 'N', '2', NULL)
+/*!*/;
+# at 729061316
+#260316 15:24:01 server id 1  end_log_pos 729061347 CRC32 0x6df463e2 	Xid = 365768
+COMMIT/*!*/;
+# at 729061347
+#260316 15:24:01 server id 1  end_log_pos 729061389 CRC32 0x47a41746 	GTID 0-1-33553 ddl
+/*M!100001 SET @@session.gtid_seq_no=33553*//*!*/;
+# at 729061389
+#260316 15:24:01 server id 1  end_log_pos 729061533 CRC32 0xa9b0c023 	Query	thread_id=11528	exec_time=0	error_code=0	xid=365769
+SET TIMESTAMP=1773674641/*!*/;
+ALTER TABLE b_iblock_element_prop_s42
+			ADD PROPERTY_139 int
+/*!*/;
+# at 729061533
+#260316 15:24:01 server id 1  end_log_pos 729061575 CRC32 0xd31d9874 	GTID 0-1-33554 trans
+/*M!100001 SET @@session.gtid_seq_no=33554*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729061575
+#260316 15:24:01 server id 1  end_log_pos 729061607 CRC32 0x600318f2 	Intvar
+SET INSERT_ID=14/*!*/;
+# at 729061607
+#260316 15:24:01 server id 1  end_log_pos 729061927 CRC32 0xd741c98e 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674641/*!*/;
+INSERT INTO b_iblock_property_enum
+					(
+						PROPERTY_ID
+						,DEF
+						,SORT
+						,VALUE
+						,XML_ID
+					) VALUES (
+						139
+						,'Y'
+						,100
+						,'По ширине контентной области'
+						,'CONTAINER'
+					)
+/*!*/;
+# at 729061927
+#260316 15:24:01 server id 1  end_log_pos 729061958 CRC32 0x6426f431 	Xid = 365772
+COMMIT/*!*/;
+# at 729061958
+#260316 15:24:01 server id 1  end_log_pos 729062000 CRC32 0x5687708a 	GTID 0-1-33555 trans
+/*M!100001 SET @@session.gtid_seq_no=33555*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729062000
+#260316 15:24:01 server id 1  end_log_pos 729062032 CRC32 0xd09a0977 	Intvar
+SET INSERT_ID=15/*!*/;
+# at 729062032
+#260316 15:24:01 server id 1  end_log_pos 729062318 CRC32 0x3dd326d1 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674641/*!*/;
+INSERT INTO b_iblock_property_enum
+					(
+						PROPERTY_ID
+						,DEF
+						,SORT
+						,VALUE
+						,XML_ID
+					) VALUES (
+						139
+						,'N'
+						,200
+						,'На всю ширину'
+						,'FULL'
+					)
+/*!*/;
+# at 729062318
+#260316 15:24:01 server id 1  end_log_pos 729062349 CRC32 0xb951f925 	Xid = 365773
+COMMIT/*!*/;
+# at 729062349
+#260316 15:24:01 server id 1  end_log_pos 729062391 CRC32 0xfee653fd 	GTID 0-1-33556 trans
+/*M!100001 SET @@session.gtid_seq_no=33556*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729062391
+#260316 15:24:01 server id 1  end_log_pos 729062423 CRC32 0xa561e023 	Intvar
+SET INSERT_ID=2002/*!*/;
+# at 729062423
+#260316 15:24:01 server id 1  end_log_pos 729063342 CRC32 0xaa2ea0fa 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674641.062620/*!*/;
+INSERT INTO b_iblock_element(`TIMESTAMP_X`, `MODIFIED_BY`, `DATE_CREATE`, `CREATED_BY`, `IBLOCK_ID`, `ACTIVE`, `NAME`, `PREVIEW_TEXT`, `PREVIEW_TEXT_TYPE`, `DETAIL_TEXT`, `DETAIL_TEXT_TYPE`, `SEARCHABLE_CONTENT`, `CODE`) VALUES(now(), '0', now(), '0', '42', 'Y', 'Промо-страница', '<p>Заполните промо-текст в админке Битрикса.</p>', 'html', '<p>Здесь можно разместить подробное описание акции, преимущества и условия участия.</p>', 'html', 'ПРОМО-СТРАНИЦА\r\nЗАПОЛНИТЕ ПРОМО-ТЕКСТ В АДМИНКЕ БИТРИКСА.\r\nЗДЕСЬ МОЖНО РАЗМЕСТИТЬ ПОДРОБНОЕ ОПИСАНИЕ \r\nАКЦИИ, ПРЕИМУЩЕСТВА И УСЛОВИЯ УЧАСТИЯ.', 'promo')
+/*!*/;
+# at 729063342
+#260316 15:24:01 server id 1  end_log_pos 729063373 CRC32 0xd6b6b92d 	Xid = 365781
+COMMIT/*!*/;
+# at 729063373
+#260316 15:24:01 server id 1  end_log_pos 729063415 CRC32 0x40024dfa 	GTID 0-1-33557 trans
+/*M!100001 SET @@session.gtid_seq_no=33557*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729063415
+#260316 15:24:01 server id 1  end_log_pos 729063557 CRC32 0x5f49e55a 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674641/*!*/;
+INSERT INTO b_iblock_element_prop_s42(IBLOCK_ELEMENT_ID)VALUES(2002)
+/*!*/;
+# at 729063557
+#260316 15:24:01 server id 1  end_log_pos 729063588 CRC32 0x5abbf6bd 	Xid = 365782
+COMMIT/*!*/;
+# at 729063588
+#260316 15:24:01 server id 1  end_log_pos 729063630 CRC32 0xe0452bd6 	GTID 0-1-33558 trans
+/*M!100001 SET @@session.gtid_seq_no=33558*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729063630
+#260316 15:24:01 server id 1  end_log_pos 729063843 CRC32 0xae13b7d0 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674641/*!*/;
+UPDATE b_iblock_element_prop_s42
+							SET
+								PROPERTY_137 = 'Промо-слайдер'
+								
+							WHERE IBLOCK_ELEMENT_ID=2002
+/*!*/;
+# at 729063843
+#260316 15:24:01 server id 1  end_log_pos 729063874 CRC32 0x62f2f76f 	Xid = 365788
+COMMIT/*!*/;
+# at 729063874
+#260316 15:24:01 server id 1  end_log_pos 729063916 CRC32 0x96caa628 	GTID 0-1-33559 trans
+/*M!100001 SET @@session.gtid_seq_no=33559*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729063916
+#260316 15:24:01 server id 1  end_log_pos 729064108 CRC32 0x4eaa4ca4 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674641/*!*/;
+UPDATE
+						b_iblock_element_prop_s42
+					SET
+						PROPERTY_139=null
+						
+					WHERE
+						IBLOCK_ELEMENT_ID=2002
+/*!*/;
+# at 729064108
+#260316 15:24:01 server id 1  end_log_pos 729064139 CRC32 0xbdc4647f 	Xid = 365789
+COMMIT/*!*/;
+# at 729064139
+#260316 15:24:01 server id 1  end_log_pos 729064181 CRC32 0x5cdcbd19 	GTID 0-1-33560 trans
+/*M!100001 SET @@session.gtid_seq_no=33560*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729064181
+#260316 15:24:01 server id 1  end_log_pos 729064343 CRC32 0xf1fc6fd1 	Query	thread_id=11528	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674641/*!*/;
+UPDATE b_iblock_element SET `XML_ID` = '2002', TIMESTAMP_X = TIMESTAMP_X WHERE ID = 2002
+/*!*/;
+# at 729064343
+#260316 15:24:01 server id 1  end_log_pos 729064374 CRC32 0xb3487907 	Xid = 365790
+COMMIT/*!*/;
+DELIMITER ;
+# End of log file
+ROLLBACK /* added by mysqlbinlog */;
+/*!50003 SET COMPLETION_TYPE=@OLD_COMPLETION_TYPE*/;
+/*!50530 SET @@SESSION.PSEUDO_SLAVE_MODE=0*/;

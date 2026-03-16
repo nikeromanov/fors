@@ -1182,6 +1182,69 @@
       }
     });
 
+    const promoHeroSliders = document.querySelectorAll('.promo-hero-slider__slider');
+    promoHeroSliders.forEach((slider) => {
+      const sliderSection = slider.closest('.promo-hero-slider');
+      const heroSection = slider.closest('.promo-hero');
+      const heroContainer = slider.closest('.promo-hero__container');
+      if (!sliderSection) return;
+
+      const prevBtn = sliderSection.querySelector('.promo-hero-slider__nav--prev');
+      const nextBtn = sliderSection.querySelector('.promo-hero-slider__nav--next');
+      const pagination = sliderSection.querySelector('.promo-hero-slider__pagination');
+      const slidesCount = slider.querySelectorAll('.swiper-slide').length;
+      const syncHeroHeight = () => {
+        if (!heroSection || !heroContainer) return;
+        heroSection.style.minHeight = `${heroContainer.offsetHeight}px`;
+      };
+
+      const swiper = new Swiper(slider, {
+        slidesPerView: 1,
+        speed: 700,
+        loop: slidesCount > 2,
+        watchOverflow: true,
+        autoplay: slidesCount > 1
+          ? {
+              delay: 5000,
+              disableOnInteraction: false,
+            }
+          : false,
+        navigation: {
+          nextEl: nextBtn,
+          prevEl: prevBtn,
+          disabledClass: 'disabled',
+        },
+        pagination: {
+          el: pagination,
+          clickable: true,
+        },
+        on: {
+          init: syncHeroHeight,
+          imagesReady: syncHeroHeight,
+          resize: syncHeroHeight,
+        },
+      });
+
+      if (slidesCount <= 1) {
+        prevBtn?.setAttribute('disabled', 'disabled');
+        nextBtn?.setAttribute('disabled', 'disabled');
+      }
+
+      slider.querySelectorAll('img').forEach((img) => {
+        if (img.complete) return;
+        img.addEventListener('load', syncHeroHeight, { once: true });
+      });
+
+      if (typeof ResizeObserver !== 'undefined' && heroContainer) {
+        const observer = new ResizeObserver(syncHeroHeight);
+        observer.observe(heroContainer);
+      }
+
+      window.addEventListener('load', syncHeroHeight, { once: true });
+      window.addEventListener('resize', syncHeroHeight);
+      syncHeroHeight();
+    });
+
     // Инициализация слайдера документов
     const documentsSliders = document.querySelectorAll('.documents-slider__slider');
     documentsSliders.forEach((slider) => {

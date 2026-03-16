@@ -1,0 +1,445 @@
+-- Auto-captured DB migration
+-- Generated: 2026-03-16T15:26:02Z
+-- DB: fors36_site
+-- Range: mysql-bin.000005:729064374 -> mysql-bin.000005:729080107
+
+/*!50530 SET @@SESSION.PSEUDO_SLAVE_MODE=1*/;
+/*!40019 SET @@session.max_insert_delayed_threads=0*/;
+/*!50003 SET @OLD_COMPLETION_TYPE=@@COMPLETION_TYPE,COMPLETION_TYPE=0*/;
+DELIMITER /*!*/;
+# at 4
+#260310  8:48:52 server id 1  end_log_pos 256 CRC32 0x86c6306b 	Start: binlog v 4, server v 10.6.25-MariaDB-ubu2204-log created 260310  8:48:52
+# Warning: this binlog is either in use or was not closed properly.
+BINLOG '
+9NqvaQ8BAAAA/AAAAAABAAABAAQAMTAuNi4yNS1NYXJpYURCLXVidTIyMDQtbG9nAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAEzgNAAgAEgAEBAQEEgAA5AAEGggAAAAICAgCAAAACgoKAAAAAAAA
+CgoKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAEEwQADQgICAoKCgFrMMaG
+'/*!*/;
+# at 729064374
+#260316 15:24:13 server id 1  end_log_pos 729064416 CRC32 0xe0eba220 	GTID 0-1-33561 trans
+/*M!100101 SET @@session.skip_parallel_replication=0*//*!*/;
+/*M!100001 SET @@session.gtid_domain_id=0*//*!*/;
+/*M!100001 SET @@session.server_id=1*//*!*/;
+/*M!100001 SET @@session.gtid_seq_no=33561*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729064416
+#260316 15:24:13 server id 1  end_log_pos 729064647 CRC32 0x20f859a9 	Query	thread_id=11531	exec_time=0	error_code=0	xid=0
+use `fors36_site`/*!*/;
+SET TIMESTAMP=1773674653/*!*/;
+SET @@session.pseudo_thread_id=11531/*!*/;
+SET @@session.foreign_key_checks=1, @@session.sql_auto_is_null=0, @@session.unique_checks=1, @@session.autocommit=1, @@session.check_constraint_checks=1, @@session.sql_if_exists=0, @@session.explicit_defaults_for_timestamp=0/*!*/;
+SET @@session.sql_mode=0/*!*/;
+SET @@session.auto_increment_increment=1, @@session.auto_increment_offset=1/*!*/;
+/*!\C utf8mb4 *//*!*/;
+SET @@session.character_set_client=utf8mb4,@@session.collation_connection=224,@@session.collation_server=224/*!*/;
+SET @@session.lc_time_names=0/*!*/;
+SET @@session.collation_database=DEFAULT/*!*/;
+UPDATE b_iblock_element_prop_s42 SET `PROPERTY_138` = 'a:3:{s:5:\"VALUE\";a:0:{}s:11:\"DESCRIPTION\";a:0:{}s:2:\"ID\";a:0:{}}' WHERE IBLOCK_ELEMENT_ID = 2002
+/*!*/;
+# at 729064647
+#260316 15:24:13 server id 1  end_log_pos 729064678 CRC32 0xb3856b5b 	Xid = 365822
+COMMIT/*!*/;
+# at 729064678
+#260316 15:24:13 server id 1  end_log_pos 729064720 CRC32 0x0dbeb521 	GTID 0-1-33562 trans
+/*M!100001 SET @@session.gtid_seq_no=33562*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729064720
+#260316 15:24:13 server id 1  end_log_pos 729064844 CRC32 0xcebc8147 	Query	thread_id=11531	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674653/*!*/;
+DELETE FROM `b_cache_clean_path` WHERE `ID` = 1838
+/*!*/;
+# at 729064844
+#260316 15:24:13 server id 1  end_log_pos 729064875 CRC32 0x5a493f5b 	Xid = 365827
+COMMIT/*!*/;
+# at 729064875
+#260316 15:24:13 server id 1  end_log_pos 729064917 CRC32 0x926d45c6 	GTID 0-1-33563 trans
+/*M!100001 SET @@session.gtid_seq_no=33563*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729064917
+#260316 15:24:13 server id 1  end_log_pos 729065041 CRC32 0x182dcc2a 	Query	thread_id=11531	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674653/*!*/;
+DELETE FROM `b_cache_clean_path` WHERE `ID` = 1839
+/*!*/;
+# at 729065041
+#260316 15:24:13 server id 1  end_log_pos 729065072 CRC32 0x44234263 	Xid = 365830
+COMMIT/*!*/;
+# at 729065072
+#260316 15:24:38 server id 1  end_log_pos 729065114 CRC32 0x93a68929 	GTID 0-1-33564 trans
+/*M!100001 SET @@session.gtid_seq_no=33564*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729065114
+# at 729068295
+#260316 15:24:38 server id 1  end_log_pos 729068295 CRC32 0xc8ee7ee7 	Annotate_rows:
+#Q> INSERT INTO `b_user_option` (`USER_ID`, `CATEGORY`, `NAME`, `VALUE`, `COMMON`)
+#Q> 				VALUES (1, 'admin_menu', 'pos', 'a:3:{s:8:\"sections\";s:1411:\"menu_system,menu_site,menu_iblock_%2Fsettings%2F2,iblock_admin,menu_iblock_%2Fsettings%2F1,menu_iblock_%2Fsettings%2F3,menu_iblock_%2Fdata%2F4,menu_iblock_%2Fcontent%2F5,menu_iblock_%2Fdata%2F6,menu_iblock_%2Fdata%2F8,menu_iblock_%2Fcontent%2F9,menu_iblock_%2Fcontent%2F11,menu_iblock_%2Fforms%2F12,menu_util,backup,menu_iblock_%2Fsettings%2F13,menu_iblock_%2Fcontent%2F14,menu_iblock_%2Fsettings%2F15,menu_perfmon,menu_iblock_%2Fdata%2F16,menu_iblock_%2Fdata%2F17,menu_iblock_%2Fdata%2F19,menu_iblock_%2Fsettings%2F20,menu_iblock_%2Fsettings%2F21,menu_search,menu_iblock_%2Fdata%2F22,menu_iblock_%2Fdata%2F23,menu_iblock_%2Fcontent%2F24,menu_iblock_%2Fsettings%2F25,menu_iblock_%2Fsettings%2F26,menu_iblock_%2Fsettings%2F27,menu_iblock_%2Fdata%2F28,menu_iblock_%2Fsettings%2F29,menu_iblock_%2Fdata%2F30,menu_webforms,menu_iblock_%2Fsettings%2F31,menu_iblock_%2Fdata%2F32,menu_iblock_%2Fcontent%2F35,menu_iblock_%2Fdata%2F10,menu_iblock_%2Fsettings%2F37,menu_iblock_%2Fdata%2F38,menu_iblock_%2Fsettings%2F39,menu_iblock_%2Fdata%2F40,menu_iblock_%2Fsettings%2F34,menu_iblock_%2Fsettings%2F36,menu_users,menu_iblock_%2Fdata%2F18,highloadblock_tools,iblock_export,menu_iblock_/content,menu_iblock_%2Fcontent%2F41,menu_iblock_/forms,menu_iblock_/settings,menu_fileman,menu_iblock_%2Fcontent%2F33,arci_icon_main,menu_iblock_/data,menu_iblock_%2Fdata%2F7,menu_fileman_file_s1_,menu_iblock,menu_iblock_%2Fsettings%2F42\";s:5:\"width\";i:411;s:3:\"ver\";s:2:\"on\";}', 'N')
+#Q> 				ON DUPLICATE KEY UPDATE `VALUE` = 'a:3:{s:8:\"sections\";s:1411:\"menu_system,menu_site,menu_iblock_%2Fsettings%2F2,iblock_admin,menu_iblock_%2Fsettings%2F1,menu_iblock_%2Fsettings%2F3,menu_iblock_%2Fdata%2F4,menu_iblock_%2Fcontent%2F5,menu_iblock_%2Fdata%2F6,menu_iblock_%2Fdata%2F8,menu_iblock_%2Fcontent%2F9,menu_iblock_%2Fcontent%2F11,menu_iblock_%2Fforms%2F12,menu_util,backup,menu_iblock_%2Fsettings%2F13,menu_iblock_%2Fcontent%2F14,menu_iblock_%2Fsettings%2F15,menu_perfmon,menu_iblock_%2Fdata%2F16,menu_iblock_%2Fdata%2F17,menu_iblock_%2Fdata%2F19,menu_iblock_%2Fsettings%2F20,menu_iblock_%2Fsettings%2F21,menu_search,menu_iblock_%2Fdata%2F22,menu_iblock_%2Fdata%2F23,menu_iblock_%2Fcontent%2F24,menu_iblock_%2Fsettings%2F25,menu_iblock_%2Fsettings%2F26,menu_iblock_%2Fsettings%2F27,menu_iblock_%2Fdata%2F28,menu_iblock_%2Fsettings%2F29,menu_iblock_%2Fdata%2F30,menu_webforms,menu_iblock_%2Fsettings%2F31,menu_iblock_%2Fdata%2F32,menu_iblock_%2Fcontent%2F35,menu_iblock_%2Fdata%2F10,menu_iblock_%2Fsettings%2F37,menu_iblock_%2Fdata%2F38,menu_iblock_%2Fsettings%2F39,menu_iblock_%2Fdata%2F40,menu_iblock_%2Fsettings%2F34,menu_iblock_%2Fsettings%2F36,menu_users,menu_iblock_%2Fdata%2F18,highloadblock_tools,iblock_export,menu_iblock_/content,menu_iblock_%2Fcontent%2F41,menu_iblock_/forms,menu_iblock_/settings,menu_fileman,menu_iblock_%2Fcontent%2F33,arci_icon_main,menu_iblock_/data,menu_iblock_%2Fdata%2F7,menu_fileman_file_s1_,menu_iblock,menu_iblock_%2Fsettings%2F42\";s:5:\"width\";i:411;s:3:\"ver\";s:2:\"on\";}', `COMMON` = 'N'
+#260316 15:24:38 server id 1  end_log_pos 729068370 CRC32 0xfe9d3e3f 	Table_map: `fors36_site`.`b_user_option` mapped to number 67
+# at 729068370
+#260316 15:24:38 server id 1  end_log_pos 729071393 CRC32 0x2fa1b977 	Update_rows: table id 67 flags: STMT_END_F
+
+BINLOG '
+tiC4aRMBAAAASwAAAFKzdCsAAEMAAAAAAAEAC2ZvcnMzNl9zaXRlAA1iX3VzZXJfb3B0aW9uAAYD
+Aw8P/P4HyAD8AwP+BBA/Pp3+
+tiC4aRgBAAAAzwsAACG/dCsAAEMAAAAAAAEABj8/wAYAAAABAAAACmFkbWluX21lbnUDAHBvc6oF
+AGE6Mzp7czo4OiJzZWN0aW9ucyI7czoxMzgyOiJtZW51X3N5c3RlbSxtZW51X3NpdGUsbWVudV9p
+YmxvY2tfJTJGc2V0dGluZ3MlMkYyLGlibG9ja19hZG1pbixtZW51X2libG9ja18lMkZzZXR0aW5n
+cyUyRjEsbWVudV9pYmxvY2tfJTJGc2V0dGluZ3MlMkYzLG1lbnVfaWJsb2NrXyUyRmRhdGElMkY0
+LG1lbnVfaWJsb2NrXyUyRmNvbnRlbnQlMkY1LG1lbnVfaWJsb2NrXyUyRmRhdGElMkY2LG1lbnVf
+aWJsb2NrXyUyRmRhdGElMkY4LG1lbnVfaWJsb2NrXyUyRmNvbnRlbnQlMkY5LG1lbnVfaWJsb2Nr
+XyUyRmNvbnRlbnQlMkYxMSxtZW51X2libG9ja18lMkZmb3JtcyUyRjEyLG1lbnVfdXRpbCxiYWNr
+dXAsbWVudV9pYmxvY2tfJTJGc2V0dGluZ3MlMkYxMyxtZW51X2libG9ja18lMkZjb250ZW50JTJG
+MTQsbWVudV9pYmxvY2tfJTJGc2V0dGluZ3MlMkYxNSxtZW51X3BlcmZtb24sbWVudV9pYmxvY2tf
+JTJGZGF0YSUyRjE2LG1lbnVfaWJsb2NrXyUyRmRhdGElMkYxNyxtZW51X2libG9ja18lMkZkYXRh
+JTJGMTksbWVudV9pYmxvY2tfJTJGc2V0dGluZ3MlMkYyMCxtZW51X2libG9ja18lMkZzZXR0aW5n
+cyUyRjIxLG1lbnVfc2VhcmNoLG1lbnVfaWJsb2NrXyUyRmRhdGElMkYyMixtZW51X2libG9ja18l
+MkZkYXRhJTJGMjMsbWVudV9pYmxvY2tfJTJGY29udGVudCUyRjI0LG1lbnVfaWJsb2NrXyUyRnNl
+dHRpbmdzJTJGMjUsbWVudV9pYmxvY2tfJTJGc2V0dGluZ3MlMkYyNixtZW51X2libG9ja18lMkZz
+ZXR0aW5ncyUyRjI3LG1lbnVfaWJsb2NrXyUyRmRhdGElMkYyOCxtZW51X2libG9ja18lMkZzZXR0
+aW5ncyUyRjI5LG1lbnVfaWJsb2NrXyUyRmRhdGElMkYzMCxtZW51X3dlYmZvcm1zLG1lbnVfaWJs
+b2NrXyUyRnNldHRpbmdzJTJGMzEsbWVudV9pYmxvY2tfJTJGZGF0YSUyRjMyLG1lbnVfaWJsb2Nr
+XyUyRmNvbnRlbnQlMkYzNSxtZW51X2libG9ja18lMkZkYXRhJTJGMTAsbWVudV9pYmxvY2tfJTJG
+c2V0dGluZ3MlMkYzNyxtZW51X2libG9ja18lMkZkYXRhJTJGMzgsbWVudV9pYmxvY2tfJTJGc2V0
+dGluZ3MlMkYzOSxtZW51X2libG9ja18lMkZkYXRhJTJGNDAsbWVudV9pYmxvY2tfJTJGc2V0dGlu
+Z3MlMkYzNCxtZW51X2libG9ja18lMkZzZXR0aW5ncyUyRjM2LG1lbnVfdXNlcnMsbWVudV9pYmxv
+Y2tfJTJGZGF0YSUyRjE4LGhpZ2hsb2FkYmxvY2tfdG9vbHMsaWJsb2NrX2V4cG9ydCxtZW51X2li
+bG9ja18vY29udGVudCxtZW51X2libG9ja18lMkZjb250ZW50JTJGNDEsbWVudV9pYmxvY2tfL2Zv
+cm1zLG1lbnVfaWJsb2NrXy9zZXR0aW5ncyxtZW51X2ZpbGVtYW4sbWVudV9pYmxvY2tfJTJGY29u
+dGVudCUyRjMzLGFyY2lfaWNvbl9tYWluLG1lbnVfaWJsb2NrXy9kYXRhLG1lbnVfaWJsb2NrXyUy
+RmRhdGElMkY3LG1lbnVfZmlsZW1hbl9maWxlX3MxXyxtZW51X2libG9jayI7czo1OiJ3aWR0aCI7
+aTo0MTE7czozOiJ2ZXIiO3M6Mjoib24iO30BTsAGAAAAAQAAAAphZG1pbl9tZW51AwBwb3PHBQBh
+OjM6e3M6ODoic2VjdGlvbnMiO3M6MTQxMToibWVudV9zeXN0ZW0sbWVudV9zaXRlLG1lbnVfaWJs
+b2NrXyUyRnNldHRpbmdzJTJGMixpYmxvY2tfYWRtaW4sbWVudV9pYmxvY2tfJTJGc2V0dGluZ3Ml
+MkYxLG1lbnVfaWJsb2NrXyUyRnNldHRpbmdzJTJGMyxtZW51X2libG9ja18lMkZkYXRhJTJGNCxt
+ZW51X2libG9ja18lMkZjb250ZW50JTJGNSxtZW51X2libG9ja18lMkZkYXRhJTJGNixtZW51X2li
+bG9ja18lMkZkYXRhJTJGOCxtZW51X2libG9ja18lMkZjb250ZW50JTJGOSxtZW51X2libG9ja18l
+MkZjb250ZW50JTJGMTEsbWVudV9pYmxvY2tfJTJGZm9ybXMlMkYxMixtZW51X3V0aWwsYmFja3Vw
+LG1lbnVfaWJsb2NrXyUyRnNldHRpbmdzJTJGMTMsbWVudV9pYmxvY2tfJTJGY29udGVudCUyRjE0
+LG1lbnVfaWJsb2NrXyUyRnNldHRpbmdzJTJGMTUsbWVudV9wZXJmbW9uLG1lbnVfaWJsb2NrXyUy
+RmRhdGElMkYxNixtZW51X2libG9ja18lMkZkYXRhJTJGMTcsbWVudV9pYmxvY2tfJTJGZGF0YSUy
+RjE5LG1lbnVfaWJsb2NrXyUyRnNldHRpbmdzJTJGMjAsbWVudV9pYmxvY2tfJTJGc2V0dGluZ3Ml
+MkYyMSxtZW51X3NlYXJjaCxtZW51X2libG9ja18lMkZkYXRhJTJGMjIsbWVudV9pYmxvY2tfJTJG
+ZGF0YSUyRjIzLG1lbnVfaWJsb2NrXyUyRmNvbnRlbnQlMkYyNCxtZW51X2libG9ja18lMkZzZXR0
+aW5ncyUyRjI1LG1lbnVfaWJsb2NrXyUyRnNldHRpbmdzJTJGMjYsbWVudV9pYmxvY2tfJTJGc2V0
+dGluZ3MlMkYyNyxtZW51X2libG9ja18lMkZkYXRhJTJGMjgsbWVudV9pYmxvY2tfJTJGc2V0dGlu
+Z3MlMkYyOSxtZW51X2libG9ja18lMkZkYXRhJTJGMzAsbWVudV93ZWJmb3JtcyxtZW51X2libG9j
+a18lMkZzZXR0aW5ncyUyRjMxLG1lbnVfaWJsb2NrXyUyRmRhdGElMkYzMixtZW51X2libG9ja18l
+MkZjb250ZW50JTJGMzUsbWVudV9pYmxvY2tfJTJGZGF0YSUyRjEwLG1lbnVfaWJsb2NrXyUyRnNl
+dHRpbmdzJTJGMzcsbWVudV9pYmxvY2tfJTJGZGF0YSUyRjM4LG1lbnVfaWJsb2NrXyUyRnNldHRp
+bmdzJTJGMzksbWVudV9pYmxvY2tfJTJGZGF0YSUyRjQwLG1lbnVfaWJsb2NrXyUyRnNldHRpbmdz
+JTJGMzQsbWVudV9pYmxvY2tfJTJGc2V0dGluZ3MlMkYzNixtZW51X3VzZXJzLG1lbnVfaWJsb2Nr
+XyUyRmRhdGElMkYxOCxoaWdobG9hZGJsb2NrX3Rvb2xzLGlibG9ja19leHBvcnQsbWVudV9pYmxv
+Y2tfL2NvbnRlbnQsbWVudV9pYmxvY2tfJTJGY29udGVudCUyRjQxLG1lbnVfaWJsb2NrXy9mb3Jt
+cyxtZW51X2libG9ja18vc2V0dGluZ3MsbWVudV9maWxlbWFuLG1lbnVfaWJsb2NrXyUyRmNvbnRl
+bnQlMkYzMyxhcmNpX2ljb25fbWFpbixtZW51X2libG9ja18vZGF0YSxtZW51X2libG9ja18lMkZk
+YXRhJTJGNyxtZW51X2ZpbGVtYW5fZmlsZV9zMV8sbWVudV9pYmxvY2ssbWVudV9pYmxvY2tfJTJG
+c2V0dGluZ3MlMkY0MiI7czo1OiJ3aWR0aCI7aTo0MTE7czozOiJ2ZXIiO3M6Mjoib24iO30BTne5
+oS8=
+'/*!*/;
+# Number of rows: 1
+# at 729071393
+#260316 15:24:38 server id 1  end_log_pos 729071424 CRC32 0x70e5cb8f 	Xid = 365891
+COMMIT/*!*/;
+# at 729071424
+#260316 15:24:38 server id 1  end_log_pos 729071466 CRC32 0x9639ec2d 	GTID 0-1-33565 trans
+/*M!100001 SET @@session.gtid_seq_no=33565*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729071466
+# at 729072175
+#260316 15:24:38 server id 1  end_log_pos 729072175 CRC32 0x1e869934 	Annotate_rows:
+#Q> INSERT INTO `b_user_option` (`USER_ID`, `CATEGORY`, `NAME`, `VALUE`, `COMMON`)
+#Q> 				VALUES (1, 'main.ui.filter', 'tbl_iblock_element_79108379e6adc7c66925ee2b11e5dc9a', 'a:6:{s:14:\"use_pin_preset\";b:1;s:15:\"deleted_presets\";a:0:{}s:15:\"default_presets\";a:0:{}s:7:\"default\";s:14:\"default_filter\";s:6:\"filter\";s:14:\"default_filter\";s:7:\"filters\";a:1:{s:14:\"default_filter\";a:0:{}}}', 'N')
+#Q> 				ON DUPLICATE KEY UPDATE `VALUE` = 'a:6:{s:14:\"use_pin_preset\";b:1;s:15:\"deleted_presets\";a:0:{}s:15:\"default_presets\";a:0:{}s:7:\"default\";s:14:\"default_filter\";s:6:\"filter\";s:14:\"default_filter\";s:7:\"filters\";a:1:{s:14:\"default_filter\";a:0:{}}}', `COMMON` = 'N'
+#260316 15:24:38 server id 1  end_log_pos 729072250 CRC32 0x5d54a52a 	Table_map: `fors36_site`.`b_user_option` mapped to number 67
+# at 729072250
+#260316 15:24:38 server id 1  end_log_pos 729072574 CRC32 0x585d0e5b 	Write_rows: table id 67 flags: STMT_END_F
+
+BINLOG '
+tiC4aRMBAAAASwAAAHrCdCsAAEMAAAAAAAEAC2ZvcnMzNl9zaXRlAA1iX3VzZXJfb3B0aW9uAAYD
+Aw8P/P4HyAD8AwP+BBAqpVRd
+tiC4aRcBAAAARAEAAL7DdCsAAEMAAAAAAAEABj/AehkAAAEAAAAObWFpbi51aS5maWx0ZXIzAHRi
+bF9pYmxvY2tfZWxlbWVudF83OTEwODM3OWU2YWRjN2M2NjkyNWVlMmIxMWU1ZGM5YdEAAGE6Njp7
+czoxNDoidXNlX3Bpbl9wcmVzZXQiO2I6MTtzOjE1OiJkZWxldGVkX3ByZXNldHMiO2E6MDp7fXM6
+MTU6ImRlZmF1bHRfcHJlc2V0cyI7YTowOnt9czo3OiJkZWZhdWx0IjtzOjE0OiJkZWZhdWx0X2Zp
+bHRlciI7czo2OiJmaWx0ZXIiO3M6MTQ6ImRlZmF1bHRfZmlsdGVyIjtzOjc6ImZpbHRlcnMiO2E6
+MTp7czoxNDoiZGVmYXVsdF9maWx0ZXIiO2E6MDp7fX19AU5bDl1Y
+'/*!*/;
+# Number of rows: 1
+# at 729072574
+#260316 15:24:38 server id 1  end_log_pos 729072605 CRC32 0xdbb0bf89 	Xid = 365900
+COMMIT/*!*/;
+# at 729072605
+#260316 15:24:38 server id 1  end_log_pos 729072647 CRC32 0x61231887 	GTID 0-1-33566 trans
+/*M!100001 SET @@session.gtid_seq_no=33566*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729072647
+# at 729073375
+#260316 15:24:38 server id 1  end_log_pos 729073375 CRC32 0xad60e068 	Annotate_rows:
+#Q> INSERT INTO `b_user_option` (`USER_ID`, `CATEGORY`, `NAME`, `VALUE`, `COMMON`)
+#Q> 				VALUES (1, 'main.interface.grid', 'tbl_iblock_element_79108379e6adc7c66925ee2b11e5dc9a', 'a:3:{s:5:\"views\";a:1:{s:7:\"default\";a:3:{s:7:\"columns\";s:0:\"\";s:13:\"columns_sizes\";a:2:{s:6:\"expand\";i:1;s:7:\"columns\";a:0:{}}s:15:\"sticked_columns\";a:0:{}}}s:7:\"filters\";a:0:{}s:12:\"current_view\";s:7:\"default\";}', 'N')
+#Q> 				ON DUPLICATE KEY UPDATE `VALUE` = 'a:3:{s:5:\"views\";a:1:{s:7:\"default\";a:3:{s:7:\"columns\";s:0:\"\";s:13:\"columns_sizes\";a:2:{s:6:\"expand\";i:1;s:7:\"columns\";a:0:{}}s:15:\"sticked_columns\";a:0:{}}}s:7:\"filters\";a:0:{}s:12:\"current_view\";s:7:\"default\";}', `COMMON` = 'N'
+#260316 15:24:38 server id 1  end_log_pos 729073450 CRC32 0x562966f1 	Table_map: `fors36_site`.`b_user_option` mapped to number 67
+# at 729073450
+#260316 15:24:38 server id 1  end_log_pos 729073782 CRC32 0xd2cf2f8a 	Write_rows: table id 67 flags: STMT_END_F
+
+BINLOG '
+tiC4aRMBAAAASwAAACrHdCsAAEMAAAAAAAEAC2ZvcnMzNl9zaXRlAA1iX3VzZXJfb3B0aW9uAAYD
+Aw8P/P4HyAD8AwP+BBDxZilW
+tiC4aRcBAAAATAEAAHbIdCsAAEMAAAAAAAEABj/AfBkAAAEAAAATbWFpbi5pbnRlcmZhY2UuZ3Jp
+ZDMAdGJsX2libG9ja19lbGVtZW50Xzc5MTA4Mzc5ZTZhZGM3YzY2OTI1ZWUyYjExZTVkYzlh1AAA
+YTozOntzOjU6InZpZXdzIjthOjE6e3M6NzoiZGVmYXVsdCI7YTozOntzOjc6ImNvbHVtbnMiO3M6
+MDoiIjtzOjEzOiJjb2x1bW5zX3NpemVzIjthOjI6e3M6NjoiZXhwYW5kIjtpOjE7czo3OiJjb2x1
+bW5zIjthOjA6e319czoxNToic3RpY2tlZF9jb2x1bW5zIjthOjA6e319fXM6NzoiZmlsdGVycyI7
+YTowOnt9czoxMjoiY3VycmVudF92aWV3IjtzOjc6ImRlZmF1bHQiO30BToovz9I=
+'/*!*/;
+# Number of rows: 1
+# at 729073782
+#260316 15:24:38 server id 1  end_log_pos 729073813 CRC32 0x7007dfbb 	Xid = 365918
+COMMIT/*!*/;
+# at 729073813
+#260316 15:25:46 server id 1  end_log_pos 729073855 CRC32 0x335b3122 	GTID 0-1-33567 trans
+/*M!100001 SET @@session.gtid_seq_no=33567*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729073855
+#260316 15:25:46 server id 1  end_log_pos 729076178 CRC32 0xbe40084c 	Query	thread_id=11541	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674746.224908/*!*/;
+SET @@session.time_zone='SYSTEM'/*!*/;
+UPDATE b_iblock_element SET `NAME` = 'Весеннее предложение на обучение вождению', `PREVIEW_TEXT` = '<p><strong>Скидка 15%</strong> на обучение категории B при записи до конца месяца. Подберите удобный график занятий, начните теорию онлайн и забронируйте место в ближайшей группе без лишних визитов в офис.</p>', `PREVIEW_TEXT_TYPE` = 'html', `DETAIL_TEXT` = '<p>Предложение подходит тем, кто хочет быстро стартовать обучение и заранее зафиксировать выгодную стоимость. В программу входят теория, практика с инструктором, сопровождение до экзамена и помощь с подготовкой документов.</p><p>Оставьте заявку, и менеджер подберет филиал, график занятий и ближайшую дату старта группы.</p>', `DETAIL_TEXT_TYPE` = 'html', `SEARCHABLE_CONTENT` = 'ВЕСЕННЕЕ ПРЕДЛОЖЕНИЕ НА ОБУЧЕНИЕ ВОЖДЕНИЮ\r\nСКИДКА 15% НА ОБУЧЕНИЕ КАТЕГОРИИ B ПРИ ЗАПИСИ \r\nДО КОНЦА МЕСЯЦА. ПОДБЕРИТЕ УДОБНЫЙ ГРАФИК ЗАНЯТИЙ, НАЧНИТЕ ТЕОРИЮ ОНЛАЙН И ЗАБРОНИРУЙТЕ МЕСТО В БЛИЖАЙШЕЙ ГРУППЕ БЕЗ ЛИШНИХ ВИЗИТОВ В ОФИС.\r\nПРЕДЛОЖЕНИЕ ПОДХОДИТ ТЕМ, КТО ХОЧЕТ БЫСТРО \r\nСТАРТОВАТЬ ОБУЧЕНИЕ И ЗАРАНЕЕ ЗАФИКСИРОВАТЬ ВЫГОДНУЮ СТОИМОСТЬ. В ПРОГРАММУ ВХОДЯТ ТЕОРИЯ, ПРАКТИКА С ИНСТРУКТОРОМ, СОПРОВОЖДЕНИЕ ДО ЭКЗАМЕНА И ПОМОЩЬ С ПОДГОТОВКОЙ ДОКУМЕНТОВ.\r\n\r\nОСТАВЬТЕ ЗАЯВКУ, И МЕНЕДЖЕР ПОДБЕРЕТ ФИЛИАЛ, \r\nГРАФИК ЗАНЯТИЙ И БЛИЖАЙШУЮ ДАТУ СТАРТА ГРУППЫ.', TIMESTAMP_X=now() WHERE ID=2002
+/*!*/;
+# at 729076178
+#260316 15:25:46 server id 1  end_log_pos 729076209 CRC32 0x2be1ca25 	Xid = 366022
+COMMIT/*!*/;
+# at 729076209
+#260316 15:25:46 server id 1  end_log_pos 729076251 CRC32 0xd7e650ea 	GTID 0-1-33568 trans
+/*M!100001 SET @@session.gtid_seq_no=33568*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729076251
+#260316 15:25:46 server id 1  end_log_pos 729076283 CRC32 0x65e149b5 	Intvar
+SET INSERT_ID=180/*!*/;
+# at 729076283
+#260316 15:25:46 server id 1  end_log_pos 729076790 CRC32 0xc737de3a 	Query	thread_id=11541	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674746/*!*/;
+INSERT INTO b_file(
+				TIMESTAMP_X
+				,MODULE_ID
+				,HEIGHT
+				,WIDTH
+				,FILE_SIZE
+				,CONTENT_TYPE
+				,SUBDIR
+				,FILE_NAME
+				,ORIGINAL_NAME
+				,DESCRIPTION
+				,HANDLER_ID
+				,EXTERNAL_ID
+			) VALUES (
+				now()
+				,'iblock'
+				,192
+				,315
+				,151870
+				,'image/png'
+				,'iblock/722'
+				,'n0vbkwfjaac62m2khepdlsivfo17ry1n.png'
+				,'gallery-1.png'
+				,''
+				,null
+				,'o5n5e3f5fa2wkwz2e94tdqg0jwssvpfa'
+			)
+/*!*/;
+# at 729076790
+#260316 15:25:46 server id 1  end_log_pos 729076821 CRC32 0x170b5925 	Xid = 366033
+COMMIT/*!*/;
+# at 729076821
+#260316 15:25:46 server id 1  end_log_pos 729076863 CRC32 0x40871d3c 	GTID 0-1-33569 trans
+/*M!100001 SET @@session.gtid_seq_no=33569*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729076863
+#260316 15:25:46 server id 1  end_log_pos 729077091 CRC32 0x85ffbba7 	Query	thread_id=11541	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674746/*!*/;
+INSERT INTO `b_file_duplicate` (`DUPLICATE_ID`, `ORIGINAL_ID`)
+				VALUES (180, 36)
+				ON DUPLICATE KEY UPDATE `COUNTER` = b_file_duplicate.`COUNTER` + 1
+/*!*/;
+# at 729077091
+#260316 15:25:46 server id 1  end_log_pos 729077122 CRC32 0x490d0962 	Xid = 366035
+COMMIT/*!*/;
+# at 729077122
+#260316 15:25:46 server id 1  end_log_pos 729077164 CRC32 0x1909c5c5 	GTID 0-1-33570 trans
+/*M!100001 SET @@session.gtid_seq_no=33570*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729077164
+#260316 15:25:46 server id 1  end_log_pos 729077196 CRC32 0x1f5cc6e6 	Intvar
+SET INSERT_ID=181/*!*/;
+# at 729077196
+#260316 15:25:46 server id 1  end_log_pos 729077703 CRC32 0xd5b259eb 	Query	thread_id=11541	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674746/*!*/;
+INSERT INTO b_file(
+				TIMESTAMP_X
+				,MODULE_ID
+				,HEIGHT
+				,WIDTH
+				,FILE_SIZE
+				,CONTENT_TYPE
+				,SUBDIR
+				,FILE_NAME
+				,ORIGINAL_NAME
+				,DESCRIPTION
+				,HANDLER_ID
+				,EXTERNAL_ID
+			) VALUES (
+				now()
+				,'iblock'
+				,192
+				,315
+				,154625
+				,'image/png'
+				,'iblock/86b'
+				,'mdoypaogdmgn50blgqypcbdzi7if0kbt.png'
+				,'gallery-2.png'
+				,''
+				,null
+				,'vx6fzfp6ej2lqt36o0t5a6o8k2d3tj9r'
+			)
+/*!*/;
+# at 729077703
+#260316 15:25:46 server id 1  end_log_pos 729077734 CRC32 0x386ab2e1 	Xid = 366039
+COMMIT/*!*/;
+# at 729077734
+#260316 15:25:46 server id 1  end_log_pos 729077776 CRC32 0x66600316 	GTID 0-1-33571 trans
+/*M!100001 SET @@session.gtid_seq_no=33571*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729077776
+#260316 15:25:46 server id 1  end_log_pos 729078004 CRC32 0x19f482d1 	Query	thread_id=11541	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674746/*!*/;
+INSERT INTO `b_file_duplicate` (`DUPLICATE_ID`, `ORIGINAL_ID`)
+				VALUES (181, 96)
+				ON DUPLICATE KEY UPDATE `COUNTER` = b_file_duplicate.`COUNTER` + 1
+/*!*/;
+# at 729078004
+#260316 15:25:46 server id 1  end_log_pos 729078035 CRC32 0xf6139e37 	Xid = 366040
+COMMIT/*!*/;
+# at 729078035
+#260316 15:25:46 server id 1  end_log_pos 729078077 CRC32 0x6f68eae4 	GTID 0-1-33572 trans
+/*M!100001 SET @@session.gtid_seq_no=33572*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729078077
+#260316 15:25:46 server id 1  end_log_pos 729078109 CRC32 0x0838e434 	Intvar
+SET INSERT_ID=182/*!*/;
+# at 729078109
+#260316 15:25:46 server id 1  end_log_pos 729078616 CRC32 0x5bc2eb6c 	Query	thread_id=11541	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674746/*!*/;
+INSERT INTO b_file(
+				TIMESTAMP_X
+				,MODULE_ID
+				,HEIGHT
+				,WIDTH
+				,FILE_SIZE
+				,CONTENT_TYPE
+				,SUBDIR
+				,FILE_NAME
+				,ORIGINAL_NAME
+				,DESCRIPTION
+				,HANDLER_ID
+				,EXTERNAL_ID
+			) VALUES (
+				now()
+				,'iblock'
+				,192
+				,315
+				,130096
+				,'image/png'
+				,'iblock/a7e'
+				,'j93r7ds0a9mzkgnf1bgsojd3dgsgv4xi.png'
+				,'gallery-3.png'
+				,''
+				,null
+				,'pzamztdrc8ostbehfhpln6xnol43un5f'
+			)
+/*!*/;
+# at 729078616
+#260316 15:25:46 server id 1  end_log_pos 729078647 CRC32 0x877425b4 	Xid = 366044
+COMMIT/*!*/;
+# at 729078647
+#260316 15:25:46 server id 1  end_log_pos 729078689 CRC32 0x433a6922 	GTID 0-1-33573 trans
+/*M!100001 SET @@session.gtid_seq_no=33573*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729078689
+#260316 15:25:46 server id 1  end_log_pos 729078917 CRC32 0x1059c07f 	Query	thread_id=11541	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674746/*!*/;
+INSERT INTO `b_file_duplicate` (`DUPLICATE_ID`, `ORIGINAL_ID`)
+				VALUES (182, 97)
+				ON DUPLICATE KEY UPDATE `COUNTER` = b_file_duplicate.`COUNTER` + 1
+/*!*/;
+# at 729078917
+#260316 15:25:46 server id 1  end_log_pos 729078948 CRC32 0xeeb422d6 	Xid = 366045
+COMMIT/*!*/;
+# at 729078948
+#260316 15:25:46 server id 1  end_log_pos 729078990 CRC32 0x382c62c6 	GTID 0-1-33574 trans
+/*M!100001 SET @@session.gtid_seq_no=33574*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729078990
+#260316 15:25:46 server id 1  end_log_pos 729079022 CRC32 0xc3f56ef4 	Intvar
+SET INSERT_ID=1/*!*/;
+# at 729079022
+#260316 15:25:46 server id 1  end_log_pos 729079361 CRC32 0xf5887c91 	Query	thread_id=11541	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674746/*!*/;
+insert into b_iblock_element_prop_m42
+					(IBLOCK_PROPERTY_ID, IBLOCK_ELEMENT_ID, VALUE, VALUE_ENUM, VALUE_NUM, DESCRIPTION)
+					values
+			(138, 2002, '180', 180, 180.0000, null ),
+(138, 2002, '181', 181, 181.0000, null ),
+(138, 2002, '182', 182, 182.0000, null )
+/*!*/;
+# at 729079361
+#260316 15:25:46 server id 1  end_log_pos 729079392 CRC32 0x17ab07e8 	Xid = 366047
+COMMIT/*!*/;
+# at 729079392
+#260316 15:25:46 server id 1  end_log_pos 729079434 CRC32 0x7665ff93 	GTID 0-1-33575 trans
+/*M!100001 SET @@session.gtid_seq_no=33575*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729079434
+#260316 15:25:46 server id 1  end_log_pos 729079664 CRC32 0x55627317 	Query	thread_id=11541	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674746/*!*/;
+update b_iblock_element_prop_s42
+					set PROPERTY_137 = 'Как проходит обучение',
+PROPERTY_138 = null
+					where IBLOCK_ELEMENT_ID = 2002
+/*!*/;
+# at 729079664
+#260316 15:25:46 server id 1  end_log_pos 729079695 CRC32 0x03404b1f 	Xid = 366049
+COMMIT/*!*/;
+# at 729079695
+#260316 15:25:53 server id 1  end_log_pos 729079737 CRC32 0x004c625b 	GTID 0-1-33576 trans
+/*M!100001 SET @@session.gtid_seq_no=33576*//*!*/;
+START TRANSACTION
+/*!*/;
+# at 729079737
+#260316 15:25:53 server id 1  end_log_pos 729080076 CRC32 0x372ef955 	Query	thread_id=11543	exec_time=0	error_code=0	xid=0
+SET TIMESTAMP=1773674753/*!*/;
+UPDATE b_iblock_element_prop_s42 SET `PROPERTY_138` = 'a:3:{s:5:\"VALUE\";a:3:{i:0;s:3:\"180\";i:1;s:3:\"181\";i:2;s:3:\"182\";}s:11:\"DESCRIPTION\";a:3:{i:0;N;i:1;N;i:2;N;}s:2:\"ID\";a:3:{i:0;s:1:\"1\";i:1;s:1:\"2\";i:2;s:1:\"3\";}}' WHERE IBLOCK_ELEMENT_ID = 2002
+/*!*/;
+# at 729080076
+#260316 15:25:53 server id 1  end_log_pos 729080107 CRC32 0x9719d1cc 	Xid = 366070
+COMMIT/*!*/;
+DELIMITER ;
+# End of log file
+ROLLBACK /* added by mysqlbinlog */;
+/*!50003 SET COMPLETION_TYPE=@OLD_COMPLETION_TYPE*/;
+/*!50530 SET @@SESSION.PSEUDO_SLAVE_MODE=0*/;
