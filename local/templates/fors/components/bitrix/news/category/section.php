@@ -160,7 +160,7 @@ $this->setFrameMode(true);
 );?>
 <?php
 $sectionCode = (string)($arResult["VARIABLES"]["SECTION_CODE"] ?? "");
-$metaOverrideSections = ["kategoriya-v-v1", "kategoriya-e", "kategoriya-a1"];
+$metaOverrideSections = ["kategoriya-v-v1", "kategoriya-e", "kategoriya-a1", "kategoriya-m", "kategoriya-kvadrotsikly"];
 if (in_array($sectionCode, $metaOverrideSections, true) && \Bitrix\Main\Loader::includeModule("iblock")) {
 	$sectionMeta = CIBlockSection::GetList(
 		[],
