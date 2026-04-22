@@ -14,6 +14,14 @@
   gap: clamp(1.5rem, 1.2rem + 1vw, 2rem);
 }
 
+.detail_content.category__content h2.also__title.page-section__title {
+  font-size: var(--font-size-h2);
+}
+
+.detail_content.category__content h3.also__title.page-section__title {
+  font-size: var(--font-size-h3);
+}
+
 .category__title {
   margin: 0;
   font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
