@@ -32,7 +32,7 @@ $arUrlRewrite=array (
     'PATH' => '/articles/index.php',
     'SORT' => 100,
   ),
-  16 => 
+  19 => 
   array (
     'CONDITION' => '#^/category/#',
     'RULE' => '',

@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("description", "Выберите подходящую категорию обучения и читайте подробнее о курсах школы Форсаж.");
+$APPLICATION->SetPageProperty("description", "Пройдите обучение с категории B на C в Воронеже и получите права - курсы переподготовки водителей по отличным ценам: переобучение с группы Б на Ц по доступной стоимости в автошколе \"Форсаж\".");
 $APPLICATION->SetPageProperty("keywords", "Категория и цены");
 $APPLICATION->SetPageProperty("title", "Категории и стоимость обучения в школе Форсаж");
 $APPLICATION->SetTitle("Категории и стоимость обучения в школе Форсаж");
