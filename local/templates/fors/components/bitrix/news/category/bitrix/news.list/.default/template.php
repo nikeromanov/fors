@@ -48,8 +48,8 @@ $this->setFrameMode(true);
 	<h1 class="category__title page-section__title" id="category-title" itemprop="name">
 	  <?=htmlspecialcharsbx($categoryTitle);?>
 	</h1>
-	<meta itemprop="url" content="<?=htmlspecialcharsbx($schemaUrl);?>">
-	<?if(empty($section["PICTURE"]) && $schemaImageSrc !== ""){?><meta itemprop="image" content="<?=htmlspecialcharsbx($schemaImageSrc);?>"><?}?>
+	<link itemprop="url" href="<?=htmlspecialcharsbx($schemaUrl);?>">
+	<?if(empty($section["PICTURE"]) && $schemaImageSrc !== ""){?><link itemprop="image" href="<?=htmlspecialcharsbx($schemaImageSrc);?>"><?}?>
 	<?if(!empty($schemaOffers["OFFER_COUNT"])){?>
 		<div itemtype="http://schema.org/AggregateOffer" itemscope itemprop="offers">
 		  <meta itemprop="offerCount" content="<?=htmlspecialcharsbx((string)$schemaOffers["OFFER_COUNT"]);?>">
