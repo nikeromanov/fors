@@ -75,9 +75,9 @@ $APPLICATION->SetTitle("Галерея");
 			"section" => "",
 		],
 		"SET_LAST_MODIFIED" => "N",
-		"SET_STATUS_404" => "N",
+		"SET_STATUS_404" => "Y",
 		"SET_TITLE" => "Y",
-		"SHOW_404" => "N",
+		"SHOW_404" => "Y",
 		"SORT_BY1" => "SORT",
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER1" => "ASC",
@@ -90,7 +90,8 @@ $APPLICATION->SetTitle("Галерея");
 		"USE_REVIEW" => "N",
 		"USE_RSS" => "N",
 		"USE_SEARCH" => "N",
-		"USE_SHARE" => "N"
+		"USE_SHARE" => "N",
+		"FILE_404" => "/404.php"
 	],
 	false
 );?>
