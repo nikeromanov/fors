@@ -22,13 +22,6 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Госпошлина", 
-		"/text-page/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
 		"Автопарк и площадка", 
 		"/gallery/photos/vozhdenie/", 
 		Array(), 
