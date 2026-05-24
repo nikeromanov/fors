@@ -18,13 +18,13 @@ $this->setFrameMode(true);
 
 
 
-	<ul class="faq__list" role="list">
-	  <?foreach($arResult["ITEMS"] as $item){?>
+	<ul class="faq__list" role="list" itemscope itemtype="https://schema.org/FAQPage">
+	  <?foreach($arResult["ITEMS"] as $index => $item){?>
 	  <?php
 		$questionId = "faq-question-" . ($index + 1);
 		$answerId = "faq-answer-" . ($index + 1);
 		?>
-	  <li class="faq__item" role="listitem">
+	  <li class="faq__item" role="listitem" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
 		<article
 		  class="faq-card"
 		  aria-labelledby="<?php echo $questionId; ?>"
@@ -34,18 +34,18 @@ $this->setFrameMode(true);
 			<h2 class="faq-card__author">
 			  <?php echo $item["NAME"]; ?>
 			</h2>
-			<div class="faq-card__question" id="<?php echo $questionId; ?>">
+			<div class="faq-card__question" id="<?php echo $questionId; ?>" itemprop="name">
 			  <?php echo $item["PREVIEW_TEXT"]; ?>
 			</div>
 		  </header>
 		  <div class="faq-card__divider" aria-hidden="true">
 			<span class="ui-icon faq-card__icon" aria-hidden="true" data-icon="down-arrow"></span>
 		  </div>
-		  <footer class="faq-card__footer">
+		  <footer class="faq-card__footer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
 			<p class="faq-card__expert">
 			  <?php echo $item["PROPERTIES"]["WHO"]["VALUE"]; ?>
 			</p>
-			<div class="faq-card__answer" id="<?php echo $answerId; ?>">
+			<div class="faq-card__answer" id="<?php echo $answerId; ?>" itemprop="text">
 			  <?php echo $item["DETAIL_TEXT"]; ?>
 			</div>
 		  </footer>
