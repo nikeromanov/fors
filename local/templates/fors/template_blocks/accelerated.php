@@ -56,9 +56,18 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
             />
           </li>
 			<?}?>
-          
+
         </ul>
 <?}?>
+		<?
+		$afterBenefitsText = $settingsPageCur["PROPERTIES"]["AFTER_BENEFITS_TEXT"]["~VALUE"]["TEXT"]
+			?? $settingsPageCur["PROPERTIES"]["AFTER_BENEFITS_TEXT"]["~VALUE"]
+			?? "";
+		if(!empty($afterBenefitsText)){?>
+			<div class="detail_content content_block">
+				<?=htmlspecialcharsback($afterBenefitsText);?>
+			</div>
+		<?}?>
       </section>
 	<?}?>
 	<?if(!empty($settingsPageCur["PROPERTIES"]["ETAP_TITLE"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["ETAP_SUBTITLE"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["ETAPS"]["VALUE"])){?>
@@ -102,14 +111,14 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
 				/>
 			  </li>
 			<?}?>
-         
+
         </ul>
 	<?}?>
       </section>
 	<?}?>
 	 <?$APPLICATION->IncludeComponent(
-	"bitrix:news.list", 
-	"pochemu", 
+	"bitrix:news.list",
+	"pochemu",
 	[
 		"TITLE"=>$titlePochemu,
 		"SUBTITLE"=>$subtitlePochemu,
@@ -174,12 +183,23 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
 		"COMPONENT_TEMPLATE" => "why_we"
 	],
 	false
-);?> 
-      
+);?>
+	<?
+	$finalText = $settingsPageCur["PROPERTIES"]["FINAL_TEXT"]["~VALUE"]["TEXT"]
+		?? $settingsPageCur["PROPERTIES"]["FINAL_TEXT"]["~VALUE"]
+		?? "";
+	if(!empty($finalText)){?>
+		<section class="page-section fast-courses container">
+			<div class="detail_content content_block">
+				<?=htmlspecialcharsback($finalText);?>
+			</div>
+		</section>
+	<?}?>
+
 
      <?$APPLICATION->IncludeComponent(
-	"bitrix:news.list", 
-	"courses", 
+	"bitrix:news.list",
+	"courses",
 	[
 		"TITLE"=>$titlePrices,
 		"SUBTITLE"=>$subtitlePrices,
@@ -250,8 +270,8 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
 	false
 );?>
 	  <?$APPLICATION->IncludeComponent(
-	"bitrix:catalog.section.list", 
-	"main_prices", 
+	"bitrix:catalog.section.list",
+	"main_prices",
 	[
 		"ADDITIONAL_COUNT_ELEMENTS_FILTER" => "additionalCountFilter",
 		"ADD_SECTIONS_CHAIN" => "N",
