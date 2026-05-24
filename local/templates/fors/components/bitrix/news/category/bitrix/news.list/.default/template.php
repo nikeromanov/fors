@@ -16,7 +16,7 @@ $this->setFrameMode(true);
 	$section = $arResult["SECTION"];
 	?>
 
-<section class="page-section page-section__flex category container" aria-labelledby="category-title">
+<section class="page-section page-section__flex category container" aria-labelledby="category-title" itemscope itemtype="http://schema.org/Product">
 	<?
 	$categoryTitle = trim((string)$APPLICATION->GetTitle(false, true));
 	$categoryTitle = trim(html_entity_decode(strip_tags($categoryTitle), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
@@ -31,13 +31,36 @@ $this->setFrameMode(true);
 			$categoryTitle = (string)$section["NAME"];
 		}
 	}
+	$schemaScheme = (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] !== "off") ? "https" : "http";
+	$schemaHost = (string)($_SERVER["HTTP_HOST"] ?? "");
+	$schemaUrl = $schemaHost !== "" ? $schemaScheme . "://" . $schemaHost . $requestPath : $requestPath;
+	$schemaOffers = is_array($arResult["SCHEMA_OFFERS"] ?? null) ? $arResult["SCHEMA_OFFERS"] : [];
+	$schemaImageSrc = "";
+	if(!empty($section["PICTURE"])){
+		$schemaImageSrc = CFile::GetPath($section["PICTURE"]);
+	}elseif(!empty($section["UF_SECTION_ICON"])){
+		$schemaImageSrc = CFile::GetPath($section["UF_SECTION_ICON"]);
+	}
+	if($schemaImageSrc !== "" && strpos($schemaImageSrc, "http://") !== 0 && strpos($schemaImageSrc, "https://") !== 0 && $schemaHost !== ""){
+		$schemaImageSrc = $schemaScheme . "://" . $schemaHost . $schemaImageSrc;
+	}
 	?>
-	<h1 class="category__title page-section__title" id="category-title">
+	<h1 class="category__title page-section__title" id="category-title" itemprop="name">
 	  <?=htmlspecialcharsbx($categoryTitle);?>
 	</h1>
+	<meta itemprop="url" content="<?=htmlspecialcharsbx($schemaUrl);?>">
+	<?if(empty($section["PICTURE"]) && $schemaImageSrc !== ""){?><meta itemprop="image" content="<?=htmlspecialcharsbx($schemaImageSrc);?>"><?}?>
+	<?if(!empty($schemaOffers["OFFER_COUNT"])){?>
+		<div itemtype="http://schema.org/AggregateOffer" itemscope itemprop="offers">
+		  <meta itemprop="offerCount" content="<?=htmlspecialcharsbx((string)$schemaOffers["OFFER_COUNT"]);?>">
+		  <?if($schemaOffers["HIGH_PRICE"] !== ""){?><meta itemprop="highPrice" content="<?=htmlspecialcharsbx((string)$schemaOffers["HIGH_PRICE"]);?>"><?}?>
+		  <?if($schemaOffers["LOW_PRICE"] !== ""){?><meta itemprop="lowPrice" content="<?=htmlspecialcharsbx((string)$schemaOffers["LOW_PRICE"]);?>"><?}?>
+		  <meta itemprop="priceCurrency" content="RUB">
+		</div>
+	<?}?>
 	<div class="category__container">
 	  <div class="detail_content category__content">
-		<?=$section["DESCRIPTION"];?>
+		<div itemprop="description"><?=$section["DESCRIPTION"];?></div>
 
 		<div class="category__price-block">
 		  <?if(!empty($arResult["PRICES"][$section["ID"]])){?><span class="category__price">от <?=CurrencyFormat($arResult["PRICES"][$section["ID"]],"RUB");?></span><?}?>
@@ -47,15 +70,15 @@ $this->setFrameMode(true);
 
           <div class="category__media">
                 <?if(!empty($section["PICTURE"])){
-                        $pictureSrc = CFile::GetPath($section["PICTURE"]);
                         $hasVideo = !empty($section["UF_VIDEO"]);
                         if($hasVideo){?>
                                 <a href="<?=$section["UF_VIDEO"];?>" data-fancybox class="category__video-link">
                         <?}?>
                         <figure class="category__video">
                                 <img
-                                  src="<?=$pictureSrc;?>"
-                                  alt=""
+                                  itemprop="image"
+                                  src="<?=htmlspecialcharsbx($schemaImageSrc);?>"
+                                  alt="<?=htmlspecialcharsbx($categoryTitle);?>"
                                   class="category__video-thumbnail"
                                   width="670"
                                   height="443"

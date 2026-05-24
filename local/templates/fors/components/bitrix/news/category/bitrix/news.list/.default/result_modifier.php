@@ -14,13 +14,31 @@ if(!empty($arResult["ITEMS"])){
 	{
 		$arResult["SECTION"] = $arSect;
 		$arResult["PRICES"] = [];
-	
+		$arResult["SCHEMA_OFFERS"] = [
+			"OFFER_COUNT" => 0,
+			"LOW_PRICE" => "",
+			"HIGH_PRICE" => "",
+		];
+
+		$prices = [];
 		$arSelect = Array("ID", "NAME", "IBLOCK_ID", "PROPERTY_PRICE");
 		$arFilter = Array("IBLOCK_ID"=>$arParams["IBLOCK_ID"], "IBLOCK_SECTION_ID"=>$arSect["ID"], "ACTIVE"=>"Y");
-		$res = CIBlockElement::GetList(Array("PROPERTY_PRICE"=>"ASC"), $arFilter, false, Array("nTopCount"=>1), $arSelect);
-		if($ob = $res->Fetch())
+		$res = CIBlockElement::GetList(Array("PROPERTY_PRICE"=>"ASC"), $arFilter, false, false, $arSelect);
+		while($ob = $res->Fetch())
 		{
-			$arResult["PRICES"][$arSect["ID"]] = $ob["PROPERTY_PRICE_VALUE"];
+			$arResult["SCHEMA_OFFERS"]["OFFER_COUNT"]++;
+			$price = preg_replace('/[^0-9.,]/', '', (string)$ob["PROPERTY_PRICE_VALUE"]);
+			$price = str_replace(',', '.', $price);
+			if($price !== '' && is_numeric($price)){
+				$prices[] = (float)$price;
+			}
+		}
+		if(!empty($prices)){
+			$lowPrice = min($prices);
+			$highPrice = max($prices);
+			$arResult["PRICES"][$arSect["ID"]] = $lowPrice;
+			$arResult["SCHEMA_OFFERS"]["LOW_PRICE"] = rtrim(rtrim(number_format($lowPrice, 2, '.', ''), '0'), '.');
+			$arResult["SCHEMA_OFFERS"]["HIGH_PRICE"] = rtrim(rtrim(number_format($highPrice, 2, '.', ''), '0'), '.');
 		}
 	
 		if(!empty($arSect["UF_VARIANTS"])){
