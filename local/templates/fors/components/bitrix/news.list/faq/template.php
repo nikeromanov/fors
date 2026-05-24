@@ -15,24 +15,26 @@ $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){
 	$settingsPage = getSettings(3);?>
-<section class="page-section faq-accordion container">
+<section class="page-section faq-accordion container" itemscope itemtype="https://schema.org/FAQPage">
   <?if(!empty($settingsPage["PROPERTIES"]["BLOCK9_TITLE"]["VALUE"])){?><h2 class="faq-accordion__title"><?=$settingsPage["PROPERTIES"]["BLOCK9_TITLE"]["VALUE"];?></h2><?}?>
   <ul class="faq-accordion__list">
 	<?foreach($arResult["ITEMS"] as $item){
 		if(!empty($item["PROPERTIES"]["LIST"]["VALUE"])){?>
-			<li class="faq-accordion__item">
+			<li class="faq-accordion__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
 			  <button class="faq-accordion__question" aria-expanded="false">
-				<span><?=$item["NAME"];?></span>
+				<span itemprop="name"><?=$item["NAME"];?></span>
 				<span class="faq-accordion__icon" aria-hidden="true">
 				  <span class="ui-icon faq-accordion__icon-down" data-icon="down-arrow"></span>
 				  <span class="ui-icon faq-accordion__icon-up" data-icon="up-arrow"></span>
 				</span>
 			  </button>
-			  <ul class="faq-accordion__answers">
-				<?foreach($item["PROPERTIES"]["LIST"]["VALUE"] as $item){?>
-					<li><?=$item;?></li>
+			  <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+				<ul class="faq-accordion__answers" itemprop="text">
+				<?foreach($item["PROPERTIES"]["LIST"]["VALUE"] as $answer){?>
+					<li><?=$answer;?></li>
 				<?}?>
-			  </ul>
+				</ul>
+			  </div>
 			</li>
 		<?}?>
 	<?}?>
