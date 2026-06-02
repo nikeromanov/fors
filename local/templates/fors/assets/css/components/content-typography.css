@@ -1,4 +1,12 @@
 /* Content typography must be loaded after global reset and heading scale. */
+.content_block,
+.detail_content.category__content,
+.article-detail__content,
+.news-detail__content,
+.instructor-detail__content {
+  --content-heading-offset: clamp(1.5rem, 1.2rem + 1vw, 2.5rem);
+}
+
 .content_block h2,
 .content_block h3,
 .content_block h4,
@@ -14,7 +22,7 @@
 .instructor-detail__content h2,
 .instructor-detail__content h3,
 .instructor-detail__content h4 {
-  margin-bottom: clamp(1rem, 0.85rem + 0.7vw, 1.6rem);
+  margin-bottom: var(--content-heading-offset);
 }
 
 .content_block h2:not(:first-child),
@@ -32,5 +40,5 @@
 .instructor-detail__content h2:not(:first-child),
 .instructor-detail__content h3:not(:first-child),
 .instructor-detail__content h4:not(:first-child) {
-  margin-top: clamp(2.25rem, 1.8rem + 2vw, 4rem);
+  margin-top: var(--content-heading-offset);
 }
