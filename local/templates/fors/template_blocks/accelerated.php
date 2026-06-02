@@ -101,7 +101,7 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
 	<?}?>
 	<?if(!empty($settingsPageCur["PROPERTIES"]["DOCS_TITLE"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["DOCS"]["VALUE"])){?>
       <section class="page-section page-section__flex docs container" aria-labelledby="docs-title">
-        <?if(!empty($settingsPageCur["PROPERTIES"]["DOCS_TITLE"]["VALUE"])){?><h2 class="docs__title page-section__title" id="docs-title"><?=$settingsPageCur["PROPERTIES"]["DOCS_TITLE"]["VALUE"];?></h2><?}?>
+        <?if(!empty($settingsPageCur["PROPERTIES"]["DOCS_TITLE"]["VALUE"])){?><h3 class="docs__title page-section__title" id="docs-title"><?=$settingsPageCur["PROPERTIES"]["DOCS_TITLE"]["VALUE"];?></h3><?}?>
 
 	<?if(!empty($settingsPageCur["PROPERTIES"]["DOCS"]["VALUE"])){?>
         <ul class="docs__list">
