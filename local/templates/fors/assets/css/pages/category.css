@@ -16,10 +16,14 @@
 
 .detail_content.category__content h2.also__title.page-section__title {
   font-size: var(--font-size-h2);
+  margin-top: clamp(2.25rem, 1.8rem + 2vw, 4rem);
+  margin-bottom: clamp(1rem, 0.85rem + 0.7vw, 1.6rem);
 }
 
 .detail_content.category__content h3.also__title.page-section__title {
   font-size: var(--font-size-h3);
+  margin-top: clamp(2.25rem, 1.8rem + 2vw, 4rem);
+  margin-bottom: clamp(1rem, 0.85rem + 0.7vw, 1.6rem);
 }
 
 .category__title {
