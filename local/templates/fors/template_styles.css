@@ -48,6 +48,34 @@
     margin: revert !important;
     margin-top: 0px !important;
 }
+.content_block h2,
+.content_block h3,
+.content_block h4,
+.article-detail__content h2,
+.article-detail__content h3,
+.article-detail__content h4,
+.news-detail__content h2,
+.news-detail__content h3,
+.news-detail__content h4,
+.instructor-detail__content h2,
+.instructor-detail__content h3,
+.instructor-detail__content h4 {
+    margin-bottom: clamp(1rem, 0.85rem + 0.7vw, 1.6rem) !important;
+}
+.content_block h2:not(:first-child),
+.content_block h3:not(:first-child),
+.content_block h4:not(:first-child),
+.article-detail__content h2:not(:first-child),
+.article-detail__content h3:not(:first-child),
+.article-detail__content h4:not(:first-child),
+.news-detail__content h2:not(:first-child),
+.news-detail__content h3:not(:first-child),
+.news-detail__content h4:not(:first-child),
+.instructor-detail__content h2:not(:first-child),
+.instructor-detail__content h3:not(:first-child),
+.instructor-detail__content h4:not(:first-child) {
+    margin-top: clamp(2.25rem, 1.8rem + 2vw, 4rem) !important;
+}
 section#consult_form {
     padding: 0px;
     background: none;
