@@ -87,6 +87,17 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
         </div>
 		<?}?>
       </section>
+	<?
+	$afterStepsText = $settingsPageCur["PROPERTIES"]["AFTER_STEPS_TEXT"]["~VALUE"]["TEXT"]
+		?? $settingsPageCur["PROPERTIES"]["AFTER_STEPS_TEXT"]["~VALUE"]
+		?? "";
+	if(!empty($afterStepsText)){?>
+		<section class="page-section fast-courses container">
+			<div class="detail_content content_block">
+				<?=htmlspecialcharsback($afterStepsText);?>
+			</div>
+		</section>
+	<?}?>
 	<?}?>
 	<?if(!empty($settingsPageCur["PROPERTIES"]["DOCS_TITLE"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["DOCS"]["VALUE"])){?>
       <section class="page-section page-section__flex docs container" aria-labelledby="docs-title">
