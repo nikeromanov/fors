@@ -87,3 +87,4 @@
 
 /* Global heading scale (loaded last to normalize H1-H6 hierarchy) */
 @import "components/headings.css";
+@import "components/content-typography.css";

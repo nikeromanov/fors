@@ -1,0 +1,36 @@
+/* Content typography must be loaded after global reset and heading scale. */
+.content_block h2,
+.content_block h3,
+.content_block h4,
+.detail_content.category__content h2,
+.detail_content.category__content h3,
+.detail_content.category__content h4,
+.article-detail__content h2,
+.article-detail__content h3,
+.article-detail__content h4,
+.news-detail__content h2,
+.news-detail__content h3,
+.news-detail__content h4,
+.instructor-detail__content h2,
+.instructor-detail__content h3,
+.instructor-detail__content h4 {
+  margin-bottom: clamp(1rem, 0.85rem + 0.7vw, 1.6rem);
+}
+
+.content_block h2:not(:first-child),
+.content_block h3:not(:first-child),
+.content_block h4:not(:first-child),
+.detail_content.category__content h2:not(:first-child),
+.detail_content.category__content h3:not(:first-child),
+.detail_content.category__content h4:not(:first-child),
+.article-detail__content h2:not(:first-child),
+.article-detail__content h3:not(:first-child),
+.article-detail__content h4:not(:first-child),
+.news-detail__content h2:not(:first-child),
+.news-detail__content h3:not(:first-child),
+.news-detail__content h4:not(:first-child),
+.instructor-detail__content h2:not(:first-child),
+.instructor-detail__content h3:not(:first-child),
+.instructor-detail__content h4:not(:first-child) {
+  margin-top: clamp(2.25rem, 1.8rem + 2vw, 4rem);
+}
