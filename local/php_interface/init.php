@@ -128,6 +128,31 @@ function forsHandleInvalidUrl()
         LocalRedirect('/', true, '301 Moved Permanently');
     }
 
+    $legacyHomeRedirectPaths = [
+        '/instructors/yarovoy-i-b',
+        '/instructors/nikonov-s-v',
+        '/instructors/grebenkin-aleksandr-vladimirovich',
+        '/instructors/pozdnyakov-m-a',
+        '/news/snimali-syuzhet-dlya-telekanala-rossiya-v-nashem-filiale-na-60-armii-',
+        '/news/vnimanie',
+        '/news/aktsiya-stoimost-obucheniya-7990-rub',
+        '/news/kategoriya-a-mototsikly',
+        '/category/kategoriya-b-c',
+        '/category/kategoriya-a-ekv',
+        '/category/kategoriya-ekd',
+        '/gallery/photos',
+        '/articles/muzhchina-i-zhenshchina-za-rulem-est-li-raznitsa',
+    ];
+
+    $normalizedRedirectPath = rtrim($uriPath !== '' ? $uriPath : $path, '/');
+    if ($normalizedRedirectPath === '') {
+        $normalizedRedirectPath = '/';
+    }
+
+    if (in_array($normalizedRedirectPath, $legacyHomeRedirectPaths, true)) {
+        LocalRedirect('/', true, '301 Moved Permanently');
+    }
+
     $pathForSlashNormalization = $uriPath !== '' ? $uriPath : $path;
 
     if (preg_match('#//+#', $pathForSlashNormalization)) {
