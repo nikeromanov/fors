@@ -1,80 +1,90 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("description", "Ответы на все вопросы по вождению и получению водительских прав в Воронеже в автошколе Форсаж.");
+$APPLICATION->SetPageProperty("description", "Ответы на частые вопросы об обучении в автошколе Форсаж в Воронеже: экзамены, документы, медкомиссия, оплата, восстановление обучения и получение прав.");
 $APPLICATION->SetPageProperty("keywords", "Форсаж || Вопросы и ответы");
-$APPLICATION->SetPageProperty("title", "Форсаж || Вопросы и ответы");
+$APPLICATION->SetPageProperty("title", "Вопросы и ответы об обучении в автошколе Форсаж в Воронеже");
 $APPLICATION->SetTitle("Вопросы и ответы");
+
+$faqItems = [
+	[
+		"question" => "Как проходит внутренний экзамен?",
+		"answer" => "Внутренний экзамен включает теорию и практику вождения. Он проводится по правилам, близким к экзамену в ГИБДД, чтобы подготовить ученика к официальной сдаче.",
+	],
+	[
+		"question" => "Как получить налоговый вычет за обучение в автошколе?",
+		"answer" => "После оплаты обучения вы можете вернуть часть НДФЛ через налоговую инспекцию. Для этого понадобятся договор с автошколой, чеки об оплате и справка 2-НДФЛ.",
+	],
+	[
+		"question" => "Как проходят занятия в автошколе?",
+		"answer" => "Обучение состоит из теоретических занятий и практики вождения. Теорию можно изучать очно или онлайн, а график вождения подбирается индивидуально.",
+	],
+	[
+		"question" => "Как оплатить обучение материнским капиталом?",
+		"answer" => "Материнский капитал можно использовать для оплаты обучения ребенка в лицензированной автошколе. Для оформления потребуется договор и подача документов в СФР.",
+	],
+	[
+		"question" => "Как выглядит свидетельство об окончании автошколы?",
+		"answer" => "После завершения обучения выдается официальное свидетельство установленного образца с данными ученика, категорией подготовки и номером документа.",
+	],
+	[
+		"question" => "Как сдается теория в автошколе?",
+		"answer" => "Теоретический экзамен проходит в формате тестирования по билетам ПДД. Для успешной сдачи нужно правильно ответить на установленное количество вопросов.",
+	],
+	[
+		"question" => "Как восстановить обучение в автошколе Форсаж?",
+		"answer" => "Для восстановления обучения нужно обратиться в администрацию автошколы и написать заявление. Возможность восстановления зависит от срока перерыва и программы обучения.",
+	],
+	[
+		"question" => "Как пройти медкомиссию для автошколы?",
+		"answer" => "Необходимо пройти медицинское освидетельствование у профильных врачей и получить справку формы 003-В/у. Сделать это можно в государственной или частной клинике.",
+	],
+	[
+		"question" => "Какие документы нужны для автошколы?",
+		"answer" => "Обычно требуются паспорт, СНИЛС, медицинская справка и фотографии. Для несовершеннолетних может понадобиться согласие родителей.",
+	],
+	[
+		"question" => "С какого возраста можно в автошколу?",
+		"answer" => "На категорию B можно начать обучение с 16 лет, а сдавать экзамен в ГИБДД — с 17 лет. Водительское удостоверение выдается с 18 лет.",
+	],
+	[
+		"question" => "Каких врачей проходят для автошколы?",
+		"answer" => "Для медсправки обычно проходят терапевта, офтальмолога, психиатра и нарколога. В некоторых случаях могут потребоваться дополнительные специалисты.",
+	],
+	[
+		"question" => "Какой срок сдачи экзамена в автошколе?",
+		"answer" => "Срок зависит от программы обучения и успеваемости ученика. В среднем обучение и внутренние экзамены занимают от 2 до 3 месяцев.",
+	],
+	[
+		"question" => "Какие фотографии нужны в автошколу?",
+		"answer" => "Чаще всего требуются фотографии размером 3×4 см на матовой бумаге. Точное количество и формат подскажут администраторы автошколы.",
+	],
+];
 ?>
 
-<?$APPLICATION->IncludeComponent(
-	"bitrix:news.list", 
-	"faq_page", 
-	[
-		"ACTIVE_DATE_FORMAT" => "d.m.Y",
-		"ADD_SECTIONS_CHAIN" => "Y",
-		"AJAX_MODE" => "N",
-		"AJAX_OPTION_ADDITIONAL" => "",
-		"AJAX_OPTION_HISTORY" => "N",
-		"AJAX_OPTION_JUMP" => "N",
-		"AJAX_OPTION_STYLE" => "Y",
-		"CACHE_FILTER" => "N",
-		"CACHE_GROUPS" => "Y",
-		"CACHE_TIME" => "36000000",
-		"CACHE_TYPE" => "A",
-		"CHECK_DATES" => "Y",
-		"DETAIL_URL" => "",
-		"DISPLAY_BOTTOM_PAGER" => "N",
-		"DISPLAY_DATE" => "Y",
-		"DISPLAY_NAME" => "Y",
-		"DISPLAY_PICTURE" => "Y",
-		"DISPLAY_PREVIEW_TEXT" => "Y",
-		"DISPLAY_TOP_PAGER" => "N",
-		"FIELD_CODE" => [
-			0 => "",
-			1 => "",
-		],
-		"FILTER_NAME" => "",
-		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
-		"IBLOCK_ID" => "30",
-		"IBLOCK_TYPE" => "content",
-		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-		"INCLUDE_SUBSECTIONS" => "Y",
-		"MESSAGE_404" => "",
-		"NEWS_COUNT" => "20",
-		"PAGER_BASE_LINK_ENABLE" => "N",
-		"PAGER_DESC_NUMBERING" => "N",
-		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
-		"PAGER_SHOW_ALL" => "N",
-		"PAGER_SHOW_ALWAYS" => "N",
-		"PAGER_TEMPLATE" => ".default",
-		"PAGER_TITLE" => "Новости",
-		"PARENT_SECTION" => "",
-		"PARENT_SECTION_CODE" => "",
-		"PREVIEW_TRUNCATE_LEN" => "",
-		"PROPERTY_CODE" => [
-			0 => "PRICE",
-			1 => "PRICE_AUTO",
-			2 => "DRIVING_TIME",
-			3 => "READ_DRIVE",
-			4 => "TYPE_DRIVING",
-			5 => "ICO",
-			6 => "",
-		],
-		"SET_BROWSER_TITLE" => "N",
-		"SET_LAST_MODIFIED" => "N",
-		"SET_META_DESCRIPTION" => "N",
-		"SET_META_KEYWORDS" => "N",
-		"SET_STATUS_404" => "N",
-		"SET_TITLE" => "N",
-		"SHOW_404" => "N",
-		"SORT_BY1" => "ACTIVE_FROM",
-		"SORT_BY2" => "SORT",
-		"SORT_ORDER1" => "DESC",
-		"SORT_ORDER2" => "ASC",
-		"STRICT_SECTION_CHECK" => "N",
-		"COMPONENT_TEMPLATE" => "preims"
-	],
-	false
-);?>
+<section class="faq-page faq-accordion" itemscope itemtype="https://schema.org/FAQPage">
+	<h2 class="faq-accordion__title">Часто задаваемые вопросы</h2>
+	<ul class="faq-accordion__list" role="list">
+		<?foreach($faqItems as $index => $item){
+			$questionId = "faq-question-" . ($index + 1);
+			$answerId = "faq-answer-" . ($index + 1);
+			?>
+			<li class="faq-accordion__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+				<button class="faq-accordion__question" type="button" aria-expanded="false" aria-controls="<?=$answerId;?>" id="<?=$questionId;?>">
+					<span itemprop="name"><?=htmlspecialcharsbx($item["question"]);?></span>
+					<span class="faq-accordion__icon" aria-hidden="true">
+						<span class="ui-icon faq-accordion__icon-down" data-icon="down-arrow"></span>
+						<span class="ui-icon faq-accordion__icon-up" data-icon="up-arrow"></span>
+					</span>
+				</button>
+				<div class="faq-accordion__answer" id="<?=$answerId;?>" role="region" aria-labelledby="<?=$questionId;?>" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+					<div class="faq-accordion__answers" itemprop="text">
+						<p><?=htmlspecialcharsbx($item["answer"]);?></p>
+					</div>
+				</div>
+			</li>
+		<?}?>
+	</ul>
+</section>
+<?include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH . "/includes/form.php";?>
 
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
