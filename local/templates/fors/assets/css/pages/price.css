@@ -289,6 +289,18 @@
   text-align: center;
 }
 
+.discount__why .detail_content ul {
+  list-style: disc;
+}
+
+.discount__why .detail_content ul li {
+  display: list-item;
+}
+
+.discount__why .detail_content ul li::marker {
+  color: var(--yellow);
+}
+
 .price-advantages__why--item:nth-child(1) {
   background: var(--color-static-dark, #3c3c3c);
   color: var(--color-static-dark-text, #ffffff);
