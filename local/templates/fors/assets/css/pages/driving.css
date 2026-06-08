@@ -161,7 +161,8 @@
   margin-bottom: 0;
 }
 
-.driving-content h2 {
+.driving-content h2,
+.driving-content h3 {
   font-size: clamp(1.25rem, 1rem + 1vw, 1.875rem);
   font-weight: 700;
   margin-bottom: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
