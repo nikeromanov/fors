@@ -123,7 +123,10 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
         $APPLICATION->ShowViewContent('ogimage');
 
 		if ($isHome) {
-			$organizationDescription = trim((string)$APPLICATION->GetProperty("description"));
+			$organizationDescription = trim((string)$APPLICATION->GetPageProperty("description"));
+			if ($organizationDescription === "") {
+				$organizationDescription = trim((string)$APPLICATION->GetProperty("description"));
+			}
 			$organizationSameAs = array_values(array_filter([
 				$settings["VK"]["VALUE"] ?? "",
 				$settings["TELEGRAM"]["VALUE"] ?? "",
