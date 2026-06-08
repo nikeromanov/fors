@@ -21,6 +21,7 @@ $this->setFrameMode(true);
 	$categoryTitle = trim((string)$APPLICATION->GetTitle(false, true));
 	$categoryTitle = trim(html_entity_decode(strip_tags($categoryTitle), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 	$requestPath = (string)parse_url((string)($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH);
+	$isCategoryBPage = ($requestPath === '/category/kategoriya-v-v1/');
 	$fallbackCategoryTitleMap = [
 		'/category/kategoriya-a-a1/' => 'Категория А, А1',
 	];
@@ -216,12 +217,18 @@ $this->setFrameMode(true);
           <div class="transmission__groups">
             <?foreach($arResult["VARIANTS"] as $variant){?>
             <div class="transmission__group">
-              <div class="transmission__badge"><?=$variant["NAME"];?></div>
+              <h3 class="transmission__badge"><?=$variant["NAME"];?></h3>
 
               <div class="transmission__content">
 				<?if(!empty($variant["PROPERTIES"]["PLUSES"]["VALUE"])){?>
 					<div class="transmission__column">
-					  <p class="transmission__column-title">плюсы:</p>
+					  <p class="transmission__column-title"><?
+						  if($isCategoryBPage && $variant["NAME"] === "Автомат"){
+							  ?>Он имеет следующие достоинства:<?
+						  }else{
+							  ?>Плюсы:<?
+						  }
+					  ?></p>
 					  <ul class="transmission__list">
 						<?foreach($variant["PROPERTIES"]["PLUSES"]["VALUE"] as $var){?>
 							<li class="transmission__item">
@@ -234,7 +241,15 @@ $this->setFrameMode(true);
 				<?}?>
 				<?if(!empty($variant["PROPERTIES"]["MINUSES"]["VALUE"])){?>
 					<div class="transmission__column transmission__column--dark">
-					  <p class="transmission__column-title">минусы:</p>
+					  <p class="transmission__column-title"><?
+						  if($isCategoryBPage && $variant["NAME"] === "Автомат"){
+							  ?>Недостатки АКПП:<?
+						  }elseif($isCategoryBPage && $variant["NAME"] === "Механика"){
+							  ?>Минусы МКПП:<?
+						  }else{
+							  ?>Минусы:<?
+						  }
+					  ?></p>
 					  <ul class="transmission__list">
 						<?foreach($variant["PROPERTIES"]["MINUSES"]["VALUE"] as $var){?>
 							<li class="transmission__item">
@@ -253,7 +268,7 @@ $this->setFrameMode(true);
 		  <?}?>
 		  <?if(!empty($section["UF_YELLOW"])){?>
 			  <div class="transmission__warning">
-				<div class="transmission__warning-text">
+				<div class="transmission__warning-text<?if($isCategoryBPage){?> transmission__warning-text--normal<?}?>">
 				  <?=$section["UF_YELLOW"];?>
 				</div>
 			  </div>

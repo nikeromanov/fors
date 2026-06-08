@@ -386,6 +386,10 @@
   text-transform: uppercase;
 }
 
+.transmission__warning-text--normal {
+  text-transform: none;
+}
+
 /* Images */
 
 .transmission__images {
