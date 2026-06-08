@@ -127,6 +127,9 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
 			if ($organizationDescription === "") {
 				$organizationDescription = trim((string)$APPLICATION->GetProperty("description"));
 			}
+			if ($organizationDescription === "" && defined("HOME_META_DESCRIPTION")) {
+				$organizationDescription = HOME_META_DESCRIPTION;
+			}
 			$organizationSameAs = array_values(array_filter([
 				$settings["VK"]["VALUE"] ?? "",
 				$settings["TELEGRAM"]["VALUE"] ?? "",
