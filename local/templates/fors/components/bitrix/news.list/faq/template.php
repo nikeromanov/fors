@@ -28,12 +28,12 @@ $this->setFrameMode(true);
 				  <span class="ui-icon faq-accordion__icon-up" data-icon="up-arrow"></span>
 				</span>
 			  </button>
-			  <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-				<ul class="faq-accordion__answers" itemprop="text">
+			  <div class="faq-accordion__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+				<div class="faq-accordion__answers" itemprop="text">
 				<?foreach($item["PROPERTIES"]["LIST"]["VALUE"] as $answer){?>
-					<li><?=$answer;?></li>
+					<p><?=$answer;?></p>
 				<?}?>
-				</ul>
+				</div>
 			  </div>
 			</li>
 		<?}?>
