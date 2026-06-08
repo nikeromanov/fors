@@ -44,7 +44,7 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
         <ul class="fast-benefits__grid">
 			<?foreach($settingsPageCur["PROPERTIES"]["PREIMS"]["VALUE"] as $k=>$preim){?>
           <li class="fast-benefit__card">
-            <h3 class="fast-benefit__card-title"><?=$settingsPageCur["PROPERTIES"]["PREIMS"]["DESCRIPTION"][$k];?></h3>
+            <div class="fast-benefit__card-title"><?=$settingsPageCur["PROPERTIES"]["PREIMS"]["DESCRIPTION"][$k];?></div>
             <img
               src="<?=CFile::GetPath($preim);?>"
               alt=""
@@ -80,7 +80,7 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
 			<?foreach($settingsPageCur["PROPERTIES"]["ETAPS"]["VALUE"] as $k=>$etap){?>
 				<li class="steps__item">
 				  <p class="steps__number" aria-hidden="true"><?=str_pad(($k+1), 2, '0', STR_PAD_LEFT);?></p>
-				  <h3 class="steps__title"><?=$etap;?></h3>
+				  <div class="steps__title"><?=$etap;?></div>
 				</li>
 			<?}?>
           </ol>
@@ -109,7 +109,7 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
 				$desc = splitByParentheses($settingsPageCur["PROPERTIES"]["DOCS"]["DESCRIPTION"][$k]);
 				?>
 			  <li class="docs__card">
-				<h3 class="docs__card-title"><?=$desc["text"];?></h3>
+				<div class="docs__card-title"><?=$desc["text"];?></div>
 				<p class="docs__card-description"><?=$desc["inside"];?></p>
 				<img
 				  class="docs__card-image"
@@ -191,7 +191,8 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N",
-		"COMPONENT_TEMPLATE" => "why_we"
+		"COMPONENT_TEMPLATE" => "why_we",
+		"ITEM_TITLE_TAG" => "div",
 	],
 	false
 );?>

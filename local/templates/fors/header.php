@@ -122,6 +122,57 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
         $APPLICATION->ShowViewContent('ogdescription');
         $APPLICATION->ShowViewContent('ogimage');
 
+		if ($isHome) {
+			$organizationDescription = trim((string)$APPLICATION->GetPageProperty("description"));
+			if ($organizationDescription === "") {
+				$organizationDescription = trim((string)$APPLICATION->GetProperty("description"));
+			}
+			if ($organizationDescription === "" && defined("HOME_META_DESCRIPTION")) {
+				$organizationDescription = HOME_META_DESCRIPTION;
+			}
+			$organizationSameAs = array_values(array_filter([
+				$settings["VK"]["VALUE"] ?? "",
+				$settings["TELEGRAM"]["VALUE"] ?? "",
+				$settings["TIKTOK"]["VALUE"] ?? "",
+				$settings["MAX"]["VALUE"] ?? "",
+			]));
+			$organizationSchema = [
+				"@context" => "http://schema.org",
+				"@type" => "Organization",
+				"@id" => "https://fors36.ru/#organization",
+				"name" => "Автошкола «Форсаж»",
+				"alternateName" => "Форсаж",
+				"description" => $organizationDescription,
+				"url" => "https://fors36.ru/",
+				"logo" => "https://fors36.ru" . SITE_TEMPLATE_PATH . "/assets/icons/logo-forsazh.svg",
+				"image" => "https://fors36.ru" . SITE_TEMPLATE_PATH . "/assets/icons/logo-forsazh.svg",
+				"telephone" => $settings["PHONE"]["VALUE"] ?? "+7 (473) 269-00-00",
+				"email" => $settings["EMAIL"]["VALUE"] ?? "fors36@mail.ru",
+				"address" => [
+					"@type" => "PostalAddress",
+					"addressLocality" => "Воронеж",
+					"streetAddress" => $settings["ADDRESS"]["VALUE"] ?? "ул. Плехановская, 35, 2 этаж",
+					"addressCountry" => "RU",
+				],
+				"contactPoint" => [
+					"@type" => "ContactPoint",
+					"telephone" => $settings["PHONE"]["VALUE"] ?? "+7 (473) 269-00-00",
+					"contactType" => "customer service",
+					"areaServed" => "RU",
+					"availableLanguage" => "Russian",
+				],
+			];
+			if (!empty($organizationSameAs)) {
+				$organizationSchema["sameAs"] = $organizationSameAs;
+			}
+			if ($organizationDescription === "") {
+				unset($organizationSchema["description"]);
+			}
+			?>
+			<script type="application/ld+json"><?=json_encode($organizationSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);?></script>
+			<?
+		}
+
         ?>
 
 <!-- Yandex.Metrika counter -->

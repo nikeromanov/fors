@@ -11,6 +11,9 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+$itemTitleTag = in_array($arParams["ITEM_TITLE_TAG"] ?? "", ["div", "h3"], true)
+	? $arParams["ITEM_TITLE_TAG"]
+	: "h3";
 
 ?>
 <?if(!empty($arResult["ITEMS"])){
@@ -41,7 +44,7 @@ $this->setFrameMode(true);
 		<li class="why-list__item why-list__item--text fast-courses__why--item">
 		<?if(!empty($item["PROPERTIES"]["ICO"]["VALUE"])){?><span class="ui-icon" aria-hidden="true" style="mask-image: url('<?=CFile::GetPath($item["PROPERTIES"]["ICO"]["VALUE"]);?>');" data-icon="hands"></span><?}?>
 		<div class="why-list__content">
-		  <h3 class="why-list__title"><?=$item["NAME"];?></h3>
+		  <<?=$itemTitleTag;?> class="why-list__title"><?=$item["NAME"];?></<?=$itemTitleTag;?>>
 		  <div class="why-list__description">
 			<?=$item["PREVIEW_TEXT"];?>
 		  </div>
