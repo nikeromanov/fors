@@ -123,6 +123,7 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
         $APPLICATION->ShowViewContent('ogimage');
 
 		if ($isHome) {
+			$organizationDescription = trim((string)$APPLICATION->GetProperty("description"));
 			$organizationSameAs = array_values(array_filter([
 				$settings["VK"]["VALUE"] ?? "",
 				$settings["TELEGRAM"]["VALUE"] ?? "",
@@ -135,6 +136,7 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
 				"@id" => "https://fors36.ru/#organization",
 				"name" => "Автошкола «Форсаж»",
 				"alternateName" => "Форсаж",
+				"description" => $organizationDescription,
 				"url" => "https://fors36.ru/",
 				"logo" => "https://fors36.ru" . SITE_TEMPLATE_PATH . "/assets/icons/logo-forsazh.svg",
 				"image" => "https://fors36.ru" . SITE_TEMPLATE_PATH . "/assets/icons/logo-forsazh.svg",
@@ -156,6 +158,9 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
 			];
 			if (!empty($organizationSameAs)) {
 				$organizationSchema["sameAs"] = $organizationSameAs;
+			}
+			if ($organizationDescription === "") {
+				unset($organizationSchema["description"]);
 			}
 			?>
 			<script type="application/ld+json"><?=json_encode($organizationSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);?></script>
