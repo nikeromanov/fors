@@ -101,6 +101,12 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
           </a>
         </li>
                <?}?>
+        <?if($settings["WHATSAPP"]["VALUE"]){?><li>
+          <a class="footer__social-link" href="<?=$settings["WHATSAPP"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <span class="ui-icon ui-icon_small footer__social-icon" aria-hidden="true" data-icon="whatsapp"></span>
+          </a>
+        </li>
+               <?}?>
         <?if($settings["TELEGRAM"]["VALUE"]){?><li>
           <a class="footer__social-link" href="<?=$settings["TELEGRAM"]["VALUE"];?>" target="_blank" rel="noopener">
             <span class="ui-icon ui-icon_small footer__social-icon" aria-hidden="true" data-icon="telegram"></span>
