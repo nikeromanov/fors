@@ -44,6 +44,20 @@ $this->setFrameMode(true);
 	if($schemaImageSrc !== "" && strpos($schemaImageSrc, "http://") !== 0 && strpos($schemaImageSrc, "https://") !== 0 && $schemaHost !== ""){
 		$schemaImageSrc = $schemaScheme . "://" . $schemaHost . $schemaImageSrc;
 	}
+	$schemaDescription = "";
+	if(!empty($section["ID"]) && \Bitrix\Main\Loader::includeModule("iblock")){
+		$ipropValues = new \Bitrix\Iblock\InheritedProperty\SectionValues(
+			(int)$arParams["IBLOCK_ID"],
+			(int)$section["ID"]
+		);
+		$iprop = $ipropValues->getValues();
+		if(!empty($iprop["SECTION_META_DESCRIPTION"])){
+			$schemaDescription = trim(strip_tags(html_entity_decode((string)$iprop["SECTION_META_DESCRIPTION"], ENT_QUOTES | ENT_HTML5, "UTF-8")));
+		}
+	}
+	if($schemaDescription === ""){
+		$schemaDescription = "Стоимость обучения по направлению «" . $categoryTitle . "» в автошколе «Форсаж».";
+	}
 	?>
 	<h1 class="category__title page-section__title" id="category-title" itemprop="name">
 	  <?=htmlspecialcharsbx($categoryTitle);?>
@@ -56,6 +70,7 @@ $this->setFrameMode(true);
 		  <?if($schemaOffers["HIGH_PRICE"] !== ""){?><meta itemprop="highPrice" content="<?=htmlspecialcharsbx((string)$schemaOffers["HIGH_PRICE"]);?>"><?}?>
 		  <?if($schemaOffers["LOW_PRICE"] !== ""){?><meta itemprop="lowPrice" content="<?=htmlspecialcharsbx((string)$schemaOffers["LOW_PRICE"]);?>"><?}?>
 		  <meta itemprop="priceCurrency" content="RUB">
+		  <meta itemprop="description" content="<?=htmlspecialcharsbx($schemaDescription);?>">
 		</div>
 	<?}?>
 	<div class="category__container">
