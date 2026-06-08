@@ -44,7 +44,17 @@ $this->setFrameMode(true);
 	if($schemaImageSrc !== "" && strpos($schemaImageSrc, "http://") !== 0 && strpos($schemaImageSrc, "https://") !== 0 && $schemaHost !== ""){
 		$schemaImageSrc = $schemaScheme . "://" . $schemaHost . $schemaImageSrc;
 	}
-	$schemaDescription = trim((string)html_entity_decode(strip_tags(htmlspecialcharsback((string)$section["DESCRIPTION"])), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+	$schemaDescription = "";
+	if(!empty($section["ID"]) && \Bitrix\Main\Loader::includeModule("iblock")){
+		$ipropValues = new \Bitrix\Iblock\InheritedProperty\SectionValues(
+			(int)$arParams["IBLOCK_ID"],
+			(int)$section["ID"]
+		);
+		$iprop = $ipropValues->getValues();
+		if(!empty($iprop["SECTION_META_DESCRIPTION"])){
+			$schemaDescription = trim(strip_tags(html_entity_decode((string)$iprop["SECTION_META_DESCRIPTION"], ENT_QUOTES | ENT_HTML5, "UTF-8")));
+		}
+	}
 	if($schemaDescription === ""){
 		$schemaDescription = "Стоимость обучения по направлению «" . $categoryTitle . "» в автошколе «Форсаж».";
 	}
