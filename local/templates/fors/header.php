@@ -135,7 +135,10 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
 				$settings["TELEGRAM"]["VALUE"] ?? "",
 				$settings["TIKTOK"]["VALUE"] ?? "",
 				$settings["MAX"]["VALUE"] ?? "",
-			]));
+				$settings["WHATSAPP"]["VALUE"] ?? "",
+			], static function ($url) {
+				return is_string($url) && preg_match('/^https?:\/\//', $url);
+			}));
 			$organizationSchema = [
 				"@context" => "http://schema.org",
 				"@type" => "Organization",

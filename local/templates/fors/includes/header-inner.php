@@ -56,6 +56,11 @@ global $settings;
         <?=$settings["PHONE"]["VALUE"];?>
       </a>
 	  <?}?>
+      <?if(!empty($settings["WHATSAPP"]["VALUE"])){?>
+      <a class="header__actions-social" href="<?=$settings["WHATSAPP"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+        <span class="ui-icon ui-icon_small header__actions-social-icon" aria-hidden="true" data-icon="whatsapp"></span>
+      </a>
+      <?}?>
 
       <button
         class="theme-toggle"
@@ -148,6 +153,13 @@ global $settings;
           <li>
             <a class="site-menu__social-link" href="<?=$settings["MAX"]["VALUE"];?>" target="_blank" rel="noopener">
               <span class="ui-icon ui-icon_small site-menu__social-icon" aria-hidden="true" data-icon="max"></span>
+            </a>
+          </li>
+                <?}?>
+                <?if($settings["WHATSAPP"]["VALUE"]){?>
+          <li>
+            <a class="site-menu__social-link" href="<?=$settings["WHATSAPP"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <span class="ui-icon ui-icon_small site-menu__social-icon" aria-hidden="true" data-icon="whatsapp"></span>
             </a>
           </li>
                 <?}?>

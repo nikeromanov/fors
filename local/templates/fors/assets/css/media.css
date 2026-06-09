@@ -290,7 +290,8 @@
 
 @media (max-width: 480px) {
   .site-header__phone,
-  .header__actions-phone {
+  .header__actions-phone,
+  .header__actions-social {
     display: none;
   }
 
