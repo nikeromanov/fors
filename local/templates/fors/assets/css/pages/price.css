@@ -13,6 +13,28 @@
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
+
+.price_content h1,
+.price_content h2,
+.price_content h3,
+.price_content h4,
+.price_content h5,
+.price_content h6,
+.price-seo .detail_content h1,
+.price-seo .detail_content h2,
+.price-seo .detail_content h3,
+.price-seo .detail_content h4,
+.price-seo .detail_content h5,
+.price-seo .detail_content h6,
+.price-directions .detail_content h1,
+.price-directions .detail_content h2,
+.price-directions .detail_content h3,
+.price-directions .detail_content h4,
+.price-directions .detail_content h5,
+.price-directions .detail_content h6 {
+  text-align: center;
+}
+
 .price-directions {
   display: flex;
   flex-direction: column;
