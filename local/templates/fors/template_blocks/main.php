@@ -128,7 +128,7 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 			</div>
 		<?}?>
 		
-		<?if(!empty($settings["VK"]["VALUE"])||!empty($settings["MAX"]["VALUE"])||!empty($settings["TELEGRAM"]["VALUE"])){?>
+		<?if(!empty($settings["VK"]["VALUE"])||!empty($settings["MAX"]["VALUE"])||!empty($settings["WHATSAPP"]["VALUE"])||!empty($settings["TELEGRAM"]["VALUE"])){?>
 		<div class="social-banner">
 		  <?if(!empty($properties["SOC_TITLE"]["VALUE"])){?><h5 class="social-banner__title"><?=$properties["SOC_TITLE"]["VALUE"];?></h5><?}?>
 		  <div class="social-banner__buttons">
@@ -136,6 +136,10 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 			  <span class="social-btn__icon" aria-hidden="true"></span>
 			  Связаться в TG
 			</a><?}?>
+                        <?if(!empty($settings["WHATSAPP"]["VALUE"])){?><a href="<?=$settings["WHATSAPP"]["VALUE"];?>" target="_blank" class="social-btn social-btn--whatsapp">
+                          <span class="social-btn__icon" aria-hidden="true"></span>
+                          Связаться в WhatsApp
+                        </a><?}?>
                         <?if(!empty($settings["MAX"]["VALUE"])){?><a href="<?=$settings["MAX"]["VALUE"];?>" target="_blank" class="social-btn social-btn--max">
                           <span class="social-btn__icon" aria-hidden="true"></span>
                           Связаться в MAX
