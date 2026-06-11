@@ -323,6 +323,12 @@
   color: var(--yellow);
 }
 
+.price-directions + .discount__why .why-list__item--text,
+.price-directions + .discount__why .why-list__title,
+.price-directions + .discount__why .why-list__description {
+  color: #1a1a1a;
+}
+
 .price-advantages__why--item:nth-child(1) {
   background: var(--color-static-dark, #3c3c3c);
   color: var(--color-static-dark-text, #ffffff);
