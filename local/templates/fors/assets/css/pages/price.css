@@ -313,6 +313,7 @@
 
 .discount__why .detail_content ul {
   list-style: disc;
+  color: var(--color-text);
 }
 
 .discount__why .detail_content ul li {
