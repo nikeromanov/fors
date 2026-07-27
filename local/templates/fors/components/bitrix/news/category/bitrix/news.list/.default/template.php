@@ -63,7 +63,6 @@ $this->setFrameMode(true);
 		"@context" => "https://schema.org",
 		"@type" => "Product",
 		"name" => $categoryTitle,
-		"description" => $schemaDescription,
 		"url" => $schemaUrl,
 	];
 	if($schemaImageSrc !== ""){
