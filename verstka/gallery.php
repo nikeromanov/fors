@@ -7,7 +7,7 @@
       name="description"
       content="Фотогалерея автошколы Форсаж: учебные классы, автомобили, автодром, команда инструкторов."
     />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="noindex, nofollow" />
     <title>Фотогалерея — Автошкола Форсаж</title>
     <link rel="preload" as="style" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />

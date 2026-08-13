@@ -7,7 +7,7 @@
       name="description"
       content="Частые вопросы об обучении в автошколе Форсаж. Документы, возраст, оплата, экзамены ГИБДД, восстановление на курс."
     />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="noindex, nofollow" />
     <title>Вопросы и ответы — Автошкола Форсаж</title>
     <link rel="preload" as="style" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
