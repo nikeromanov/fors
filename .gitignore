@@ -36,7 +36,6 @@ pnpm-debug.log
 # Bitrix: runtime, кэши, бэкапы
 # ==============================
 *.log
-/robots.txt
 
 # Local DB migration runtime state (not for VCS)
 local/db/migrations/state/cursor.env
