@@ -57,6 +57,7 @@ Disallow: /category/kategoriya-asd-1/
 Disallow: /category/kategoriya-asd-3/
 Disallow: /car-lawyer/
 Disallow: /typography.php
+Disallow: /verstka/ui-kit.html
 Disallow: */?ysclid=
 Allow: /bitrix/components/
 Allow: /bitrix/cache/
