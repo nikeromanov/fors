@@ -1,5 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("description", "Узнайте расписание автошколы «Форсаж» в Воронеже по районам и адресам филиалов: даты начала занятий для новых групп и дни открытых дверей.");
+$APPLICATION->SetPageProperty("title", "Расписание занятий автошколы «Форсаж» в Воронеже: даты набора новых групп и проведения дней открытых дверей");
 $APPLICATION->SetTitle("Расписание");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:catalog.section.list", 
