@@ -105,10 +105,12 @@ $this->setFrameMode(true);
 		"SECTION_CODE" => "",
 		"SECTION_FIELDS" => [
 			0 => "NAME",
-			1 => "",
+			1 => "CODE",
+			2 => "",
 		],
 		"SECTION_ID" => "",
 		"SECTION_URL" => "",
+		"EXCLUDE_SECTION_CODE" => (string)($arResult["VARIABLES"]["SECTION_CODE"] ?? ""),
 		"HEADING_TAG" => "h2",
                 "SECTION_USER_FIELDS" => [
                         0 => "UF_NAME",
