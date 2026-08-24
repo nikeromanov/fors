@@ -37,10 +37,12 @@ $this->setFrameMode(true);
 		/><?}?>
 	  </figure>
 	  <div class="cars-gallery__form" data-car-form>
-		<button class="cars-gallery__form-toggle" data-car-toggle aria-expanded="false" type="button">
-		  <h3 class="cars-gallery__car-name"><?=$item["NAME"];?></h3>
-		  <span class="ui-icon cars-gallery__toggle-icon" data-icon="up-arrow" aria-hidden="true"></span>
-		</button>
+		<h3 class="cars-gallery__car-name">
+		  <button class="cars-gallery__form-toggle" data-car-toggle aria-expanded="false" type="button">
+			<span class="cars-gallery__car-name"><?=$item["NAME"];?></span>
+			<span class="ui-icon cars-gallery__toggle-icon" data-icon="up-arrow" aria-hidden="true"></span>
+		  </button>
+		</h3>
 		<div class="cars-gallery__form-content">
 		  <dl class="cars-gallery__specs">
 			<?if($item["PROPERTIES"]["OBJEM"]["VALUE"]){?><div class="cars-gallery__spec-item">
