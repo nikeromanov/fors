@@ -189,7 +189,7 @@ function normalizeGoalLetter($value){
 				<?}?>
 			  </dl>
 			  <span class="price-card__price"><?if(!empty($arResult["PRICES"][$arSection["ID"]])){?>от <?=CurrencyFormat($arResult["PRICES"][$arSection["ID"]],"RUB");?><?}?></span>
-			  <a href="#consult_form" data-fancybox class="btn btn--secondary btn--large" href="#consult_form" data-service="<?=$arSection["UF_NAME"];?>"<?if($sectionGoal){?> data-goal="<?=$sectionGoal;?>"<?}?>>Записаться на курс</a>
+			  <a href="#consult_form" data-fancybox class="btn btn--secondary btn--large" data-service="<?=$arSection["UF_NAME"];?>"<?if($sectionGoal){?> data-goal="<?=$sectionGoal;?>"<?}?>>Записаться на курс</a>
 			</div>
 		  </div>
 				<?
