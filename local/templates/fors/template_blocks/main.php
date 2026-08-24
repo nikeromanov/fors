@@ -26,28 +26,28 @@ if($hasActivePromotion){
 			  <h2 class="home-hero__offer-title" id="hero-offer-title">До конца акции осталось</h2>
 			  <dl class="home-hero__timer" aria-label="Таймер окончания акции" data-date="<?=date("d.m.Y H:i:s",$promotionEndTimestamp);?>" data-curdate="<?=date("d.m.Y H:i:s");?>">
 				<div class="home-hero__timer-item">
+				  <dt class="home-hero__timer-label">Дней</dt>
 				  <dd class="home-hero__timer-value">
 					<time datetime="P5D">00</time>
 				  </dd>
-				  <dt class="home-hero__timer-label">Дней</dt>
 				</div>
 				<div class="home-hero__timer-item">
+				  <dt class="home-hero__timer-label">Часов</dt>
 				  <dd class="home-hero__timer-value">
 					<time datetime="PT48H">00</time>
 				  </dd>
-				  <dt class="home-hero__timer-label">Часов</dt>
 				</div>
 				<div class="home-hero__timer-item">
+				  <dt class="home-hero__timer-label">Минут</dt>
 				  <dd class="home-hero__timer-value">
 					<time datetime="PT0M">00</time>
 				  </dd>
-				  <dt class="home-hero__timer-label">Минут</dt>
 				</div>
 				<div class="home-hero__timer-item">
+				  <dt class="home-hero__timer-label">Секунд</dt>
 				  <dd class="home-hero__timer-value">
 					<time datetime="PT0S">00</time>
 				  </dd>
-				  <dt class="home-hero__timer-label">Секунд</dt>
 				</div>
                           </dl>
                           <?if(!empty($settings["PHONE"]["VALUE"])) {?>
