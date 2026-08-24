@@ -135,11 +135,11 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
       <div class="consult-form__fields">
 		
         <div class="consult-form__field">
-          <label class="consult-form__label u-visually-hidden" for="consult-name">Ваше имя</label>
+          <label class="consult-form__label u-visually-hidden" for="consult-popup-name">Ваше имя</label>
           <input
             class="consult-form__input"
             type="text"
-            id="consult-name"
+            id="consult-popup-name"
             name="name"
             placeholder="Ваше имя"
             autocomplete="name"
@@ -147,11 +147,11 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
           />
         </div>
         <div class="consult-form__field">
-          <label class="consult-form__label u-visually-hidden" for="consult-phone">Ваш номер телефона</label>
+          <label class="consult-form__label u-visually-hidden" for="consult-popup-phone">Ваш номер телефона</label>
           <input
             class="consult-form__input"
             type="tel"
-            id="consult-phone"
+            id="consult-popup-phone"
             name="phone"
             placeholder="Ваш номер телефона"
             inputmode="tel"
