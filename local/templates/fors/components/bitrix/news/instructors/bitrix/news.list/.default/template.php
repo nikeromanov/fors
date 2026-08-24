@@ -17,21 +17,22 @@ $this->setFrameMode(true);
 	  <div class="swiper-wrapper">
 		  <?foreach($arResult["ITEMS"] as $item){
 			  ?>
-			  		<div class="swiper-slide instructors__slide">
+			<div class="swiper-slide instructors__slide">
 		  <a href="<?=$item["DETAIL_PAGE_URL"];?>" class="instructors__card">
+			<?if(!empty($item["PREVIEW_PICTURE"]["SRC"])){
+				$file = CFile::ResizeImageGet($item["PREVIEW_PICTURE"]["ID"], array('width'=>750, 'height'=>750), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+			?>
 			<picture>
-			  
-			  <?if(!empty($item["PREVIEW_PICTURE"]["SRC"])){
-				  $file = CFile::ResizeImageGet($item["PREVIEW_PICTURE"]["ID"], array('width'=>750, 'height'=>750), BX_RESIZE_IMAGE_PROPORTIONAL, true);
-				  ?><img
+			  <img
 				src="<?=$file["src"];?>"
 				alt=""
 				class="instructors__image"
 				loading="lazy"
 				width="315"
 				height="450"
-			  /><?}?>
+			  />
 			</picture>
+			<?}?>
 			<div class="instructors__info">
 			  <h3 class="instructors__name">
 				<?=$item["NAME"];?>

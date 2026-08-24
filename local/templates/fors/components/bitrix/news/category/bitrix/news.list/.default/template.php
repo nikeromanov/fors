@@ -357,7 +357,7 @@ $this->setFrameMode(true);
 <?if(!empty($section["UF_TEXT"])){?>
 	<div class=" container">
 	  <div class="detail_content category__content">
-		<?=html_entity_decode($section["~UF_TEXT"]);?>
+		<?=$section["~UF_TEXT"];?>
 	  </div>
 	</div>
 <?}?>

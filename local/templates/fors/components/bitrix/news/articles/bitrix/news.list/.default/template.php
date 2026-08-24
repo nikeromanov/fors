@@ -26,7 +26,7 @@ $this->setFrameMode(true);
         <h3 class="news-card__title">
           <a class="news-card__link" href="<?=$item["DETAIL_PAGE_URL"];?>"><?=$item["NAME"];?></a>
         </h3>
-        <p class="news-card__description"><?=$item["PREVIEW_TEXT"];?></p>
+        <div class="news-card__description"><?=$item["PREVIEW_TEXT"];?></div>
       </div>
 
       <figure class="news-card__media">
