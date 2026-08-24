@@ -4,12 +4,16 @@ use Bitrix\Main\Page\Asset;
 global $settings;
 $settingsPage = getSettings(3);
 $properties = $settingsPage["PROPERTIES"];
-if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALUE"])>time()){
+$promotionEndTimestamp = !empty($settings["AKC_DATE"]["VALUE"])
+	? strtotime($settings["AKC_DATE"]["VALUE"])
+	: false;
+$hasActivePromotion = $promotionEndTimestamp !== false && $promotionEndTimestamp > time();
+if($hasActivePromotion){
 	Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . '/assets/js/home-hero-timer.js');
 }
 ?><main id="main" tabindex="-1">
   
-  <section class="home-hero" aria-labelledby="hero-title">
+  <section class="home-hero<?if(!$hasActivePromotion){?> home-hero--without-offer<?}?>" aria-labelledby="hero-title">
 	<div class="home-hero__container container">
 	  <div class="home-hero__content">
 		<h1 class="home-hero__title" id="hero-title"><?=$settingsPage["NAME"];?></h1>
@@ -17,10 +21,10 @@ if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALU
 		<div class="home-hero__lead">
 			<?=$settingsPage["PREVIEW_TEXT"];?>
 		</div>
-		<?if(!empty($settings["AKC_DATE"]["VALUE"])&&strtotime($settings["AKC_DATE"]["VALUE"])>time()){?>
+		<?if($hasActivePromotion){?>
 			<div class="home-hero__offer" role="group" aria-labelledby="hero-offer-title">
 			  <h2 class="home-hero__offer-title" id="hero-offer-title">До конца акции осталось</h2>
-			  <dl class="home-hero__timer" aria-label="Таймер окончания акции" data-date="<?=date("d.m.Y H:i:s",strtotime($settings["AKC_DATE"]["VALUE"]));?>" data-curdate="<?=date("d.m.Y H:i:s");?>">
+			  <dl class="home-hero__timer" aria-label="Таймер окончания акции" data-date="<?=date("d.m.Y H:i:s",$promotionEndTimestamp);?>" data-curdate="<?=date("d.m.Y H:i:s");?>">
 				<div class="home-hero__timer-item">
 				  <dd class="home-hero__timer-value">
 					<time datetime="P5D">00</time>

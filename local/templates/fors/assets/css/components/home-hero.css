@@ -67,6 +67,12 @@
   background-color: transparent;
 }
 
+@media (min-width: 1200px) {
+  .home-hero--without-offer .home-hero__container {
+    min-height: clamp(31rem, 42vw, 37rem);
+  }
+}
+
 .home-hero__content {
   display: grid;
   gap: 0.7rem;
