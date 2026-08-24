@@ -11,11 +11,12 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+$date = strtotime($arResult["ACTIVE_FROM"]);
 ?>
 
 <?$this->SetViewTarget('date');?>
  <p class="article-detail__meta">
-	<time class="article-detail__date"><?=$arResult["DISPLAY_ACTIVE_FROM"]?></time>
+	<time class="article-detail__date" datetime="<?=date("Y-m-d",$date);?>"><?=$arResult["DISPLAY_ACTIVE_FROM"]?></time>
   </p>
 <?$this->EndViewTarget();?>        
 

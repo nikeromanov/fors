@@ -19,13 +19,14 @@ $this->setFrameMode(true);
 <section class="page-section news-and-discount container" aria-labelledby="news-and-discount__title">
   <?if(!empty($settingsPage["PROPERTIES"]["BLOCK10_TITLE"]["VALUE"])){?><h2 id="news-and-discount__title" class="news-and-discount__title"><?=$settingsPage["PROPERTIES"]["BLOCK10_TITLE"]["VALUE"];?></h2><?}?>
   <ul class="news-and-discount__list">
-  <?foreach($arResult["ITEMS"] as $item){
+	<?foreach($arResult["ITEMS"] as $item){
+	  $date = strtotime($item["ACTIVE_FROM"]);
 	  ?>
     <li class="news-card">
       <div class="news-card__wrapper">
         <div class="news-card__header">
           <p class="news-card__type"><?if(!empty($arResult["SECTIONS"][$item["IBLOCK_SECTION_ID"]])){?><?=$arResult["SECTIONS"][$item["IBLOCK_SECTION_ID"]];?><?}?></p>
-          <time class="news-card__date" ><?=$item["DISPLAY_ACTIVE_FROM"];?></time>
+          <time class="news-card__date" datetime="<?=date("Y-m-d",$date);?>"><?=$item["DISPLAY_ACTIVE_FROM"];?></time>
         </div>
         <h3 class="news-card__title">
           <a class="news-card__link" href="<?=$item["DETAIL_PAGE_URL"];?>"><?=$item["NAME"];?></a>
