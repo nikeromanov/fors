@@ -241,6 +241,11 @@
   margin: 0;
 }
 
+.category__content table.with_border tr:first-child > td,
+.category__content table.with_border tr:first-child > th {
+  text-align: center;
+}
+
 /* Transmission Section */
 
 .transmission {
