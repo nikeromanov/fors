@@ -4,7 +4,7 @@
 
 <?php foreach ($arResult as $section){ ?>
 	  <nav class="site-menu__nav" aria-label="Быстрые ссылки">
-		<ul class="site-menu__list" role="list">
+		<ul class="site-menu__list">
 		  <li class="site-menu__item">
 			<a class="site-menu__link site-menu__title" href="<?=$section['LINK'];?>"><?=$section['NAME'];?></a>
 		  </li>

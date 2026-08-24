@@ -6,7 +6,7 @@ if (defined("ERROR_404")) {
   $headerClass = "header header--inner";
   $containerClass = "header__container";
 }
-?><header class="<?=$headerClass;?>" role="banner">
+?><header class="<?=$headerClass;?>">
   <div class="<?=$containerClass;?>">
     
     <a class="header__logo" href="/" aria-label="Автошкола Форсаж — на главную">
@@ -99,7 +99,7 @@ if (defined("ERROR_404")) {
     </div>
   </div>
 <div id="site-menu" class="site-menu" data-state="closed" hidden>
-  <div class="site-menu__panel" role="dialog" aria-modal="true" aria-labelledby="site-menu-title" tabindex="-1">
+  <div class="site-menu__panel" role="dialog" aria-modal="true" aria-label="Меню сайта" tabindex="-1">
     <button class="site-menu__close" type="button" aria-label="Закрыть меню" data-action="close-menu"></button>
 
     <div class="site-menu__container">
@@ -114,7 +114,7 @@ if (defined("ERROR_404")) {
 	);?>
 	<div class="site-menu__info">
         <address class="site-menu__contacts">
-          <ul class="site-menu__contacts-list" role="list">
+          <ul class="site-menu__contacts-list">
             <?if($settings["ADDRESS"]["VALUE"]){?>
 				<li class="site-menu__contacts-item">
 				  <span aria-hidden="true" class="site-menu__contacts-icon" data-icon="map"></span>
@@ -136,7 +136,7 @@ if (defined("ERROR_404")) {
           </ul>
         </address>
 
-        <ul class="site-menu__social" role="list" aria-label="Социальные сети">
+        <ul class="site-menu__social" aria-label="Социальные сети">
 			<?if($settings["TIKTOK"]["VALUE"]){?>
 			  <li>
 				<a

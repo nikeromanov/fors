@@ -82,9 +82,9 @@ $this->setFrameMode(true);
         </tbody>
       </table></div>
 
-      <div class="category__table-mobile" role="list">
+      <div class="category__table-mobile">
                         <?foreach($arResult["ITEMS_SECT"][$kid] as $item){?>
-        <article class="category-card" role="listitem">
+        <article class="category-card">
           <div class="category-card__header">
             <div class="category-card__course">
               <div class="ui-table__icon-container">

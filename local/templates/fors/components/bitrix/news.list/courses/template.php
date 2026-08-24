@@ -15,7 +15,7 @@ $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){
 ?>
-<section class="page-section container <?if($arParams["TITLE"]){?>fast-benefits<?}?>" aria-labelledby="driving-courses">
+<section class="page-section container <?if($arParams["TITLE"]){?>fast-benefits<?}?>"<?if($arParams["TITLE"]){?> aria-labelledby="fast-pricing-title"<?}else{?> aria-label="Курсы обучения"<?}?>>
  <?if($arParams["TITLE"]){?><h2 class="fast-benefits__title" id="fast-pricing-title"><?=$arParams["TITLE"];?></h2><?}?>
  <?if($arParams["SUBTITLE"]){?><p class="fast-benefits__subtitle">
 <?=$arParams["SUBTITLE"];?>

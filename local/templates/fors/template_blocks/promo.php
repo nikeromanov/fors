@@ -70,7 +70,7 @@ $sliderContainerClass = $isWideSlider ? 'promo-hero__container' : 'promo-hero__c
 <section class="<?=$sliderSectionClass;?>" aria-label="Промо-слайдер">
 	<div class="<?=$sliderContainerClass;?>">
 		<div class="promo-hero-slider">
-			<div class="swiper promo-hero-slider__slider" aria-label="Промо-слайдер">
+			<div class="swiper promo-hero-slider__slider" role="region" aria-label="Промо-слайдер">
 				<div class="swiper-wrapper">
 					<?foreach($gallery as $index => $item){?>
 					<div class="swiper-slide promo-hero-slider__slide">

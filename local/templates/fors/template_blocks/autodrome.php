@@ -55,7 +55,7 @@ $settingsPageCur = getSettings(15);
         </div>
 		<?}?>
          <?if(!empty($settingsPageCur["PROPERTIES"]["UPR_TITLE"]["VALUE"])){?><h3 class="autodrome-exercises__title" id="autodrome-exercises-title"><?=$settingsPageCur["PROPERTIES"]["UPR_TITLE"]["VALUE"];?></h3><?}?>
-        <?if(!empty($settingsPageCur["PROPERTIES"]["UPR"]["VALUE"])){?><ul class="badge-list" role="list">
+        <?if(!empty($settingsPageCur["PROPERTIES"]["UPR"]["VALUE"])){?><ul class="badge-list">
 			  <?foreach($settingsPageCur["PROPERTIES"]["UPR"]["VALUE"] as $k=>$item){?>
 			  <li class="badge-list__item">
 				<div class="badge-list__container">
@@ -73,7 +73,7 @@ $settingsPageCur = getSettings(15);
        <?if(!empty($settingsPageCur["PROPERTIES"]["GALLERY_TITLE"]["VALUE"])){?><h2 class="gallery-slider__title" id="autodrome-gallery-title"><?=$settingsPageCur["PROPERTIES"]["GALLERY_TITLE"]["VALUE"];?></h2><?}?>
 
         <!-- bx:autodrome-gallery-slider -->
-        <div class="swiper gallery-slider__slider" aria-label="Галерея автодрома">
+        <div class="swiper gallery-slider__slider" role="region" aria-label="Галерея автодрома">
           <div class="swiper-wrapper">
             <?foreach($settingsPageCur["PROPERTIES"]["GALLERY"]["VALUE"] as $item){?>
 			<div class="swiper-slide gallery-slider__slide">

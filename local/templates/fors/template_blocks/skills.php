@@ -37,7 +37,7 @@
               </p>
             </div>
 
-            <div class="driving-section" aria-labelledby="skills-features-title">
+            <div class="driving-section" role="region" aria-labelledby="skills-features-title">
               <h2 id="skills-features-title">Общее представление</h2>
               <p class="driving-content__text">
                 Обычно водители, долгое время остававшиеся без практики по тем или иным причинам, обращаются за помощью
@@ -53,7 +53,7 @@
               </p>
             </div>
 
-            <div class="driving-section" aria-labelledby="skills-useful-title">
+            <div class="driving-section" role="region" aria-labelledby="skills-useful-title">
               <h2 id="skills-useful-title">Что входит в программу</h2>
               <p class="driving-content__text">
                 Работа строится исходя из индивидуальных пожеланий: в одних случаях нужно восстановить механику
@@ -64,7 +64,7 @@
               </p>
             </div>
 
-            <div class="driving-section" aria-labelledby="skills-benefits-title">
+            <div class="driving-section" role="region" aria-labelledby="skills-benefits-title">
               <h3 id="skills-benefits-title">МКПП и АКПП</h3>
 
               <p class="driving-content__text">

@@ -13,7 +13,7 @@
 $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){?>
- <div class="swiper instructors__slider" aria-label="Наши инструкторы">
+ <div class="swiper instructors__slider" role="region" aria-label="Наши инструкторы">
 	  <div class="swiper-wrapper">
 		  <?foreach($arResult["ITEMS"] as $item){
 			  ?>

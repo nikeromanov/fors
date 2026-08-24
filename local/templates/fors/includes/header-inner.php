@@ -1,6 +1,6 @@
 <?
 global $settings;
-?><header class="header header--inner" role="banner">
+?><header class="header header--inner">
   <div class="header__container">
     <!-- ЛОГО -->
     <!-- bx:include:site-logo -->
@@ -92,7 +92,7 @@ global $settings;
     </div>
   </div>
 <div id="site-menu" class="site-menu" data-state="closed" hidden>
-  <div class="site-menu__panel" role="dialog" aria-modal="true" aria-labelledby="site-menu-title" tabindex="-1">
+  <div class="site-menu__panel" role="dialog" aria-modal="true" aria-label="Меню сайта" tabindex="-1">
     <button class="site-menu__close" type="button" aria-label="Закрыть меню" data-action="close-menu"></button>
 
     <div class="site-menu__container">
@@ -107,7 +107,7 @@ global $settings;
 	);?>
 	<div class="site-menu__info">
         <address class="site-menu__contacts">
-          <ul class="site-menu__contacts-list" role="list">
+          <ul class="site-menu__contacts-list">
             <?if($settings["ADDRESS"]["VALUE"]){?>
 				<li class="site-menu__contacts-item">
 				  <span aria-hidden="true" class="site-menu__contacts-icon" data-icon="map"></span>
@@ -129,7 +129,7 @@ global $settings;
           </ul>
         </address>
 
-        <ul class="site-menu__social" role="list" aria-label="Социальные сети">
+        <ul class="site-menu__social" aria-label="Социальные сети">
 			<?if($settings["TIKTOK"]["VALUE"]){?>
 			  <li>
 				<a

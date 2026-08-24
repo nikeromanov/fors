@@ -15,7 +15,7 @@ $settingsPage = $set["PROPERTIES"];
       <section class="page-section documents-slider container" aria-labelledby="documents-gallery-title">
         <h2 class="documents-slider__title" id="documents-gallery-title">Документы</h2>
 
-        <div class="swiper documents-slider__slider" aria-label="Галерея документов">
+        <div class="swiper documents-slider__slider" role="region" aria-label="Галерея документов">
           <div class="swiper-wrapper">
 			<?foreach($settingsPage["DOCUMENTS"]["VALUE"] as $doc){?>
             <div class="swiper-slide documents-slider__slide">

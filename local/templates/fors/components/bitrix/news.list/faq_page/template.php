@@ -18,13 +18,13 @@ $this->setFrameMode(true);
 
 
 
-	<ul class="faq__list" role="list" itemscope itemtype="https://schema.org/FAQPage">
+	<ul class="faq__list" itemscope itemtype="https://schema.org/FAQPage">
 	  <?foreach($arResult["ITEMS"] as $index => $item){?>
 	  <?php
 		$questionId = "faq-question-" . ($index + 1);
 		$answerId = "faq-answer-" . ($index + 1);
 		?>
-	  <li class="faq__item" role="listitem" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+	  <li class="faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
 		<article
 		  class="faq-card"
 		  aria-labelledby="<?php echo $questionId; ?>"

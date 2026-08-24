@@ -338,7 +338,7 @@ $this->setFrameMode(true);
           <?=$section["~UF_WHAT_TEXT"];?>
         </div><?}?>
 		<?if(!empty($arResult["WHATS"])){?>
-        <ul class="badge-list category__badge-list" role="list">
+        <ul class="badge-list category__badge-list">
 			<?foreach($arResult["WHATS"] as $item){?>
 			  <li class="badge-list__item">
 				<div class="badge-list__container">
@@ -397,9 +397,9 @@ $this->setFrameMode(true);
         </table>
         </div>
 
-        <div class="category__table-mobile" role="list">
+        <div class="category__table-mobile">
                         <?foreach($arResult["ITEMS"] as $item){?>
-          <article class="category-card" role="listitem">
+          <article class="category-card">
             <div class="category-card__header">
               <div class="category-card__course">
                 <div class="ui-table__icon-container">

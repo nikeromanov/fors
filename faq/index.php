@@ -63,7 +63,7 @@ $faqItems = [
 
 <section class="faq-page faq-accordion" itemscope itemtype="https://schema.org/FAQPage">
 	<h2 class="faq-accordion__title">Часто задаваемые вопросы</h2>
-	<ul class="faq-accordion__list" role="list">
+	<ul class="faq-accordion__list">
 		<?foreach($faqItems as $index => $item){
 			$questionId = "faq-question-" . ($index + 1);
 			$answerId = "faq-answer-" . ($index + 1);
