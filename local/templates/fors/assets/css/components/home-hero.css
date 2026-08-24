@@ -71,6 +71,10 @@
   .home-hero--without-offer .home-hero__container {
     min-height: clamp(31rem, 42vw, 37rem);
   }
+
+  .home-hero--without-offer .home-hero__content {
+    max-width: 41.5%;
+  }
 }
 
 .home-hero__content {
