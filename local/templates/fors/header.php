@@ -83,7 +83,7 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
 	}
 };
 ?><!DOCTYPE html>
-    <html lang="">
+    <html lang="ru">
     <head>
         <? $APPLICATION->ShowHead();
         ?>
