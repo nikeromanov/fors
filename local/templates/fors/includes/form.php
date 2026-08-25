@@ -35,7 +35,6 @@
             id="consult-phone"
             name="phone"
             placeholder="Ваш номер телефона"
-            inputmode="tel"
             autocomplete="tel"
             required
           />

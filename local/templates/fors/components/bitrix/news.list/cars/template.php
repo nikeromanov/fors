@@ -73,7 +73,6 @@ $this->setFrameMode(true);
 			  id="car-phone-<?=$item["ID"];?>"
 			  name="phone"
 			  placeholder="Ваш номер телефона"
-			  inputmode="tel"
 			  autocomplete="tel"
 			  required
 			/>

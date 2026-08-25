@@ -154,7 +154,6 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
             id="consult-popup-phone"
             name="phone"
             placeholder="Ваш номер телефона"
-            inputmode="tel"
             autocomplete="tel"
             required
           />
