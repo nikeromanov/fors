@@ -15,7 +15,7 @@ $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){
 ?>
- <section class="">
+ <div>
 
   
   <ul class="about-us__list">
@@ -34,6 +34,6 @@ $this->setFrameMode(true);
 		<?}?>
 	
 </ul>
-</section>
+</div>
 
 <?}?>

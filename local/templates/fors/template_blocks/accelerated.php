@@ -92,11 +92,11 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
 		?? $settingsPageCur["PROPERTIES"]["AFTER_STEPS_TEXT"]["~VALUE"]
 		?? "";
 	if(!empty($afterStepsText)){?>
-		<section class="page-section fast-courses container">
+		<div class="page-section fast-courses container">
 			<div class="detail_content content_block">
 				<?=htmlspecialcharsback($afterStepsText);?>
 			</div>
-		</section>
+		</div>
 	<?}?>
 	<?}?>
 	<?if(!empty($settingsPageCur["PROPERTIES"]["DOCS_TITLE"]["VALUE"])||!empty($settingsPageCur["PROPERTIES"]["DOCS"]["VALUE"])){?>
@@ -201,11 +201,11 @@ if(!empty($settingsPageCur["PROPERTIES"]["SUBTITLE_US"]["VALUE"])){
 		?? $settingsPageCur["PROPERTIES"]["FINAL_TEXT"]["~VALUE"]
 		?? "";
 	if(!empty($finalText)){?>
-		<section class="page-section fast-courses container">
+		<div class="page-section fast-courses container">
 			<div class="detail_content content_block">
 				<?=htmlspecialcharsback($finalText);?>
 			</div>
-		</section>
+		</div>
 	<?}?>
 
 

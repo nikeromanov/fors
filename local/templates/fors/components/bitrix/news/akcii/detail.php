@@ -17,7 +17,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 $this->setFrameMode(true);
 $settingsPage = getSettings(25);
 $properties = $settingsPage["PROPERTIES"];
-?><section class="page-section article-detail container" aria-labelledby="article-detail-heading">
+?><div class="page-section article-detail container" role="region" aria-labelledby="article-detail-heading">
 <div class="article-detail__inner u-container">
   <article class="article-detail__article">
 	<header class="article-detail__header">
@@ -83,7 +83,7 @@ $ElementID = $APPLICATION->IncludeComponent(
 	$component
 );?> </article>
 </div>
-</section>
+</div>
 <?php include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH . "/includes/form.php"; ?>
 <?if(!empty($properties["BLOCK1_TITLE"]["VALUE"])||!empty($properties["BLOCK1_LEFT"]["~VALUE"]["TEXT"])||!empty($properties["BLOCK1_RIGHT"]["~VALUE"]["TEXT"])){?>
 <section class="page-section page-section__flex discount" aria-labelledby="discount-bonus">

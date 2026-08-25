@@ -15,7 +15,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
-?><section class="page-section article-detail container" aria-labelledby="article-detail-heading">
+?><div class="page-section article-detail container" role="region" aria-labelledby="article-detail-heading">
 <div class="article-detail__inner u-container">
   <article class="article-detail__article">
 
@@ -77,4 +77,4 @@ $ElementID = $APPLICATION->IncludeComponent(
 );?> </article>
 </div>
 
-<?php include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH . "/includes/fast-banner.php"; ?></section>
+<?php include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH . "/includes/fast-banner.php"; ?></div>
