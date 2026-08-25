@@ -17,7 +17,7 @@ $APPLICATION->SetTitle("К сожалению, такой страницы
           <img src="<?=SITE_TEMPLATE_PATH;?>/assets/icons/block.svg" alt="" width="315" height="316" loading="eager" decoding="async" />
         </figure>
         <div class="error-hero__content">
-          <h1 class="error-hero__title" id="error-title">Урок 404:</h1>
+          <h2 class="error-hero__title" id="error-title">Урок 404:</h2>
           <p class="error-hero__subtitle">Даже опытные водители иногда теряются.</p>
           <p class="error-hero__text">
             Но мы знаем, как найти дорогу обратно —
