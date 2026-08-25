@@ -84,7 +84,7 @@ $this->setFrameMode(true);
 
       <div class="category__table-mobile">
                         <?foreach($arResult["ITEMS_SECT"][$kid] as $item){?>
-        <article class="category-card">
+        <div class="category-card">
           <div class="category-card__header">
             <div class="category-card__course">
               <div class="ui-table__icon-container">
@@ -110,7 +110,7 @@ $this->setFrameMode(true);
             <span class="category-card__value"><?=$item["PROPERTIES"]["READ_DRIVE"]["VALUE"];?></span>
           </div>
                         <?}?>
-        </article>
+        </div>
                         <?}?>
       </div>
     </div>

@@ -7,9 +7,9 @@ $settingsPage = $set["PROPERTIES"];
 ?>
 <section class="page-section page-section__flex policy container" aria-labelledby="policy-title">
         <h1 class="policy__title page-section__title" id="policy-title"><?$APPLICATION->ShowTitle(false)?></h1>
-        <article class="policy__document detail_content content_block">
+        <div class="policy__document detail_content content_block">
 			<?=$set["DETAIL_TEXT"];?>
-        </article>
+        </div>
       </section>
 	  <?if(!empty($settingsPage["DOCUMENTS"]["VALUE"])){?>
       <section class="page-section documents-slider container" aria-labelledby="documents-gallery-title">
