@@ -9,15 +9,15 @@
       </p>
     </div>
     <div class="cookie-consent__actions">
-      <button class="btn btn--secondary btn--medium" type="button" data-cookie-accept-all>Принять все</button>
-      <button class="btn btn--primary btn--medium" type="button" data-cookie-reject>Только необходимые</button>
+      <button class="cookie-action cookie-action--primary" type="button" data-cookie-accept-all>Принять все</button>
+      <button class="cookie-action cookie-action--secondary" type="button" data-cookie-reject>Только необходимые</button>
       <button class="cookie-consent__settings-button" type="button" data-cookie-settings>Настроить</button>
     </div>
   </section>
 </div>
 
 <div class="cookie-settings" data-cookie-settings-dialog hidden>
-  <div class="cookie-settings__backdrop" data-cookie-settings-close></div>
+  <div class="cookie-settings__backdrop" aria-hidden="true" data-cookie-settings-close></div>
   <section class="cookie-settings__dialog" role="dialog" aria-modal="true" aria-labelledby="cookie-settings-title">
     <button class="cookie-settings__close" type="button" aria-label="Закрыть настройки cookie" data-cookie-settings-close>×</button>
     <h2 class="cookie-settings__title" id="cookie-settings-title">Управление cookie</h2>
@@ -37,8 +37,8 @@
       </label>
     </div>
     <div class="cookie-settings__actions">
-      <button class="btn btn--secondary btn--medium" type="button" data-cookie-save>Сохранить выбор</button>
-      <button class="btn btn--primary btn--medium" type="button" data-cookie-settings-reject>Только необходимые</button>
+      <button class="cookie-action cookie-action--primary" type="button" data-cookie-save>Сохранить выбор</button>
+      <button class="cookie-action cookie-action--secondary" type="button" data-cookie-settings-reject>Только необходимые</button>
     </div>
   </section>
 </div>

@@ -117,7 +117,7 @@
     marketing.checked = Boolean(state && state.marketing);
     dialog.hidden = false;
     document.body.classList.add('cookie-settings-open');
-    var close = dialog.querySelector('[data-cookie-settings-close]');
+    var close = dialog.querySelector('button[data-cookie-settings-close]');
     if (close) close.focus();
   }
 
@@ -127,6 +127,25 @@
     dialog.hidden = true;
     document.body.classList.remove('cookie-settings-open');
     if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
+  }
+
+  function keepFocusInsideSettings(event) {
+    if (event.key !== 'Tab') return;
+    var dialog = document.querySelector('[data-cookie-settings-dialog]');
+    if (!dialog || dialog.hidden) return;
+    var focusable = Array.prototype.slice.call(dialog.querySelectorAll(
+      'button:not([disabled]), input:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+    ));
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 
   function bindEvents() {
@@ -154,6 +173,7 @@
     }
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape') closeSettings();
+      keepFocusInsideSettings(event);
     });
   }
 
