@@ -10,6 +10,7 @@ $settingsPage = $set["PROPERTIES"];
         <div class="policy__document detail_content content_block">
 			<?=$set["DETAIL_TEXT"];?>
         </div>
+        <?include __DIR__ . '/../includes/legal/related-links.php';?>
       </section>
 	  <?if(!empty($settingsPage["DOCUMENTS"]["VALUE"])){?>
       <section class="page-section documents-slider container" aria-labelledby="documents-gallery-title">

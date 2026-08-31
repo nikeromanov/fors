@@ -76,10 +76,10 @@ $this->setFrameMode(true);
 			  autocomplete="tel"
 			  required
 			/>
-                        <label class="cars-gallery__privacy">
-                          <input class="cars-gallery__privacy-checkbox" type="checkbox" name="policy" value="Y" required />
-                          <span>Соглашаюсь с <a href="/policy/" target="_blank" rel="noopener">политикой обработки персональных данных</a></span>
-                        </label>
+                        <?
+                        $formConsentPrefix = 'car-' . $item['ID'];
+                        include $_SERVER['DOCUMENT_ROOT'] . SITE_TEMPLATE_PATH . '/includes/form-consents.php';
+                        ?>
                         <button class="btn btn--primary btn--large" type="submit">Практиковать на <?=$item["NAME"];?></button>
 		  </form>
 		</div>

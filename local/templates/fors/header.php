@@ -109,8 +109,9 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
         $objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/owl/owl.carousel.min.js');
         $objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/jquery.validate.min.js');
         $objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/inputmask/min/jquery.inputmask.bundle.min.js');
-        $objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/fancybox/fancyboxumd.js');
+		$objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/fancybox/fancyboxumd.js');
 		$objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/swiper-bundle.min.js');
+		$objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/privacy-consent.js');
 		$objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/app.js');
 		
         $objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/script.js');
@@ -177,38 +178,8 @@ $addBreadcrumbChain = function () use ($dir, $breadcrumbIblockMap, $APPLICATION)
 
         ?>
 
-<!-- Yandex.Metrika counter -->
-<script data-skip-moving="true">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
-
-    ym(11787892, 'init', {webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
-</script>
     </head>
-<!--noindex-->
-<script src="https://analytics.alloka.ru/script/5b458697c149d1a7" async data-skip-moving="true"></script>
-<!--/noindex-->
 <body style="<?$APPLICATION->ShowViewContent('additionalstyles');?>" class="<?$APPLICATION->ShowViewContent('additionalclasses');?> <? if ($isHome) { ?>home_page<? } else { ?>not_home<? } ?> <? if ($is404) { ?>page-404<? } ?> <?=$additionalClass;?> <?if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {?>page_<?=TEMPLATE_PAGE;?> <?}?> <?if($notstandart){?>notstandart<?}?>">
-<!-- Top.Mail.Ru counter -->
-<script>
-var _tmr = window._tmr || (window._tmr = []);
-_tmr.push({id: "3727875", type: "pageView", start: (new Date()).getTime()});
-(function (d, w, id) {
-  if (d.getElementById(id)) return;
-  var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
-  ts.src = "https://top-fwz1.mail.ru/js/code.js";
-  var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-  if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
-})(document, window, "tmr-code");
-</script>
-<noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3727875;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
-<!-- /Top.Mail.Ru counter -->
-<noscript><div><img src="https://mc.yandex.ru/watch/11787892" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 <? $APPLICATION->ShowPanel(); ?>
 <? if ($isHome) { ?>
  <?php include __DIR__ . "/includes/header-index.php"; ?>

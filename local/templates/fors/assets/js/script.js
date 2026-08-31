@@ -81,9 +81,9 @@ $(document).ready(function(){
                                         email:{
                                                 email:true
                                         },
-                                        policy:{
-                                                required:true
-                                        }
+					personal_data_consent:{
+						required:true
+					}
                                 },
                         submitHandler: function( form ){
 				if( $( form ).valid() ){
@@ -93,6 +93,7 @@ $(document).ready(function(){
 					$.each(form_data, function (key, input) {
 						dataf.append(input.name, input.value);
 					});
+					dataf.append("url", window.location.href);
 					if($(form).find(".file_upload").length>0){
 						$(form).find(".file_upload").each(function(){
 							var file_data = $(this)[0].files;

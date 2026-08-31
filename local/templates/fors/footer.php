@@ -117,6 +117,8 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
     </div>
   </div>
 </footer>
+<button class="cookie-preferences-link" type="button" data-cookie-preferences-open>Настройки cookie</button>
+<?include __DIR__ . '/includes/cookie-consent.php';?>
 <div class="page-section" style="display:none" id="consult_form">
   <div class="consult-form">
     <p class="consult-form__title" id="consult-popup-title">Получи консультацию прямо сейчас!</p>
@@ -160,24 +162,14 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
         </div>
       </div>
 
-      <label class="consult-form__notice">
-        <input class="consult-form__checkbox" type="checkbox" name="policy" value="Y" required />
-        <span>Соглашаюсь с <a href="/policy/" target="_blank" rel="noopener">политикой обработки персональных данных</a></span>
-      </label>
+      <?
+      $formConsentPrefix = 'consult-popup';
+      include __DIR__ . '/includes/form-consents.php';
+      ?>
 
       <button class="btn btn--secondary btn--large" type="submit">Оставить заявку</button>
     </form>
   </div>
 </div>
-<?
-$utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-
-foreach ($utmParams as $param) {
-    if (isset($_GET[$param]) && !empty($_GET[$param])) {
-        setcookie($param, $_GET[$param], time() + (1 * 24 * 60 * 60), '/');
-        $_COOKIE[$param] = $_GET[$param];
-    }
-}
-?>
 </body>
 </html>

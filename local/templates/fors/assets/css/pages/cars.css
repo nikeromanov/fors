@@ -226,6 +226,20 @@
   color: var(--color-text);
 }
 
+.cars-gallery__contact-form .form-consents {
+  gap: 0.5rem;
+}
+
+.cars-gallery__contact-form .form-consents__item {
+  color: rgba(26, 26, 26, 0.78);
+  font-size: 0.7rem;
+  line-height: 1.35;
+}
+
+.cars-gallery__contact-form .form-consents__item a {
+  color: #1a1a1a;
+}
+
 .cars-gallery__contact-form .btn {
   width: 100%;
   background: #ff4444;
@@ -307,5 +321,10 @@
 .theme-dark .cars-gallery__spec-item dd,
 .theme-dark .cars-gallery__form-label,
 .theme-dark .cars-gallery__privacy {
+  color: #1a1a1a;
+}
+
+.theme-dark .cars-gallery__contact-form .form-consents__item,
+.theme-dark .cars-gallery__contact-form .form-consents__item a {
   color: #1a1a1a;
 }

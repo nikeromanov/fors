@@ -42,10 +42,10 @@
       </div>
 
 
-      <label class="consult-form__notice">
-        <input class="consult-form__checkbox" type="checkbox" name="policy" value="Y" required />
-        <span>Соглашаюсь с <a href="/policy/" target="_blank" rel="noopener">политикой обработки персональных данных</a></span>
-      </label>
+      <?
+      $formConsentPrefix = 'consult-page';
+      include __DIR__ . '/form-consents.php';
+      ?>
 
       <button class="btn btn--secondary btn--large" type="submit">Оставить заявку</button>
     </form>

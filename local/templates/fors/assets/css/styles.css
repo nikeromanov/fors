@@ -45,6 +45,7 @@
 @import "components/slider-pagination.css";
 @import "components/gallery-slider.css";
 @import "components/also.css";
+@import "components/privacy-consent.css";
 
 /* Страницы */
 @import "pages/index.css";

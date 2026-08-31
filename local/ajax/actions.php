@@ -33,6 +33,15 @@ if($normalizedAction !== "addform" || empty($_REQUEST["phone"])){
 	exit;
 }
 
+$personalDataConsent = isset($_REQUEST["personal_data_consent"]) && $_REQUEST["personal_data_consent"] === "Y";
+if (!$personalDataConsent) {
+        echo json_encode(["result"=>"error","message"=>"Для отправки заявки необходимо согласие на обработку персональных данных"]);
+        exit;
+}
+
+$consentPage = trim((string)($_REQUEST["url"] ?? ($_SERVER["HTTP_REFERER"] ?? "")));
+$consentPage = mb_substr($consentPage, 0, 255);
+
 if($normalizedAction === "addform"){
 	CModule::IncludeModule('iblock'); 
 
@@ -41,13 +50,15 @@ if($normalizedAction === "addform"){
 	$PROP=array();
         $PROP["PHONE"] = $_REQUEST["phone"];
         $PROP["NAME"] = $_REQUEST["name"];
-        $PROP["URL"] = $_REQUEST["url"];
-
-        $policyAccepted = !empty($_REQUEST["policy"]);
-
-        if($policyAccepted){
-                $PROP["POLICY"] = "Y";
-        }
+        $PROP["URL"] = $consentPage;
+        $policyAccepted = true;
+        $advertisingConsent = isset($_REQUEST["advertising_consent"]) && $_REQUEST["advertising_consent"] === "Y";
+        $PROP["POLICY"] = "Y";
+        $PROP["PERSONAL_DATA_CONSENT"] = "Y";
+        $PROP["ADVERTISING_CONSENT"] = $advertisingConsent ? "Y" : "N";
+        $PROP["CONSENT_DATE"] = date("c");
+        $PROP["CONSENT_PAGE"] = $consentPage;
+        $PROP["CONSENT_VERSION"] = "2026-08-26";
         if($_REQUEST["service"]){
                 $nameForm = $_REQUEST["service"];
         }
