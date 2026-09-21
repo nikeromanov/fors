@@ -102,7 +102,8 @@
 
 .header__actions-social:hover,
 .header__actions-social:focus-visible {
-  color: var(--color-accent, #f2d502);
+  /* На главной шапка лежит на жёлтом фоне: акцентный цвет теряет контраст. */
+  color: var(--color-text, #1a1a1a);
 }
 
 .header__actions-social:focus-visible {
@@ -114,6 +115,146 @@
 .header__actions-social-icon {
   inline-size: 22px;
   block-size: 22px;
+}
+
+/* Social channel picker */
+.header__social-popover {
+  position: relative;
+  z-index: 5;
+}
+
+.header__social-popover .header__actions-social {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.header__social-popover .header__actions-social[aria-expanded="true"] {
+  color: var(--color-text, #1a1a1a);
+}
+
+.header__social-panel {
+  position: absolute;
+  top: calc(100% + 1rem);
+  right: -0.75rem;
+  width: min(18rem, calc(100vw - 2rem));
+  padding: 1.15rem;
+  color: var(--color-text, #161616);
+  background: var(--color-bg, #fff);
+  border: 1px solid color-mix(in srgb, var(--yellow, #f2d502) 55%, transparent);
+  border-radius: 1.15rem;
+  box-shadow: 0 1.25rem 2.75rem rgba(18, 26, 42, 0.2), 0 0.25rem 0.75rem rgba(18, 26, 42, 0.08);
+  transform-origin: top right;
+  animation: social-popover-in 180ms ease-out both;
+}
+
+.header__social-panel::before {
+  position: absolute;
+  top: -0.4rem;
+  right: 1.15rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  content: "";
+  background: inherit;
+  border-top: 1px solid color-mix(in srgb, var(--yellow, #f2d502) 55%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--yellow, #f2d502) 55%, transparent);
+  transform: rotate(45deg);
+}
+
+.theme-dark .header__social-panel {
+  color: var(--color-text, #f7f7f7);
+  background: var(--color-bg, #171c25);
+  box-shadow: 0 1.25rem 2.75rem rgba(0, 0, 0, 0.38), 0 0.25rem 0.75rem rgba(0, 0, 0, 0.22);
+}
+
+.header__social-kicker {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--color-text-muted, #737984);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.header__social-title {
+  display: block;
+  margin-bottom: 0.9rem;
+  font-size: 0.98rem;
+  line-height: 1.25;
+}
+
+.header__social-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.header__social-link {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 0.5rem;
+  padding: 0.65rem 0.55rem;
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none;
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  border-radius: 0.7rem;
+  transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.header__social-link .ui-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 1.1rem;
+}
+
+.header__social-link:hover,
+.header__social-link:focus-visible {
+  color: var(--social-color, var(--color-accent, #f2d502));
+  background: color-mix(in srgb, var(--social-color, #f2d502) 10%, transparent);
+  border-color: color-mix(in srgb, var(--social-color, #f2d502) 48%, transparent);
+  transform: translateY(-2px);
+}
+
+.header__social-link:focus-visible,
+.header__social-popover .header__actions-social:focus-visible {
+  outline: 2px solid var(--color-accent, #f2d502);
+  outline-offset: 3px;
+}
+
+.header__social-link--whatsapp { --social-color: #1fae58; }
+.header__social-link--telegram { --social-color: #229ed9; }
+.header__social-link--vk { --social-color: #447bba; }
+.header__social-link--tiktok { --social-color: #e64868; }
+.header__social-link--max { --social-color: #704fe5; }
+
+@keyframes social-popover-in {
+  from { opacity: 0; transform: translateY(-0.35rem) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 40rem) {
+  .header__social-panel {
+    right: -2.75rem;
+  }
+
+  .header__social-panel::before {
+    right: 3.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header__social-panel,
+  .header__social-link {
+    animation: none;
+    transition: none;
+  }
 }
 
 /* Переключатель темы как пилюля */

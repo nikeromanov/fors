@@ -52,6 +52,7 @@
     }
 
     initSiteMenu();
+    initSocialPopover();
     initPriceTabs();
     initDistrictTabs();
     initScheduleTabs();
@@ -259,6 +260,52 @@
         return rect.width > 0 && rect.height > 0;
       });
     }
+  }
+
+  function initSocialPopover() {
+    const popovers = document.querySelectorAll('[data-social-popover]');
+    if (!popovers.length) return;
+
+    popovers.forEach((popover) => {
+      const trigger = popover.querySelector('[data-social-trigger]');
+      const panel = popover.querySelector('[data-social-panel]');
+      if (!trigger || !panel) return;
+
+      let previousFocus = null;
+
+      function setOpen(isOpen, { restoreFocus = true } = {}) {
+        trigger.setAttribute('aria-expanded', String(isOpen));
+        if (isOpen) {
+          previousFocus = document.activeElement;
+          panel.hidden = false;
+          const firstLink = panel.querySelector('a[href]');
+          if (firstLink) firstLink.focus({ preventScroll: true });
+        } else {
+          panel.hidden = true;
+          if (restoreFocus && previousFocus instanceof HTMLElement) {
+            previousFocus.focus({ preventScroll: true });
+          }
+          previousFocus = null;
+        }
+      }
+
+      trigger.addEventListener('click', () => {
+        setOpen(trigger.getAttribute('aria-expanded') !== 'true');
+      });
+
+      document.addEventListener('click', (event) => {
+        if (trigger.getAttribute('aria-expanded') === 'true' && !popover.contains(event.target)) {
+          setOpen(false, { restoreFocus: false });
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
+          event.preventDefault();
+          setOpen(false);
+        }
+      });
+    });
   }
 
   function initPriceTabs() {
