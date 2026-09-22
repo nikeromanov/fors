@@ -63,19 +63,16 @@ if (defined("ERROR_404")) {
         <?=$settings["PHONE"]["VALUE"];?>
       </a>
 	  <?}?>
-      <?if((!empty($settings["WHATSAPP"]["VALUE"]) && $settings["WHATSAPP"]["VALUE"] !== "#") || !empty($settings["TELEGRAM"]["VALUE"]) || !empty($settings["VK"]["VALUE"]) || !empty($settings["MAX"]["VALUE"])){?>
+      <?if(!empty($settings["TELEGRAM"]["VALUE"]) || !empty($settings["VK"]["VALUE"]) || !empty($settings["MAX"]["VALUE"])){?>
       <div class="header__social-popover" data-social-popover>
         <button class="header__actions-social" type="button" aria-expanded="false" aria-controls="header-social-links" aria-label="Открыть мессенджеры и социальные сети" data-social-trigger>
           <span class="ui-icon ui-icon_small header__actions-social-icon" aria-hidden="true" data-icon="whatsapp"></span>
         </button>
         <div class="header__social-panel" id="header-social-links" role="dialog" aria-label="Мессенджеры и социальные сети" hidden data-social-panel>
-          <span class="header__social-kicker">Мы на связи</span>
-          <strong class="header__social-title">Выберите удобный канал</strong>
           <div class="header__social-links">
-            <?if(!empty($settings["WHATSAPP"]["VALUE"]) && $settings["WHATSAPP"]["VALUE"] !== "#"){?><a class="header__social-link header__social-link--whatsapp" href="<?=$settings["WHATSAPP"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Написать в WhatsApp"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="whatsapp"></span><span>WhatsApp</span></a><?}?>
-            <?if(!empty($settings["TELEGRAM"]["VALUE"])){?><a class="header__social-link header__social-link--telegram" href="<?=$settings["TELEGRAM"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть Telegram"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="telegram"></span><span>Telegram</span></a><?}?>
-            <?if(!empty($settings["VK"]["VALUE"])){?><a class="header__social-link header__social-link--vk" href="<?=$settings["VK"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть ВКонтакте"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="vk"></span><span>ВКонтакте</span></a><?}?>
-            <?if(!empty($settings["MAX"]["VALUE"])){?><a class="header__social-link header__social-link--max" href="<?=$settings["MAX"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть MAX"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="max"></span><span>MAX</span></a><?}?>
+            <?if(!empty($settings["TELEGRAM"]["VALUE"])){?><a class="header__social-link header__social-link--telegram" href="<?=$settings["TELEGRAM"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть Telegram" title="Telegram"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="telegram"></span></a><?}?>
+            <?if(!empty($settings["VK"]["VALUE"])){?><a class="header__social-link header__social-link--vk" href="<?=$settings["VK"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть ВКонтакте" title="ВКонтакте"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="vk"></span></a><?}?>
+            <?if(!empty($settings["MAX"]["VALUE"])){?><a class="header__social-link header__social-link--max" href="<?=$settings["MAX"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть MAX" title="MAX"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="max"></span></a><?}?>
           </div>
         </div>
       </div>
