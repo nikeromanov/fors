@@ -70,9 +70,9 @@ if (defined("ERROR_404")) {
         </button>
         <div class="header__social-panel" id="header-social-links" role="dialog" aria-label="Мессенджеры и социальные сети" hidden data-social-panel>
           <div class="header__social-links">
-            <?if(!empty($settings["TELEGRAM"]["VALUE"])){?><a class="header__social-link header__social-link--telegram" href="<?=$settings["TELEGRAM"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть Telegram" title="Telegram"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="telegram"></span></a><?}?>
-            <?if(!empty($settings["VK"]["VALUE"])){?><a class="header__social-link header__social-link--vk" href="<?=$settings["VK"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть ВКонтакте" title="ВКонтакте"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="vk"></span></a><?}?>
-            <?if(!empty($settings["MAX"]["VALUE"])){?><a class="header__social-link header__social-link--max" href="<?=$settings["MAX"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть MAX" title="MAX"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="max"></span></a><?}?>
+            <?if(!empty($settings["TELEGRAM"]["VALUE"])){?><a class="header__social-link header__social-link--telegram" href="<?=$settings["TELEGRAM"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть Telegram"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="telegram"></span></a><?}?>
+            <?if(!empty($settings["VK"]["VALUE"])){?><a class="header__social-link header__social-link--vk" href="<?=$settings["VK"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть ВКонтакте"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="vk"></span></a><?}?>
+            <?if(!empty($settings["MAX"]["VALUE"])){?><a class="header__social-link header__social-link--max" href="<?=$settings["MAX"]["VALUE"];?>" target="_blank" rel="noopener" aria-label="Открыть MAX"><span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="max"></span></a><?}?>
           </div>
         </div>
       </div>
