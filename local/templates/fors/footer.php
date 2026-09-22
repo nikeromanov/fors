@@ -171,5 +171,6 @@ if (defined("TEMPLATE_PAGE") && TEMPLATE_PAGE != "") {
     </form>
   </div>
 </div>
+<script async src="https://leads.sellergpt.ru/embed.js" data-site="ste_c3def60146ab9eed"></script>
 </body>
 </html>
