@@ -115,6 +115,7 @@ $pageLang = (defined('LANGUAGE_ID') && LANGUAGE_ID) ? LANGUAGE_ID : 'ru';
 		$objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/app.js');
 		
         $objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/script.js');
+        $objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/specoffer-metrica.js');
 		if($dir == "/" && !empty($settings["AKC_DATE"]["VALUE"]) && strtotime($settings["AKC_DATE"]["VALUE"]) > time()){
 			$objAsset->addJs(SITE_TEMPLATE_PATH . '/assets/js/home-hero-timer.js');
 		}
