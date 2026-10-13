@@ -4,6 +4,13 @@ define("CATALOG_IBLOCK_ID","2");
 
 include_once __DIR__ . '/vendor/autoload.php';
 
+require_once __DIR__ . '/lib/SitemapPolicy.php';
+\Bitrix\Main\EventManager::getInstance()->addEventHandlerCompatible(
+    'search',
+    'BeforeIndex',
+    ['\Fors\SitemapPolicy', 'beforeIndex']
+);
+
 AddEventHandler('main', 'OnPageStart', 'forsHandleInvalidUrl');
 
 function forsHasBitrixSystemQueryParams($request): bool

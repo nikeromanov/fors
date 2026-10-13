@@ -1,3 +1,4 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/legacy_layout_redirect.php'; ?>
 <?php
 $pageTitle = "Автошкола Форсаж — О нас";
 $pageDescription = "Автошкола Форсаж в Воронеже — 20 лет опыта, 17 филиалов, современный автопарк Volkswagen Polo, собственный автодром. Более 35 000 выпускников.";

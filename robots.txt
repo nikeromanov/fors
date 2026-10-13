@@ -3,16 +3,7 @@ Disallow: */index.php
 Disallow: */test_element
 Disallow: /bitrix/
 Disallow: /calendar_old/
-Disallow: /verstka/gallery.php
-Disallow: /verstka/specsignal.php
 Disallow: /test/
-Disallow: /verstka/discount.php
-Disallow: /verstka/faq.php
-Disallow: /verstka/instructors.php
-Disallow: /verstka/instructors_element.php
-Disallow: /verstka/online.php
-Disallow: /verstka/articles.php
-Disallow: /verstka/category.php
 Disallow: /info/
 Disallow: /*show_include_exec_time=
 Disallow: /*show_page_exec_time=

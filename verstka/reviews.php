@@ -1,3 +1,4 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/legacy_layout_redirect.php'; ?>
 <?php
 $pageTitle = "Отзывы — Автошкола Форсаж";
 $pageDescription = "Отзывы учеников автошколы Форсаж в Воронеже. Реальные истории выпускников о процессе обучения и сдаче экзаменов.";

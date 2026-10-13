@@ -1,3 +1,4 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/legacy_layout_redirect.php'; ?>
 ﻿<!DOCTYPE html>
 <html lang="ru">
   <head>

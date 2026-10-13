@@ -1,3 +1,4 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/legacy_layout_redirect.php'; ?>
 <?php
 $pageTitle = "Цены на обучение в автошколе Форсаж";
 $pageDescription = "Цены на курсы вождения в автошколе Форсаж Воронеж. Категории A, B, C, D, E, M. Рассрочка, скидки, акции.";
