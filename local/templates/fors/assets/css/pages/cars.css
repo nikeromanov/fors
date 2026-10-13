@@ -340,3 +340,23 @@
 .theme-dark .cars-gallery__contact-form .form-consents__item a {
   color: #1a1a1a;
 }
+
+/* Expanded forms must grow with consent text and validation messages. */
+@media (min-width: 641px) {
+  .cars-gallery__card:has(.cars-gallery__form[data-expanded="true"]) .cars-gallery__image-wrapper {
+    display: none;
+  }
+
+  .cars-gallery__form[data-expanded="true"] {
+    position: relative;
+    inset: auto;
+    transform: none;
+  }
+}
+
+.cars-gallery__contact-form .btn {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+}
