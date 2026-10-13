@@ -78,7 +78,7 @@
             </div>
 
             <div class="driving-section" role="region" aria-labelledby="specsignal-benefits-title">
-              <h3 id="specsignal-benefits-title">Преимущества сотрудничества с нами</h3>
+              <h2 id="specsignal-benefits-title">Преимущества сотрудничества с нами</h2>
 
               <ul class="driving-content__list">
                 <li class="driving-content__list-item">

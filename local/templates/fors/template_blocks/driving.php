@@ -3,6 +3,23 @@ use Bitrix\Main\Localization\Loc;
 global $settings;
 global $APPLICATION;
 $settingsPageCur = getSettings(26);
+$drivingDetailHtml = (string)($settingsPageCur["DETAIL_TEXT"] ?? '');
+if ($drivingDetailHtml !== '') {
+	$drivingDetailHtml = preg_replace_callback(
+		'/aria-labelledby="([^"]*)"/i',
+		static function ($matches) {
+			$tokens = preg_split('/\s+/', trim((string)$matches[1])) ?: [];
+			$tokens = array_values(array_filter($tokens, static function ($token) {
+				return $token !== '' && $token !== 'driving-section';
+			}));
+			if (empty($tokens)) {
+				return '';
+			}
+			return 'aria-labelledby="' . htmlspecialcharsbx(implode(' ', $tokens)) . '"';
+		},
+		$drivingDetailHtml
+	);
+}
 ?>
 
 <section class="page-section driving container" aria-labelledby="driving-title">
@@ -49,13 +66,13 @@ $settingsPageCur = getSettings(26);
 </aside>
 
 <div class="driving-content">
-	<?=$settingsPageCur["DETAIL_TEXT"];?>
- 
+		<?=$drivingDetailHtml;?>
+
 </div>
 </div>
 <?$APPLICATION->IncludeComponent(
-	"bitrix:news.list", 
-	"courses", 
+	"bitrix:news.list",
+	"courses",
 	[
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -125,8 +142,8 @@ $settingsPageCur = getSettings(26);
 );?>
 <? include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH."/includes/form.php";?>
 <?$APPLICATION->IncludeComponent(
-	"bitrix:catalog.section.list", 
-	"main_prices", 
+	"bitrix:catalog.section.list",
+	"main_prices",
 	[
 		"ADDITIONAL_COUNT_ELEMENTS_FILTER" => "additionalCountFilter",
 		"ADD_SECTIONS_CHAIN" => "N",

@@ -65,7 +65,7 @@
             </div>
 
             <div class="driving-section" role="region" aria-labelledby="skills-benefits-title">
-              <h3 id="skills-benefits-title">МКПП и АКПП</h3>
+              <h2 id="skills-benefits-title">МКПП и АКПП</h2>
 
               <p class="driving-content__text">
                 В автопарке школы «Форсаж» представлены модели на механике и автомате, что позволяет найти подходящий

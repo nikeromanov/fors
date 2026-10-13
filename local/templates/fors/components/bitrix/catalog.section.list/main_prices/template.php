@@ -44,6 +44,11 @@ $strSectionEdit = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_EDIT");
 $strSectionDelete = CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "SECTION_DELETE");
 $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_CONFIRM'));
 $settingsPage = getSettings(3);
+global $settings;
+$categoriesButtonText = trim((string)($settings["BLOCK3_BTN_TEXT"]["VALUE"] ?? ""));
+if($categoriesButtonText === ''){
+	$categoriesButtonText = 'Записаться на курс';
+}
 $titleTag = (string)($arParams['HEADING_TAG'] ?? 'h2');
 if ($titleTag !== 'h1' && $titleTag !== 'h2') {
 	$titleTag = 'h2';
@@ -176,20 +181,16 @@ function normalizeGoalLetter($value){
 
 			  <dl class="price-card__info">
 				<?if($arSection["UF_SROK"]){?>
-					<div class="price-card__length">
 					  <dt class="price-card__info-title">Срок обучения:</dt>
 					  <dd class="price-card__info-value"><?=$arSection["UF_SROK"];?></dd>
-					</div>
 				<?}?>
 				<?if($arSection["UF_FORMAT"]){?>
-					<div class="price-card__format">
 					  <dt class="price-card__info-title">Формат:</dt>
 					  <dd class="price-card__info-value"><?=$arSection["UF_FORMAT"];?></dd>
-					</div>
 				<?}?>
 			  </dl>
 			  <span class="price-card__price"><?if(!empty($arResult["PRICES"][$arSection["ID"]])){?>от <?=CurrencyFormat($arResult["PRICES"][$arSection["ID"]],"RUB");?><?}?></span>
-			  <a href="#consult_form" data-fancybox class="btn btn--secondary btn--large" data-service="<?=$arSection["UF_NAME"];?>"<?if($sectionGoal){?> data-goal="<?=$sectionGoal;?>"<?}?>>Записаться на курс</a>
+			  <a href="#consult_form" data-fancybox class="btn btn--secondary btn--large" data-service="<?=$arSection["UF_NAME"];?>"<?if($sectionGoal){?> data-goal="<?=$sectionGoal;?>"<?}?>><?=$categoriesButtonText;?></a>
 			</div>
 		  </div>
 				<?

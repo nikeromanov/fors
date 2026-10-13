@@ -1,4 +1,4 @@
-<section class="page-section container" aria-labelledby="consult-title">
+<div class="page-section container">
   <div class="consult-form">
     <h2 class="consult-form__title" id="consult-title">Получи консультацию прямо сейчас!</h2>
     <p class="consult-form__subtitle">В течение 10 минут с вами свяжется наш специалист.</p>
@@ -16,11 +16,11 @@
       <div class="consult-form__fields">
 		
         <div class="consult-form__field">
-          <label class="consult-form__label u-visually-hidden" for="consult-name">Ваше имя</label>
+          <label class="consult-form__label u-visually-hidden" for="consult-name-main">Ваше имя</label>
           <input
             class="consult-form__input"
             type="text"
-            id="consult-name"
+            id="consult-name-main"
             name="name"
             placeholder="Ваше имя"
             autocomplete="name"
@@ -28,11 +28,11 @@
           />
         </div>
         <div class="consult-form__field">
-          <label class="consult-form__label u-visually-hidden" for="consult-phone">Ваш номер телефона</label>
+          <label class="consult-form__label u-visually-hidden" for="consult-phone-main">Ваш номер телефона</label>
           <input
             class="consult-form__input"
             type="tel"
-            id="consult-phone"
+            id="consult-phone-main"
             name="phone"
             placeholder="Ваш номер телефона"
             autocomplete="tel"
@@ -50,4 +50,4 @@
       <button class="btn btn--secondary btn--large" type="submit">Оставить заявку</button>
     </form>
   </div>
-</section>
+</div>

@@ -29,7 +29,7 @@ foreach($arResult as $arItem):
 		<?if ($arItem["PERMISSION"] > "D"):?>
 				 <li class="footer-nav__item">
 					 <a class="footer-nav__link" href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a>
-					
+
 				</li>
 		<?endif?>
 

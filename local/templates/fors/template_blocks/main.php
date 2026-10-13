@@ -4,6 +4,10 @@ use Bitrix\Main\Page\Asset;
 global $settings;
 $settingsPage = getSettings(3);
 $properties = $settingsPage["PROPERTIES"];
+$heroButtonText = trim((string)($settings["HERO_CTA_TEXT"]["VALUE"] ?? ""));
+if($heroButtonText === ""){
+	$heroButtonText = "Получи скидку 5000 руб.";
+}
 $promotionEndTimestamp = !empty($settings["AKC_DATE"]["VALUE"])
 	? strtotime($settings["AKC_DATE"]["VALUE"])
 	: false;
@@ -28,25 +32,25 @@ if($hasActivePromotion){
 				<div class="home-hero__timer-item">
 				  <dt class="home-hero__timer-label">Дней</dt>
 				  <dd class="home-hero__timer-value">
-					<time datetime="P5D">00</time>
+					<span class="home-hero__timer-number">00</span>
 				  </dd>
 				</div>
 				<div class="home-hero__timer-item">
 				  <dt class="home-hero__timer-label">Часов</dt>
 				  <dd class="home-hero__timer-value">
-					<time datetime="PT48H">00</time>
+					<span class="home-hero__timer-number">00</span>
 				  </dd>
 				</div>
 				<div class="home-hero__timer-item">
 				  <dt class="home-hero__timer-label">Минут</dt>
 				  <dd class="home-hero__timer-value">
-					<time datetime="PT0M">00</time>
+					<span class="home-hero__timer-number">00</span>
 				  </dd>
 				</div>
 				<div class="home-hero__timer-item">
 				  <dt class="home-hero__timer-label">Секунд</dt>
 				  <dd class="home-hero__timer-value">
-					<time datetime="PT0S">00</time>
+					<span class="home-hero__timer-number">00</span>
 				  </dd>
 				</div>
                           </dl>
@@ -59,7 +63,7 @@ if($hasActivePromotion){
                               <?=$settings["PHONE"]["VALUE"];?>
                             </a>
                           <?}?>
-			  <a class="btn btn--primary btn--large btn--block" data-fancybox data-service="Получи скидку 5000 руб." href="#consult_form">Получи скидку 5000 руб.</a>
+			  <a class="btn btn--primary btn--large btn--block" data-fancybox data-service="<?=$heroButtonText;?>" href="#consult_form"><?=$heroButtonText;?></a>
 			 <?if(!empty($settings["AKC_LEFT"]["VALUE"])){?> <div class="home-hero__badge">
 				<span class="home-hero__badge-label">осталось</span>
 				<span class="home-hero__badge-value"><?=$settings["AKC_LEFT"]["VALUE"];?></span>
@@ -134,7 +138,7 @@ if($hasActivePromotion){
 		
 		<?if(!empty($settings["VK"]["VALUE"])||!empty($settings["MAX"]["VALUE"])||!empty($settings["WHATSAPP"]["VALUE"])||!empty($settings["TELEGRAM"]["VALUE"])){?>
 		<div class="social-banner">
-		  <?if(!empty($properties["SOC_TITLE"]["VALUE"])){?><h5 class="social-banner__title"><?=$properties["SOC_TITLE"]["VALUE"];?></h5><?}?>
+		  <?if(!empty($properties["SOC_TITLE"]["VALUE"])){?><h3 class="social-banner__title"><?=$properties["SOC_TITLE"]["VALUE"];?></h3><?}?>
 		  <div class="social-banner__buttons">
 			<?if(!empty($settings["TELEGRAM"]["VALUE"])){?><a href="<?=$settings["TELEGRAM"]["VALUE"];?>" target="_blank" class="social-btn social-btn--telegram">
 			  <span class="social-btn__icon" aria-hidden="true"></span>

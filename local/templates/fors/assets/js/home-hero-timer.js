@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const offerBlock = timer.closest('.home-hero__offer') || timer;
 
-    const times = timer.querySelectorAll('time');
-    const tDays = times[0];
-    const tHours = times[1];
-    const tMins = times[2];
-    const tSecs = times[3];
+    const parts = timer.querySelectorAll('.home-hero__timer-number');
+    const tDays = parts[0];
+    const tHours = parts[1];
+    const tMins = parts[2];
+    const tSecs = parts[3];
 
     const startBrowserNowMs = Date.now();
     const startServerNowMs = serverNow.getTime();
@@ -45,10 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const mins = Math.floor((totalSec % 3600) / 60);
       const secs = totalSec % 60;
 
-      if (tDays) { tDays.textContent = String(days); tDays.setAttribute('datetime', `P${days}D`); }
-      if (tHours) { tHours.textContent = String(hours); tHours.setAttribute('datetime', `PT${hours}H`); }
-      if (tMins) { tMins.textContent = pad2(mins); tMins.setAttribute('datetime', `PT${mins}M`); }
-      if (tSecs) { tSecs.textContent = pad2(secs); tSecs.setAttribute('datetime', `PT${secs}S`); }
+      if (tDays) { tDays.textContent = String(days); }
+      if (tHours) { tHours.textContent = String(hours); }
+      if (tMins) { tMins.textContent = pad2(mins); }
+      if (tSecs) { tSecs.textContent = pad2(secs); }
     };
 
     const intervalId = setInterval(tick, 1000);

@@ -37,15 +37,13 @@ $this->setFrameMode(true);
 		/><?}?>
 	  </figure>
 	  <div class="cars-gallery__form" data-car-form>
-		<h3 class="cars-gallery__car-name">
-		  <button class="cars-gallery__form-toggle" data-car-toggle aria-expanded="false" type="button">
-			<span class="cars-gallery__car-name"><?=$item["NAME"];?></span>
-			<span class="ui-icon cars-gallery__toggle-icon" data-icon="up-arrow" aria-hidden="true"></span>
-		  </button>
-		</h3>
+		<button class="cars-gallery__form-toggle" data-car-toggle aria-expanded="false" type="button">
+		  <span class="cars-gallery__car-name" role="heading" aria-level="3"><?=$item["NAME"];?></span>
+		  <span class="ui-icon cars-gallery__toggle-icon" data-icon="up-arrow" aria-hidden="true"></span>
+		</button>
 		<div class="cars-gallery__form-content">
 		  <dl class="cars-gallery__specs">
-			<?if($item["PROPERTIES"]["OBJEM"]["VALUE"]){?><div class="cars-gallery__spec-item">
+			<?if($item["PROPERTIES"]["OBJEM"]["VALUE"]){?><div class="cars-gallery__spec-item cars-gallery__spec-item--stack">
 			  <dt>Объем двигателя:</dt>
 			  <dd><?=$item["PROPERTIES"]["OBJEM"]["VALUE"];?></dd>
 			</div><?}?>
@@ -53,7 +51,7 @@ $this->setFrameMode(true);
 			  <dt>Коробка передач:</dt>
 			  <dd><?=$item["PROPERTIES"]["KOROBKA"]["VALUE"];?></dd>
 			</div><?}?>
-			<?if($item["PROPERTIES"]["YEAR"]["VALUE"]){?><div class="cars-gallery__spec-item">
+			<?if($item["PROPERTIES"]["YEAR"]["VALUE"]){?><div class="cars-gallery__spec-item cars-gallery__spec-item--stack">
 			  <dt>Год выпуска:</dt>
 			  <dd><?=$item["PROPERTIES"]["YEAR"]["VALUE"];?></dd>
 			</div><?}?>

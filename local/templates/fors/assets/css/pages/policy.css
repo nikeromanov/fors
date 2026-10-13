@@ -60,6 +60,15 @@
   border-bottom: none;
 }
 
+.policy__document .policy__document-section {
+  padding: clamp(0.25rem, 0.15rem + 0.4vw, 0.75rem) 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.policy__document .policy__document-section:last-of-type {
+  border-bottom: none;
+}
+
 .policy__document ul {
   margin: clamp(0.5rem, 0.4rem + 0.4vw, 0.9rem) 0;
   padding: 0;
@@ -198,6 +207,7 @@
 
 .theme-dark .policy__document header,
 .theme-dark .policy__document section,
+.theme-dark .policy__document .policy__document-section,
 .theme-dark .policy__document footer {
   border-color: rgba(255, 255, 255, 0.06);
 }
@@ -303,5 +313,20 @@
   width: 100%;
   height: 100%;
   display: block;
+  object-fit: contain;
+}
+
+/* Upscale small document scans in modal viewer on policy/certificates pages */
+body.page_policy .fancybox__carousel .fancybox__slide.has-image .fancybox__content,
+body.page_certificates .fancybox__carousel .fancybox__slide.has-image .fancybox__content {
+  width: clamp(360px, 72vw, 980px);
+  max-width: 92vw;
+  height: auto;
+}
+
+body.page_policy .fancybox__carousel .fancybox__slide.has-image .fancybox__image,
+body.page_certificates .fancybox__carousel .fancybox__slide.has-image .fancybox__image {
+  width: 100%;
+  height: auto;
   object-fit: contain;
 }

@@ -48,40 +48,32 @@ if ($instructorTitle === '' && is_object($APPLICATION) && method_exists($APPLICA
 	  <h2 class="instructor-detail__specs-title">Информация</h2>
 	  <dl class="instructor-detail__specs-list">
 		<?if(!empty($arResult["PROPERTIES"]["STAZH_V"]["VALUE"])){?>
-			<div class="instructor-detail__spec">
 			  <dt class="instructor-detail__spec-label">Стаж вождения:</dt>
 			  <dd class="instructor-detail__spec-value"><?=$arResult["PROPERTIES"]["STAZH_V"]["VALUE"];?></dd>
-			</div>
 		<?}?>
 		<?if(!empty($arResult["PROPERTIES"]["STAZH_P"]["VALUE"])){?>
-		<div class="instructor-detail__spec">
 		  <dt class="instructor-detail__spec-label">Стаж преподавания:</dt>
 		  <dd class="instructor-detail__spec-value"><?=$arResult["PROPERTIES"]["STAZH_P"]["VALUE"];?></dd>
-		</div><?}?>
+		<?}?>
 		<?if(!empty($arResult["PROPERTIES"]["CATEGORY"]["VALUE"])){?>
-		<div class="instructor-detail__spec">
 		  <dt class="instructor-detail__spec-label">Категории обучения:</dt>
 		  <dd class="instructor-detail__spec-value"><?=$arResult["PROPERTIES"]["CATEGORY"]["VALUE"];?></dd>
-		</div><?}?>
+		<?}?>
 		<?if(!empty($arResult["PROPERTIES"]["AUTO"]["VALUE"])){?>
-		<div class="instructor-detail__spec">
 		  <dt class="instructor-detail__spec-label">Автомобиль:</dt>
 		  <dd class="instructor-detail__spec-value"><?=$arResult["PROPERTIES"]["AUTO"]["VALUE"];?></dd>
-		</div><?}?>
+		<?}?>
 		<?if(!empty($arResult["PROPERTIES"]["NUMBER"]["VALUE"])){?>
-		<div class="instructor-detail__spec">
 		  <dt class="instructor-detail__spec-label">Средняя оценка:</dt>
 		  <dd class="instructor-detail__spec-value"><?=$arResult["PROPERTIES"]["NUMBER"]["VALUE"];?></dd>
-		</div><?}?>
+		<?}?>
 		<?if(!empty($arResult["PROPERTIES"]["BRANCHES"]["VALUE"])){?>
-		<div class="instructor-detail__spec">
 		  <dt class="instructor-detail__spec-label">Филиалы:</dt>
-		  <dd class="instructor-detail__spec-value"><?=$arResult["PROPERTIES"]["NUMBER"]["VALUE"];?></dd>
-		</div><?}?>
+		  <dd class="instructor-detail__spec-value"><?=$arResult["PROPERTIES"]["BRANCHES"]["VALUE"];?></dd>
+		<?}?>
 	  </dl>
 	</div>
   </div>
 </div>
 </section>
-
 

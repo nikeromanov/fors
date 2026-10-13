@@ -355,12 +355,12 @@ $this->setFrameMode(true);
 	
 
 <?if(!empty($section["UF_TEXT"])){?>
-	<div class=" container">
-	  <div class="detail_content category__content">
-		<?=$section["~UF_TEXT"];?>
-	  </div>
-	</div>
-<?}?>
+		<div class=" container">
+		  <div class="detail_content category__content">
+			<?=$section["~UF_TEXT"];?>
+		  </div>
+		</div>
+	<?}?>
 
 	      <?if(!empty($arResult["ITEMS"])){?>
 	      <section class="page-section page-section__flex category__table container" aria-labelledby="category-table-title">
@@ -399,7 +399,7 @@ $this->setFrameMode(true);
 
         <div class="category__table-mobile">
                         <?foreach($arResult["ITEMS"] as $item){?>
-          <div class="category-card">
+          <article class="category-card">
             <div class="category-card__header">
               <div class="category-card__course">
                 <div class="ui-table__icon-container">
@@ -407,7 +407,7 @@ $this->setFrameMode(true);
                                                 <span class="ui-icon ui-icon_small" aria-hidden="true" data-icon="<?=$item["PROPERTIES"]["ICO"]["VALUE_XML_ID"];?>"></span>
                                         <?}?>
                 </div>
-                <span class="category-card__title"><?=$item["NAME"];?></span>
+                <h3 class="category-card__title"><?=$item["NAME"];?></h3>
               </div>
               <span class="category-card__price"><?=CurrencyFormat($item["PROPERTIES"]["PRICE"]["VALUE"],"RUB");?></span>
             </div>
@@ -425,7 +425,7 @@ $this->setFrameMode(true);
               <span class="category-card__value"><?=$item["PROPERTIES"]["READ_DRIVE"]["VALUE"];?></span>
             </div>
                         <?}?>
-          </div>
+          </article>
                         <?}?>
         </div>
       </section>
