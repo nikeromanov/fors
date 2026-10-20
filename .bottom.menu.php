@@ -1,4 +1,6 @@
 <?
+\Bitrix\Main\Localization\Loc::loadMessages($_SERVER["DOCUMENT_ROOT"]."/info/index.php");
+
 $aMenuLinks = Array(
 	Array(
 		"Автошкола", 
@@ -48,6 +50,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
+	),
+	Array(
+		\Bitrix\Main\Localization\Loc::getMessage("FORS_EDUCATION_PAGE_TITLE"),
+		"/info/",
+		Array(),
+		Array(),
+		""
 	)
 );
 ?>

@@ -1,4 +1,6 @@
 <?
+\Bitrix\Main\Localization\Loc::loadMessages($_SERVER["DOCUMENT_ROOT"]."/info/index.php");
+
 $aMenuLinks = Array(
 	Array(
 		"Категории и цены", 
@@ -34,6 +36,13 @@ $aMenuLinks = Array(
 		Array(),
 		Array(),
 		"1==1"
+	),
+	Array(
+		\Bitrix\Main\Localization\Loc::getMessage("FORS_EDUCATION_MENU_TITLE"),
+		"/info/",
+		Array(),
+		Array(),
+		""
 	)
 );
 ?>

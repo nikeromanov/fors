@@ -1,5 +1,5 @@
 /* Media queries, вынесены отдельно для удобной поддержки */
-@media (max-width: 992px) {
+@media (max-width: 1280px) {
   .primary-nav {
     display: none;
   }
