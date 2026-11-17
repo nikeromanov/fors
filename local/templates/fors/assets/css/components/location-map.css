@@ -11,25 +11,61 @@
 .location-map__marker::after {
   content: "";
   position: absolute;
+  left: 50%;
+  box-sizing: border-box;
 }
 
 .location-map__marker::before {
   top: 4px;
-  left: 3px;
   width: 22px;
   height: 22px;
   border: 2px solid #282415;
   border-radius: 50% 50% 50% 0;
   background: var(--color-accent);
-  transform: rotate(-45deg);
+  transform: translateX(-50%) rotate(-45deg);
   box-shadow: 0 2px 4px rgb(0 0 0 / 25%);
 }
 
 .location-map__marker::after {
   top: 11px;
-  left: 10px;
   width: 8px;
   height: 8px;
+  transform: translateX(-50%);
   border-radius: 50%;
   background: #282415;
+}
+
+.location-map__popup .leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 6px;
+  color: #1a1a1a;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 18%);
+}
+
+.location-map__popup .leaflet-popup-content {
+  margin: 0;
+  padding: 14px 32px 14px 16px;
+  min-width: 0;
+  font: 14px/1.4 Arial, sans-serif;
+  overflow-wrap: anywhere;
+}
+
+.location-map__popup-title {
+  display: block;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.location-map__popup-description {
+  color: #5c5c5c;
+}
+
+.location-map__popup-title + .location-map__popup-description {
+  margin-top: 4px;
+}
+
+.leaflet-container .location-map__popup .leaflet-popup-close-button {
+  top: 5px;
+  right: 5px;
+  color: #767676;
 }

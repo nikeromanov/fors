@@ -433,9 +433,20 @@
         const label = [title, subtitle].filter(Boolean).join(' — ');
         const marker = leaflet.marker([lat, lng], { icon, title: label });
         if (label) {
-          const popup = document.createElement('span');
-          popup.textContent = label;
-          marker.bindPopup(popup);
+          const popup = document.createElement('div');
+          if (title) {
+            const heading = document.createElement('strong');
+            heading.className = 'location-map__popup-title';
+            heading.textContent = title;
+            popup.appendChild(heading);
+          }
+          if (subtitle) {
+            const description = document.createElement('div');
+            description.className = 'location-map__popup-description';
+            description.textContent = subtitle;
+            popup.appendChild(description);
+          }
+          marker.bindPopup(popup, { className: 'location-map__popup', maxWidth: 240 });
         }
         markers.addLayer(marker);
       });
