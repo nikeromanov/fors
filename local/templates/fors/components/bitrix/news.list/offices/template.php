@@ -19,6 +19,7 @@ $this->setFrameMode(true);
 Loc::loadMessages(__FILE__);
 $leafletPath = SITE_TEMPLATE_PATH.'/assets/js/leaflet';
 $this->addExternalCss($leafletPath.'/leaflet.css');
+$this->addExternalCss(SITE_TEMPLATE_PATH.'/assets/css/components/location-map.css');
 $this->addExternalJs($leafletPath.'/leaflet.js');
 
 $districtCoords = [];

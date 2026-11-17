@@ -1,0 +1,35 @@
+.contacts-map__canvas {
+  width: 100%;
+  height: clamp(300px, 40vw + 100px, 523px);
+  border-radius: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  background-color: var(--color-surface-elevated);
+  overflow: hidden;
+  z-index: 0;
+}
+
+.location-map__marker::before,
+.location-map__marker::after {
+  content: "";
+  position: absolute;
+}
+
+.location-map__marker::before {
+  top: 4px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #282415;
+  border-radius: 50% 50% 50% 0;
+  background: var(--color-accent);
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 25%);
+}
+
+.location-map__marker::after {
+  top: 11px;
+  left: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #282415;
+}

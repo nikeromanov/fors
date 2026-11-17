@@ -412,6 +412,12 @@
     }).addTo(map);
     map.attributionControl.setPrefix(false);
 
+    const icon = leaflet.divIcon({
+      className: 'location-map__marker',
+      iconSize: [28, 32],
+      iconAnchor: [14, 31],
+      popupAnchor: [0, -30],
+    });
     const markers = leaflet.featureGroup().addTo(map);
 
     return (pointsJson) => {
@@ -425,7 +431,7 @@
         if (!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180) return;
 
         const label = [title, subtitle].filter(Boolean).join(' — ');
-        const marker = leaflet.marker([lat, lng], { title: label, alt: label });
+        const marker = leaflet.marker([lat, lng], { icon, title: label });
         if (label) {
           const popup = document.createElement('span');
           popup.textContent = label;

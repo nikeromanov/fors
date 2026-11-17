@@ -11,6 +11,7 @@ Loc::loadMessages(__FILE__);
 $leafletPath = SITE_TEMPLATE_PATH.'/assets/js/leaflet';
 $asset = Asset::getInstance();
 $asset->addCss($leafletPath.'/leaflet.css');
+$asset->addCss(SITE_TEMPLATE_PATH.'/assets/css/components/location-map.css');
 $asset->addJs($leafletPath.'/leaflet.js');
 
 // Координаты метки «Форсаж» из прежней карты контактов.
