@@ -1,4 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\Web\Json;
 /** @var array $arParams */
 /** @var array $arResult */
@@ -15,18 +16,13 @@ $this->setFrameMode(true);
 ?>
 <?if(!empty($arResult["ITEMS"])){?>
 <?
-$defaultMapSrc = '';
+Loc::loadMessages(__FILE__);
+$leafletPath = SITE_TEMPLATE_PATH.'/assets/js/leaflet';
+$this->addExternalCss($leafletPath.'/leaflet.css');
+$this->addExternalJs($leafletPath.'/leaflet.js');
+
 $districtCoords = [];
 foreach($arResult["ITEMS"] as $item){
-	$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
-	$mapRaw = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
-	$mapRaw = trim((string)$mapRaw);
-	if($mapRaw !== '' && $defaultMapSrc === ''){
-		if(stripos($mapRaw, '<iframe') !== false && preg_match('/src=["\']([^"\']+)["\']/', $mapRaw, $matches)){
-			$mapRaw = $matches[1];
-		}
-		$defaultMapSrc = $mapRaw;
-	}
 	$autos = $item["PROPERTIES"]["AUTOS"]["VALUE"] ?? [];
 	$coordsList = [];
 	foreach($autos as $auto){
@@ -41,7 +37,6 @@ foreach($arResult["ITEMS"] as $item){
 	}
 	$districtCoords[$item["ID"]] = $coordsList;
 }
-$markerIcon = SITE_TEMPLATE_PATH.'/assets/icons/marker.png';
 ?>
 
 <section class="page-section container" aria-labelledby="map-title">
@@ -100,23 +95,12 @@ $markerIcon = SITE_TEMPLATE_PATH.'/assets/icons/marker.png';
 
       <div
         class="office-map__map js-district-map"
-		data-marker-icon="<?=htmlspecialcharsbx($markerIcon);?>"
-		data-map-default="<?=htmlspecialcharsbx($defaultMapSrc);?>"
-		<?foreach($arResult["ITEMS"] as $item){
-			$mapValue = $item["PROPERTIES"]["MAP"]["~VALUE"] ?? '';
-			$mapRaw = is_array($mapValue) ? ($mapValue["TEXT"] ?? '') : $mapValue;
-			$mapRaw = trim((string)$mapRaw);
-			if($mapRaw !== '' && stripos($mapRaw, '<iframe') !== false && preg_match('/src=["\']([^"\']+)["\']/', $mapRaw, $matches)){
-				$mapRaw = $matches[1];
-			}
-			if($mapRaw !== ''){?>
-				data-map-<?=$item["ID"];?>="<?=htmlspecialcharsbx($mapRaw);?>"
-			<?}?>
-			data-coords-<?=$item["ID"];?>="<?=htmlspecialcharsbx(Json::encode($districtCoords[$item["ID"]] ?? []));?>"
-		<?}?>
-      ><?if(!empty($defaultMapSrc)){?>
-		  <iframe src="<?=htmlspecialcharsbx($defaultMapSrc);?>" loading="lazy" allowfullscreen></iframe>
-		<?}?></div>
+        role="region"
+        aria-label="<?=htmlspecialcharsbx(Loc::getMessage("FORS_OFFICES_MAP_LABEL"));?>"
+        <?foreach($arResult["ITEMS"] as $item){?>
+          data-coords-<?=$item["ID"];?>="<?=htmlspecialcharsbx(Json::encode($districtCoords[$item["ID"]]));?>"
+        <?}?>
+      ></div>
     </div>
   </div>
 </section>

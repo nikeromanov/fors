@@ -1,9 +1,22 @@
 <?
 use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Page\Asset;
+use Bitrix\Main\Web\Json;
 global $settings;
 global $APPLICATION;
 $set = getSettings(20);
 $settingsPage = $set["PROPERTIES"];
+
+Loc::loadMessages(__FILE__);
+$leafletPath = SITE_TEMPLATE_PATH.'/assets/js/leaflet';
+$asset = Asset::getInstance();
+$asset->addCss($leafletPath.'/leaflet.css');
+$asset->addJs($leafletPath.'/leaflet.js');
+
+// Координаты метки «Форсаж» из прежней карты контактов.
+$contactPoints = [
+    ["coords" => "51.668916,39.190855", "title" => "Форсаж"],
+];
 ?>
 
 <section class="page-section page-section__flex contacts container" aria-labelledby="contacts-title">
@@ -113,10 +126,11 @@ $settingsPage = $set["PROPERTIES"];
         </ul>
       </section>
 
-<?if(!empty($settingsPage["TIME"]["~VALUE"])){?><div class="contacts-map page-section container">
-        <figure class="contacts-map__figure">
-          <div class="contacts-map__canvas">
-            <?=$settingsPage["MAP"]["~VALUE"];?>
-          </div>
-        </figure>
-      </div><?}?>
+<div class="contacts-map page-section container">
+  <div
+    class="contacts-map__canvas js-contacts-map"
+    role="region"
+    aria-label="<?=htmlspecialcharsbx(Loc::getMessage("FORS_CONTACTS_MAP_LABEL"));?>"
+    data-coords="<?=htmlspecialcharsbx(Json::encode($contactPoints));?>"
+  ></div>
+</div>

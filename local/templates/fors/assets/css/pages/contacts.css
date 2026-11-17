@@ -165,30 +165,11 @@
   padding-top: clamp(2.5rem, 2rem + 1vw, 3rem);
 }
 
-.contacts-map iframe {
-  display: block;
+.contacts-map__canvas {
   width: 100%;
   height: clamp(300px, 40vw + 100px, 523px);
-  border: 0;
-  border-radius: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
-}
-
-.contacts-map__figure {
-  margin: 0;
-}
-
-.contacts-map__canvas {
   border-radius: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
   background-color: var(--color-surface-elevated);
   overflow: hidden;
-}
-
-.contacts-map__canvas picture {
-  display: block;
-}
-
-.contacts-map__image {
-  display: block;
-  inline-size: 100%;
-  block-size: auto;
+  z-index: 0;
 }

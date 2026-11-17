@@ -55,6 +55,7 @@
     initSocialPopover();
     initPriceTabs();
     initDistrictTabs();
+    initContactsMap();
     initScheduleTabs();
     initReviewsTabs();
     initRouteButtons();
@@ -400,17 +401,63 @@
     });
   }
 
+  function createLocationMap(container) {
+    if (!container || !window.L) return null;
+
+    const leaflet = window.L;
+    const map = leaflet.map(container, { scrollWheelZoom: false });
+    leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+    map.attributionControl.setPrefix(false);
+
+    const markers = leaflet.featureGroup().addTo(map);
+
+    return (pointsJson) => {
+      markers.clearLayers();
+      const points = JSON.parse(pointsJson || '[]');
+      points.forEach(({ coords, title, subtitle }) => {
+        if (typeof coords !== 'string') return;
+        const parts = coords.split(',').map((value) => value.trim());
+        if (parts.length !== 2 || parts.some((value) => value === '')) return;
+        const [lat, lng] = parts.map(Number);
+        if (!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180) return;
+
+        const label = [title, subtitle].filter(Boolean).join(' — ');
+        const marker = leaflet.marker([lat, lng], { title: label, alt: label });
+        if (label) {
+          const popup = document.createElement('span');
+          popup.textContent = label;
+          marker.bindPopup(popup);
+        }
+        markers.addLayer(marker);
+      });
+
+      map.invalidateSize({ pan: false });
+      const bounds = markers.getBounds();
+      if (bounds.isValid()) {
+        map.fitBounds(bounds, { padding: [40, 40], maxZoom: 16, animate: false });
+      } else {
+        map.setView([51.672, 39.184], 12, { animate: false });
+      }
+    };
+  }
+
+  function initContactsMap() {
+    const container = document.querySelector('.js-contacts-map');
+    const renderPoints = createLocationMap(container);
+    renderPoints?.(container.dataset.coords);
+  }
+
   function initDistrictTabs() {
     const groups = document.querySelectorAll('.js-district-tabs');
     groups.forEach((group) => {
       const triggers = Array.from(group.querySelectorAll('[data-district-tab]'));
       const panels = Array.from(group.querySelectorAll('.js-district-panel'));
       const mapContainer = group.querySelector('.js-district-map');
-      let markersOverlay = null;
-      let activeMapSrc = '';
-      let activeCoords = [];
-      let resizeRequestId = null;
       if (triggers.length === 0 || panels.length === 0) return;
+      const renderPoints = createLocationMap(mapContainer);
 
       const panelMap = new Map();
       panels.forEach((panel) => {
@@ -424,219 +471,6 @@
         (selectedTrigger && selectedTrigger.dataset.districtTab) ||
         (panels[0] && panels[0].id) ||
         (triggers[0] && triggers[0].dataset.districtTab);
-
-      const getMapSrc = (districtId) => {
-        if (!mapContainer) return '';
-        const specific = mapContainer.getAttribute(`data-map-${districtId}`) || '';
-        if (specific) return specific;
-        return mapContainer.getAttribute('data-map-default') || '';
-      };
-
-      function getCoordsList(districtId) {
-        if (!mapContainer) return [];
-        const raw = mapContainer.getAttribute(`data-coords-${districtId}`) || '';
-        if (!raw) return [];
-        let parsed = [];
-        try {
-          parsed = JSON.parse(raw);
-        } catch (error) {
-          return [];
-        }
-        return parsed
-          .map((item) => {
-            if (!item) return null;
-            const rawCoords = typeof item === 'string' ? item : item.coords;
-            if (!rawCoords) return null;
-            const parts = rawCoords.split(',').map((value) => parseFloat(String(value).trim()));
-            if (parts.length < 2 || parts.some((value) => Number.isNaN(value))) return null;
-            return {
-              coords: [parts[0], parts[1]],
-              title: typeof item === 'object' && item !== null ? item.title || '' : '',
-              subtitle: typeof item === 'object' && item !== null ? item.subtitle || '' : '',
-            };
-          })
-          .filter(Boolean);
-      }
-
-      const destroyYandexMap = () => {
-        if (markersOverlay) {
-          markersOverlay.innerHTML = '';
-        }
-      };
-
-      const renderMap = (mapSrc) => {
-        if (!mapContainer) return;
-        destroyYandexMap();
-        if (!mapSrc) {
-          mapContainer.innerHTML = '';
-          return;
-        }
-        const iframe = document.createElement('iframe');
-        iframe.src = mapSrc;
-        iframe.loading = 'lazy';
-        iframe.setAttribute('allowfullscreen', '');
-        mapContainer.innerHTML = '';
-        mapContainer.appendChild(iframe);
-      };
-
-      const parseMapParams = (mapSrc) => {
-        if (!mapSrc) return null;
-        let url;
-        try {
-          url = new URL(mapSrc, window.location.origin);
-        } catch (error) {
-          return null;
-        }
-        const ll = url.searchParams.get('ll');
-        const zoomValue = url.searchParams.get('z');
-        if (!ll || !zoomValue) return null;
-        const [lon, lat] = ll.split(',').map((value) => parseFloat(value.trim()));
-        const zoom = parseInt(zoomValue, 10);
-        if ([lat, lon].some((value) => Number.isNaN(value)) || Number.isNaN(zoom)) return null;
-        return { center: [lat, lon], zoom };
-      };
-
-      const projectPoint = ([lat, lon], zoom) => {
-        const sin = Math.sin((lat * Math.PI) / 180);
-        const scale = 256 * Math.pow(2, zoom);
-        const x = ((lon + 180) / 360) * scale;
-        const y = (0.5 - Math.log((1 + sin) / (1 - sin)) / (4 * Math.PI)) * scale;
-        return { x, y };
-      };
-
-      const noteContainerPosition = () => {
-        if (!mapContainer) return;
-        const computed = window.getComputedStyle(mapContainer);
-        if (computed.position === 'static') {
-          mapContainer.style.position = 'relative';
-        }
-      };
-
-      const lockMapInteractions = () => {
-        if (!mapContainer || mapContainer.dataset.zoomLocked === 'true') return;
-        mapContainer.dataset.zoomLocked = 'true';
-        const prevent = (event) => event.preventDefault();
-        mapContainer.addEventListener('wheel', prevent, { passive: false });
-        mapContainer.addEventListener('dblclick', prevent);
-        mapContainer.addEventListener('gesturestart', prevent);
-        mapContainer.addEventListener('gesturechange', prevent);
-        mapContainer.addEventListener('gestureend', prevent);
-        mapContainer.addEventListener('touchmove', prevent, { passive: false });
-      };
-
-      const ensureMapBlocker = () => {
-        if (!mapContainer) return null;
-        let blocker = mapContainer.querySelector('.office-map__blocker');
-        if (!blocker) {
-          blocker = document.createElement('div');
-          blocker.className = 'office-map__blocker';
-          blocker.style.position = 'absolute';
-          blocker.style.inset = '0';
-          blocker.style.zIndex = '1';
-          blocker.style.background = 'transparent';
-          blocker.style.pointerEvents = 'auto';
-          mapContainer.appendChild(blocker);
-          mapContainer.dataset.blockerReady = 'true';
-        }
-        return blocker;
-      };
-
-      const ensureMarkersOverlay = () => {
-        if (!mapContainer) return null;
-        if (!markersOverlay) {
-          markersOverlay = document.createElement('div');
-          markersOverlay.className = 'office-map__markers';
-          markersOverlay.style.position = 'absolute';
-          markersOverlay.style.inset = '0';
-          markersOverlay.style.pointerEvents = 'none';
-          markersOverlay.style.zIndex = '2';
-        }
-        if (!mapContainer.contains(markersOverlay)) {
-          mapContainer.appendChild(markersOverlay);
-        }
-        noteContainerPosition();
-        lockMapInteractions();
-        ensureMapBlocker();
-        return markersOverlay;
-      };
-
-      const renderMarkers = (mapSrc, coordsList) => {
-        if (!mapContainer) return;
-        const overlay = ensureMarkersOverlay();
-        if (!overlay) return;
-        overlay.innerHTML = '';
-        if (!mapSrc || coordsList.length === 0) return;
-        const mapParams = parseMapParams(mapSrc);
-        if (!mapParams) return;
-        const { center, zoom } = mapParams;
-        const rect = mapContainer.getBoundingClientRect();
-        if (rect.width === 0 || rect.height === 0) return;
-        const centerPoint = projectPoint(center, zoom);
-        const markerIcon = mapContainer.getAttribute('data-marker-icon') || '';
-        if (!markerIcon) return;
-        const markerSize = 24;
-        const hideTooltips = () => {
-          overlay.querySelectorAll('[data-tooltip]').forEach((tooltip) => {
-            tooltip.style.display = 'none';
-          });
-        };
-        if (mapContainer && mapContainer.dataset.tooltipBound !== 'true') {
-          mapContainer.dataset.tooltipBound = 'true';
-          mapContainer.addEventListener('click', () => hideTooltips());
-        }
-        coordsList.forEach((item) => {
-          const point = projectPoint(item.coords, zoom);
-          const left = Math.round(point.x - centerPoint.x + rect.width / 2 - markerSize / 2);
-          const top = Math.round(point.y - centerPoint.y + rect.height / 2 - markerSize);
-          const marker = document.createElement('button');
-          marker.type = 'button';
-          marker.className = 'office-map__marker';
-          const tooltipText = [item.title, item.subtitle].filter(Boolean).join(' — ');
-          marker.title = tooltipText;
-          marker.style.position = 'absolute';
-          marker.style.left = `${left}px`;
-          marker.style.top = `${top}px`;
-          marker.style.width = `${markerSize}px`;
-          marker.style.height = `${markerSize}px`;
-          marker.style.padding = '0';
-          marker.style.border = '0';
-          marker.style.background = 'transparent';
-          marker.style.pointerEvents = 'auto';
-          const markerImage = document.createElement('img');
-          markerImage.src = markerIcon;
-          markerImage.alt = '';
-          markerImage.setAttribute('aria-hidden', 'true');
-          markerImage.style.display = 'block';
-          markerImage.style.width = '100%';
-          markerImage.style.height = '100%';
-          marker.appendChild(markerImage);
-          if (tooltipText) {
-            const tooltip = document.createElement('span');
-            tooltip.textContent = tooltipText;
-            tooltip.dataset.tooltip = 'true';
-            tooltip.style.position = 'absolute';
-            tooltip.style.bottom = '100%';
-            tooltip.style.left = '50%';
-            tooltip.style.transform = 'translate(-50%, -8px)';
-            tooltip.style.background = '#ffffff';
-            tooltip.style.color = '#000000';
-            tooltip.style.borderRadius = '6px';
-            tooltip.style.padding = '6px 10px';
-            tooltip.style.whiteSpace = 'nowrap';
-            tooltip.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-            tooltip.style.display = 'none';
-            tooltip.style.pointerEvents = 'none';
-            marker.appendChild(tooltip);
-            marker.addEventListener('click', (event) => {
-              event.stopPropagation();
-              const isVisible = tooltip.style.display === 'block';
-              hideTooltips();
-              tooltip.style.display = isVisible ? 'none' : 'block';
-            });
-          }
-          overlay.appendChild(marker);
-        });
-      };
 
       function setActive(nextId, { focus = false } = {}) {
         if (!nextId) return;
@@ -664,14 +498,8 @@
           }
         });
 
-        // Обновление карты
         const districtId = nextId.replace('district-', '');
-        const mapSrc = getMapSrc(districtId);
-        const coordsList = getCoordsList(districtId);
-        renderMap(mapSrc);
-        activeMapSrc = mapSrc;
-        activeCoords = coordsList;
-        renderMarkers(mapSrc, coordsList);
+        renderPoints?.(mapContainer.getAttribute(`data-coords-${districtId}`));
 
         activeId = nextId;
         if (focus) {
@@ -680,13 +508,6 @@
       }
 
       setActive(activeId);
-      window.addEventListener('resize', () => {
-        if (!activeMapSrc || activeCoords.length === 0) return;
-        if (resizeRequestId) {
-          cancelAnimationFrame(resizeRequestId);
-        }
-        resizeRequestId = requestAnimationFrame(() => renderMarkers(activeMapSrc, activeCoords));
-      });
 
       function handleKeydown(event, current) {
         const { key } = event;
