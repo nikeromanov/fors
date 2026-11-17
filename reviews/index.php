@@ -4,6 +4,7 @@ $APPLICATION->SetPageProperty("description", "Читайте отзывы быв
 $APPLICATION->SetPageProperty("keywords", "Отзывы");
 $APPLICATION->SetPageProperty("title", "Отзывы автолюбителей об обучении в автошколе \"Форсаж\" в Воронеже ");
 $APPLICATION->SetTitle("Отзывы");
+include $_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH."/includes/reviews-media.php";
 global $filterP;
 $filterP["PROPERTY_VIDEO"]=false;
 ?><?$APPLICATION->IncludeComponent(
