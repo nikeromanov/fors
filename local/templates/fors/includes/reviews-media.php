@@ -6,45 +6,28 @@ use Bitrix\Main\Page\Asset;
 
 Loc::loadMessages(__FILE__);
 Asset::getInstance()->addCss(SITE_TEMPLATE_PATH.'/assets/css/components/reviews-media.css');
-global $forsVideoReviewsFilter;
-$forsVideoReviewsFilter = ["!PROPERTY_VIDEO" => false];
+Asset::getInstance()->addJs(SITE_TEMPLATE_PATH.'/assets/js/reviews-video-slider.js');
 ?>
 <section class="reviews-media" aria-labelledby="reviews-media-title">
 	<div class="reviews-media__intro">
 		<span class="reviews-media__eyebrow"><?=Loc::getMessage('FORS_REVIEWS_EYEBROW');?></span>
 		<h2 id="reviews-media-title" class="reviews-media__title"><?=Loc::getMessage('FORS_REVIEWS_VIDEO_TITLE');?></h2>
 		<p class="reviews-media__description"><?=Loc::getMessage('FORS_REVIEWS_VIDEO_DESCRIPTION');?></p>
-		<a class="reviews-media__link" href="https://yandex.ru/maps/org/forsazh/1022362733/reviews/" target="_blank" rel="noopener noreferrer"><span><?=Loc::getMessage('FORS_REVIEWS_YANDEX');?></span><span aria-hidden="true">↗</span></a>
+		<?// Verified against Yandex Maps on 2026-11-17: 4.9, 517 reviews (812 ratings).?>
+		<a class="reviews-media__rating" href="https://yandex.ru/maps/org/forsazh/70026884601/reviews/" target="_blank" rel="noopener noreferrer">
+			<span class="reviews-media__rating-score"><span aria-hidden="true">★</span> 4,9</span>
+			<span class="reviews-media__rating-copy">
+				<strong><?=Loc::getMessage('FORS_REVIEWS_YANDEX_TITLE');?></strong>
+				<span><?=Loc::getMessage('FORS_REVIEWS_YANDEX_STATS');?></span>
+			</span>
+			<span class="reviews-media__rating-arrow" aria-hidden="true">↗</span>
+		</a>
 	</div>
 	<div class="reviews-media__videos">
 	<?$APPLICATION->IncludeComponent(
-		"bitrix:news.list",
-		"video-reviews",
-		[
-			"IBLOCK_TYPE" => "data",
-			"IBLOCK_ID" => "9",
-			"FILTER_NAME" => "forsVideoReviewsFilter",
-			"PROPERTY_CODE" => ["VIDEO"],
-			"FIELD_CODE" => ["DATE_ACTIVE_FROM", "PREVIEW_PICTURE"],
-			"NEWS_COUNT" => "20",
-			"SORT_BY1" => "ACTIVE_FROM",
-			"SORT_ORDER1" => "DESC",
-			"SORT_BY2" => "SORT",
-			"SORT_ORDER2" => "ASC",
-			"CHECK_DATES" => "Y",
-			"CACHE_TYPE" => "A",
-			"CACHE_TIME" => "36000000",
-			"CACHE_FILTER" => "Y",
-			"CACHE_GROUPS" => "Y",
-			"SET_TITLE" => "N",
-			"SET_BROWSER_TITLE" => "N",
-			"SET_META_DESCRIPTION" => "N",
-			"SET_META_KEYWORDS" => "N",
-			"ADD_SECTIONS_CHAIN" => "N",
-			"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-			"DISPLAY_TOP_PAGER" => "N",
-			"DISPLAY_BOTTOM_PAGER" => "N",
-		],
+		"iswin:video.reviews",
+		".default",
+		["IBLOCK_ID" => 9, "CACHE_TYPE" => "A", "CACHE_TIME" => 36000000],
 		false
 	);?>
 	</div>
