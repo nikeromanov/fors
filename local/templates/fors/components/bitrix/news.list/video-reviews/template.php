@@ -26,7 +26,7 @@ if (empty($arResult["ITEMS"])) return;
 			<div class="video-card__header">
 				<span class="video-card__author"><?=$item["NAME"];?></span>
 				<?if ($date !== false) {?>
-					<time class="video-card__date" datetime="<?=date('c', $date);?>"><?=date("d.m.Y", $date);?> | <?=date("H:i:s", $date);?></time>
+					<time class="video-card__date" datetime="<?=date('c', $date);?>"><?=date("d.m.Y", $date);?></time>
 				<?}?>
 			</div>
 			<a href="<?=htmlspecialcharsbx($videoUrl);?>" data-fancybox="video-reviews" <?if ($videoType) {?>data-type="<?=$videoType;?>"<?}?> class="video-card__embed" aria-label="<?=$item["NAME"];?>">

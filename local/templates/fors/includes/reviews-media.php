@@ -2,13 +2,21 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Page\Asset;
 
 Loc::loadMessages(__FILE__);
+Asset::getInstance()->addCss(SITE_TEMPLATE_PATH.'/assets/css/components/reviews-media.css');
 global $forsVideoReviewsFilter;
 $forsVideoReviewsFilter = ["!PROPERTY_VIDEO" => false];
 ?>
-<div class="reviews-media">
-	<a class="btn btn--secondary btn--medium" href="https://yandex.ru/maps/org/forsazh/1022362733/reviews/" target="_blank" rel="noopener noreferrer"><?=Loc::getMessage('FORS_REVIEWS_YANDEX');?></a>
+<section class="reviews-media" aria-labelledby="reviews-media-title">
+	<div class="reviews-media__intro">
+		<span class="reviews-media__eyebrow"><?=Loc::getMessage('FORS_REVIEWS_EYEBROW');?></span>
+		<h2 id="reviews-media-title" class="reviews-media__title"><?=Loc::getMessage('FORS_REVIEWS_VIDEO_TITLE');?></h2>
+		<p class="reviews-media__description"><?=Loc::getMessage('FORS_REVIEWS_VIDEO_DESCRIPTION');?></p>
+		<a class="reviews-media__link" href="https://yandex.ru/maps/org/forsazh/1022362733/reviews/" target="_blank" rel="noopener noreferrer"><span><?=Loc::getMessage('FORS_REVIEWS_YANDEX');?></span><span aria-hidden="true">↗</span></a>
+	</div>
+	<div class="reviews-media__videos">
 	<?$APPLICATION->IncludeComponent(
 		"bitrix:news.list",
 		"video-reviews",
@@ -39,4 +47,6 @@ $forsVideoReviewsFilter = ["!PROPERTY_VIDEO" => false];
 		],
 		false
 	);?>
-</div>
+	</div>
+</section>
+<h2 class="reviews-media__text-title"><?=Loc::getMessage('FORS_REVIEWS_TEXT_TITLE');?></h2>
