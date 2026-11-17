@@ -112,6 +112,11 @@ function forsHandleInvalidUrl()
         LocalRedirect('/', true, '301 Moved Permanently');
     }
 
+    if (preg_match('#^/verstka(?:/|$)#i', $uriPath)) {
+        $queryString = (string)($_SERVER['QUERY_STRING'] ?? '');
+        LocalRedirect($queryString === '' ? '/' : '/?' . $queryString, true, '301 Moved Permanently');
+    }
+
     if (preg_match('#^/shares(?:/|$)#', $path)) {
         LocalRedirect('/news/', true, '301 Moved Permanently');
     }
